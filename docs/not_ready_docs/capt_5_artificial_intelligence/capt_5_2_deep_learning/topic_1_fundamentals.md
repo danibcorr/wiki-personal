@@ -19,6 +19,39 @@ términos generales, la inteligencia puede entenderse como la **capacidad de pro
 información y utilizarla para tomar decisiones orientadas al logro de objetivos
 específicos**.
 
+Desde una perspectiva biológica, el cerebro humano constituye el ejemplo más sofisticado
+de sistema inteligente conocido. El **hipocampo**, una estructura cerebral fundamental,
+desempeña funciones esenciales de memoria, navegación y planificación, construyendo
+**mapas cognitivos** que representan el mundo físico en un espacio mental interno. Las
+neuronas de posicionamiento (_place cells_) se activan en ubicaciones específicas del
+entorno, generando patrones de actividad incluso en espacios tridimensionales. Cuando el
+entorno cambia, se produce un **remapeo neuronal**: las neuronas dejan de activarse en
+las mismas zonas y se reorganizan en función de las nuevas condiciones. Este remapeo no
+depende únicamente de cambios físicos, sino también de factores contextuales como los
+estímulos olfativos, lo que evidencia que estas representaciones son **dependientes del
+contexto** y no se limitan a codificar información puramente espacial. El hipocampo
+integra múltiples variables continuas para construir estas representaciones, mientras que
+el **neocórtex** se encarga de procesar información más abstracta, incluyendo el lenguaje
+y el conocimiento conceptual.
+
+Dentro del neocórtex se encuentra la **columna cortical**, considerada la unidad
+fundamental de procesamiento inteligente. La **hipótesis columnar** postula que, si el
+_hardware_ biológico (la columna cortical replicada) es universal e idéntico en todas sus
+instancias, entonces el algoritmo que gobierna su funcionamiento también debe serlo. Esta
+idea se relaciona directamente con el concepto de **inteligencia artificial general
+(AGI)**: un único algoritmo universal capaz de adaptarse a cualquier tipo de entrada,
+donde solo varía el _input_ que recibe. Cada columna cortical opera como un sistema
+independiente, pero existe un **traspaso de mensajes entre columnas** que puede
+interpretarse como una interfaz de comunicación (análoga a una API en sistemas
+informáticos). Incrementar el número de columnas corticales equivale a aumentar la
+capacidad de cómputo del sistema. A medida que el cerebro adquiere características del
+mundo, construye **marcos de referencia** que permiten localizar y relacionar conceptos,
+facilitando la generación de nuevas acciones y predicciones, un proceso conocido como
+**integración de caminos** (_path integration_). Las columnas corticales emplean además
+un mecanismo de **votación por mayoría** para alcanzar un consenso sobre lo que se
+percibe, donde la entrada de una columna puede ser tanto información sensorial directa
+como información procesada por otra columna cortical.
+
 Este concepto constituye el fundamento del campo de la **Inteligencia Artificial (IA)**,
 disciplina que se dedica al desarrollo de técnicas y algoritmos capaces de reproducir
 ciertos aspectos del comportamiento humano. La IA busca emular la inteligencia mediante
@@ -1708,6 +1741,37 @@ dentro de un rango válido. De este modo, la neurona artificial transforma la en
 mediante una combinación de operaciones lineales y no lineales, ajustándose
 progresivamente a los patrones presentes en los datos.
 
+Esta abstracción computacional tiene su origen en la estructura de la **neurona
+biológica**. En el cerebro, una neurona se compone de tres partes principales: las
+**dendritas**, que constituyen las entradas y reciben señales de otras neuronas; el
+**soma** (cuerpo celular), donde se realiza el procesamiento; y el **axón**, que
+transmite la señal de salida. Una neurona biológica se activa cuando la suma de los
+impulsos recibidos a través de las dendritas alcanza un umbral determinado, generando un
+potencial de acción (_spike_) que se propaga por el axón. Cuando esta señal llega a la
+**sinapsis**, la conexión con la siguiente neurona, el proceso de transmisión pasa de ser
+eléctrico a químico mediante la liberación de **neurotransmisores**. En la neurona
+receptora, estos neurotransmisores generan una nueva señal eléctrica, completando así la
+cadena de comunicación.
+
+La sinapsis posee un **detector de coincidencias** basado en receptores NMDA, que se
+activa cuando confluyen simultáneamente una señal química (llegada de neurotransmisores
+de otra neurona) y una señal eléctrica (despolarización de la membrana de la neurona
+receptora). Este mecanismo subyace al **principio hebbiano**: las neuronas que se activan
+juntas refuerzan sus conexiones mutuas. Además, mecanismos locales, como la activación
+simultánea de sinapsis cercanas, contribuyen a modular la fuerza de las conexiones. Esta
+capacidad de modificar el número y la sensibilidad de los receptores sinápticos se
+denomina **plasticidad sináptica**, y constituye la base biológica del aprendizaje.
+
+Una neurona biológica presenta dos tipos diferenciados de conexiones dendríticas. Las
+**dendritas apicales** reciben conexiones de retroalimentación (_feedback_) con
+información asociativa procedente de áreas corticales superiores, mientras que las
+**dendritas basales** procesan conexiones de alimentación directa (_feedforward_) con
+información sensorial y motora local. Las redes neuronales artificiales actuales modelan
+principalmente la integración basal local junto con una plasticidad dependiente del error
+de salida, pero no capturan las señales apicales ni la plasticidad dependiente del
+contexto global o de los vecindarios neuronales, lo que representa una simplificación
+significativa respecto al sistema biológico original.
+
 No obstante, el valor de una vivienda depende de múltiples factores adicionales, como el
 número de dormitorios, el número de baños, la ubicación geográfica, la proximidad a
 servicios públicos o el estado de conservación de la propiedad. La incorporación de estas
@@ -2423,7 +2487,14 @@ residuales pueden verse como la suma de múltiples caminos donde la entrada perm
 alterar a la par que recibe transformaciones o combinaciones de múltiples
 transformaciones. El número de caminos crece exponencialmente con el número de bloques
 residuales, y estos caminos pueden interpretarse como pequeños modelos que comparten
-información entre sí mediante _weight-sharing_.
+información entre sí mediante _weight-sharing_. Desde una perspectiva neurocientífica,
+este mecanismo recuerda a la organización de la **columna cortical**, que se estructura
+en seis niveles jerárquicos: desde las capas superiores de reconexión con pocas neuronas,
+pasando por las capas intermedias de procesamiento y las capas que reciben información
+sensorial directa, hasta las capas inferiores que almacenan información espacial y de
+posición. El salto de información desde las capas inferiores (nivel 6) hacia las capas
+superiores (niveles 2 y 3) constituye una analogía biológica directa de las _skip
+connections_ empleadas en las redes residuales.
 
 Otra innovación relevante fue la **arquitectura Inception** (GoogLeNet), que aplica en
 paralelo filtros de distintos tamaños (1×1, 3×3 y 5×5) junto con una operación de
@@ -2689,7 +2760,12 @@ correspondientes para generar representaciones contextuales.
 
 Los _Transformers_, introducidos en el artículo _Attention is All You Need_,
 revolucionaron el procesamiento de secuencias al eliminar la necesidad de recurrir a RNN,
-permitiendo un procesamiento paralelo de los datos. La arquitectura se organiza en dos
+permitiendo un procesamiento paralelo de los datos. Desde una perspectiva
+neurocientífica, los _Transformers_ presentan similitudes funcionales con las **máquinas
+de Tolman-Eichenbaum (TEM)**, modelos computacionales del hipocampo que obtienen
+información de diferentes entornos, realizan una autocorrelación para evaluar las
+relaciones entre ellos (análoga al mecanismo de atención) y determinan la acción o
+posición a tomar en función de dichas relaciones. La arquitectura se organiza en dos
 componentes principales:
 
 - **_Encoder_**: Procesa la secuencia de entrada y genera representaciones internas
