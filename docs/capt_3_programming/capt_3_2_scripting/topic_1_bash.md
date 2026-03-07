@@ -29,8 +29,8 @@ administración de sistemas.
 
 ### Ejemplo de programa base
 
-Un programa básico en BASH comienza con la línea `#!/bin/bash` (_shebang_), que indica
-al sistema qué intérprete debe usar para ejecutar los comandos del script.
+Un programa básico en BASH comienza con la línea `#!/bin/bash` (_shebang_), que indica al
+sistema qué intérprete debe usar para ejecutar los comandos del script.
 
 Es importante destacar que los scripts de BASH suelen tener la extensión `.sh`.
 
@@ -57,8 +57,8 @@ específicas.
     echo "Hola mundo"
     ```
 
-En Linux, cada archivo tiene **permisos** que determinan quién puede leerlo, escribirlo
-o ejecutarlo. Cuando creas un script (`script.sh`), normalmente **no tiene permisos de
+En Linux, cada archivo tiene **permisos** que determinan quién puede leerlo, escribirlo o
+ejecutarlo. Cuando creas un script (`script.sh`), normalmente **no tiene permisos de
 ejecución por defecto**, lo que significa que no se puede ejecutar directamente. Para
 permitir que el sistema lo ejecute como un programa, usamos:
 
@@ -81,8 +81,8 @@ directamente así:
 
 ### Pasar parámetros como argumentos
 
-En BASH, los parámetros se pasan al script mediante el uso de `$`, seguido del número
-que representa la posición del argumento.
+En BASH, los parámetros se pasan al script mediante el uso de `$`, seguido del número que
+representa la posición del argumento.
 
 ???+ example "Ejemplo"
 
@@ -163,8 +163,8 @@ Operaciones disponibles:
 
 ### Condiciones
 
-En BASH, las condiciones se expresan utilizando el comando `if`, junto con los
-operadores de comparación y lógicos.
+En BASH, las condiciones se expresan utilizando el comando `if`, junto con los operadores
+de comparación y lógicos.
 
 ???+ example "Ejemplo"
 
@@ -238,16 +238,16 @@ Comandos adicionales:
 - `break`: Finaliza el bucle.
 - `continue`: Salta a la siguiente iteración del bucle.
 
-note Los bucles `for` son ideales cuando se conoce el número exacto de iteraciones,
-mientras que los bucles `while` se utilizan cuando la condición de salida depende de una
-variable o el resultado de una operación.
+!!!note "Nota"
+
+    Los bucles `for` son ideales cuando se conoce el número exacto de iteraciones, mientras que los bucles `while` se utilizan cuando la condición de salida depende de una variable o del resultado de una operación.
 
 ### Funciones
 
 Las funciones en BASH permiten organizar y reutilizar el código de manera más eficiente.
 Definir funciones ayuda a hacer el código más modular, legible y fácil de mantener,
-facilitando además la reutilización de bloques de código sin tener que escribirlos
-varias veces.
+facilitando además la reutilización de bloques de código sin tener que escribirlos varias
+veces.
 
 ???+ example "Ejemplo"
 

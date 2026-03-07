@@ -21,8 +21,8 @@ permite automatizar el proceso de compilación y ejecución de proyectos de soft
 Generalmente, se emplea en entornos con sistemas operativos basados en GNU/Linux y puede
 contener comandos en [Bash](./topic_1_bash.md).
 
-El uso de Makefiles ofrece varios beneficios en el desarrollo de software, pero el que
-más destacada es la capacidad de automatización de tareas repetitivas.
+El uso de Makefiles ofrece varios beneficios en el desarrollo de software, siendo el más
+destacado la capacidad de automatización de tareas repetitivas.
 
 ## Sintaxis básica
 
@@ -444,8 +444,8 @@ reutilizables.
 
 ### Macros y funciones
 
-Make permite definir macros y funciones personalizadas para agrupar comandos y mejorar
-la legibilidad del Makefile. Estas macros ayudan a evitar la repetición y facilitan la
+Make permite definir macros y funciones personalizadas para agrupar comandos y mejorar la
+legibilidad del Makefile. Estas macros ayudan a evitar la repetición y facilitan la
 reutilización del código.
 
 !!!note "Sintaxis de una macro"
@@ -482,20 +482,20 @@ reutilización del código.
 
 ## Mejores prácticas y estilos
 
-El uso adecuado de Makefiles no solo facilita la compilación y gestión de proyectos,
-sino que también mejora la legibilidad y mantenimiento a largo plazo. A continuación, se
+El uso adecuado de Makefiles no solo facilita la compilación y gestión de proyectos, sino
+que también mejora la legibilidad y mantenimiento a largo plazo. A continuación, se
 presentan algunas de las mejores prácticas y estilos recomendados.
 
 ### Organización de Makefiles
 
-Es recomendable organizar el Makefile de manera que sea fácil de leer y mantener.
-Algunas sugerencias incluyen:
+Es recomendable organizar el Makefile de manera que sea fácil de leer y mantener. Algunas
+sugerencias incluyen:
 
-1. **Separar las reglas y configuraciones:** Definir las variables al inicio del
-   Makefile y agrupar las reglas relacionadas. Esto facilita el mantenimiento y
-   comprensión del archivo.
-2. **Uso de comentarios:** Añadir comentarios claros y concisos para explicar las
-   reglas, variables y funciones dentro del Makefile.
+1. **Separar las reglas y configuraciones:** Definir las variables al inicio del Makefile
+   y agrupar las reglas relacionadas. Esto facilita el mantenimiento y comprensión del
+   archivo.
+2. **Uso de comentarios:** Añadir comentarios claros y concisos para explicar las reglas,
+   variables y funciones dentro del Makefile.
 3. **Modularización:** Dividir los Makefiles grandes en varios archivos pequeños y
    organizados, utilizando la directiva `include`.
 
@@ -532,8 +532,8 @@ Algunas sugerencias incluyen:
 La depuración de Makefiles puede ser compleja si no se siguen ciertas prácticas. Algunas
 técnicas útiles incluyen:
 
-1.  **Ejecución en seco (`-n`):** Esta opción permite ver qué comandos se ejecutarían
-    sin realmente ejecutarlos, lo cual es útil para verificar el flujo de ejecución.
+1.  **Ejecución en seco (`-n`):** Esta opción permite ver qué comandos se ejecutarían sin
+    realmente ejecutarlos, lo cual es útil para verificar el flujo de ejecución.
 
     !!!note "Sintaxis"
 

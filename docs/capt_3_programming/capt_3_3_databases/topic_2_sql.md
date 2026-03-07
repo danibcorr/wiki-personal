@@ -22,7 +22,7 @@ su aprendizaje y uso.
 ### Introducción
 
 A diferencia de herramientas como Excel, que están limitadas a gestionar un número
-limitado de filas, las bases de datos SQL son capaces de manejar grandes volúmenes de
+reducido de filas, las bases de datos SQL son capaces de manejar grandes volúmenes de
 datos de manera eficiente.
 
 Las bases de datos se clasifican en dos categorías principales:
@@ -171,7 +171,8 @@ Permite filtrar las filas según una condición específica.
 
 #### ORDER BY
 
-Ordena las filas recuperadas. De manera predeterminada, el orden es ascendente; para orden descendente, se utiliza `DESC`.
+Ordena las filas recuperadas. De manera predeterminada, el orden es ascendente. Para
+orden descendente, se utiliza `DESC`.
 
 ???+ example "Ejemplo"
 
@@ -247,7 +248,8 @@ comparaciones entre valores. A continuación se presentan algunos de los más co
 
 #### AND
 
-Combina condiciones en una cláusula `WHERE`. Todas las condiciones separadas por `AND` deben ser verdaderas para que la fila sea incluida en el resultado.
+Combina condiciones en una cláusula `WHERE`. Todas las condiciones separadas por `AND`
+deben ser verdaderas para que la fila sea incluida en el resultado.
 
 ???+ example "Ejemplo"
 
@@ -258,7 +260,8 @@ Combina condiciones en una cláusula `WHERE`. Todas las condiciones separadas po
 
 #### OR
 
-Combina condiciones en una cláusula `WHERE`. Al menos una de las condiciones separadas por `OR` debe ser verdadera para que la fila sea incluida en el resultado.
+Combina condiciones en una cláusula `WHERE`. Al menos una de las condiciones separadas
+por `OR` debe ser verdadera para que la fila sea incluida en el resultado.
 
 ???+ example "Ejemplo"
 
@@ -269,7 +272,8 @@ Combina condiciones en una cláusula `WHERE`. Al menos una de las condiciones se
 
 #### NOT o <>
 
-Niega una condición en una cláusula `WHERE`. Si la condición después de `NOT` es falsa, la fila es incluida en el resultado.
+Niega una condición en una cláusula `WHERE`. Si la condición después de `NOT` es falsa,
+la fila es incluida en el resultado.
 
 ???+ example "Ejemplo"
 
@@ -291,7 +295,8 @@ Selecciona valores dentro de un rango.
 
 #### LIKE
 
-Busca un patrón específico en una columna usando caracteres comodín. `%` representa cero, uno o varios caracteres.
+Busca un patrón específico en una columna usando caracteres comodín. `%` representa cero,
+uno o varios caracteres.
 
 ???+ example "Ejemplo"
 
@@ -373,7 +378,7 @@ Este comodín representa cero, uno o varios caracteres.
       job_title LIKE '%Analyst%'
     ```
 
-#### Comodín _
+#### Comodín \_
 
 Este comodín representa exactamente un carácter.
 
@@ -429,7 +434,7 @@ módulo.
 
 En este caso, se está calculando un nuevo salario por hora (`rate_hike`) al sumar 5 al
 salario por hora actual (`hours_rate`). Luego, se filtran los resultados para mostrar
-sólo aquellos donde el producto de `rate_hike` y `hours_spent` sea mayor a 1000.
+solo aquellos donde el producto de `rate_hike` y `hours_spent` sea mayor a 1000.
 
 ### Agregación en SQL
 
@@ -694,7 +699,9 @@ Este tipo de datos se utiliza para almacenar números enteros.
 
 #### VARCHAR o TEXT
 
-Estos tipos de datos se utilizan para almacenar cadenas de caracteres. `VARCHAR` requiere que especifiques una longitud máxima para los caracteres. `TEXT` se utiliza para cadenas de caracteres de longitud variable.
+Estos tipos de datos se utilizan para almacenar cadenas de caracteres. `VARCHAR` requiere
+que especifiques una longitud máxima para los caracteres. `TEXT` se utiliza para cadenas
+de caracteres de longitud variable.
 
 ???+ example "Ejemplo"
 
@@ -710,7 +717,8 @@ Estos tipos de datos se utilizan para almacenar cadenas de caracteres. `VARCHAR`
 
 #### BOOLEAN
 
-Este tipo de datos se utiliza para almacenar valores booleanos, es decir, verdadero o falso (1 o 0).
+Este tipo de datos se utiliza para almacenar valores booleanos, es decir, verdadero o
+falso (1 o 0).
 
 ???+ example "Ejemplo"
 
@@ -757,7 +765,8 @@ Este tipo de datos se utiliza para almacenar números decimales o de precisión 
     );
     ```
 
-En el ejemplo anterior, `NUMERIC(10, 2)` significa que el salario puede tener hasta 10 dígitos en total, de los cuales 2 son decimales.
+En el ejemplo anterior, `NUMERIC(10, 2)` significa que el salario puede tener hasta 10
+dígitos en total, de los cuales 2 son decimales.
 
 ### Manipulación de tablas en SQL
 
@@ -781,7 +790,8 @@ Crea nuevas tablas.
     );
     ```
 
-En el código anterior, `job_applied` es el nombre de la tabla y los parámetros dentro de los paréntesis son los nombres de las columnas con sus respectivos tipos de datos.
+En el código anterior, `job_applied` es el nombre de la tabla y los parámetros dentro de
+los paréntesis son los nombres de las columnas con sus respectivos tipos de datos.
 
 #### INSERT INTO
 

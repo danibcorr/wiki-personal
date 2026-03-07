@@ -35,9 +35,9 @@ El **control de versiones** es una herramienta que permite gestionar los cambios
 archivos a lo largo del tiempo, facilitando la recuperación de versiones anteriores
 cuando sea necesario.
 
-Puedes imaginarlo como un sistema de **etiquetas de cambios**, cada vez que guardas un
-cambio usando un _commit_ en Git, se genera un **identificador único** que registra el
-estado exacto de los archivos en ese momento. Esto te permite consultar, comparar o
+Puede entenderse como un sistema de **etiquetas de cambios**, cada vez que se guarda un
+cambio mediante un _commit_ en Git, se genera un **identificador único** que registra el
+estado exacto de los archivos en ese momento. Esto permite consultar, comparar o
 restaurar versiones anteriores de manera segura y organizada.
 
 ### Terminología
@@ -726,9 +726,9 @@ borrado seguro (solo si está fusionada), usa `-d`:
 git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
 ```
 
-También, como recomendación, revisa primero qué se va a borrar ejecutando solo el
-siguiente comando:
+También, como recomendación, conviene revisar primero qué ramas se van a eliminar
+ejecutando únicamente el siguiente comando antes de proceder al borrado:
 
 ```bash linenums="1"
-`git branch -vv | grep ': gone]'` antes de eliminar.
+git branch -vv | grep ': gone]'
 ```

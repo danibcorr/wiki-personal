@@ -19,9 +19,9 @@ que elijas, mi recomendación es optar siempre por la alternativa más simple y
 minimalista, aunque también dependerá mucho del entorno de desarrollo que tengas en la
 empresa o de a lo que estés acostumbrado. Recuerda que, al final, estas siguen siendo
 herramientas que tienes que considerar y, si te aportan mejoras, implementarlas
-gradualmente. Cuanto menor sea el número de dependencias y más ligero sea el entorno,
-más fácil será llevarlo a producción (por ejemplo, en una imagen de Docker), compartirlo
-con tu equipo o mantenerlo en el tiempo.
+gradualmente. Cuanto menor sea el número de dependencias y más ligero sea el entorno, más
+fácil será llevarlo a producción (por ejemplo, en una imagen de Docker), compartirlo con
+tu equipo o mantenerlo en el tiempo.
 
 En la actualidad, las opciones que más recomiendo son **Poetry** y **uv**. Ambas
 herramientas agilizan la creación y gestión de entornos, permiten mantener las
@@ -48,13 +48,13 @@ _[PIP](https://pypi.org/)_. Sin embargo, no es recomendable mezclar ambos, ya qu
 surgir errores en la compatibilidad de paquetes.
 
 Durante años fue la plataforma más usada en ciencia de datos, ya que ofrecía un
-ecosistema completo (Jupyter, Spyder, RStudio, etc.) de manera muy sencilla. Sin
-embargo, con el tiempo ha presentado limitaciones como una **licencia más restrictiva**
-para empresas y un **exceso de dependencias por defecto**.
+ecosistema completo (Jupyter, Spyder, RStudio, etc.) de manera muy sencilla. Sin embargo,
+con el tiempo ha presentado limitaciones como una **licencia más restrictiva** para
+empresas y un **exceso de dependencias por defecto**.
 
 Hoy en día existen alternativas más eficientes, modernas y ligeras, como **Poetry** y
-**uv**, que utilizan el gestor de entornos virtuales de Python y evitan instalar
-paquetes innecesarios.
+**uv**, que utilizan el gestor de entornos virtuales de Python y evitan instalar paquetes
+innecesarios.
 
 ### VENV
 
@@ -74,9 +74,9 @@ de paquetes se lleva a cabo con _[PIP](https://pypi.org/)_.
 [`Poetry`](https://python-poetry.org/) es otra herramienta de gestión de dependencias en
 proyectos de Python.
 
-Permite, entre otras cosas, administrar dependencias por grupos (_producción_,
-_pruebas_, _documentación_, etc.), eliminando la necesidad de crear múltiples ficheros
-de requisitos de dependencias (los `requirements.txt`) o de tener un único fichero.
+Permite, entre otras cosas, administrar dependencias por grupos (_producción_, _pruebas_,
+_documentación_, etc.), eliminando la necesidad de crear múltiples ficheros de requisitos
+de dependencias (los `requirements.txt`) o de tener un único fichero.
 
 También permite crear y manejar entornos virtuales automáticamente, y facilitar la
 creación de _wheels_ para empaquetar proyectos y publicarlos en
@@ -85,21 +85,20 @@ _[PyPI](https://pypi.org/)_ o en tu repositorio de paquetes privado.
 ### uv
 
 [`uv`](https://docs.astral.sh/uv/) es una de las herramientas más recientes y eficientes
-para la gestión de entornos virtuales y dependencias en Python, y es la que
-personalmente utilizo y recomiendo. Su objetivo principal es simplificar y acelerar
-tareas que tradicionalmente requieren múltiples herramientas, como `pip`, `poetry` o
-`venv`.
+para la gestión de entornos virtuales y dependencias en Python, y es la que personalmente
+utilizo y recomiendo. Su objetivo principal es simplificar y acelerar tareas que
+tradicionalmente requieren múltiples herramientas, como `pip`, `poetry` o `venv`.
 
 Una de sus principales ventajas es la posibilidad de crear un entorno virtual por
 proyecto. Esta es la mejor práctica, ya que así evitamos mezclar dependencias entre
 proyectos, lo que puede llevar a conflictos entre versiones.
 
 Lo que más me ha impresionado de `uv` es su velocidad, en parte gracias a que utiliza
-Rust para instalar y resolver dependencias en milisegundos, superando a `pip` y
-`poetry`. Además, permite crear un sistema similar a `cargo` de Rust, basado en archivos
-`pyproject.toml`, donde podemos definir metadatos de nuestro proyecto, gestionar
-paquetes con sus versiones, especificar la versión de Python requerida, así como
-configuraciones específicas de proyectos que instalemos, como linters o similares.
+Rust para instalar y resolver dependencias en milisegundos, superando a `pip` y `poetry`.
+Además, permite crear un sistema similar a `cargo` de Rust, basado en archivos
+`pyproject.toml`, donde podemos definir metadatos de nuestro proyecto, gestionar paquetes
+con sus versiones, especificar la versión de Python requerida, así como configuraciones
+específicas de proyectos que instalemos, como linters o similares.
 
 Por otro lado, `uv` permite la **gestión automática de entornos**, no requiere
 configuraciones adicionales para crear y mantener entornos virtuales, por lo que no
@@ -230,11 +229,10 @@ los siguientes comandos:
 
 ### Actualización de paquetes
 
-Si la vida evoluciona, no evoluciona menos el software. Veremos que nuestros paquetes
-favoritos, o aquellos que usamos en nuestro día a día, van añadiendo nuevas
-funcionalidades o simplemente encuentran errores o fallos de seguridad que se van
-actualizando y corrigiendo en versiones posteriores. Por lo tanto, mantener las
-dependencias actualizadas es clave para el correcto funcionamiento del proyecto.
+El software evoluciona de forma continua. Los paquetes que se utilizan habitualmente
+incorporan nuevas funcionalidades o corrigen errores y vulnerabilidades de seguridad en
+versiones posteriores. Por lo tanto, mantener las dependencias actualizadas es clave para
+el correcto funcionamiento del proyecto.
 
 === "PIP"
 
@@ -300,16 +298,24 @@ dependencias actualizadas es clave para el correcto funcionamiento del proyecto.
 
 === "uv"
 
-      ```bash linenums="1"
-      uv pip install --upgrade nombre_del_paquete
-      ```
+      1. Actualizar todos los paquetes
+
+         ```bash linenums="1"
+         uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
+         ```
+
+      2. Actualizar un paquete específico
+
+         ```bash linenums="1"
+         uv pip install --upgrade nombre_del_paquete
+         ```
 
 ### Instalación de paquetes desde un archivo de requisitos
 
 Cuando un proyecto necesita dependencias específicas, es útil usar un archivo
 `requirements.txt`. Aunque hoy en día, con sistemas como los que ofrecen los ficheros
-`toml` en uv o Poetry, cada vez lo recomiendo menos, en el caso de que lo necesites,
-aquí tienes los pasos a seguir:
+`toml` en uv o Poetry, cada vez lo recomiendo menos, en el caso de que lo necesites, aquí
+tienes los pasos a seguir:
 
 1.  **Crear un archivo `requirements.txt`** con los paquetes y versiones deseadas:
 
@@ -376,9 +382,9 @@ Para utilizar un entorno virtual dentro de **Jupyter**, es necesario seguir esto
     `conda`).
 2.  **Registrar el entorno en Jupyter**: Este paso es necesario únicamente cuando el
     entorno virtual se encuentra en un directorio diferente al del proyecto. En la
-    mayoría de los entornos de desarrollo, como **VSCode**, si el entorno está dentro
-    del directorio del proyecto, se detectará automáticamente y podrás seleccionar el
-    kernel asociado sin pasos adicionales. En caso de que necesites registrar el entorno
+    mayoría de los entornos de desarrollo, como **VSCode**, si el entorno está dentro del
+    directorio del proyecto, se detectará automáticamente y podrás seleccionar el kernel
+    asociado sin pasos adicionales. En caso de que necesites registrar el entorno
     manualmente, ejecuta:
 
 ```bash linenums="1"

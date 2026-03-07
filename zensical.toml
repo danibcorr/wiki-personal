@@ -18,8 +18,9 @@ nav = [
         {"Python" = [
             "capt_3_programming/capt_3_1_python/topic_1_environments.md",
             "capt_3_programming/capt_3_1_python/topic_2_python.md",
-            "capt_3_programming/capt_3_1_python/topic_3_libraries.md",
+            "capt_3_programming/capt_3_1_python/topic_3_arrays.md",
             "capt_3_programming/capt_3_1_python/topic_4_leetcode.md",
+            "capt_3_programming/capt_3_1_python/topic_5_libraries.md",
         ]},
         {"Scripting" = [
             "capt_3_programming/capt_3_2_scripting/topic_1_bash.md",
@@ -38,9 +39,16 @@ nav = [
     {"Otros" = [
         "capt_A_interviews/cv_guide.md"
     ]},
+    {"Metodologías" = [
+        {"DevOps" = [
+            "capt_6_methodologies/capt_6_2_devops/topic_1_fundamentals.md",
+            "capt_6_methodologies/capt_6_2_devops/topic_2_containerization.md",
+            "capt_6_methodologies/capt_6_2_devops/topic_3_automation.md"
+        ]}
+    ]},
     {"Dominios" = [
         {"Telecomunicaciones" = [
-            "domain_specific/Redes y servicios de telecomunicaciones.md"
+            "domain_specific/introduction_to_telecommunications.md"
         ]}
     ]},
 ]
