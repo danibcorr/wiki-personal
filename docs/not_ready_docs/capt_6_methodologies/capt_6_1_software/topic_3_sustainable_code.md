@@ -10,8 +10,8 @@ title: Código sostenible
 
 El desarrollo de un proyecto debe realizarse bajo una estructura de código clara y
 sostenible, utilizando herramientas y metodologías para garantizar su organización y
-limpieza. Estas prácticas son fundamentales durante el desarrollo, puesta en producción y
-evolución del proyecto.
+limpieza. Estas prácticas son fundamentales durante el desarrollo, puesta en producción
+y evolución del proyecto.
 
 ### Estructura del proyecto
 
@@ -29,7 +29,7 @@ la comprensión de la estructura del proyecto por parte de nuevos desarrolladore
 
 Ejemplo de estructura de proyecto:
 
-```plaintext
+```plaintext linenums="1"
 src (o nombre del proyecto)
 │
 ├── config
@@ -55,10 +55,10 @@ aplicar estas convenciones automáticamente en los proyectos.
 #### Diseño del código
 
 - Se debe utilizar una indentación de 4 espacios, sin mezclar espacios y tabuladores.
-- La longitud máxima de las líneas es de 79 caracteres; para comentarios y docstrings, es
-  de 72 caracteres.
-- Las líneas largas deben dividirse usando paréntesis, corchetes o llaves para mejorar la
-  legibilidad.
+- La longitud máxima de las líneas es de 79 caracteres; para comentarios y docstrings,
+  es de 72 caracteres.
+- Las líneas largas deben dividirse usando paréntesis, corchetes o llaves para mejorar
+  la legibilidad.
 
 Ejemplo:
 
@@ -122,8 +122,8 @@ if x == y:
 
 - Los comentarios deben ser claros y concisos, utilizando oraciones completas para
   describir el propósito del código.
-- Los **docstrings** son obligatorios para módulos, funciones, clases y métodos públicos,
-  describiendo su funcionalidad y parámetros.
+- Los **docstrings** son obligatorios para módulos, funciones, clases y métodos
+  públicos, describiendo su funcionalidad y parámetros.
 
 ```py linenums="1"
 def suma(a, b):

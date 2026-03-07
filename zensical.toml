@@ -27,17 +27,16 @@ nav = [
             "capt_3_programming/capt_3_2_scripting/topic_2_makefile.md"
         ]},
         {"Bases de Datos" = [
-            "capt_3_programming/capt_3_3_databases/topic_1_fundamentals.md",
-            "capt_3_programming/capt_3_3_databases/topic_2_sql.md",
-            "capt_3_programming/capt_3_3_databases/topic_3_exercises_sql.md"
+            "capt_3_programming/capt_3_3_databases/topic_1_sql.md",
+            "capt_3_programming/capt_3_3_databases/topic_2_exercises_sql.md"
         ]},
         {"CUDA" = [
             "capt_3_programming/capt_3_4_cuda/topic_1_cuda.md",
             "capt_3_programming/capt_3_4_cuda/topic_2_exercises_cuda.md"
+        ]},
+        {"Front End" = [
+            "capt_3_programming/capt_3_5_front_end/topic_1_introduction.md"
         ]}
-    ]},
-    {"Otros" = [
-        "capt_A_interviews/cv_guide.md"
     ]},
     {"Metodologías" = [
         {"DevOps" = [
@@ -50,6 +49,9 @@ nav = [
         {"Telecomunicaciones" = [
             "domain_specific/introduction_to_telecommunications.md"
         ]}
+    ]},
+    {"Otros" = [
+        "capt_A_interviews/cv_guide.md"
     ]},
 ]
 extra_css = ["stylesheets/extra.css"]

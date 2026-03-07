@@ -14,15 +14,15 @@ title: Estructuras de datos y algoritmos
 
 La notación Big O se utiliza para evaluar la eficiencia de los algoritmos en términos de
 complejidad temporal y espacial. La **complejidad temporal** se refiere a cómo varía el
-tiempo requerido por un algoritmo en función del número de elementos de entrada, mientras
-que la **complejidad espacial** se refiere al uso de memoria en función del número de
-variables utilizadas por el algoritmo.
+tiempo requerido por un algoritmo en función del número de elementos de entrada,
+mientras que la **complejidad espacial** se refiere al uso de memoria en función del
+número de variables utilizadas por el algoritmo.
 
 ### Ejemplos de notación Big O
 
-- $O\left( 1 \right)$: El tiempo de ejecución es constante, independientemente del tamaño
-  de la entrada. Es típico en algoritmos que acceden a un número fijo de elementos, como
-  devolver el primer elemento de una lista.
+- $O\left( 1 \right)$: El tiempo de ejecución es constante, independientemente del
+  tamaño de la entrada. Es típico en algoritmos que acceden a un número fijo de
+  elementos, como devolver el primer elemento de una lista.
 
 - $O\left(\log N\right)$: El tiempo de ejecución crece logarítmicamente con el tamaño de
   la entrada. Común en algoritmos que dividen el problema a la mitad en cada paso, como
@@ -76,8 +76,8 @@ def funcion():
 ```
 
 En este caso, la complejidad es $O\left(A \times B\right)$, ya que los bucles anidados
-operan sobre arrays diferentes. Es un error asumir $O\left(N^2\right)$ sin considerar los
-tamaños de los arrays involucrados.
+operan sobre arrays diferentes. Es un error asumir $O\left(N^2\right)$ sin considerar
+los tamaños de los arrays involucrados.
 
 Es importante señalar que la notación Big O no está limitada a la letra $N$; cualquier
 letra puede ser utilizada para representar el tamaño de la entrada en función del
@@ -85,8 +85,8 @@ contexto del problema.
 
 ## Métodos de ordenación
 
-Este capítulo presenta algunos de los métodos de ordenación más utilizados en estructuras
-de datos y algoritmos.
+Este capítulo presenta algunos de los métodos de ordenación más utilizados en
+estructuras de datos y algoritmos.
 
 ### Ordenación de Burbuja (_Bubble Sort_)
 
@@ -127,14 +127,14 @@ def ordenacion_burbuja(lista: list[int]) -> list[int]:
 
 ### Ordenación por Selección (_Selection Sort_)
 
-La ordenación por selección selecciona el elemento más pequeño de la lista y lo coloca al
-principio. Este proceso se repite para el resto de la lista hasta que está completamente
-ordenada.
+La ordenación por selección selecciona el elemento más pequeño de la lista y lo coloca
+al principio. Este proceso se repite para el resto de la lista hasta que está
+completamente ordenada.
 
 - **Complejidad temporal**: $$O\left(N^2\right)$$ en el peor caso, porque cada elemento
   se compara con todos los demás restantes.
-- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo utiliza un espacio constante
-  adicional.
+- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo utiliza un espacio
+  constante adicional.
 
 tip Implementación
 
@@ -167,8 +167,8 @@ def ordenacion_seleccion(lista: list[int]) -> list[int]:
 
 La ordenación por inserción funciona dividiendo la lista en una parte ordenada y otra
 desordenada. Se toma un elemento de la parte desordenada y se inserta en la posición
-correcta dentro de la parte ordenada. Este proceso continúa hasta que no quedan elementos
-desordenados.
+correcta dentro de la parte ordenada. Este proceso continúa hasta que no quedan
+elementos desordenados.
 
 - **Complejidad temporal**: $$O\left(N^2\right)$$ en el peor caso, cuando los elementos
   están en orden inverso. En el mejor caso, con una lista ya ordenada, es
@@ -207,8 +207,8 @@ proporcionan una buena base para entender algoritmos más avanzados y eficientes
 
 ## Métodos de búsqueda
 
-Este capítulo explora algunos de los métodos de búsqueda más utilizados en estructuras de
-datos y algoritmos.
+Este capítulo explora algunos de los métodos de búsqueda más utilizados en estructuras
+de datos y algoritmos.
 
 ### Búsqueda Lineal (_Linear Search_)
 
@@ -216,8 +216,9 @@ La búsqueda lineal es un método de búsqueda sencillo que recorre cada element
 lista uno por uno hasta encontrar el elemento buscado o hasta recorrer todos los
 elementos.
 
-- **Complejidad temporal**: $$O\left(N\right)$$ en el peor caso, donde $$n$$ es el número
-  de elementos en la lista, ya que puede ser necesario recorrer todos los elementos.
+- **Complejidad temporal**: $$O\left(N\right)$$ en el peor caso, donde $$n$$ es el
+  número de elementos en la lista, ya que puede ser necesario recorrer todos los
+  elementos.
 - **Complejidad espacial**: $$O\left(1\right)$$, ya que solo requiere un espacio
   constante adicional.
 
@@ -286,9 +287,9 @@ def busqueda_binaria(lista: list[int], valor_buscar: int) -> int:
 
 ### Pilas
 
-Una pila es una estructura de datos que organiza elementos de manera secuencial siguiendo
-el principio LIFO (_Last In, First Out_). Esto implica que el último elemento añadido es
-el primero en ser retirado. Las operaciones principales en una pila son:
+Una pila es una estructura de datos que organiza elementos de manera secuencial
+siguiendo el principio LIFO (_Last In, First Out_). Esto implica que el último elemento
+añadido es el primero en ser retirado. Las operaciones principales en una pila son:
 
 - **Apilar (_push_)**: Añade un elemento a la pila.
 - **Desapilar (_pop_)**: Retira el último elemento añadido.
@@ -439,10 +440,10 @@ class Cola():
 
 ### Nodos
 
-Un nodo es un elemento fundamental en estructuras de datos como listas enlazadas, árboles
-o grafos. Cada nodo contiene uno o más campos de datos y al menos un campo que es un
-puntero o referencia a otro nodo. Esto permite navegar por los nodos conectados de la
-estructura.
+Un nodo es un elemento fundamental en estructuras de datos como listas enlazadas,
+árboles o grafos. Cada nodo contiene uno o más campos de datos y al menos un campo que
+es un puntero o referencia a otro nodo. Esto permite navegar por los nodos conectados de
+la estructura.
 
 ### Listas Enlazadas
 
@@ -653,8 +654,8 @@ class ListaDobleEnlazada:
 
 ### Lista Circular Simple
 
-Una lista circular simple es una lista enlazada donde el enlace del último nodo apunta al
-primero, formando un ciclo. Este tipo de lista permite operaciones eficientes de
+Una lista circular simple es una lista enlazada donde el enlace del último nodo apunta
+al primero, formando un ciclo. Este tipo de lista permite operaciones eficientes de
 inserción y eliminación cuando se conoce el nodo previo.
 
 tip Implementación
@@ -893,9 +894,9 @@ class ListaDobleCircular():
 
 ### Árboles binarios
 
-Un árbol binario es una estructura de datos en la que cada nodo puede tener, como máximo,
-dos descendientes denominados hijo izquierdo y hijo derecho. Esta estructura es eficiente
-para organizar y buscar datos.
+Un árbol binario es una estructura de datos en la que cada nodo puede tener, como
+máximo, dos descendientes denominados hijo izquierdo y hijo derecho. Esta estructura es
+eficiente para organizar y buscar datos.
 
 #### Características
 

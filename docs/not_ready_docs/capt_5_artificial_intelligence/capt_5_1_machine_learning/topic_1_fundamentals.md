@@ -39,19 +39,20 @@ regresión se emplea para realizar predicciones numéricas, como la estimación 
 de una vivienda en función de sus características.
 
 La elección de la técnica adecuada depende de la naturaleza del problema. Un enfoque
-común consiste en evaluar múltiples algoritmos viables y compararlos para determinar cuál
-ofrece el mejor rendimiento. Esta comparación se basa en métricas de desempeño obtenidas
-a partir de los datos.
+común consiste en evaluar múltiples algoritmos viables y compararlos para determinar
+cuál ofrece el mejor rendimiento. Esta comparación se basa en métricas de desempeño
+obtenidas a partir de los datos.
 
 **El proceso de entrenamiento de los modelos requiere dividir el conjunto de datos en
-distintas partes**: una para el **entrenamiento** del modelo, otra para la **evaluación**
-de su desempeño y, en algunos casos, una tercera partición para **validar** su capacidad
-de generalización antes de su implementación en entornos reales. Durante este proceso, el
-algoritmo analiza las relaciones entre las características de los datos, identifica
-patrones y genera predicciones que se comparan con los valores reales. La diferencia
-entre las predicciones y las observaciones se mide mediante una métrica de error, lo que
-permite ajustar el modelo en cada iteración o **época**, es decir, cada vez que el
-algoritmo analiza completamente el conjunto de datos.
+distintas partes**: una para el **entrenamiento** del modelo, otra para la
+**evaluación** de su desempeño y, en algunos casos, una tercera partición para
+**validar** su capacidad de generalización antes de su implementación en entornos
+reales. Durante este proceso, el algoritmo analiza las relaciones entre las
+características de los datos, identifica patrones y genera predicciones que se comparan
+con los valores reales. La diferencia entre las predicciones y las observaciones se mide
+mediante una métrica de error, lo que permite ajustar el modelo en cada iteración o
+**época**, es decir, cada vez que el algoritmo analiza completamente el conjunto de
+datos.
 
 <p align="center">
   <img src="https://miro.medium.com/max/1125/1*_7OPgojau8hkiPUiHoGK_w.png"/>
@@ -73,20 +74,20 @@ que el modelo realiza suposiciones demasiado simplificadas y no se ajusta adecua
 ni siquiera a los datos de entrenamiento. La **varianza** (_variance_), por su parte,
 mide la diferencia de ajuste entre el conjunto de entrenamiento y otros conjuntos, como
 el de validación o el de pruebas. Una varianza alta indica que el modelo es muy sensible
-a las particularidades del conjunto de entrenamiento y no generaliza bien a datos nuevos.
-Lo ideal es alcanzar un bajo sesgo, para modelar con mayor exactitud la distribución de
-los datos, y una baja varianza, para que el resultado de las predicciones sea consistente
-para diferentes conjuntos de datos.
+a las particularidades del conjunto de entrenamiento y no generaliza bien a datos
+nuevos. Lo ideal es alcanzar un bajo sesgo, para modelar con mayor exactitud la
+distribución de los datos, y una baja varianza, para que el resultado de las
+predicciones sea consistente para diferentes conjuntos de datos.
 
 ### Tipos de datos
 
 #### Variables dependientes e independientes
 
-En un conjunto de datos, cada atributo que varía entre muestras se denomina **variable**.
-Si una variable depende de otra, se considera **dependiente**; en caso contrario, se
-clasifica como **independiente**. Las variables independientes, también llamadas
-**características** (**_features_**), son las utilizadas en el entrenamiento del modelo
-para predecir la variable dependiente.
+En un conjunto de datos, cada atributo que varía entre muestras se denomina
+**variable**. Si una variable depende de otra, se considera **dependiente**; en caso
+contrario, se clasifica como **independiente**. Las variables independientes, también
+llamadas **características** (**_features_**), son las utilizadas en el entrenamiento
+del modelo para predecir la variable dependiente.
 
 #### Datos continuos y discretos
 
@@ -109,9 +110,9 @@ selección adecuada, es posible obtener relaciones no significativas o incluso
 perjudiciales.
 
 No todos los datos o métricas son útiles, por lo que es fundamental ajustarse al
-problema, asegurar la coherencia dentro de la misma distribución y minimizar la presencia
-de valores atípicos. Una correcta selección de los datos permite desarrollar modelos más
-robustos. Para ello, se emplea la **validación cruzada**.
+problema, asegurar la coherencia dentro de la misma distribución y minimizar la
+presencia de valores atípicos. Una correcta selección de los datos permite desarrollar
+modelos más robustos. Para ello, se emplea la **validación cruzada**.
 
 ### Validación cruzada
 
@@ -123,12 +124,12 @@ robustos. Para ello, se emplea la **validación cruzada**.
 
 La selección de muestras para el entrenamiento y validación de un modelo puede resultar
 compleja, ya que una elección inadecuada puede generar sesgos en el modelo. Por ejemplo,
-en conjuntos de datos con dependencia temporal, como el tráfico de una red a lo largo del
-día, la distribución de las muestras puede influir en el desempeño del modelo. Si los
-datos se registran en orden cronológico y las primeras muestras corresponden a la mañana
-mientras que las últimas a la noche, seleccionar las primeras muestras para entrenamiento
-y las últimas para prueba podría generar un modelo que no capture correctamente patrones
-generales.
+en conjuntos de datos con dependencia temporal, como el tráfico de una red a lo largo
+del día, la distribución de las muestras puede influir en el desempeño del modelo. Si
+los datos se registran en orden cronológico y las primeras muestras corresponden a la
+mañana mientras que las últimas a la noche, seleccionar las primeras muestras para
+entrenamiento y las últimas para prueba podría generar un modelo que no capture
+correctamente patrones generales.
 
 Para evitar este problema, se recomienda introducir aleatoriedad en la selección de las
 muestras y definir un porcentaje para cada partición del conjunto de datos.
@@ -138,8 +139,8 @@ muestras y definir un porcentaje para cada partición del conjunto de datos.
     Es fundamental establecer una **semilla aleatoria** antes de cualquier proceso que requiera aleatorización, garantizando así la reproducibilidad de los resultados.
 
 Por ejemplo, el siguiente código establece semillas para las bibliotecas más utilizadas
-en Python para aprendizaje automático y profundo, garantizando la reproducibilidad de los
-experimentos:
+en Python para aprendizaje automático y profundo, garantizando la reproducibilidad de
+los experimentos:
 
 ```py linenums="1"
 import random
@@ -172,9 +173,9 @@ sklearn.utils.check_random_state(SEED)
 ```
 
 La **validación cruzada** es una técnica fundamental en aprendizaje automático para
-evaluar y comparar diferentes modelos. Su objetivo es estimar el rendimiento de un modelo
-en datos no vistos y seleccionar el algoritmo más adecuado. El proceso consiste en
-dividir el conjunto de datos en múltiples subconjuntos denominados **_folds_**,
+evaluar y comparar diferentes modelos. Su objetivo es estimar el rendimiento de un
+modelo en datos no vistos y seleccionar el algoritmo más adecuado. El proceso consiste
+en dividir el conjunto de datos en múltiples subconjuntos denominados **_folds_**,
 generalmente de tamaño similar, y entrenar el modelo de manera iterativa. El caso más
 común es el **k-Fold Cross Validation**, donde $k$ suele ser cinco o diez, dependiendo
 del tamaño del conjunto de datos y de la complejidad del modelo. El procedimiento se
@@ -183,7 +184,8 @@ desarrolla de la siguiente manera:
 1. Se separa el conjunto de datos en $k$ folds.
 2. En cada iteración, se utiliza un fold como conjunto de prueba y los restantes como
    conjunto de entrenamiento.
-3. El modelo se entrena con los folds de entrenamiento y se evalúa con el fold de prueba.
+3. El modelo se entrena con los folds de entrenamiento y se evalúa con el fold de
+   prueba.
 4. Este procedimiento se repite hasta que todos los folds hayan sido utilizados como
    conjunto de prueba una vez.
 5. Finalmente, se promedian las métricas de evaluación obtenidas en cada iteración, como
@@ -198,17 +200,18 @@ del modelo.
 
 ### Distribuciones
 
-Antes de realizar predicciones, es fundamental recopilar datos. En muchas ocasiones, esta
-recopilación genera histogramas, que permiten visualizar la distribución de los datos. Un
-histograma se compone de dos ejes principales: el eje $x$, donde se representan los datos
-agrupados en categorías, y el eje $y$, que indica la frecuencia de cada categoría, es
-decir, el número de muestras que pertenecen a cada grupo. Las divisiones en el eje $x$
-para agrupar los datos en rangos similares se conocen como **_bins_** o contenedores.
+Antes de realizar predicciones, es fundamental recopilar datos. En muchas ocasiones,
+esta recopilación genera histogramas, que permiten visualizar la distribución de los
+datos. Un histograma se compone de dos ejes principales: el eje $x$, donde se
+representan los datos agrupados en categorías, y el eje $y$, que indica la frecuencia de
+cada categoría, es decir, el número de muestras que pertenecen a cada grupo. Las
+divisiones en el eje $x$ para agrupar los datos en rangos similares se conocen como
+**_bins_** o contenedores.
 
 El uso de histogramas facilita la identificación de tendencias en los datos. En casos
-donde los valores pueden solaparse, los _bins_ ayudan a agrupar puntos de datos dentro de
-un intervalo definido. De este modo, se generan distribuciones que permiten analizar el
-comportamiento de los datos.
+donde los valores pueden solaparse, los _bins_ ayudan a agrupar puntos de datos dentro
+de un intervalo definido. De este modo, se generan distribuciones que permiten analizar
+el comportamiento de los datos.
 
 !!! note
 
@@ -219,8 +222,8 @@ la letra $N$. Un subconjunto de la población se denomina **muestra** y se repre
 la letra $n$.
 
 La probabilidad de que un dato pertenezca a una determinada parte del histograma se
-calcula dividiendo el número de muestras en esa sección entre el número total de muestras
-en la población.
+calcula dividiendo el número de muestras en esa sección entre el número total de
+muestras en la población.
 
 !!! note
 
@@ -309,10 +312,10 @@ número específico de éxitos.
 
 La **distribución de Poisson** se utiliza para modelar la probabilidad de que ocurra un
 número determinado de eventos en un intervalo de tiempo o espacio, siempre que los
-eventos ocurran de manera independiente y a una tasa promedio constante. Algunos ejemplos
-de aplicación incluyen: el número de llamadas recibidas en una central telefónica durante
-una hora, el número de accidentes en una intersección en un día, o la cantidad de errores
-tipográficos en una página de texto.
+eventos ocurran de manera independiente y a una tasa promedio constante. Algunos
+ejemplos de aplicación incluyen: el número de llamadas recibidas en una central
+telefónica durante una hora, el número de accidentes en una intersección en un día, o la
+cantidad de errores tipográficos en una página de texto.
 
 La distribución de Poisson se expresa mediante la siguiente fórmula:
 
@@ -349,8 +352,8 @@ frecuentes en un período de tiempo determinado.
 
 #### Distribución normal o gaussiana (continua)
 
-La distribución normal, también denominada distribución gaussiana, se representa mediante
-una curva en forma de campana. En esta distribución, el eje $y$ indica la
+La distribución normal, también denominada distribución gaussiana, se representa
+mediante una curva en forma de campana. En esta distribución, el eje $y$ indica la
 **verosimilitud** (**_likelihood_**) de observar un determinado valor en el eje $x$.
 
 !!! note "Verosimilitud vs. Probabilidad"
@@ -389,8 +392,8 @@ Donde $x_i$ son los valores de la muestra o población, $\bar{x}$ es la media mu
 $\mu$ es la media poblacional, $n$ es el tamaño de la muestra y $N$ es el tamaño de la
 población.
 
-La distribución normal es fundamental en estadística y aprendizaje automático debido a su
-presencia en numerosos fenómenos naturales y conjuntos de datos del mundo real.
+La distribución normal es fundamental en estadística y aprendizaje automático debido a
+su presencia en numerosos fenómenos naturales y conjuntos de datos del mundo real.
 
 ##### Función de densidad de probabilidad
 
@@ -407,13 +410,15 @@ bajo la curva entre dos puntos, lo que representa la probabilidad acumulada en d
 intervalo. Dado que el área total bajo la curva es igual a 1, el área acumulada hasta la
 media en una distribución normal es de 0.5.
 
-Es importante destacar que la probabilidad exacta en un único punto es igual a 0. Esto se
-debe a que, gráficamente, un punto no tiene ancho y, por lo tanto, no contribuye con área
-bajo la curva. En consecuencia, solo es posible calcular probabilidades en intervalos.
+Es importante destacar que la probabilidad exacta en un único punto es igual a 0. Esto
+se debe a que, gráficamente, un punto no tiene ancho y, por lo tanto, no contribuye con
+área bajo la curva. En consecuencia, solo es posible calcular probabilidades en
+intervalos.
 
 La **función de distribución acumulada** (_Cumulative Distribution Function_, CDF)
-expresa la probabilidad acumulada hasta un determinado valor. Matemáticamente, representa
-el área bajo la curva de la función de densidad desde $-\infty$ hasta dicho punto.
+expresa la probabilidad acumulada hasta un determinado valor. Matemáticamente,
+representa el área bajo la curva de la función de densidad desde $-\infty$ hasta dicho
+punto.
 
 ##### Propiedades de la función de distribución acumulada
 
@@ -474,8 +479,8 @@ distribuciones de probabilidad continuas.
 
 La distribución exponencial se emplea para modelar el tiempo transcurrido entre eventos
 en un proceso de Poisson, donde los eventos ocurren de manera independiente y con una
-tasa constante. Se utiliza en el análisis de tiempos de espera, confiabilidad de sistemas
-y modelado de fallos en ingeniería.
+tasa constante. Se utiliza en el análisis de tiempos de espera, confiabilidad de
+sistemas y modelado de fallos en ingeniería.
 
 La función de densidad de probabilidad (PDF) está definida como:
 
@@ -621,8 +626,8 @@ que A es distinto de B.
 
 En la práctica, se suele utilizar un **umbral de significancia** de 0.05 para determinar
 si la diferencia es estadísticamente significativa. Sin embargo, puede darse el caso de
-obtener un p-valor pequeño cuando en realidad no existe diferencia, lo que se conoce como
-un **falso positivo**. Un umbral de 0.05 implica que aproximadamente el 5% de los
+obtener un p-valor pequeño cuando en realidad no existe diferencia, lo que se conoce
+como un **falso positivo**. Un umbral de 0.05 implica que aproximadamente el 5% de los
 experimentos generará un p-valor menor a 0.05 por azar. Si se requiere mayor seguridad,
 se pueden emplear umbrales más bajos; por ejemplo, en medicina se utilizan umbrales como
 0.0001, lo que equivale a un falso positivo cada 100.000 experimentos.
@@ -632,10 +637,10 @@ cometer un falso positivo, y su inversa indica la frecuencia esperada de falsos
 positivos. La idea de determinar si una opción A es igual o diferente a una opción B se
 denomina **prueba de hipótesis**. La hipótesis de que A es igual a B se conoce como
 **hipótesis nula** ($H_0$). Por tanto, el p-valor mide la probabilidad de que el
-resultado observado ocurra asumiendo que la hipótesis nula es verdadera, es decir, que no
-existen diferencias reales. Es importante destacar que el p-valor no mide la magnitud de
-la diferencia, sino únicamente la probabilidad de observar los datos bajo la hipótesis
-nula.
+resultado observado ocurra asumiendo que la hipótesis nula es verdadera, es decir, que
+no existen diferencias reales. Es importante destacar que el p-valor no mide la magnitud
+de la diferencia, sino únicamente la probabilidad de observar los datos bajo la
+hipótesis nula.
 
 ### Evaluación del error
 
@@ -666,7 +671,8 @@ donde $y_i$ es el valor real, $\hat{y}_i$ es el valor estimado por el modelo y $
 número total de observaciones.
 
 Sin embargo, la SSR depende del número de datos, lo que puede dificultar la comparación
-entre modelos. Para abordar este problema, se emplea el **Error Cuadrático Medio (MSE)**.
+entre modelos. Para abordar este problema, se emplea el **Error Cuadrático Medio
+(MSE)**.
 
 #### Error cuadrático medio (MSE)
 
@@ -696,11 +702,11 @@ donde $SST$ es la **Suma Total de los Cuadrados**, que representa la variabilida
 de los datos en torno a la media.
 
 El coeficiente $R^2$ varía entre 0 y 1, donde un valor cercano a 1 indica que el modelo
-explica bien la varianza de los datos, lo que sugiere un buen ajuste. En cambio, un valor
-cercano a 0 sugiere que el modelo apenas mejora la predicción en comparación con la
-media. Si $R^2$ es negativo, el modelo tiene un mal ajuste y predice peor que la media.
-Por ejemplo, si $R^2 = 0.6$, se interpreta que la variable independiente explica el 60%
-de la variación observada en la variable dependiente.
+explica bien la varianza de los datos, lo que sugiere un buen ajuste. En cambio, un
+valor cercano a 0 sugiere que el modelo apenas mejora la predicción en comparación con
+la media. Si $R^2$ es negativo, el modelo tiene un mal ajuste y predice peor que la
+media. Por ejemplo, si $R^2 = 0.6$, se interpreta que la variable independiente explica
+el 60% de la variación observada en la variable dependiente.
 
 El coeficiente $R^2$ se emplea en problemas de regresión sobre datos continuos.
 
@@ -727,9 +733,9 @@ donde $\text{cov}(X,Y)$ es la **covarianza** entre las variables $X$ e $Y$, y $\
 y $\sigma_Y$ son las desviaciones típicas de $X$ e $Y$, respectivamente.
 
 La **covarianza** indica la relación entre dos variables. Si la covarianza es positiva,
-un aumento en $X$ se asocia con un aumento en $Y$ (relación directa). Si la covarianza es
-negativa, un aumento en $X$ se asocia con una disminución en $Y$ (relación inversa). Una
-covarianza cercana a 0 sugiere que no existe relación lineal entre las variables.
+un aumento en $X$ se asocia con un aumento en $Y$ (relación directa). Si la covarianza
+es negativa, un aumento en $X$ se asocia con una disminución en $Y$ (relación inversa).
+Una covarianza cercana a 0 sugiere que no existe relación lineal entre las variables.
 
 Dado que la covarianza depende de la escala de las variables, se normaliza mediante el
 coeficiente de correlación de Pearson, que toma valores entre -1 y 1, donde 1 indica una
@@ -762,14 +768,14 @@ observados y los valores predichos por el modelo.
 
 Una vez ajustada la línea, se calcula el coeficiente de determinación $R^2$ para evaluar
 la calidad del ajuste, y se pueden obtener los p-valores asociados para determinar la
-significancia estadística del modelo. Para analizar visualmente la calidad del ajuste, es
-habitual representar los **residuos**, que son las diferencias entre los valores reales y
-los valores predichos por la línea ajustada. Esta representación permite observar si el
-modelo captura adecuadamente la variabilidad de los datos o si existen patrones no
-modelados.
+significancia estadística del modelo. Para analizar visualmente la calidad del ajuste,
+es habitual representar los **residuos**, que son las diferencias entre los valores
+reales y los valores predichos por la línea ajustada. Esta representación permite
+observar si el modelo captura adecuadamente la variabilidad de los datos o si existen
+patrones no modelados.
 
-A partir de los datos, se puede calcular la **varianza** como la suma de los cuadrados de
-las diferencias entre cada punto y la media, dividida entre el número de puntos. Esta
+A partir de los datos, se puede calcular la **varianza** como la suma de los cuadrados
+de las diferencias entre cada punto y la media, dividida entre el número de puntos. Esta
 medida indica el grado de dispersión de los datos. El coeficiente $R^2$ se obtiene como
 la diferencia entre la varianza respecto a la media y la varianza respecto al ajuste,
 dividida entre la varianza respecto a la media. Por ejemplo, si $R^2 = 0.6$, se
@@ -787,29 +793,29 @@ El **descenso del gradiente** es un proceso iterativo utilizado para minimizar u
 **función de pérdida** (_loss function_), que representa el error promedio del modelo
 respecto a todos los puntos del conjunto de datos. El procedimiento comienza
 seleccionando un punto de partida aleatorio en la superficie de la función de pérdida. A
-continuación, se calcula la derivada (o **gradiente**) de la función en ese punto, lo que
-permite conocer la pendiente de la función en dicha posición. Si la derivada es positiva,
-la función crece en esa dirección y el algoritmo se desplaza en la dirección opuesta; si
-es negativa, el algoritmo avanza en esa misma dirección. Este proceso se repite
-iterativamente, ajustando la posición en cada paso hasta alcanzar un mínimo de la función
-de pérdida.
+continuación, se calcula la derivada (o **gradiente**) de la función en ese punto, lo
+que permite conocer la pendiente de la función en dicha posición. Si la derivada es
+positiva, la función crece en esa dirección y el algoritmo se desplaza en la dirección
+opuesta; si es negativa, el algoritmo avanza en esa misma dirección. Este proceso se
+repite iterativamente, ajustando la posición en cada paso hasta alcanzar un mínimo de la
+función de pérdida.
 
 El **descenso del gradiente estocástico** (_Stochastic Gradient Descent_, SGD) introduce
 una variante importante: en lugar de calcular el gradiente utilizando todos los puntos
 del conjunto de datos (lo cual resulta computacionalmente costoso), se selecciona de
-forma aleatoria un subconjunto de puntos denominado **lote** (_batch_) en cada iteración.
-Esta estrategia no solo reduce el coste computacional, sino que también ayuda a evitar
-que el algoritmo quede atrapado en **mínimos locales**, ya que la aleatoriedad en la
-selección de los datos introduce variabilidad en la dirección del gradiente.
+forma aleatoria un subconjunto de puntos denominado **lote** (_batch_) en cada
+iteración. Esta estrategia no solo reduce el coste computacional, sino que también ayuda
+a evitar que el algoritmo quede atrapado en **mínimos locales**, ya que la aleatoriedad
+en la selección de los datos introduce variabilidad en la dirección del gradiente.
 
 ### Regresión logística
 
-La **regresión logística** es un modelo de clasificación que, a pesar de su nombre, no se
-utiliza para problemas de regresión sino para predecir la probabilidad de pertenencia a
-una clase. A diferencia de la regresión lineal, que produce valores continuos, la
+La **regresión logística** es un modelo de clasificación que, a pesar de su nombre, no
+se utiliza para problemas de regresión sino para predecir la probabilidad de pertenencia
+a una clase. A diferencia de la regresión lineal, que produce valores continuos, la
 regresión logística aplica la **función sigmoide** a la salida de una combinación lineal
-de las variables de entrada, transformando el resultado en un valor comprendido entre 0 y
-1 que se interpreta como una probabilidad.
+de las variables de entrada, transformando el resultado en un valor comprendido entre 0
+y 1 que se interpreta como una probabilidad.
 
 La función sigmoide se define como:
 
@@ -835,8 +841,8 @@ pesar de que esta suposición de independencia rara vez se cumple en la práctic
 modelo ofrece un rendimiento sorprendentemente bueno en muchas aplicaciones,
 especialmente en clasificación de texto y filtrado de spam.
 
-El Teorema de Bayes permite calcular la probabilidad posterior de una clase $C_k$ dado un
-vector de características $\mathbf{x}$:
+El Teorema de Bayes permite calcular la probabilidad posterior de una clase $C_k$ dado
+un vector de características $\mathbf{x}$:
 
 $$
 P(C_k | \mathbf{x}) = \frac{P(\mathbf{x} | C_k) \cdot P(C_k)}{P(\mathbf{x})}.
@@ -850,8 +856,8 @@ P(\mathbf{x} | C_k) = \prod_{i=1}^{n} P(x_i | C_k).
 $$
 
 El clasificador asigna a cada nueva observación la clase con mayor probabilidad
-posterior. Existen diferentes variantes del modelo según la distribución asumida para las
-características: **Gaussiano** (para datos continuos con distribución normal),
+posterior. Existen diferentes variantes del modelo según la distribución asumida para
+las características: **Gaussiano** (para datos continuos con distribución normal),
 **Multinomial** (para conteos de frecuencias, como en clasificación de texto) y
 **Bernoulli** (para características binarias).
 
@@ -880,13 +886,13 @@ al sobreajuste, especialmente cuando se permite que el árbol crezca sin restric
 la capacidad de generalización de estos últimos. Aunque los árboles de decisión clásicos
 son fácilmente interpretables y eficientes en el ajuste a los datos de entrenamiento,
 presentan una alta varianza que los hace poco robustos frente a nuevas muestras. Random
-Forest soluciona esta limitación mediante un enfoque basado en el aprendizaje conjunto de
-múltiples árboles de decisión.
+Forest soluciona esta limitación mediante un enfoque basado en el aprendizaje conjunto
+de múltiples árboles de decisión.
 
 El proceso de construcción de un modelo Random Forest se compone de tres etapas
 fundamentales. En primer lugar, se generan múltiples subconjuntos de entrenamiento
-mediante **muestreo aleatorio con reemplazo** a partir del conjunto de datos original, un
-procedimiento conocido como _bootstrap sampling_. Como consecuencia, algunas
+mediante **muestreo aleatorio con reemplazo** a partir del conjunto de datos original,
+un procedimiento conocido como _bootstrap sampling_. Como consecuencia, algunas
 observaciones pueden repetirse dentro de un subconjunto, mientras que otras no son
 seleccionadas. En segundo lugar, cada subconjunto generado se utiliza para entrenar un
 árbol de decisión independiente. A diferencia del procedimiento habitual, en cada
@@ -901,8 +907,8 @@ Durante el entrenamiento, algunas muestras no se utilizan en la construcción de
 determinado. Estas observaciones, conocidas como _out-of-bag samples_, se emplean para
 evaluar el rendimiento del modelo de manera interna, sin necesidad de un conjunto de
 validación adicional. Al calcular el porcentaje de muestras _out-of-bag_ clasificadas
-incorrectamente por el conjunto de árboles, se obtiene el llamado _out-of-bag error_, que
-actúa como una estimación fiable del error de generalización.
+incorrectamente por el conjunto de árboles, se obtiene el llamado _out-of-bag error_,
+que actúa como una estimación fiable del error de generalización.
 
 El número de características consideradas en cada división puede ajustarse como
 hiperparámetro del modelo. Este control permite optimizar el equilibrio entre sesgo y
@@ -913,21 +919,22 @@ decisión individuales.
 
 La **Máquina de Vectores de Soporte** (_Support Vector Machine_, SVM) es un algoritmo de
 aprendizaje supervisado utilizado tanto para clasificación como para regresión. Su
-principio fundamental consiste en encontrar el **hiperplano** que mejor separa las clases
-en el espacio de características, maximizando el **margen**, es decir, la distancia entre
-el hiperplano y los puntos de datos más cercanos de cada clase, denominados **vectores de
-soporte**.
+principio fundamental consiste en encontrar el **hiperplano** que mejor separa las
+clases en el espacio de características, maximizando el **margen**, es decir, la
+distancia entre el hiperplano y los puntos de datos más cercanos de cada clase,
+denominados **vectores de soporte**.
 
-En problemas donde los datos no son linealmente separables, las SVM emplean el denominado
-**truco del kernel** (_kernel trick_), que consiste en proyectar los datos a un espacio
-de mayor dimensionalidad donde sí resultan separables linealmente. Entre los kernels más
-utilizados se encuentran el lineal, el polinómico y el de función de base radial (RBF).
+En problemas donde los datos no son linealmente separables, las SVM emplean el
+denominado **truco del kernel** (_kernel trick_), que consiste en proyectar los datos a
+un espacio de mayor dimensionalidad donde sí resultan separables linealmente. Entre los
+kernels más utilizados se encuentran el lineal, el polinómico y el de función de base
+radial (RBF).
 
-La formulación matemática de la SVM busca minimizar una función objetivo que equilibra la
-maximización del margen con la penalización de las clasificaciones erróneas, controlada
-por un hiperparámetro de regularización $C$. Un valor alto de $C$ prioriza la
-clasificación correcta de todos los puntos (riesgo de sobreajuste), mientras que un valor
-bajo permite mayor tolerancia a errores (mayor generalización).
+La formulación matemática de la SVM busca minimizar una función objetivo que equilibra
+la maximización del margen con la penalización de las clasificaciones erróneas,
+controlada por un hiperparámetro de regularización $C$. Un valor alto de $C$ prioriza la
+clasificación correcta de todos los puntos (riesgo de sobreajuste), mientras que un
+valor bajo permite mayor tolerancia a errores (mayor generalización).
 
 ### XGBoost
 
@@ -950,11 +957,11 @@ $$
 \text{Similarity} = \frac{G^2}{H + \lambda},
 $$
 
-donde $G$ es la suma de los gradientes (primeras derivadas de la función de pérdida), $H$
-es la suma de las hessianas (segundas derivadas de la función de pérdida) y $\lambda$ es
-el parámetro de regularización. La **ganancia** (_gain_) de una división se calcula como
-la diferencia entre la suma de las similaridades de los nodos hijos y la similaridad del
-nodo padre:
+donde $G$ es la suma de los gradientes (primeras derivadas de la función de pérdida),
+$H$ es la suma de las hessianas (segundas derivadas de la función de pérdida) y
+$\lambda$ es el parámetro de regularización. La **ganancia** (_gain_) de una división se
+calcula como la diferencia entre la suma de las similaridades de los nodos hijos y la
+similaridad del nodo padre:
 
 $$
 \text{Gain} = \text{Similarity}_{\text{izq}} + \text{Similarity}_{\text{der}} - \text{Similarity}_{\text{padre}}.
@@ -984,8 +991,8 @@ La función principal de la agrupación o _clustering_ consiste en reducir la di
 entre los puntos de un grupo y maximizar la distancia entre los distintos grupos, es
 decir, que los puntos de datos que pertenezcan a un mismo grupo se encuentren lo más
 cerca posible entre sí pero alejados de los puntos de datos del resto de grupos. **Este
-problema se vuelve más complejo conforme aumenta la dimensionalidad del espacio**, ya que
-puntos de datos que parecían alejados pueden pasar a estar más cerca en dimensiones
+problema se vuelve más complejo conforme aumenta la dimensionalidad del espacio**, ya
+que puntos de datos que parecían alejados pueden pasar a estar más cerca en dimensiones
 superiores.
 
 Por ello, **es muy común el uso de técnicas para la reducción de la dimensionalidad en
@@ -1001,9 +1008,9 @@ _Autoencoders_ comprimen la información recibida a la entrada para adquirir una
 representación compacta en su espacio latente.
 
 Los algoritmos de _clustering_ se utilizan en problemas **no supervisados**, es decir,
-problemas donde no se dispone de etiquetas y el objetivo es obtener agrupaciones de datos
-con similitudes. A continuación, se presentan los principales tipos de algoritmos de
-agrupación.
+problemas donde no se dispone de etiquetas y el objetivo es obtener agrupaciones de
+datos con similitudes. A continuación, se presentan los principales tipos de algoritmos
+de agrupación.
 
 ### Métodos basados en particiones
 
@@ -1023,8 +1030,8 @@ asignación y actualización se repite iterativamente hasta que los centroides c
 (dejan de cambiar significativamente) o se alcanza un número máximo de iteraciones.
 
 Formalmente, el centro del cluster $k$ se representa con la letra $\mu_k$. Para cada
-punto $x_i$ del conjunto de datos, se calcula la distancia euclídea a cada centroide y se
-asigna al cluster cuyo centroide sea el más cercano. La **función de coste** del
+punto $x_i$ del conjunto de datos, se calcula la distancia euclídea a cada centroide y
+se asigna al cluster cuyo centroide sea el más cercano. La **función de coste** del
 algoritmo se define como la suma promedio de las distancias euclídeas entre todas las
 muestras y sus respectivos centroides:
 
@@ -1041,7 +1048,7 @@ K-Means múltiples veces con diferentes inicializaciones aleatorias y selecciona
 ejecución con menor función de coste. El número de clusters $k$ debe ser menor que el
 número total de muestras $M$ y su elección es un aspecto crítico del algoritmo.
 
-```python
+```python linenums="1"
 import numpy as np
 from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
@@ -1102,12 +1109,12 @@ plt.show()
 
 #### K-Medoids
 
-**K-Medoids** es una variante de K-Means que, en lugar de utilizar la media de los puntos
-como centroide, selecciona un punto real del conjunto de datos como representante de cada
-cluster (denominado **medoide**). Esta característica lo hace más robusto frente a
-valores atípicos, ya que el medoide siempre es un punto existente en los datos.
+**K-Medoids** es una variante de K-Means que, en lugar de utilizar la media de los
+puntos como centroide, selecciona un punto real del conjunto de datos como representante
+de cada cluster (denominado **medoide**). Esta característica lo hace más robusto frente
+a valores atípicos, ya que el medoide siempre es un punto existente en los datos.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn_extra.cluster import KMedoids
@@ -1137,7 +1144,7 @@ a un único cluster o se alcanza el número deseado de agrupaciones. La distanci
 clusters se puede medir mediante diferentes criterios de enlace (_linkage_), como el
 enlace simple, completo, promedio o el método de Ward.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import AgglomerativeClustering
@@ -1157,34 +1164,35 @@ algoritmo = AgglomerativeClustering(
 ### Métodos basados en densidad
 
 **DBSCAN** (_Density-Based Spatial Clustering of Applications with Noise_) es un
-algoritmo de clustering que agrupa puntos que se encuentran en regiones de alta densidad,
-separándolos de las regiones de baja densidad. A diferencia de K-Means, DBSCAN no
-requiere especificar el número de clusters de antemano y es capaz de detectar clusters de
-formas arbitrarias, así como identificar puntos de ruido (_outliers_) que no pertenecen a
-ningún cluster.
+algoritmo de clustering que agrupa puntos que se encuentran en regiones de alta
+densidad, separándolos de las regiones de baja densidad. A diferencia de K-Means, DBSCAN
+no requiere especificar el número de clusters de antemano y es capaz de detectar
+clusters de formas arbitrarias, así como identificar puntos de ruido (_outliers_) que no
+pertenecen a ningún cluster.
 
 ### Métodos basados en modelos
 
-Los **Modelos de Mezcla Gaussiana** (_Gaussian Mixture Models_, GMM) asumen que los datos
-provienen de una mezcla de varias distribuciones gaussianas, cada una con sus propios
-parámetros de media y covarianza. A diferencia de K-Means, que realiza asignaciones duras
-(cada punto pertenece a un único cluster), los GMM proporcionan asignaciones
-probabilísticas, indicando la probabilidad de que cada punto pertenezca a cada cluster.
-El entrenamiento se realiza mediante el algoritmo **Expectation-Maximization (EM)**.
+Los **Modelos de Mezcla Gaussiana** (_Gaussian Mixture Models_, GMM) asumen que los
+datos provienen de una mezcla de varias distribuciones gaussianas, cada una con sus
+propios parámetros de media y covarianza. A diferencia de K-Means, que realiza
+asignaciones duras (cada punto pertenece a un único cluster), los GMM proporcionan
+asignaciones probabilísticas, indicando la probabilidad de que cada punto pertenezca a
+cada cluster. El entrenamiento se realiza mediante el algoritmo
+**Expectation-Maximization (EM)**.
 
 ### Métodos basados en grafos
 
 El **clustering espectral** (_Spectral Clustering_) permite agrupar conjuntos de datos
-mucho más complejos que no son linealmente separables, como ocurre en el caso de K-Means.
-La idea fundamental de este algoritmo consiste en crear un **grafo de afinidad** (o grafo
-de similitud) donde cada punto de los datos es un nodo del grafo y las aristas (_edges_)
-entre nodos indican la similitud entre ellos.
+mucho más complejos que no son linealmente separables, como ocurre en el caso de
+K-Means. La idea fundamental de este algoritmo consiste en crear un **grafo de
+afinidad** (o grafo de similitud) donde cada punto de los datos es un nodo del grafo y
+las aristas (_edges_) entre nodos indican la similitud entre ellos.
 
 Para expresar el valor de la similitud entre nodos, se puede utilizar la **función
-gaussiana** (o kernel RBF). Cuando la distancia entre dos puntos es pequeña, la similitud
-se aproxima a 1, indicando una gran afinidad; cuando la distancia es grande, la similitud
-se aproxima a 0. El resultado es una **matriz de similitud** $W$ de dimensión
-$n \times n$:
+gaussiana** (o kernel RBF). Cuando la distancia entre dos puntos es pequeña, la
+similitud se aproxima a 1, indicando una gran afinidad; cuando la distancia es grande,
+la similitud se aproxima a 0. El resultado es una **matriz de similitud** $W$ de
+dimensión $n \times n$:
 
 $$
 W = \begin{pmatrix}
@@ -1198,7 +1206,7 @@ Una vez obtenido el grafo de similitud, el objetivo es dividir los nodos en $k$ 
 minimizando las conexiones entre grupos y maximizando las conexiones dentro de cada
 grupo.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import SpectralClustering
@@ -1228,22 +1236,23 @@ plt.show()
 
 ### K-Nearest Neighbors (KNN)
 
-A diferencia de los algoritmos de clustering vistos hasta este punto, **KNN** (_K-Nearest
-Neighbors_) es un algoritmo **supervisado** utilizado para problemas de clasificación y
-regresión. Su funcionamiento se basa en la idea de que puntos de datos similares tienden
-a estar próximos en el espacio de características.
+A diferencia de los algoritmos de clustering vistos hasta este punto, **KNN**
+(_K-Nearest Neighbors_) es un algoritmo **supervisado** utilizado para problemas de
+clasificación y regresión. Su funcionamiento se basa en la idea de que puntos de datos
+similares tienden a estar próximos en el espacio de características.
 
-Para clasificar un nuevo punto, el algoritmo calcula la distancia de dicho punto respecto
-a todos los puntos del conjunto de datos de entrenamiento, generalmente utilizando la
-**distancia euclídea** o la **distancia Manhattan**. A continuación, se seleccionan los
-$k$ vecinos más cercanos y se asigna al nuevo punto la clase mayoritaria entre esos
-vecinos (en clasificación) o la media de sus etiquetas (en regresión).
+Para clasificar un nuevo punto, el algoritmo calcula la distancia de dicho punto
+respecto a todos los puntos del conjunto de datos de entrenamiento, generalmente
+utilizando la **distancia euclídea** o la **distancia Manhattan**. A continuación, se
+seleccionan los $k$ vecinos más cercanos y se asigna al nuevo punto la clase mayoritaria
+entre esos vecinos (en clasificación) o la media de sus etiquetas (en regresión).
 
-La elección del valor de $k$ es un aspecto crítico del algoritmo. Un valor pequeño de $k$
-implica un sesgo bajo pero una alta varianza, lo que puede conducir al sobreajuste. Un
-valor grande de $k$ implica un sesgo alto pero baja varianza, lo que puede provocar
-subajuste. El valor óptimo de $k$ se obtiene mediante técnicas como la validación cruzada
-y el análisis de curvas de aprendizaje, buscando un equilibrio entre ambos extremos.
+La elección del valor de $k$ es un aspecto crítico del algoritmo. Un valor pequeño de
+$k$ implica un sesgo bajo pero una alta varianza, lo que puede conducir al sobreajuste.
+Un valor grande de $k$ implica un sesgo alto pero baja varianza, lo que puede provocar
+subajuste. El valor óptimo de $k$ se obtiene mediante técnicas como la validación
+cruzada y el análisis de curvas de aprendizaje, buscando un equilibrio entre ambos
+extremos.
 
 ### Mecanismos para la elección del número de clusters
 
@@ -1261,10 +1270,11 @@ para obtener un WCSS global. Los valores más bajos de WCSS son preferibles, ya 
 indican una agrupación más compacta.
 
 El procedimiento consiste en ejecutar el algoritmo de clustering con diferentes valores
-de $k$ y calcular el WCSS para cada uno. El valor óptimo de $k$ se identifica en el punto
-donde la reducción del WCSS deja de ser significativa, formando un "codo" en la gráfica.
+de $k$ y calcular el WCSS para cada uno. El valor óptimo de $k$ se identifica en el
+punto donde la reducción del WCSS deja de ser significativa, formando un "codo" en la
+gráfica.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -1301,11 +1311,11 @@ El **coeficiente de silueta** (_Silhouette Score_) se emplea para determinar el 
 óptimo del número de clusters. La puntuación se calcula promediando el coeficiente de
 silueta de cada muestra, que se obtiene como la diferencia entre la distancia media al
 cluster más cercano y la distancia media dentro del propio cluster, normalizada por el
-valor máximo de ambas. Esto produce una puntuación entre $[-1, 1]$, donde 1 corresponde a
-clusters muy densos y bien separados, 0 indica solapamiento entre clusters y -1 señala
+valor máximo de ambas. Esto produce una puntuación entre $[-1, 1]$, donde 1 corresponde
+a clusters muy densos y bien separados, 0 indica solapamiento entre clusters y -1 señala
 una agrupación incorrecta.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -1347,17 +1357,17 @@ plt.show()
 
 El **índice de Caliński-Harabasz** (índice CH) evalúa la calidad de la agrupación
 midiendo la relación entre la **cohesión** (qué tan similar es un objeto a su propio
-grupo) y la **separación** (qué tan diferente es respecto a otros grupos). La cohesión se
-estima en función de las distancias desde los puntos de datos hasta el centroide de su
-cluster, y la separación se basa en la distancia de los centroides de cada cluster al
+grupo) y la **separación** (qué tan diferente es respecto a otros grupos). La cohesión
+se estima en función de las distancias desde los puntos de datos hasta el centroide de
+su cluster, y la separación se basa en la distancia de los centroides de cada cluster al
 centroide global.
 
 Un valor más alto del índice CH indica que los grupos son densos y están bien separados.
-No existe un valor de corte universalmente aceptable, por lo que se buscan soluciones que
-presenten un cambio abrupto en la gráfica del índice CH. Si la gráfica es suave, no hay
-razón para preferir una solución sobre otra.
+No existe un valor de corte universalmente aceptable, por lo que se buscan soluciones
+que presenten un cambio abrupto en la gráfica del índice CH. Si la gráfica es suave, no
+hay razón para preferir una solución sobre otra.
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -1395,11 +1405,11 @@ plt.show()
 #### Combinación de métodos
 
 Es recomendable combinar los métodos de búsqueda del número óptimo de clusters para
-obtener un rango de valores óptimos más fiable. A continuación, se muestra un ejemplo que
-integra las gráficas del método del codo, la puntuación de silueta y el índice CH en una
-única visualización normalizada:
+obtener un rango de valores óptimos más fiable. A continuación, se muestra un ejemplo
+que integra las gráficas del método del codo, la puntuación de silueta y el índice CH en
+una única visualización normalizada:
 
-```python
+```python linenums="1"
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -1464,8 +1474,8 @@ valores más elevados indican un mejor desempeño.
 
 #### Sensibilidad y especificidad
 
-Dos métricas derivadas de la matriz de confusión permiten evaluar la capacidad del modelo
-para identificar correctamente las clases positivas y negativas.
+Dos métricas derivadas de la matriz de confusión permiten evaluar la capacidad del
+modelo para identificar correctamente las clases positivas y negativas.
 
 La **sensibilidad** (_Recall_) mide la proporción de verdaderos positivos respecto al
 total de instancias realmente positivas:
@@ -1549,10 +1559,10 @@ Ambas métricas se pueden expresar en porcentaje multiplicando por cien.
 #### ROC y AUC
 
 La curva **ROC** (_Receiver Operating Characteristic_) es una herramienta gráfica que
-permite evaluar el rendimiento de un clasificador binario representando la relación entre
-la **tasa de verdaderos positivos** (_True Positive Rate_, TPR o sensibilidad) en el eje
-$y$ y la **tasa de falsos positivos** (_False Positive Rate_, FPR) en el eje $x$, ambos
-con rangos comprendidos entre 0 y 1.
+permite evaluar el rendimiento de un clasificador binario representando la relación
+entre la **tasa de verdaderos positivos** (_True Positive Rate_, TPR o sensibilidad) en
+el eje $y$ y la **tasa de falsos positivos** (_False Positive Rate_, FPR) en el eje $x$,
+ambos con rangos comprendidos entre 0 y 1.
 
 La diagonal principal de la gráfica ROC representa el rendimiento de un clasificador
 aleatorio, es decir, aquel que tiene una proporción igual de falsos positivos y
@@ -1562,8 +1572,8 @@ tienen un rendimiento inferior. La elección de un modelo sobre otro depende de 
 importancia relativa de minimizar los falsos positivos o maximizar los verdaderos
 positivos según el contexto del problema.
 
-El **AUC** (_Area Under the Curve_) mide el área bajo la curva ROC y proporciona un valor
-numérico único para comparar modelos. Un valor de AUC cercano a 1 indica un modelo
+El **AUC** (_Area Under the Curve_) mide el área bajo la curva ROC y proporciona un
+valor numérico único para comparar modelos. Un valor de AUC cercano a 1 indica un modelo
 excelente, mientras que un valor cercano a 0.5 indica un rendimiento similar al azar. El
 AUC resulta especialmente útil para comparar modelos con diferentes curvas ROC.
 
@@ -1583,9 +1593,9 @@ posiblemente correlacionadas en un nuevo conjunto de variables no correlacionada
 denominadas **componentes principales**. Estas componentes se ordenan de manera que la
 primera captura la mayor varianza posible de los datos, la segunda captura la mayor
 varianza restante (siendo ortogonal a la primera), y así sucesivamente. De este modo, es
-posible reducir la dimensionalidad del conjunto de datos conservando la mayor cantidad de
-información posible, descartando las componentes que aportan menor varianza (consideradas
-ruido).
+posible reducir la dimensionalidad del conjunto de datos conservando la mayor cantidad
+de información posible, descartando las componentes que aportan menor varianza
+(consideradas ruido).
 
 ### t-SNE
 
@@ -1600,14 +1610,15 @@ Student para evitar el problema de la aglomeración de puntos.
 
 ### UMAP
 
-**UMAP** (_Uniform Manifold Approximation and Projection_) es una técnica de reducción de
-dimensionalidad basada en la teoría de variedades (_manifold learning_) y la topología
-algebraica. Al igual que t-SNE, UMAP es eficaz para la visualización de datos de alta
-dimensionalidad, pero ofrece varias ventajas: mayor velocidad de ejecución, mejor
-preservación de la estructura global de los datos y la capacidad de realizar
-transformaciones sobre nuevos datos sin necesidad de reentrenar el modelo. UMAP construye
-una representación topológica de los datos en alta dimensionalidad y optimiza una
-representación en baja dimensionalidad que preserve la estructura topológica original.
+**UMAP** (_Uniform Manifold Approximation and Projection_) es una técnica de reducción
+de dimensionalidad basada en la teoría de variedades (_manifold learning_) y la
+topología algebraica. Al igual que t-SNE, UMAP es eficaz para la visualización de datos
+de alta dimensionalidad, pero ofrece varias ventajas: mayor velocidad de ejecución,
+mejor preservación de la estructura global de los datos y la capacidad de realizar
+transformaciones sobre nuevos datos sin necesidad de reentrenar el modelo. UMAP
+construye una representación topológica de los datos en alta dimensionalidad y optimiza
+una representación en baja dimensionalidad que preserve la estructura topológica
+original.
 
 ### Autoencoders
 
@@ -1627,12 +1638,13 @@ $p_{\theta}(x|z)$.
 Los autoencoders tienden al sobreajuste, por lo que se emplean diversas técnicas de
 regularización para mejorar su capacidad de generalización:
 
-- **Denoising Autoencoders**: Se agrega ruido gaussiano a la entrada o se eliminan partes
-  de la imagen de forma estocástica (mediante técnicas como _Dropout_, _DropBlock_ o
-  _SpatialDropout_), forzando al modelo a aprender representaciones más robustas.
-- **Sparse Autoencoders**: Penalizan o fuerzan al modelo a mantener un número reducido de
-  neuronas activadas simultáneamente. En el caso del **k-Sparse Autoencoder**, solo se
-  mantienen activas las $k$ activaciones más altas, poniendo el resto a cero.
+- **Denoising Autoencoders**: Se agrega ruido gaussiano a la entrada o se eliminan
+  partes de la imagen de forma estocástica (mediante técnicas como _Dropout_,
+  _DropBlock_ o _SpatialDropout_), forzando al modelo a aprender representaciones más
+  robustas.
+- **Sparse Autoencoders**: Penalizan o fuerzan al modelo a mantener un número reducido
+  de neuronas activadas simultáneamente. En el caso del **k-Sparse Autoencoder**, solo
+  se mantienen activas las $k$ activaciones más altas, poniendo el resto a cero.
 - **Contractive Autoencoders**: Penalizan la sensibilidad de la representación latente
   respecto a los datos de entrada, midiendo esta sensibilidad mediante la norma de
   Frobenius de la **matriz Jacobiana** de las activaciones del encoder con respecto a la
@@ -1646,16 +1658,16 @@ $$
 
 La imputación de datos es una técnica fundamental en la preparación de datos,
 especialmente cuando se enfrentan valores faltantes en un conjunto. Dependiendo del tipo
-de variable (numérica o categórica), se aplican diferentes estrategias para completar los
-valores ausentes de manera coherente y eficiente.
+de variable (numérica o categórica), se aplican diferentes estrategias para completar
+los valores ausentes de manera coherente y eficiente.
 
 ### Imputación simple
 
 Para variables **numéricas**, se emplean habitualmente medidas de tendencia central como
 la **media** o la **mediana**. No obstante, la mediana es preferida en contextos reales
-debido a su mayor robustez frente a valores atípicos o fuera de distribución. La decisión
-entre usar media o mediana puede fundamentarse en un análisis estadístico preliminar,
-como el estudio de la función de distribución acumulada (CDF) y el **rango
+debido a su mayor robustez frente a valores atípicos o fuera de distribución. La
+decisión entre usar media o mediana puede fundamentarse en un análisis estadístico
+preliminar, como el estudio de la función de distribución acumulada (CDF) y el **rango
 intercuartílico (IQR)**, que corresponde a la diferencia entre el percentil 75 y el
 percentil 25. Esta evaluación permite identificar valores anómalos y decidir si deben
 eliminarse o si la imputación debe ajustarse a una medida más robusta como la mediana.
@@ -1666,14 +1678,14 @@ aplican por columna, es decir, por cada característica del conjunto de datos.
 
 ### Imputación basada en vecinos
 
-Una estrategia más avanzada es el uso de métodos basados en los **vecinos más cercanos**,
-como el algoritmo **k-Nearest Neighbors (k-NN)**. Este enfoque consiste en identificar,
-para una muestra con valores faltantes, las muestras más similares (vecinas) utilizando
-métricas de distancia, como la distancia euclídea. Una vez determinadas las $k$ muestras
-más cercanas, el valor faltante se imputa en función de las características de esas
-vecinas, por ejemplo, mediante la media, la mediana o la moda de los valores presentes en
-ese grupo. Esta técnica permite imputar valores de forma contextualizada, mejorando la
-precisión respecto a métodos globales.
+Una estrategia más avanzada es el uso de métodos basados en los **vecinos más
+cercanos**, como el algoritmo **k-Nearest Neighbors (k-NN)**. Este enfoque consiste en
+identificar, para una muestra con valores faltantes, las muestras más similares
+(vecinas) utilizando métricas de distancia, como la distancia euclídea. Una vez
+determinadas las $k$ muestras más cercanas, el valor faltante se imputa en función de
+las características de esas vecinas, por ejemplo, mediante la media, la mediana o la
+moda de los valores presentes en ese grupo. Esta técnica permite imputar valores de
+forma contextualizada, mejorando la precisión respecto a métodos globales.
 
 ### Imputación con modelos predictivos
 
@@ -1684,8 +1696,8 @@ imputar valores faltantes. El proceso consiste en realizar una imputación inici
 valores faltantes utilizando técnicas simples (media, mediana o moda según el tipo de
 variable), entrenar un modelo Random Forest con las características completas para
 predecir los valores ausentes de cada característica incompleta, actualizar los valores
-imputados con las predicciones obtenidas y repetir iterativamente el proceso hasta que se
-alcanza la convergencia o un número máximo de iteraciones.
+imputados con las predicciones obtenidas y repetir iterativamente el proceso hasta que
+se alcanza la convergencia o un número máximo de iteraciones.
 
 MissForest es especialmente útil en contextos donde las relaciones entre variables son
 complejas y no lineales, ofreciendo un balance entre precisión y robustez. La selección
@@ -1694,14 +1706,14 @@ de ausencia y del nivel de precisión requerido en el análisis posterior.
 
 ## Sistemas de detección de anomalías
 
-Los sistemas de detección de anomalías se basan en la premisa de que el modelo se entrena
-exclusivamente con datos no anómalos, de manera que pueda identificar desviaciones
-significativas respecto al comportamiento normal aprendido.
+Los sistemas de detección de anomalías se basan en la premisa de que el modelo se
+entrena exclusivamente con datos no anómalos, de manera que pueda identificar
+desviaciones significativas respecto al comportamiento normal aprendido.
 
 ### Métodos basados en densidad
 
-Estos métodos consisten en calcular la probabilidad de que un dato pertenezca al conjunto
-de datos normal. Se determina el centro del conjunto de datos y se calcula la
+Estos métodos consisten en calcular la probabilidad de que un dato pertenezca al
+conjunto de datos normal. Se determina el centro del conjunto de datos y se calcula la
 probabilidad de cada punto en función de su distancia respecto a dicho centro,
 considerando dos o más características. Los puntos con baja probabilidad (alejados del
 centro) se consideran anomalías. Para ello, se establece un **umbral de probabilidad**
@@ -1721,9 +1733,9 @@ especialmente útil en este contexto.
 La detección de anomalías se diferencia del aprendizaje supervisado en varios aspectos
 fundamentales. En la detección de anomalías, se desconocen los tipos de anomalías
 posibles y no se asume que los datos nuevos sigan la misma distribución que los datos de
-entrenamiento. En cambio, un clasificador supervisado dispone de ejemplos tanto positivos
-como negativos y espera que las muestras futuras sigan una distribución similar a la
-observada durante el entrenamiento.
+entrenamiento. En cambio, un clasificador supervisado dispone de ejemplos tanto
+positivos como negativos y espera que las muestras futuras sigan una distribución
+similar a la observada durante el entrenamiento.
 
 Puede darse el caso de que las características de los datos no presenten una forma
 gaussiana, lo que requiere aplicar **transformaciones** para normalizar su distribución.
@@ -1734,11 +1746,12 @@ datos se aproximen a una distribución normal.
 
 ### Flujos de normalización
 
-Los **flujos de normalización** (_Normalizing Flows_) son modelos generativos invertibles
-que transforman una distribución de datos compleja en una distribución conocida, como la
-distribución normal, preservando la dimensionalidad de los datos. A diferencia de otros
-modelos generativos como los VAE o las GAN, los flujos de normalización aprenden
-directamente la función de densidad de probabilidad $p(x)$ de los datos.
+Los **flujos de normalización** (_Normalizing Flows_) son modelos generativos
+invertibles que transforman una distribución de datos compleja en una distribución
+conocida, como la distribución normal, preservando la dimensionalidad de los datos. A
+diferencia de otros modelos generativos como los VAE o las GAN, los flujos de
+normalización aprenden directamente la función de densidad de probabilidad $p(x)$ de los
+datos.
 
 El principio fundamental se basa en una función biyectiva $f$ que mapea los datos $x$ a
 un espacio latente $z$:
@@ -1748,29 +1761,29 @@ f: x \rightarrow z,
 $$
 
 donde $z$ sigue una distribución conocida (generalmente gaussiana) y $x$ tiene la misma
-dimensionalidad que $z$. La función $f$ es invertible, lo que permite tanto la generación
-de nuevos datos como la evaluación de la densidad de probabilidad.
+dimensionalidad que $z$. La función $f$ es invertible, lo que permite tanto la
+generación de nuevos datos como la evaluación de la densidad de probabilidad.
 
 La relación entre las distribuciones se establece mediante la **regla del cambio de
-variables**. Dada una distribución prior $p(z)$ (gaussiana) y una función invertible $f$,
-la densidad de probabilidad de $x$ se determina como:
+variables**. Dada una distribución prior $p(z)$ (gaussiana) y una función invertible
+$f$, la densidad de probabilidad de $x$ se determina como:
 
 $$
 \log p(x) = \log p(z) + \log \left| \det \frac{\partial f}{\partial x} \right|,
 $$
 
-donde el segundo término es el logaritmo del valor absoluto del determinante de la matriz
-Jacobiana de la transformación. Para hacer la función más expresiva, se pueden componer
-múltiples funciones invertibles aprendibles:
+donde el segundo término es el logaritmo del valor absoluto del determinante de la
+matriz Jacobiana de la transformación. Para hacer la función más expresiva, se pueden
+componer múltiples funciones invertibles aprendibles:
 
 $$
 z_0 \xrightarrow{f_1} z_1 \xrightarrow{f_2} \cdots \xrightarrow{f_K} z_K = x.
 $$
 
 De esta forma, partiendo de una distribución gaussiana simple, se aplican sucesivas
-transformaciones invertibles que permiten modelar distribuciones de datos arbitrariamente
-complejas. El entrenamiento se realiza minimizando el negativo del log-likelihood de los
-datos observados.
+transformaciones invertibles que permiten modelar distribuciones de datos
+arbitrariamente complejas. El entrenamiento se realiza minimizando el negativo del
+log-likelihood de los datos observados.
 
 ## Sistemas de recomendación
 
@@ -1780,11 +1793,11 @@ usuarios con puntuaciones de películas, donde ciertos usuarios no han visto tod
 películas disponibles. El objetivo es estimar la puntuación que un usuario asignaría a
 las películas no vistas.
 
-Existen dos enfoques principales. El **filtrado colaborativo** se basa en las similitudes
-entre usuarios o entre elementos: si dos usuarios han puntuado de forma similar un
-conjunto de películas, es probable que sus preferencias coincidan en películas no
-evaluadas. El **filtrado basado en contenido** utiliza las características de los
-elementos (género, director, actores) y las preferencias previas del usuario para
+Existen dos enfoques principales. El **filtrado colaborativo** se basa en las
+similitudes entre usuarios o entre elementos: si dos usuarios han puntuado de forma
+similar un conjunto de películas, es probable que sus preferencias coincidan en
+películas no evaluadas. El **filtrado basado en contenido** utiliza las características
+de los elementos (género, director, actores) y las preferencias previas del usuario para
 recomendar elementos con características similares a los que el usuario ha valorado
 positivamente.
 
@@ -1847,8 +1860,8 @@ reflejar el conocimiento adquirido a partir de los datos.
 Dado que el cálculo exacto de la distribución posterior es computacionalmente intratable
 en la mayoría de los casos prácticos, se emplean técnicas de inferencia aproximada:
 
-- **Inferencia variacional**: Aproxima la distribución posterior con una distribución más
-  simple $q(\theta)$, optimizando la divergencia de Kullback-Leibler (KL) entre
+- **Inferencia variacional**: Aproxima la distribución posterior con una distribución
+  más simple $q(\theta)$, optimizando la divergencia de Kullback-Leibler (KL) entre
   $q(\theta)$ y $P(\theta | D)$. Este método ofrece eficiencia computacional y
   escalabilidad para modelos grandes, siendo la opción más común en aplicaciones
   prácticas.
@@ -1904,9 +1917,9 @@ proporcionando información sobre la fiabilidad de cada predicción individual.
 
 En el contexto de las BNNs, se distinguen dos tipos fundamentales de incertidumbre:
 
-- **Incertidumbre epistémica**: Se refiere a lo que el modelo no sabe y está directamente
-  relacionada con los parámetros del modelo ($y = f(x)$). Es **reducible** con más datos
-  o mayor complejidad del modelo.
+- **Incertidumbre epistémica**: Se refiere a lo que el modelo no sabe y está
+  directamente relacionada con los parámetros del modelo ($y = f(x)$). Es **reducible**
+  con más datos o mayor complejidad del modelo.
 - **Incertidumbre aleatoria**: Se refiere a la variabilidad inherente en el entorno y
   está relacionada con los datos de entrada. Es **irreducible**, ya que proviene del
   ruido intrínseco del proceso generador de datos.
@@ -1917,8 +1930,8 @@ Las BNNs son particularmente valiosas en contextos donde la cuantificación de l
 incertidumbre es crítica: bioquímica y descubrimiento de fármacos, diagnóstico médico,
 finanzas, robótica y aprendizaje por refuerzo, y telecomunicaciones. Sus ventajas sobre
 los modelos deterministas incluyen la cuantificación formal de la incertidumbre, una
-regularización efectiva mediante las distribuciones prior, un mejor rendimiento con datos
-limitados y una mayor interpretabilidad de las predicciones.
+regularización efectiva mediante las distribuciones prior, un mejor rendimiento con
+datos limitados y una mayor interpretabilidad de las predicciones.
 
 Las BNNs se integran de forma natural con la **programación probabilística**, un
 paradigma que permite describir modelos estadísticos complejos mediante código
@@ -1953,25 +1966,25 @@ bibliotecas de aprendizaje profundo (como `torch.distributions.Normal`) y la fun
 
 ### Consideraciones de implementación
 
-Para la **varianza**, se recomienda utilizar la función de activación **ELU modificada**:
-$\text{ELU}(z) + 1 + \epsilon$ (donde $\epsilon = 10^{-15}$). La función ELU se desplaza
-a la zona de los positivos sumando 1, y se añade un valor pequeño $\epsilon$ para
-garantizar la estabilidad numérica. Esta elección evita que la varianza crezca
-excesivamente y proporciona un comportamiento suave que se aproxima a lineal para valores
-altos.
+Para la **varianza**, se recomienda utilizar la función de activación **ELU
+modificada**: $\text{ELU}(z) + 1 + \epsilon$ (donde $\epsilon = 10^{-15}$). La función
+ELU se desplaza a la zona de los positivos sumando 1, y se añade un valor pequeño
+$\epsilon$ para garantizar la estabilidad numérica. Esta elección evita que la varianza
+crezca excesivamente y proporciona un comportamiento suave que se aproxima a lineal para
+valores altos.
 
 Para los **pesos** de la mezcla, se puede sustituir la función **Softmax** estándar por
 **Gumbel-Softmax**, que genera distribuciones más agresivas y puede asignar probabilidad
-cercana a cero a componentes sin importancia, mientras que Softmax produce distribuciones
-más suaves. Otras técnicas para evitar el colapso de componentes (donde el modelo ignora
-alguna distribución) incluyen la regularización de pesos y la inicialización del centro
-de cada gaussiana a partir de un precálculo sobre los datos.
+cercana a cero a componentes sin importancia, mientras que Softmax produce
+distribuciones más suaves. Otras técnicas para evitar el colapso de componentes (donde
+el modelo ignora alguna distribución) incluyen la regularización de pesos y la
+inicialización del centro de cada gaussiana a partir de un precálculo sobre los datos.
 
 ### Intervalos de confianza
 
 A partir de las distribuciones obtenidas por el MDN, es posible calcular **intervalos de
-confianza** (_confidence intervals_), que representan un rango de valores que, con cierta
-probabilidad (nivel de confianza), contiene el verdadero valor de un parámetro
+confianza** (_confidence intervals_), que representan un rango de valores que, con
+cierta probabilidad (nivel de confianza), contiene el verdadero valor de un parámetro
 desconocido. Por ejemplo, un intervalo de confianza del 95% indica que, al repetir un
 experimento varias veces, aproximadamente el 95% de los intervalos calculados contendrán
 el valor verdadero. Además, se pueden obtener la media, la varianza, los percentiles y
@@ -1983,5 +1996,6 @@ datos de entrenamiento.
 Durante el entrenamiento de MDNs, pueden aparecer valores `NaN` debido a varias causas:
 el logaritmo de un valor cercano a cero, divisiones con denominador muy pequeño o la
 exponencial de un valor muy grande. Para mitigar estos problemas, se pueden emplear
-técnicas como el **gradient clipping** (limitación del gradiente), la **regularización de
-pesos** y la **normalización por lotes** (_Batch Normalization_) en la capa de salida.
+técnicas como el **gradient clipping** (limitación del gradiente), la **regularización
+de pesos** y la **normalización por lotes** (_Batch Normalization_) en la capa de
+salida.

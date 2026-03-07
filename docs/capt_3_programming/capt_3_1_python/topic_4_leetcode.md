@@ -180,8 +180,8 @@ output = true
 
 ### Maximum subarray
 
-Given an integer array nums, fin the contiguous subarray (containing at least one number)
-which has the larges sum and return its sum
+Given an integer array nums, fin the contiguous subarray (containing at least one
+number) which has the larges sum and return its sum
 
 Example:
 

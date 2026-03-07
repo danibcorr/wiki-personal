@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Herramientas necesarias para DevOps.
-title: GitHub Actions
+title: CI/CD
 ---
 
 ## Bibliografía
@@ -12,17 +12,17 @@ title: GitHub Actions
 ## Introducción
 
 <p align="center">
-  <img src="/assets/img/docs/logos/github-logo.png" width="500"/>
+  <img src="../../../assets/img/docs/logos/github-logo.png" width="500"/>
   <br />
   <em>Logo de GitHub</em>
 </p>
 
-GitHub es una plataforma de desarrollo colaborativo diseñada para la gestión de proyectos
-de software. Proporciona herramientas avanzadas para el control de versiones mediante
-Git, así como funcionalidades para la integración y entrega continua (_Continuous
-Integration_ - CI y _Continuous Deployment_ - CD, respectivamente). Con el tiempo, GitHub
-se ha consolidado como una herramienta esencial para desarrolladores y equipos de
-software, destacando entre sus características GitHub Actions, que permite la
+GitHub es una plataforma de desarrollo colaborativo diseñada para la gestión de
+proyectos de software. Proporciona herramientas avanzadas para el control de versiones
+mediante Git, así como funcionalidades para la integración y entrega continua
+(_Continuous Integration_ - CI y _Continuous Deployment_ - CD, respectivamente). Con el
+tiempo, GitHub se ha consolidado como una herramienta esencial para desarrolladores y
+equipos de software, destacando entre sus características GitHub Actions, que permite la
 automatización de flujos de trabajo directamente dentro de los repositorios facilitando
 la integración con servicios externos, y GitHub Pages, que ofrece una manera sencilla de
 publicar sitios web estáticos directamente desde un repositorio.
@@ -30,18 +30,18 @@ publicar sitios web estáticos directamente desde un repositorio.
 Una de las principales ventajas de utilizar GitHub Actions en lugar de herramientas como
 Jenkins u otras soluciones similares es su integración nativa con GitHub. Además, su
 Marketplace proporciona un amplio catálogo de acciones desarrolladas tanto por GitHub
-como por terceros, lo que permite extender y personalizar los flujos de trabajo de manera
-eficiente.
+como por terceros, lo que permite extender y personalizar los flujos de trabajo de
+manera eficiente.
 
-## CI/CD con GitHub Actions
+## GitHub Actions
 
 La implementación de CI/CD permite automatizar procesos de desarrollo, mejorando la
 eficiencia y reduciendo errores en la integración y despliegue de software. La
 integración continua (CI) se refiere a la automatización de la integración de código en
 un repositorio compartido, asegurando que los cambios sean validados continuamente
 mediante pruebas y compilaciones. El despliegue continuo (CD) automatiza el proceso de
-despliegue de código en entornos de producción, facilitando la entrega continua de nuevas
-versiones del software.
+despliegue de código en entornos de producción, facilitando la entrega continua de
+nuevas versiones del software.
 
 ### GitHub Actions y su funcionamiento
 
@@ -52,14 +52,14 @@ secuencia dependiendo de las necesidades del proyecto.
 
 El _runner_ de GitHub Actions es un servidor que ejecuta estos _workflows_ en un entorno
 definido, permitiendo la compilación del código para distintos sistemas operativos, la
-ejecución de pruebas en paralelo, la validación de código con herramientas como _linters_
-y analizadores estáticos, y la implementación de código en producción o entornos de
-_staging_.
+ejecución de pruebas en paralelo, la validación de código con herramientas como
+_linters_ y analizadores estáticos, y la implementación de código en producción o
+entornos de _staging_.
 
 Para definir un _workflow_, se crea un archivo `.yml` dentro de la carpeta
 `.github/workflows/`:
 
-```plaintext
+```plaintext linenums="1"
 src
 │
 .github
@@ -68,7 +68,7 @@ src
 ```
 
 <p align="center">
-  <img src="/assets/img/docs/workflow-github-actions.png"/>
+  <img src="../../../assets/img/docs/workflow-github-actions.png" width=100%/>
   <br />
   <em>Esquema de un workflow en GitHub Actions</em>
 </p>
@@ -77,32 +77,32 @@ Un _pipeline_ típico en un _workflow_ podría incluir pasos como fusionar (_mer
 cambios en la rama principal, ejecutar pruebas, realizar un análisis de código
 (_linting_), generar una compilación (_build_) y desplegar en producción o _staging_.
 
-## Estructura de un Workflow en GitHub Actions
+### Estructura de un Workflow en GitHub Actions
 
 Un _workflow_ en GitHub Actions está definido en un archivo de configuración YAML que
 contiene las instrucciones necesarias para automatizar tareas dentro de un repositorio.
 
-### Elementos clave de un workflow
+#### Elementos clave de un workflow
 
 El campo `name` define un nombre descriptivo para el _workflow_. Aunque es opcional, se
 recomienda utilizarlo para mejorar la identificación y reutilización de _workflows_
 dentro del repositorio:
 
-```yaml
+```yaml linenums="1"
 name: Nombre del Workflow
 ```
 
-Los disparadores (`on`) determinan cuándo debe ejecutarse el _workflow_. Pueden activarse
-mediante eventos como `push`, `pull_request` o ejecuciones programadas. También es
-posible definir permisos a nivel global o dentro de un _job_ específico. Si varios _jobs_
-requieren los mismos permisos, es recomendable declararlos a nivel del _workflow_ en
-lugar de repetirlos en cada _job_.
+Los disparadores (`on`) determinan cuándo debe ejecutarse el _workflow_. Pueden
+activarse mediante eventos como `push`, `pull_request` o ejecuciones programadas.
+También es posible definir permisos a nivel global o dentro de un _job_ específico. Si
+varios _jobs_ requieren los mismos permisos, es recomendable declararlos a nivel del
+_workflow_ en lugar de repetirlos en cada _job_.
 
 ???+ example "Ejemplo"
 
     Definición de permisos a nivel de _workflow_:
 
-    ```yaml
+    ```yaml  linenums="1"
     name: Nombre del Workflow
 
     on:
@@ -116,7 +116,7 @@ lugar de repetirlos en cada _job_.
 
     Definición de permisos dentro de un _job_:
 
-    ```yaml
+    ```yaml  linenums="1"
     name: Nombre del Workflow
 
     on:
@@ -139,15 +139,15 @@ lugar de repetirlos en cada _job_.
     ```
 
 Los _jobs_ representan las unidades de trabajo dentro de un _workflow_. Cada _job_ se
-compone de una serie de _steps_ que definen las acciones a ejecutar de manera secuencial.
-Por defecto, los _jobs_ se ejecutan en paralelo a menos que uno dependa explícitamente de
-otro mediante la directiva `needs`. Cada _job_ se ejecuta en una nueva máquina virtual, y
-se debe especificar un sistema operativo con `runs-on`, permitiendo elegir entre Linux,
-macOS y Windows:
+compone de una serie de _steps_ que definen las acciones a ejecutar de manera
+secuencial. Por defecto, los _jobs_ se ejecutan en paralelo a menos que uno dependa
+explícitamente de otro mediante la directiva `needs`. Cada _job_ se ejecuta en una nueva
+máquina virtual, y se debe especificar un sistema operativo con `runs-on`, permitiendo
+elegir entre Linux, macOS y Windows:
 
 ???+ example "Ejemplo"
 
-    ```yaml
+    ```yaml  linenums="1"
     jobs:
       nombre-del-job:
         runs-on: ubuntu-latest
@@ -162,13 +162,13 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
 [GitHub Actions](https://github.com/actions) y el
 [GitHub Marketplace](https://github.com/marketplace).
 
-### Ejemplos de configuración de workflows
+#### Ejemplos de configuración de workflows
 
 ???+ example "Ejemplo básico"
 
     El siguiente ejemplo muestra un _workflow_ que se ejecuta cuando hay un `push` o un `pull_request` en la rama `main`:
 
-    ```yaml
+    ```yaml  linenums="1"
     name: Workflow básico
 
     on:
@@ -198,7 +198,7 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
 
     En este ejemplo, el _workflow_ configura Python, administra dependencias con Poetry y valida el código con Flake8:
 
-    ```yaml
+    ```yaml  linenums="1"
     name: Verificación con Flake8
 
     on:
@@ -237,7 +237,7 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
 
     Para mejorar el rendimiento, es posible utilizar caché para almacenar dependencias y evitar reinstalaciones innecesarias:
 
-    ```yaml
+    ```yaml  linenums="1"
     name: Workflow con caché
 
     on:
@@ -286,13 +286,13 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
         caché reduce significativamente el tiempo de ejecución del workflow, pero es importante
         monitorearlo para evitar el uso de dependencias obsoletas.
 
-### Modularización de workflows y acciones
+#### Modularización de workflows y acciones
 
 Para mejorar la reutilización y el mantenimiento del código, se recomienda modularizar
 los _workflows_ mediante acciones personalizadas. Un ejemplo de la estructura del
 proyecto podría ser la siguiente:
 
-```plaintext
+```plaintext linenums="1"
 src
 │
 .github
@@ -306,7 +306,7 @@ src
 Dentro de la carpeta `build-application` se define una acción, que siempre debe tener el
 nombre `action.yml`:
 
-```yml
+```yaml linenums="1"
 name: Build Application
 
 runs:
@@ -344,13 +344,13 @@ modificar los _workflows_ principales. Este enfoque modular permite dividir la
 complejidad, mejorar la eficiencia y permitir la reutilización de configuraciones a lo
 largo del proyecto.
 
-### Uso de estrategias con matrices
+#### Uso de estrategias con matrices
 
 Las matrices de estrategia en GitHub Actions permiten ejecutar un mismo _workflow_ en
 múltiples combinaciones de entornos, lo que resulta útil para probar software en
 diferentes sistemas operativos, versiones o configuraciones. Por ejemplo:
 
-```yml
+```yaml linenums="1"
 name: Workflow
 
 on:
@@ -396,26 +396,27 @@ _workflow_:
 | macos-latest   | 12      | production |
 | windows-latest | 16      | Cualquiera |
 
-Los beneficios del uso de matrices incluyen la eficiencia al probar múltiples entornos en
-paralelo, la flexibilidad para excluir combinaciones no necesarias y la automatización
-escalable, ideal para probar en distintos sistemas sin escribir múltiples _workflows_.
-Este enfoque resulta especialmente útil en proyectos que requieren pruebas en múltiples
-versiones de software, diferentes entornos (_staging_/producción) o compatibilidad con
-varios sistemas operativos.
+Los beneficios del uso de matrices incluyen la eficiencia al probar múltiples entornos
+en paralelo, la flexibilidad para excluir combinaciones no necesarias y la
+automatización escalable, ideal para probar en distintos sistemas sin escribir múltiples
+_workflows_. Este enfoque resulta especialmente útil en proyectos que requieren pruebas
+en múltiples versiones de software, diferentes entornos (_staging_/producción) o
+compatibilidad con varios sistemas operativos.
 
 ## Jenkins
 
 Jenkins es una aplicación basada en servidor, de código abierto, que facilita la
 integración continua y la automatización de la construcción, pruebas y despliegue de
-software. Utiliza un sistema de _plugins_ para integrarse con servicios de terceros, como
-proveedores de la nube, repositorios de código y herramientas de notificación. Su
-funcionamiento se basa en la detección de cambios en el código fuente: cuando se producen
-_commits_, Jenkins los compila y, si la construcción es correcta, procede al despliegue;
-en caso contrario, genera alertas para que el equipo pueda actuar rápidamente.
+software. Utiliza un sistema de _plugins_ para integrarse con servicios de terceros,
+como proveedores de la nube, repositorios de código y herramientas de notificación. Su
+funcionamiento se basa en la detección de cambios en el código fuente: cuando se
+producen _commits_, Jenkins los compila y, si la construcción es correcta, procede al
+despliegue; en caso contrario, genera alertas para que el equipo pueda actuar
+rápidamente.
 
-Jenkins abarca las principales etapas del ciclo DevOps: control de versiones, integración
-continua, monitorización continua, testeo continuo, gestión de la configuración y
-despliegue continuo.
+Jenkins abarca las principales etapas del ciclo DevOps: control de versiones,
+integración continua, monitorización continua, testeo continuo, gestión de la
+configuración y despliegue continuo.
 
 ### Arquitectura maestro-esclavo
 
@@ -428,12 +429,12 @@ aislamiento de entornos de ejecución.
 
 ### Tipos de plugins
 
-Los _plugins_ más destacados de Jenkins se agrupan en varias categorías: los de interfaz,
-relacionados con la interfaz gráfica de Jenkins; los de plataforma, vinculados al sistema
-operativo; los administrativos, destinados a la gestión de usuarios y permisos; los de
-construcción, que permiten notificar el resultado de la compilación de una aplicación; y
-los de gestión del código fuente, que facilitan la comunicación entre Jenkins y
-repositorios como GitLab o GitHub.
+Los _plugins_ más destacados de Jenkins se agrupan en varias categorías: los de
+interfaz, relacionados con la interfaz gráfica de Jenkins; los de plataforma, vinculados
+al sistema operativo; los administrativos, destinados a la gestión de usuarios y
+permisos; los de construcción, que permiten notificar el resultado de la compilación de
+una aplicación; y los de gestión del código fuente, que facilitan la comunicación entre
+Jenkins y repositorios como GitLab o GitHub.
 
 ### Creación de pipelines
 
@@ -447,5 +448,6 @@ conveniente complementar Jenkins con herramientas de aprovisionamiento como Ansi
 
 Para conectar Jenkins con GitHub es necesario instalar el _plugin_ de GitHub en Jenkins,
 crear un _personal access token_ desde los ajustes del perfil de GitHub y, a
-continuación, configurar el enlace en la sección de configuración del sistema de Jenkins,
-donde aparece la opción para establecer la conexión con GitHub mediante dicho token.
+continuación, configurar el enlace en la sección de configuración del sistema de
+Jenkins, donde aparece la opción para establecer la conexión con GitHub mediante dicho
+token.

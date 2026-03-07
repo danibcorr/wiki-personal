@@ -12,25 +12,25 @@ title: Jax
 # Introducción a JAX y las Unidades de Procesamiento Tensorial (TPU)
 
 Las **Unidades de Procesamiento Tensorial (TPU)** son sistemas que integran múltiples
-chips en una misma placa, cada uno de ellos equipado con una serie de núcleos. Un ejemplo
-destacado son las TPU v3 de Google, que cuentan con 8 núcleos, conexiones de alta
-velocidad y un compilador integrado. Estas unidades poseen un elevado ancho de banda que
-permite realizar intercambios de datos de manera eficiente. Además, utilizan el
-compilador XLA (Accelerated Linear Algebra), lo que significa que todo en el entorno de
-las TPU está compilado. Esto facilita su escalabilidad mediante la creación de conjuntos
-conocidos como "pods". Un pod puede contener hasta 1024 TPU v3, lo que se traduce en 2048
-núcleos disponibles que pueden conectarse a múltiples CPU hosts. Esta alta capacidad de
-ancho de banda es crucial para la escalabilidad del sistema, permitiendo una mayor
-potencia por chip.
+chips en una misma placa, cada uno de ellos equipado con una serie de núcleos. Un
+ejemplo destacado son las TPU v3 de Google, que cuentan con 8 núcleos, conexiones de
+alta velocidad y un compilador integrado. Estas unidades poseen un elevado ancho de
+banda que permite realizar intercambios de datos de manera eficiente. Además, utilizan
+el compilador XLA (Accelerated Linear Algebra), lo que significa que todo en el entorno
+de las TPU está compilado. Esto facilita su escalabilidad mediante la creación de
+conjuntos conocidos como "pods". Un pod puede contener hasta 1024 TPU v3, lo que se
+traduce en 2048 núcleos disponibles que pueden conectarse a múltiples CPU hosts. Esta
+alta capacidad de ancho de banda es crucial para la escalabilidad del sistema,
+permitiendo una mayor potencia por chip.
 
 La compilación es especialmente útil en entornos de investigación donde el código
 desarrollado puede carecer de eficiencia inherente. En estos casos, el compilador se
 encarga de optimizar el rendimiento del código de manera automática.
 
-**JAX** ha sido diseñado para crear un ecosistema alrededor de él. Existen librerías como
-**Optax**, que contiene una amplia gama de utilidades para el entrenamiento de modelos,
-como optimizadores, funciones de pérdida, programadores de tasas de aprendizaje y más.
-También está **FLAX**, que se utiliza para el desarrollo de redes neuronales.
+**JAX** ha sido diseñado para crear un ecosistema alrededor de él. Existen librerías
+como **Optax**, que contiene una amplia gama de utilidades para el entrenamiento de
+modelos, como optimizadores, funciones de pérdida, programadores de tasas de aprendizaje
+y más. También está **FLAX**, que se utiliza para el desarrollo de redes neuronales.
 
 Además de Optax y FLAX, existen otras librerías o familias que se basan en JAX:
 
@@ -39,22 +39,22 @@ Además de Optax y FLAX, existen otras librerías o familias que se basan en JAX
   investigación.
 - **Objax**: Es una librería de aprendizaje profundo que combina la simplicidad de Keras
   con la flexibilidad de JAX.
-- **Haiku**: Es una librería para redes neuronales en JAX que se centra en la simplicidad
-  y la transparencia.
+- **Haiku**: Es una librería para redes neuronales en JAX que se centra en la
+  simplicidad y la transparencia.
 
 Estas librerías, junto con JAX, forman un ecosistema robusto y flexible para la
 investigación y el desarrollo en el campo del aprendizaje automático.
 
 # JAX: Un framework de computación numérica
 
-**JAX** es un framework de computación numérica diseñado para ser compatible con CPU, GPU
-y TPU sin necesidad de modificar el código fuente. Esto simplifica considerablemente el
-proceso de desarrollo y optimización, ya que un mismo código puede ejecutarse en
-diferentes tipos de hardware sin modificaciones. JAX permite la diferenciación automática
-de funciones de Python.
+**JAX** es un framework de computación numérica diseñado para ser compatible con CPU,
+GPU y TPU sin necesidad de modificar el código fuente. Esto simplifica considerablemente
+el proceso de desarrollo y optimización, ya que un mismo código puede ejecutarse en
+diferentes tipos de hardware sin modificaciones. JAX permite la diferenciación
+automática de funciones de Python.
 
-JAX permite trazar tu función en una representación gráfica intermedia, que luego se pasa
-a XLA donde se compilará y optimizará. El resultado es un solo fragmento binario,
+JAX permite trazar tu función en una representación gráfica intermedia, que luego se
+pasa a XLA donde se compilará y optimizará. El resultado es un solo fragmento binario,
 altamente optimizado, listo y esperando para recibir tus datos. Este enfoque encaja
 naturalmente en muchas aplicaciones de aprendizaje automático, así como en otras tareas
 de computación científica.
@@ -146,22 +146,22 @@ Además, existen operaciones de comunicación colectiva que facilitan la coordin
 intercambio de datos entre los diferentes núcleos.
 
 **PJIT** es una herramienta que permite la paralelización automática entre diferentes
-TPU, proporcionando una visión del cómputo global y optimizando la distribución de tareas
-de manera automática.
+TPU, proporcionando una visión del cómputo global y optimizando la distribución de
+tareas de manera automática.
 
 En resumen, JAX ofrece una amplia gama de herramientas para optimizar y ejecutar
 eficientemente cálculos numéricos en una variedad de dispositivos, desde CPU y GPU hasta
 las potentes TPU de Google. Su capacidad para trabajar sin problemas en diferentes tipos
-de hardware lo convierte en una opción atractiva para proyectos de aprendizaje automático
-e investigación computacional.
+de hardware lo convierte en una opción atractiva para proyectos de aprendizaje
+automático e investigación computacional.
 
 ## Reproducibilidad con JAX
 
 En JAX y Flax, la función `jax.random.PRNGKey(seed)` se utiliza para inicializar una
 clave pseudoaleatoria que luego se puede dividir en subclaves para garantizar la
 reproducibilidad y el control de la aleatoriedad en las operaciones que dependen de
-valores aleatorios, como la inicialización de parámetros de modelos, la división de datos
-para entrenamiento, etc.
+valores aleatorios, como la inicialización de parámetros de modelos, la división de
+datos para entrenamiento, etc.
 
 Por ejemplo:
 
@@ -180,10 +180,10 @@ En este caso:
   de semilla (seed) especificado, en este caso, 0x1234. El valor de semilla determina la
   secuencia de números pseudoaleatorios generada.
 - `key, model_key = jax.random.split(key)`: Divide la clave original (key) en dos
-  subclaves, key y model_key. Esto se hace para garantizar que las operaciones aleatorias
-  realizadas en la inicialización del modelo (o cualquier otra operación aleatoria
-  relacionada con el modelo) sean reproducibles. model_key se utilizará más adelante para
-  inicializar los parámetros del modelo.
+  subclaves, key y model_key. Esto se hace para garantizar que las operaciones
+  aleatorias realizadas en la inicialización del modelo (o cualquier otra operación
+  aleatoria relacionada con el modelo) sean reproducibles. model_key se utilizará más
+  adelante para inicializar los parámetros del modelo.
 - `model = VAE(latent_dim=4)`: Aquí se crea una instancia del modelo VAE (autoencoder
   variacional) con una dimensionalidad latente de 4. Esto no tiene relación directa con
   la generación de claves aleatorias, pero es parte del proceso de inicialización del
@@ -195,8 +195,8 @@ En este caso:
   entrenamiento, sean reproducibles y controladas.
 
 Estas características hacen de JAX una herramienta poderosa y flexible para la
-computación numérica y el aprendizaje automático, permitiendo un control preciso sobre la
-aleatoriedad y la reproducibilidad de los experimentos.
+computación numérica y el aprendizaje automático, permitiendo un control preciso sobre
+la aleatoriedad y la reproducibilidad de los experimentos.
 
 # Flax: Librería para el Desarrollo de Redes Neuronales
 
@@ -210,9 +210,10 @@ clave de utilizar Flax incluyen:
    aprendizaje automático.
 
 2. **Reproducibilidad y determinismo**: Flax utiliza un enfoque determinista para el
-   entrenamiento de modelos, lo que garantiza que los resultados sean reproducibles. Esto
-   es importante para la investigación científica y la colaboración, ya que permite a los
-   investigadores replicar experimentos y comparar resultados de manera consistente.
+   entrenamiento de modelos, lo que garantiza que los resultados sean reproducibles.
+   Esto es importante para la investigación científica y la colaboración, ya que permite
+   a los investigadores replicar experimentos y comparar resultados de manera
+   consistente.
 
 3. **Flexibilidad y extensibilidad**: Flax está diseñado para ser altamente flexible y
    extensible, lo que permite a los usuarios personalizar y adaptar fácilmente los
@@ -220,19 +221,19 @@ clave de utilizar Flax incluyen:
    definir nuevas capas, funciones de activación y algoritmos de optimización.
 
 4. **Optimización automática y eficiencia**: Al igual que JAX, Flax aprovecha las
-   capacidades de optimización automática para acelerar el entrenamiento de modelos. Esto
-   incluye técnicas como la compilación justo a tiempo (JIT) y la paralelización
+   capacidades de optimización automática para acelerar el entrenamiento de modelos.
+   Esto incluye técnicas como la compilación justo a tiempo (JIT) y la paralelización
    automática, que mejoran el rendimiento del código y la eficiencia del entrenamiento.
 
 5. **Integración con ecosistemas existentes**: Flax se integra estrechamente con otros
    frameworks y bibliotecas populares de aprendizaje automático, como TensorFlow y
-   PyTorch. Esto facilita la interoperabilidad y la migración de modelos entre diferentes
-   plataformas, lo que permite a los usuarios aprovechar las funcionalidades y modelos
-   preentrenados disponibles en estos ecosistemas.
+   PyTorch. Esto facilita la interoperabilidad y la migración de modelos entre
+   diferentes plataformas, lo que permite a los usuarios aprovechar las funcionalidades
+   y modelos preentrenados disponibles en estos ecosistemas.
 
 Flax ofrece una API de redes neuronales familiar pero sin estado durante la ejecución.
-Permite definir módulos de red neuronal de dos formas: una similar a lo que sería PyTorch
-o TensorFlow y otra versión que se conoce como compacta.
+Permite definir módulos de red neuronal de dos formas: una similar a lo que sería
+PyTorch o TensorFlow y otra versión que se conoce como compacta.
 
 Por ejemplo, en la versión compacta, podemos crear las capas conforme se llamen:
 
@@ -283,13 +284,13 @@ class Net(nn.Module):
 
 Existen módulos predefinidos como `nn.Dense()`, existe auto shape para la inferencia, y
 automáticamente se crean los parámetros que reflejan la jerarquía del módulo creado, es
-decir, la capa creada convolucional o densa tendrá tanto el kernel como el sesgo. Podemos
-definir los setup como los `__init__` de las clases. En resumen, Flax es una opción
-atractiva para el desarrollo y la experimentación con modelos de aprendizaje automático
-gracias a su flexibilidad, eficiencia y facilidad de uso. Su integración con JAX y otros
-frameworks de aprendizaje automático lo hace especialmente poderoso y versátil para una
-amplia gama de aplicaciones en investigación, desarrollo de productos y producción de
-modelos.
+decir, la capa creada convolucional o densa tendrá tanto el kernel como el sesgo.
+Podemos definir los setup como los `__init__` de las clases. En resumen, Flax es una
+opción atractiva para el desarrollo y la experimentación con modelos de aprendizaje
+automático gracias a su flexibilidad, eficiencia y facilidad de uso. Su integración con
+JAX y otros frameworks de aprendizaje automático lo hace especialmente poderoso y
+versátil para una amplia gama de aplicaciones en investigación, desarrollo de productos
+y producción de modelos.
 
 Por supuesto, aquí tienes una versión mejorada del texto:
 

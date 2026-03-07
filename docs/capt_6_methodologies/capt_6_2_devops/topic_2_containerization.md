@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Herramientas necesarias para DevOps.
-title: Docker
+title: Contenedores
 ---
 
 ## Bibliografía
@@ -16,19 +16,19 @@ title: Docker
 ## Docker
 
 <p align="center">
-  <img src="/assets/img/docs/logos/docker-logo.png" width="500"/>
+  <img src="../../../assets/img/docs/logos/docker-logo.png" width="500"/>
   <br />
   <em>Logo de Docker</em>
 </p>
 
 Docker es una plataforma de código abierto que facilita la creación, implementación y
-ejecución de aplicaciones mediante contenedores. Los contenedores permiten empaquetar una
-aplicación junto con sus dependencias y configuraciones en una unidad estandarizada, lo
-que simplifica el desarrollo de software y garantiza consistencia entre entornos. Entre
-sus características principales destacan la portabilidad, ya que los contenedores se
-ejecutan en cualquier sistema que soporte Docker independientemente del sistema
-operativo; la ligereza, puesto que comparten el kernel del sistema operativo del host, lo
-que los hace más rápidos de iniciar que las máquinas virtuales; la consistencia, al
+ejecución de aplicaciones mediante contenedores. Los contenedores permiten empaquetar
+una aplicación junto con sus dependencias y configuraciones en una unidad estandarizada,
+lo que simplifica el desarrollo de software y garantiza consistencia entre entornos.
+Entre sus características principales destacan la portabilidad, ya que los contenedores
+se ejecutan en cualquier sistema que soporte Docker independientemente del sistema
+operativo; la ligereza, puesto que comparten el kernel del sistema operativo del host,
+lo que los hace más rápidos de iniciar que las máquinas virtuales; la consistencia, al
 asegurar que una aplicación se ejecute de la misma manera en cualquier entorno; el
 aislamiento, dado que cada contenedor opera de manera independiente mejorando la
 seguridad y evitando conflictos entre aplicaciones; y la escalabilidad, al facilitar la
@@ -56,17 +56,18 @@ dependencias —bibliotecas, archivos de configuración y variables de entorno�
 hace extremadamente portátil y fácil de desplegar en diferentes entornos, desde la
 máquina local de un desarrollador hasta un clúster en la nube.
 
-El aislamiento de los contenedores se logra mediante tecnologías del kernel de Linux. Los
-_namespaces_ (espacios de nombres) aíslan recursos del sistema operativo: `pid` aísla los
-identificadores de procesos, `net` proporciona pilas de red separadas, `mnt` aísla los
-puntos de montaje del sistema de archivos, `ipc` aísla recursos de comunicación entre
-procesos, `uts` aísla nombres de host y dominios, y `user` aísla identificadores de
-usuarios y grupos. Por su parte, los _cgroups_ (grupos de control) gestionan el uso de
-recursos como CPU, memoria y disco, garantizando que los contenedores no consuman más
-recursos de los asignados. Además, el _Union Filesystem_ (UFS) permite que los
-contenedores se construyan en capas: las capas de solo lectura contienen archivos del
-sistema, mientras que las capas de escritura se mantienen en la parte superior,
-minimizando el uso de almacenamiento y facilitando el desarrollo iterativo.
+El aislamiento de los contenedores se logra mediante tecnologías del kernel de Linux.
+Los _namespaces_ (espacios de nombres) aíslan recursos del sistema operativo: `pid`
+aísla los identificadores de procesos, `net` proporciona pilas de red separadas, `mnt`
+aísla los puntos de montaje del sistema de archivos, `ipc` aísla recursos de
+comunicación entre procesos, `uts` aísla nombres de host y dominios, y `user` aísla
+identificadores de usuarios y grupos. Por su parte, los _cgroups_ (grupos de control)
+gestionan el uso de recursos como CPU, memoria y disco, garantizando que los
+contenedores no consuman más recursos de los asignados. Además, el _Union Filesystem_
+(UFS) permite que los contenedores se construyan en capas: las capas de solo lectura
+contienen archivos del sistema, mientras que las capas de escritura se mantienen en la
+parte superior, minimizando el uso de almacenamiento y facilitando el desarrollo
+iterativo.
 
 Las máquinas virtuales (VMs), por su parte, son una tecnología de virtualización más
 tradicional que permite ejecutar múltiples sistemas operativos en un servidor físico
@@ -149,11 +150,11 @@ nombre del contenedor y `mongo` es la imagen utilizada.
 
 ### Crear e iniciar un contenedor con Docker Run
 
-El comando `docker run` combina los comandos `docker create` y `docker start`, realizando
-los siguientes pasos: busca la imagen especificada (si no está disponible localmente, la
-descarga del repositorio), crea un contenedor a partir de la imagen e inicia el
-contenedor. El siguiente ejemplo ejecuta un contenedor de MongoDB en segundo plano
-mapeando el puerto 27017:
+El comando `docker run` combina los comandos `docker create` y `docker start`,
+realizando los siguientes pasos: busca la imagen especificada (si no está disponible
+localmente, la descarga del repositorio), crea un contenedor a partir de la imagen e
+inicia el contenedor. El siguiente ejemplo ejecuta un contenedor de MongoDB en segundo
+plano mapeando el puerto 27017:
 
 ```bash linenums="1"
 docker run -d -p 27017:27017 --name mongodb mongo
@@ -170,8 +171,8 @@ docker create -e MONGO_INITDB_ROOT_USERNAME=<usuario> -e MONGO_INITDB_ROOT_PASSW
 ```
 
 Estas variables configuran el usuario y la contraseña del administrador de la base de
-datos durante la inicialización del contenedor. Es importante revisar la documentación de
-cada imagen, ya que las variables de entorno varían según la imagen utilizada.
+datos durante la inicialización del contenedor. Es importante revisar la documentación
+de cada imagen, ya que las variables de entorno varían según la imagen utilizada.
 
 ### Construcción de imágenes mediante Dockerfile
 
@@ -180,7 +181,7 @@ imagen Docker personalizada. Cada imagen se construye sobre una imagen previa, q
 ser oficial de Docker o una personalizada. A continuación se muestra un ejemplo de
 `Dockerfile`:
 
-```dockerfile
+```dockerfile linenums="1"
 # Imagen base
 FROM node:18
 
@@ -213,9 +214,9 @@ específica:
 docker create -p 27017:27017 --name mongodb --network mi-nueva-red mongo
 ```
 
-Docker ofrece diferentes modos de red: el modo _bridge_, que es el predeterminado y donde
-la red es reconocible solo dentro del host y el contenedor, y las redes personalizadas,
-que permiten especificar el rango de direcciones IP y otros parámetros.
+Docker ofrece diferentes modos de red: el modo _bridge_, que es el predeterminado y
+donde la red es reconocible solo dentro del host y el contenedor, y las redes
+personalizadas, que permiten especificar el rango de direcciones IP y otros parámetros.
 
 ### Definición y gestión de múltiples contenedores mediante Docker Compose
 
@@ -227,7 +228,7 @@ gestión de aplicaciones complejas compuestas por varios contenedores.
 
 A continuación se muestra un ejemplo de `docker-compose.yml`:
 
-```yaml
+```yaml linenums="1"
 version: "3.9"
 
 services:
@@ -248,8 +249,8 @@ services:
 ```
 
 En este archivo se definen dos servicios: uno para la aplicación (`mi-app`), que se
-construye a partir del contexto del directorio actual y mapea el puerto 3000, y otro para
-MongoDB (`mongodb`), que utiliza una imagen preexistente, mapea el puerto 27017 y
+construye a partir del contexto del directorio actual y mapea el puerto 3000, y otro
+para MongoDB (`mongodb`), que utiliza una imagen preexistente, mapea el puerto 27017 y
 establece las credenciales de acceso mediante variables de entorno.
 
 Para iniciar los servicios definidos en el archivo se ejecuta `docker compose up`, que
@@ -274,7 +275,7 @@ referenciarse en otros contenedores o en múltiples servicios.
 
 El siguiente ejemplo muestra un `docker-compose.yml` con volúmenes:
 
-```yaml
+```yaml linenums="1"
 version: "3.9"
 
 services:
@@ -309,7 +310,7 @@ automatizada.
 ## Kubernetes
 
 <p align="center">
-  <img src="/assets/img/docs/logos/kubernetes-logo.png" width="500"/>
+  <img src="../../../assets/img/docs/logos/kubernetes-logo.png" width="500"/>
   <br />
   <em>Logo de Kubernetes</em>
 </p>
@@ -318,9 +319,10 @@ La adopción de Kubernetes se motiva principalmente por la necesidad de administ
 manera eficiente y escalable múltiples contenedores de Docker distribuidos en diversos
 servidores. Kubernetes facilita la orquestación de estos contenedores a través de una
 infraestructura declarativa, en la que los usuarios definen la configuración deseada en
-un manifiesto —un archivo de configuración— que se procesa mediante la API de Kubernetes.
-La plataforma asume la responsabilidad de distribuir la carga de trabajo entre los nodos
-disponibles y de administrar los recursos requeridos por los contenedores.
+un manifiesto —un archivo de configuración— que se procesa mediante la API de
+Kubernetes. La plataforma asume la responsabilidad de distribuir la carga de trabajo
+entre los nodos disponibles y de administrar los recursos requeridos por los
+contenedores.
 
 Kubernetes también posibilita la construcción de _pipelines_ ETL utilizando herramientas
 como Spark o Airflow, y se emplea extensamente en el entrenamiento de modelos de
@@ -354,9 +356,9 @@ económicos pero pueden ser retirados en cualquier momento.
 ### Pods
 
 Un pod es la unidad mínima de ejecución en Kubernetes y puede contener uno o más
-contenedores que comparten los mismos recursos y red local. Todos los contenedores dentro
-del mismo pod pueden comunicarse entre sí y comparten el mismo entorno de red. Al escalar
-un pod, todos los contenedores dentro de él se escalan conjuntamente.
+contenedores que comparten los mismos recursos y red local. Todos los contenedores
+dentro del mismo pod pueden comunicarse entre sí y comparten el mismo entorno de red. Al
+escalar un pod, todos los contenedores dentro de él se escalan conjuntamente.
 
 ### Clúster
 
@@ -368,18 +370,18 @@ gestionados por Kubernetes, ambos formarán parte del mismo clúster.
 
 ### StatefulSet y volúmenes
 
-Dado que no se puede garantizar el lugar de ejecución de una aplicación, el uso del disco
-local para almacenar datos resulta inviable, siendo útil únicamente para almacenamiento
-temporal como caché. Kubernetes emplea volúmenes persistentes que, a diferencia de otros
-recursos como la CPU, GPU y RAM gestionados por los clústeres, deben adjuntarse al propio
-clúster desde unidades locales o en la nube. Estos volúmenes no se asocian a un nodo en
-particular.
+Dado que no se puede garantizar el lugar de ejecución de una aplicación, el uso del
+disco local para almacenar datos resulta inviable, siendo útil únicamente para
+almacenamiento temporal como caché. Kubernetes emplea volúmenes persistentes que, a
+diferencia de otros recursos como la CPU, GPU y RAM gestionados por los clústeres, deben
+adjuntarse al propio clúster desde unidades locales o en la nube. Estos volúmenes no se
+asocian a un nodo en particular.
 
 **StatefulSet** permite la creación de pods con volúmenes persistentes, garantizando la
 integridad de los datos incluso si el pod se reinicia o se elimina. A continuación se
 muestra un ejemplo:
 
-```yaml
+```yaml linenums="1"
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -427,15 +429,15 @@ intención, donde se le indica a Kubernetes el estado deseado del clúster.
 Un concepto importante asociado es el de _namespace_, que constituye la división lógica
 del clúster de Kubernetes y permite separar la carga del clúster. Se pueden crear
 políticas para separar tráfico entre _namespaces_, aunque por defecto los datos de un
-_namespace_ son visibles desde otro. Para obtener los _namespaces_ del clúster se utiliza
-`kubectl get ns`, para obtener los pods de un _namespace_ específico se emplea
+_namespace_ son visibles desde otro. Para obtener los _namespaces_ del clúster se
+utiliza `kubectl get ns`, para obtener los pods de un _namespace_ específico se emplea
 `kubectl -n nombre_namespace get pods -o wide` (la opción `-o wide` proporciona
 información adicional como la IP del pod y el nodo), y para eliminar un pod se usa
 `kubectl -n nombre_namespace delete pod nombre_pod`.
 
 A continuación se muestra un ejemplo de manifiesto para crear un pod simple:
 
-```yaml
+```yaml linenums="1"
 apiVersion: v1
 kind: Pod
 metadata:
@@ -449,10 +451,11 @@ spec:
 Para aplicar el manifiesto se ejecuta `kubectl apply -f nombre.yaml`, y para ver el
 estado del pod, `kubectl get pods`.
 
-El siguiente ejemplo muestra un manifiesto más complejo que incluye variables de entorno,
-solicitudes y límites de recursos, así como _readiness probe_ y _liveness probe_:
+El siguiente ejemplo muestra un manifiesto más complejo que incluye variables de
+entorno, solicitudes y límites de recursos, así como _readiness probe_ y _liveness
+probe_:
 
-```yaml
+```yaml linenums="1"
 apiVersion: v1
 kind: Pod
 metadata:
@@ -505,7 +508,7 @@ _liveness probe_ confirma que el pod sigue activo y no debe ser eliminado.
 Un despliegue (_Deployment_) permite declarar el número de réplicas de pods y asegurar
 que el estado deseado se mantenga, monitorizándolos de forma continua:
 
-```yaml
+```yaml linenums="1"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -534,7 +537,7 @@ nodos del clúster, con exactamente un pod por nodo. No se especifica el número
 réplicas, ya que depende del número de nodos. Se utiliza habitualmente para servicios de
 monitoreo:
 
-```yaml
+```yaml linenums="1"
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -557,8 +560,8 @@ spec:
 
 #### Tipos de servicios
 
-Los servicios en Kubernetes permiten acceder a los pods desde dentro y fuera del clúster.
-Existen varios tipos de servicios según las necesidades de exposición.
+Los servicios en Kubernetes permiten acceder a los pods desde dentro y fuera del
+clúster. Existen varios tipos de servicios según las necesidades de exposición.
 
 **ClusterIP** proporciona una dirección IP virtual única a nivel de clúster, facilitando
 la comunicación y el balanceo de carga entre pods de forma interna.
@@ -567,7 +570,7 @@ la comunicación y el balanceo de carga entre pods de forma interna.
 correspondientes, permitiendo que la aplicación sea accesible desde fuera del clúster.
 Suele utilizar puertos dentro del rango 30000-32767:
 
-```yaml
+```yaml linenums="1"
 apiVersion: v1
 kind: Service
 metadata:
@@ -585,7 +588,7 @@ spec:
 **LoadBalancer** está orientado a proveedores de la nube y crea un balanceador de carga
 que proporciona una IP estable para el servidor, facilitando su acceso desde internet:
 
-```yaml
+```yaml linenums="1"
 apiVersion: v1
 kind: Service
 metadata:
@@ -602,8 +605,9 @@ spec:
 #### Ingress
 
 Ingress administra el acceso externo a los servicios del clúster, típicamente HTTP.
-Proporciona balanceo de carga y terminación SSL, y permite el acceso al servicio mediante
-_paths_. Suele requerirse un controlador Ingress-Nginx que se instala por separado.
+Proporciona balanceo de carga y terminación SSL, y permite el acceso al servicio
+mediante _paths_. Suele requerirse un controlador Ingress-Nginx que se instala por
+separado.
 
 ### Networking y almacenamiento
 

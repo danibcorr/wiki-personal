@@ -30,15 +30,15 @@ las mismas zonas y se reorganizan en función de las nuevas condiciones. Este re
 depende únicamente de cambios físicos, sino también de factores contextuales como los
 estímulos olfativos, lo que evidencia que estas representaciones son **dependientes del
 contexto** y no se limitan a codificar información puramente espacial. El hipocampo
-integra múltiples variables continuas para construir estas representaciones, mientras que
-el **neocórtex** se encarga de procesar información más abstracta, incluyendo el lenguaje
-y el conocimiento conceptual.
+integra múltiples variables continuas para construir estas representaciones, mientras
+que el **neocórtex** se encarga de procesar información más abstracta, incluyendo el
+lenguaje y el conocimiento conceptual.
 
 Dentro del neocórtex se encuentra la **columna cortical**, considerada la unidad
 fundamental de procesamiento inteligente. La **hipótesis columnar** postula que, si el
-_hardware_ biológico (la columna cortical replicada) es universal e idéntico en todas sus
-instancias, entonces el algoritmo que gobierna su funcionamiento también debe serlo. Esta
-idea se relaciona directamente con el concepto de **inteligencia artificial general
+_hardware_ biológico (la columna cortical replicada) es universal e idéntico en todas
+sus instancias, entonces el algoritmo que gobierna su funcionamiento también debe serlo.
+Esta idea se relaciona directamente con el concepto de **inteligencia artificial general
 (AGI)**: un único algoritmo universal capaz de adaptarse a cualquier tipo de entrada,
 donde solo varía el _input_ que recibe. Cada columna cortical opera como un sistema
 independiente, pero existe un **traspaso de mensajes entre columnas** que puede
@@ -55,28 +55,29 @@ como información procesada por otra columna cortical.
 Este concepto constituye el fundamento del campo de la **Inteligencia Artificial (IA)**,
 disciplina que se dedica al desarrollo de técnicas y algoritmos capaces de reproducir
 ciertos aspectos del comportamiento humano. La IA busca emular la inteligencia mediante
-sistemas computacionales, permitiendo que las máquinas procesen información, se adapten a
-diversos contextos y realicen predicciones para resolver problemas de manera autónoma,
+sistemas computacionales, permitiendo que las máquinas procesen información, se adapten
+a diversos contextos y realicen predicciones para resolver problemas de manera autónoma,
 minimizando la intervención humana.
 
 Dentro de la IA se encuentra el **aprendizaje automático (_Machine Learning_)**, cuyo
 propósito es permitir que las máquinas **aprendan a partir de la experiencia**, sin
 necesidad de recibir instrucciones explícitas para cada tarea. En lugar de programar
 manualmente cada paso del proceso, se diseñan algoritmos que **identifican patrones en
-los datos**, ajustando sus parámetros internos con el objetivo de mejorar progresivamente
-su rendimiento a medida que acumulan ejemplos. Este proceso de aprendizaje se guía
-mediante una **función objetivo**, la cual mide el grado de aproximación del sistema a la
-meta deseada.
+los datos**, ajustando sus parámetros internos con el objetivo de mejorar
+progresivamente su rendimiento a medida que acumulan ejemplos. Este proceso de
+aprendizaje se guía mediante una **función objetivo**, la cual mide el grado de
+aproximación del sistema a la meta deseada.
 
 El investigador Andrej Karpathy ha descrito este paradigma como "software 2.0", en
 contraposición al enfoque tradicional de programación. En el "software 1.0", el
 programador define de forma explícita las reglas y procedimientos que el sistema debe
 ejecutar. En cambio, en el "software 2.0", el programador proporciona **ejemplos,
-recompensas o etiquetas** que guían el proceso de optimización del algoritmo, permitiendo
-que el propio sistema descubra de manera implícita las reglas necesarias para cumplir la
-tarea. Este cambio de paradigma marca una transición desde la programación manual hacia
-el aprendizaje basado en datos, donde el sistema adquiere la capacidad de generalizar más
-allá de los ejemplos proporcionados durante el entrenamiento.
+recompensas o etiquetas** que guían el proceso de optimización del algoritmo,
+permitiendo que el propio sistema descubra de manera implícita las reglas necesarias
+para cumplir la tarea. Este cambio de paradigma marca una transición desde la
+programación manual hacia el aprendizaje basado en datos, donde el sistema adquiere la
+capacidad de generalizar más allá de los ejemplos proporcionados durante el
+entrenamiento.
 
 El aprendizaje profundo representa una evolución dentro del aprendizaje automático. Su
 principal característica radica en el uso de **redes neuronales artificiales** como
@@ -87,29 +88,29 @@ Gracias a esta arquitectura, el aprendizaje profundo puede capturar relaciones c
 entre variables, lo que le permite reconocer patrones altamente complejos en los datos.
 Como resultado, el aprendizaje profundo ha demostrado un rendimiento excepcional en
 tareas que antes se consideraban exclusivas del razonamiento humano, tales como el
-reconocimiento de imágenes, el procesamiento del lenguaje natural, el análisis de audio y
-la interpretación de grandes volúmenes de datos no estructurados.
+reconocimiento de imágenes, el procesamiento del lenguaje natural, el análisis de audio
+y la interpretación de grandes volúmenes de datos no estructurados.
 
-Las ventajas fundamentales del aprendizaje profundo pueden resumirse en tres aspectos. En
-primer lugar, la **simplicidad**: elimina la necesidad de ingeniería manual de
+Las ventajas fundamentales del aprendizaje profundo pueden resumirse en tres aspectos.
+En primer lugar, la **simplicidad**: elimina la necesidad de ingeniería manual de
 características, sustituyendo complejas cadenas de procesamiento por modelos entrenables
 de extremo a extremo construidos con unas pocas operaciones tensoriales. En segundo
 lugar, la **escalabilidad**: se beneficia enormemente de la paralelización en GPU y TPU,
 y al entrenarse sobre pequeños lotes de datos, puede trabajar con conjuntos de datos de
 tamaño arbitrario. En tercer lugar, la **versatilidad y reutilización**: los modelos
 entrenados pueden actualizarse con datos adicionales sin reiniciar el proceso, y las
-representaciones aprendidas pueden transferirse a nuevas tareas, lo que permite construir
-sistemas cada vez más potentes a partir de trabajo previo.
+representaciones aprendidas pueden transferirse a nuevas tareas, lo que permite
+construir sistemas cada vez más potentes a partir de trabajo previo.
 
 ### Escalabilidad y leyes de crecimiento
 
-Un aspecto esencial en la evolución del aprendizaje profundo es el estudio de las **leyes
-de escalado neuronal (_Neural Scaling Laws_)**, las cuales describen comportamientos
-empíricamente observables en el rendimiento de los modelos a medida que se incrementan
-los recursos disponibles. Estas leyes establecen que, al aumentar de forma sistemática el
-tamaño de los conjuntos de datos, la capacidad computacional y el número de parámetros de
-un modelo, se obtiene una mejora predecible y sostenida en la precisión y eficiencia de
-las predicciones.
+Un aspecto esencial en la evolución del aprendizaje profundo es el estudio de las
+**leyes de escalado neuronal (_Neural Scaling Laws_)**, las cuales describen
+comportamientos empíricamente observables en el rendimiento de los modelos a medida que
+se incrementan los recursos disponibles. Estas leyes establecen que, al aumentar de
+forma sistemática el tamaño de los conjuntos de datos, la capacidad computacional y el
+número de parámetros de un modelo, se obtiene una mejora predecible y sostenida en la
+precisión y eficiencia de las predicciones.
 
 Este fenómeno ha guiado gran parte de la estrategia de desarrollo en la industria
 tecnológica contemporánea. Empresas líderes como Google, Meta, OpenAI y otras
@@ -118,12 +119,12 @@ investigación y desarrollo, apostando por la creación de modelos cada vez más
 sofisticados. La aplicación práctica de estas leyes ha dado lugar a la construcción de
 redes neuronales más profundas y con un mayor número de neuronas, lo que ha impulsado la
 aparición de los denominados **modelos de gran escala**, entre los que destacan los
-**modelos de lenguaje de gran tamaño (_Large Language Models, LLMs_)**. Estos modelos han
-demostrado una capacidad notable para generalizar conocimientos, generar texto coherente,
-responder preguntas complejas y adaptarse a una amplia variedad de tareas cognitivas.
-Además, exhiben capacidades emergentes, como el razonamiento en cadena, la resolución de
-problemas matemáticos o la comprensión de instrucciones complejas, que no fueron
-programadas explícitamente durante su entrenamiento.
+**modelos de lenguaje de gran tamaño (_Large Language Models, LLMs_)**. Estos modelos
+han demostrado una capacidad notable para generalizar conocimientos, generar texto
+coherente, responder preguntas complejas y adaptarse a una amplia variedad de tareas
+cognitivas. Además, exhiben capacidades emergentes, como el razonamiento en cadena, la
+resolución de problemas matemáticos o la comprensión de instrucciones complejas, que no
+fueron programadas explícitamente durante su entrenamiento.
 
 En paralelo, existe una tendencia creciente en la investigación que busca optimizar la
 eficiencia computacional sin sacrificar la calidad del modelo. Esta línea de trabajo
@@ -139,40 +140,42 @@ Para abordar estas limitaciones, se desarrollan múltiples estrategias, entre el
   como _Graphics Processing Units_ (GPU), _Tensor Processing Units_ (TPU) o _Neural
   Processing Unit_ (NPU), capaces de acelerar las operaciones matriciales y reducir el
   consumo de energía.
-- **Compilación a lenguajes de bajo nivel:** Traducción del modelo a representaciones más
-  próximas al hardware para mejorar el rendimiento.
+- **Compilación a lenguajes de bajo nivel:** Traducción del modelo a representaciones
+  más próximas al hardware para mejorar el rendimiento.
 
 En conjunto, estas estrategias permiten democratizar el acceso y uso del aprendizaje
-profundo, posibilitando su ejecución incluso en equipos de consumo general. De este modo,
-el campo avanza no solo hacia modelos más grandes y potentes, sino también hacia sistemas
-más eficientes, accesibles y sostenibles desde el punto de vista energético y económico.
+profundo, posibilitando su ejecución incluso en equipos de consumo general. De este
+modo, el campo avanza no solo hacia modelos más grandes y potentes, sino también hacia
+sistemas más eficientes, accesibles y sostenibles desde el punto de vista energético y
+económico.
 
 ### Memoria implícita y modelos fundacionales
 
 Las redes neuronales artificiales poseen la capacidad de aproximar distribuciones de
 probabilidad a partir de los datos de entrada. En esencia, su propósito es construir una
-función parametrizada que permita comprender, representar y generalizar el comportamiento
-de los datos observados.
+función parametrizada que permita comprender, representar y generalizar el
+comportamiento de los datos observados.
 
 En los modelos actuales, esta capacidad alcanza niveles en los que la red puede llegar a
-memorizar parte de los datos de entrenamiento. Aunque las arquitecturas contemporáneas no
-suelen incorporar mecanismos explícitos de memoria, como una base de datos interna o una
-estructura dedicada al almacenamiento, la información queda codificada en los propios
-parámetros del modelo. Este fenómeno se manifiesta en la activación selectiva de neuronas
-ante determinados contextos, lo que sugiere que la red conserva rastros de información
-previa y los utiliza para procesar nuevas entradas.
+memorizar parte de los datos de entrenamiento. Aunque las arquitecturas contemporáneas
+no suelen incorporar mecanismos explícitos de memoria, como una base de datos interna o
+una estructura dedicada al almacenamiento, la información queda codificada en los
+propios parámetros del modelo. Este fenómeno se manifiesta en la activación selectiva de
+neuronas ante determinados contextos, lo que sugiere que la red conserva rastros de
+información previa y los utiliza para procesar nuevas entradas.
 
-Aunque esta memoria no sea explícita, existen líneas de investigación que buscan extender
-o complementar este comportamiento con mecanismos dedicados. En algunos casos, se
-exploran estructuras que incorporan memoria persistente, como las redes recurrentes o los
-_Transformers_ con mecanismos de atención. En otros, se utilizan recursos _hardware_,
-como la memoria caché o el almacenamiento intermedio en disco, para gestionar información
-temporal durante los procesos de entrenamiento e inferencia. Estas aproximaciones buscan
-aumentar la capacidad de los modelos para manejar secuencias largas, retener información
-contextual de manera más eficiente y facilitar un aprendizaje más continuo.
+Aunque esta memoria no sea explícita, existen líneas de investigación que buscan
+extender o complementar este comportamiento con mecanismos dedicados. En algunos casos,
+se exploran estructuras que incorporan memoria persistente, como las redes recurrentes o
+los _Transformers_ con mecanismos de atención. En otros, se utilizan recursos
+_hardware_, como la memoria caché o el almacenamiento intermedio en disco, para
+gestionar información temporal durante los procesos de entrenamiento e inferencia. Estas
+aproximaciones buscan aumentar la capacidad de los modelos para manejar secuencias
+largas, retener información contextual de manera más eficiente y facilitar un
+aprendizaje más continuo.
 
-La existencia de esta memoria implícita plantea, además, una distinción fundamental entre
-los **datos dentro de distribución (_in-distribution_)** y los **datos fuera de
+La existencia de esta memoria implícita plantea, además, una distinción fundamental
+entre los **datos dentro de distribución (_in-distribution_)** y los **datos fuera de
 distribución (_out-of-distribution_)**. Los primeros se refieren a ejemplos similares a
 los utilizados durante el entrenamiento, en los cuales el modelo optimiza su función
 objetivo hasta alcanzar la **convergencia**, es decir, hasta que los ajustes en los
@@ -203,28 +206,28 @@ de sus respuestas.
 Paralelamente, existe el fenómeno del **olvido catastrófico (_catastrophic
 forgetting_)**, que describe la tendencia de las redes neuronales a perder información
 previamente aprendida cuando incorporan nuevo conocimiento. Este problema representa uno
-de los mayores desafíos del **aprendizaje continuo (_continual learning_)**, un paradigma
-en el que se busca que el modelo sea capaz de actualizarse de manera progresiva sin
-olvidar su conocimiento previo. La solución a este desafío requiere el desarrollo de
-mecanismos que equilibren la plasticidad (la capacidad de aprender nueva información) con
-la estabilidad (la preservación del conocimiento existente).
+de los mayores desafíos del **aprendizaje continuo (_continual learning_)**, un
+paradigma en el que se busca que el modelo sea capaz de actualizarse de manera
+progresiva sin olvidar su conocimiento previo. La solución a este desafío requiere el
+desarrollo de mecanismos que equilibren la plasticidad (la capacidad de aprender nueva
+información) con la estabilidad (la preservación del conocimiento existente).
 
 La evolución de estas ideas conduce al desarrollo de los **modelos fundacionales
-(_foundation models_)**, que se conciben como sistemas de aprendizaje generalista capaces
-de adaptarse a múltiples dominios y tareas. Estos modelos no están diseñados para una
-tarea específica, sino que aprenden representaciones amplias y abstractas del mundo que
-pueden reutilizarse en diversos contextos. A partir de una base preentrenada sobre
-grandes volúmenes de datos, es posible **ajustarlos finamente (_fine-tuning_)** para
-resolver tareas concretas sin necesidad de entrenarlos desde cero.
+(_foundation models_)**, que se conciben como sistemas de aprendizaje generalista
+capaces de adaptarse a múltiples dominios y tareas. Estos modelos no están diseñados
+para una tarea específica, sino que aprenden representaciones amplias y abstractas del
+mundo que pueden reutilizarse en diversos contextos. A partir de una base preentrenada
+sobre grandes volúmenes de datos, es posible **ajustarlos finamente (_fine-tuning_)**
+para resolver tareas concretas sin necesidad de entrenarlos desde cero.
 
 ### El aprendizaje como problema de optimización
 
 El proceso de aprendizaje en redes neuronales debe entenderse, desde una perspectiva
-formal, como un problema de optimización matemática. En este marco, un modelo se define a
-partir de un conjunto de parámetros ajustables que determinan su comportamiento. Estos
-parámetros representan el conocimiento adquirido durante el entrenamiento y se actualizan
-progresivamente con el objetivo de **minimizar una función que mide el error del modelo**
-respecto a los datos observados.
+formal, como un problema de optimización matemática. En este marco, un modelo se define
+a partir de un conjunto de parámetros ajustables que determinan su comportamiento. Estos
+parámetros representan el conocimiento adquirido durante el entrenamiento y se
+actualizan progresivamente con el objetivo de **minimizar una función que mide el error
+del modelo** respecto a los datos observados.
 
 Las redes neuronales se consideran **modelos diferenciables** porque su mecanismo de
 aprendizaje se basa en la capacidad de **calcular derivadas parciales** de una **función
@@ -240,9 +243,9 @@ determinado. Este criterio puede definirse en función del número de iteracione
 estabilidad alcanzada por la función de coste o de la satisfacción de una métrica de
 desempeño preestablecida. En la práctica, este procedimiento se implementa mediante
 algoritmos de optimización, entre los que destaca el **descenso del gradiente**, que
-ajusta los parámetros en la dirección que más reduce la pérdida. Existen además variantes
-adaptativas, que mejoran la eficiencia del proceso y aceleran la convergencia en
-arquitecturas complejas.
+ajusta los parámetros en la dirección que más reduce la pérdida. Existen además
+variantes adaptativas, que mejoran la eficiencia del proceso y aceleran la convergencia
+en arquitecturas complejas.
 
 Una herramienta fundamental que posibilita este proceso es la **diferenciación
 automática**, la cual permite calcular de manera eficiente las derivadas necesarias para
@@ -264,32 +267,32 @@ Este proceso de conversión se denomina **_embedding_**, y su función no se lim
 relaciones semánticas, estructurales y contextuales entre los elementos de los datos**.
 Por ejemplo, en el caso del lenguaje natural, los _embeddings_ permiten representar
 palabras o frases de modo que aquellas con significados similares se encuentren próximas
-en el **espacio vectorial**, que constituye el espacio matemático multidimensional creado
-por el propio modelo. Este espacio permite al sistema establecer y mapear las relaciones
-semánticas entre los datos de manera cuantitativa, facilitando operaciones como la
-comparación de similitudes, la búsqueda de analogías o la agrupación de conceptos
-relacionados. De este modo, los _embeddings_ transforman información simbólica en
-representaciones geométricas que preservan y codifican el significado subyacente de los
-datos originales.
+en el **espacio vectorial**, que constituye el espacio matemático multidimensional
+creado por el propio modelo. Este espacio permite al sistema establecer y mapear las
+relaciones semánticas entre los datos de manera cuantitativa, facilitando operaciones
+como la comparación de similitudes, la búsqueda de analogías o la agrupación de
+conceptos relacionados. De este modo, los _embeddings_ transforman información simbólica
+en representaciones geométricas que preservan y codifican el significado subyacente de
+los datos originales.
 
-A medida que el modelo optimiza su función de coste, desarrolla internamente una forma de
-**entender y codificar la información** que refleja la estructura subyacente de los
+A medida que el modelo optimiza su función de coste, desarrolla internamente una forma
+de **entender y codificar la información** que refleja la estructura subyacente de los
 datos. Cuanto mejor sea la capacidad del modelo para comprimir la información sin perder
 significado, más eficaz será su desempeño. La compresión eficiente implica que el modelo
 ha aprendido a distinguir entre la información relevante y la irrelevante, capturando
 solo aquellos patrones que resultan esenciales para la tarea. Este principio de
-compresión es, en última instancia, una manifestación del aprendizaje mismo: la habilidad
-de mapear, abstraer y recuperar información compleja sin necesidad de conservar todos los
-detalles explícitos.
+compresión es, en última instancia, una manifestación del aprendizaje mismo: la
+habilidad de mapear, abstraer y recuperar información compleja sin necesidad de
+conservar todos los detalles explícitos.
 
 ### Arquitecturas y tipos de datos
 
-El aprendizaje profundo se adapta a diferentes problemas mediante el uso de arquitecturas
-especializadas, diseñadas para extraer información relevante según la naturaleza y
-estructura del tipo de datos analizados. Cada arquitectura incorpora componentes y
-operaciones específicas que explotan las características intrínsecas de los datos,
-permitiendo al modelo capturar patrones de manera más eficiente y efectiva. Entre las
-principales arquitecturas destacan:
+El aprendizaje profundo se adapta a diferentes problemas mediante el uso de
+arquitecturas especializadas, diseñadas para extraer información relevante según la
+naturaleza y estructura del tipo de datos analizados. Cada arquitectura incorpora
+componentes y operaciones específicas que explotan las características intrínsecas de
+los datos, permitiendo al modelo capturar patrones de manera más eficiente y efectiva.
+Entre las principales arquitecturas destacan:
 
 - **Redes neuronales densas o totalmente conectadas (_Fully Connected Networks_, FCN)**:
   Constituyen la arquitectura más básica y general, en la que cada neurona de una capa
@@ -297,35 +300,35 @@ principales arquitecturas destacan:
   procesar, por lo general, cualquier tipo de datos, siempre que estos se presenten en
   forma vectorial unidimensional, es decir, aplanados (_flattened_). Aunque versátiles,
   presentan limitaciones al trabajar con datos de alta dimensionalidad o con estructuras
-  espaciales o temporales complejas, debido al elevado número de parámetros que requieren
-  y a su incapacidad para explotar eficientemente dichas estructuras.
+  espaciales o temporales complejas, debido al elevado número de parámetros que
+  requieren y a su incapacidad para explotar eficientemente dichas estructuras.
 
 - **Redes convolucionales (_Convolutional Neural Networks_, CNN)**: Diseñadas
   específicamente para el procesamiento de datos que poseen estructura espacial o
   espacio-temporal, como imágenes y vídeos. Las CNN utilizan operaciones de convolución
-  que aplican filtros deslizantes sobre los datos de entrada, detectando patrones locales
-  como bordes, texturas o formas geométricas en las primeras capas, y progresivamente
-  características más abstractas y complejas en capas más profundas. Esta arquitectura
-  explota la localidad espacial y la invariancia traslacional, reduciendo
-  significativamente el número de parámetros en comparación con redes densas
-  equivalentes, y facilitando la generalización del modelo a diferentes posiciones dentro
-  de la imagen.
+  que aplican filtros deslizantes sobre los datos de entrada, detectando patrones
+  locales como bordes, texturas o formas geométricas en las primeras capas, y
+  progresivamente características más abstractas y complejas en capas más profundas.
+  Esta arquitectura explota la localidad espacial y la invariancia traslacional,
+  reduciendo significativamente el número de parámetros en comparación con redes densas
+  equivalentes, y facilitando la generalización del modelo a diferentes posiciones
+  dentro de la imagen.
 
-- **Redes recurrentes (_Recurrent Neural Networks_, RNN)** y sus variantes modernas, como
-  las LSTM (_Long Short-Term Memory_) y GRU (_Gated Recurrent Units_): Empleadas en el
-  tratamiento de secuencias, donde el orden temporal de los datos es primordial. Estas
-  arquitecturas son especialmente adecuadas para procesar texto, series temporales,
-  señales de audio o cualquier tipo de datos secuenciales. Las RNN incorporan conexiones
-  recurrentes que permiten a la red mantener un estado interno o memoria que captura
-  información de elementos anteriores de la secuencia, posibilitando la modelización de
-  dependencias temporales.
+- **Redes recurrentes (_Recurrent Neural Networks_, RNN)** y sus variantes modernas,
+  como las LSTM (_Long Short-Term Memory_) y GRU (_Gated Recurrent Units_): Empleadas en
+  el tratamiento de secuencias, donde el orden temporal de los datos es primordial.
+  Estas arquitecturas son especialmente adecuadas para procesar texto, series
+  temporales, señales de audio o cualquier tipo de datos secuenciales. Las RNN
+  incorporan conexiones recurrentes que permiten a la red mantener un estado interno o
+  memoria que captura información de elementos anteriores de la secuencia, posibilitando
+  la modelización de dependencias temporales.
 
 - **Modelos basados en _Transformers_**: Representan una evolución significativa en el
-  procesamiento de secuencias, basándose en mecanismos de atención que permiten al modelo
-  ponderar la importancia de diferentes elementos de la entrada de manera dinámica y
-  contextual. Los _Transformers_ han demostrado ser altamente efectivos para tareas de
-  procesamiento de lenguaje natural y han sido adoptados también en otros dominios como
-  la visión por computador.
+  procesamiento de secuencias, basándose en mecanismos de atención que permiten al
+  modelo ponderar la importancia de diferentes elementos de la entrada de manera
+  dinámica y contextual. Los _Transformers_ han demostrado ser altamente efectivos para
+  tareas de procesamiento de lenguaje natural y han sido adoptados también en otros
+  dominios como la visión por computador.
 
 - **Modelos multimodales**: Capaces de integrar y procesar información proveniente de
   distintas fuentes o modalidades, como texto, imágenes, audio y vídeo. Estos modelos se
@@ -338,17 +341,17 @@ principales arquitecturas destacan:
   como **tokenización**, y consiste en la creación de **_tokens_**, representaciones
   vectoriales aprendibles y entendibles por el modelo que encapsulan unidades
   significativas de información. Un único modelo final puede entonces procesar estos
-  _tokens_ de manera unificada, independientemente de su origen modal, permitiendo tareas
-  complejas como la generación de descripciones textuales a partir de imágenes, la
-  búsqueda multimodal o la traducción entre diferentes tipos de contenido.
+  _tokens_ de manera unificada, independientemente de su origen modal, permitiendo
+  tareas complejas como la generación de descripciones textuales a partir de imágenes,
+  la búsqueda multimodal o la traducción entre diferentes tipos de contenido.
 
 En este contexto, resulta necesario distinguir entre diferentes tipos de datos según su
 estructura y formato. Los **datos estructurados** se organizan en tablas de filas y
 columnas, donde cada fila representa una observación o ejemplo, y cada columna
 corresponde a una característica o variable con un significado bien definido. Este
-formato es característico de las bases de datos relacionales tradicionales y de las hojas
-de cálculo. Para este tipo de datos, suelen bastar algoritmos de aprendizaje automático
-clásicos, como árboles de decisión o regresión logística, que pueden alcanzar
+formato es característico de las bases de datos relacionales tradicionales y de las
+hojas de cálculo. Para este tipo de datos, suelen bastar algoritmos de aprendizaje
+automático clásicos, como árboles de decisión o regresión logística, que pueden alcanzar
 rendimientos competitivos sin requerir la complejidad arquitectónica del aprendizaje
 profundo. No obstante, las redes neuronales también pueden aplicarse a datos
 estructurados, especialmente cuando existen interacciones complejas entre variables o
@@ -365,8 +368,8 @@ automáticamente representaciones significativas y patrones complejos a partir d
 volúmenes de información, sin necesidad de ingeniería manual de características.
 
 En cuanto a la representación tensorial de los datos, cada tipo de dato se mapea a un
-rango específico de tensor. Los datos vectoriales se representan como tensores de rango 2
-con forma $(muestras, características)$. Las series temporales o datos secuenciales
+rango específico de tensor. Los datos vectoriales se representan como tensores de rango
+2 con forma $(muestras, características)$. Las series temporales o datos secuenciales
 adoptan tensores de rango 3 con forma $(muestras, pasos\_temporales, características)$.
 Las imágenes se codifican como tensores de rango 4 con forma
 $(muestras, alto, ancho, canales)$. Finalmente, los vídeos se representan como tensores
@@ -384,15 +387,15 @@ manipular información de manera eficiente dentro de un modelo de red neuronal.
 
 Su principal ventaja radica en su compatibilidad con sistemas de cómputo masivamente
 paralelos, como las unidades de procesamiento gráfico (GPU) o las unidades de
-procesamiento tensorial (TPU). Estas arquitecturas están diseñadas para ejecutar de forma
-simultánea miles de operaciones matemáticas, lo cual resulta indispensable para el
+procesamiento tensorial (TPU). Estas arquitecturas están diseñadas para ejecutar de
+forma simultánea miles de operaciones matemáticas, lo cual resulta indispensable para el
 entrenamiento y la inferencia en redes neuronales de gran escala, donde la eficiencia
 computacional y el manejo óptimo de los recursos son factores determinantes.
 
 Cada tensor se describe a partir de dos componentes fundamentales: el tipo de datos que
-contiene y la precisión numérica empleada en los cálculos. Los valores almacenados suelen
-ser numéricos, representados comúnmente como enteros o números en coma flotante. En la
-práctica, los modelos de aprendizaje profundo suelen utilizar tensores de 32 bits
+contiene y la precisión numérica empleada en los cálculos. Los valores almacenados
+suelen ser numéricos, representados comúnmente como enteros o números en coma flotante.
+En la práctica, los modelos de aprendizaje profundo suelen utilizar tensores de 32 bits
 (precisión simple), aunque es frecuente aplicar técnicas de **cuantización** que reducen
 la precisión a 16, 8 o incluso 4 bits, especialmente una vez completada la fase de
 entrenamiento. Estas reducciones, sin embargo, dependen de las capacidades del hardware,
@@ -400,18 +403,18 @@ ya que no todas las arquitecturas soportan operaciones de baja precisión con la
 eficiencia o estabilidad numérica.
 
 Bibliotecas especializadas como **PyTorch**, **TensorFlow** o **Keras** facilitan estos
-procesos mediante instrucciones de alto nivel. La elección del nivel de precisión implica
-un compromiso entre exactitud y eficiencia. En aplicaciones donde los errores mínimos son
-tolerables, como la clasificación de imágenes comunes, puede optarse por una menor
-precisión para reducir el consumo energético y acelerar el entrenamiento. En cambio, en
-entornos donde la seguridad y la fiabilidad son críticas, se requiere una precisión
-numérica más alta que garantice la estabilidad y exactitud de los resultados. Por tanto,
-existe una relación directa entre la precisión numérica, el error acumulado y el coste
-computacional, de modo que optimizar este equilibrio constituye uno de los aspectos clave
-del diseño de modelos eficientes. El uso de **precisión mixta**, que combina tipos de
-punto flotante de 16 y 32 bits durante el entrenamiento, permite acelerar la ejecución y
-reducir el consumo de memoria manteniendo la estabilidad numérica en las operaciones
-críticas.
+procesos mediante instrucciones de alto nivel. La elección del nivel de precisión
+implica un compromiso entre exactitud y eficiencia. En aplicaciones donde los errores
+mínimos son tolerables, como la clasificación de imágenes comunes, puede optarse por una
+menor precisión para reducir el consumo energético y acelerar el entrenamiento. En
+cambio, en entornos donde la seguridad y la fiabilidad son críticas, se requiere una
+precisión numérica más alta que garantice la estabilidad y exactitud de los resultados.
+Por tanto, existe una relación directa entre la precisión numérica, el error acumulado y
+el coste computacional, de modo que optimizar este equilibrio constituye uno de los
+aspectos clave del diseño de modelos eficientes. El uso de **precisión mixta**, que
+combina tipos de punto flotante de 16 y 32 bits durante el entrenamiento, permite
+acelerar la ejecución y reducir el consumo de memoria manteniendo la estabilidad
+numérica en las operaciones críticas.
 
 Desde el punto de vista operativo, los tensores funcionan de manera análoga a los
 **_arrays_** de los lenguajes de programación tradicionales, permitiendo realizar
@@ -453,14 +456,14 @@ PyTorch permite definir, entrenar y desplegar modelos de redes neuronales de man
 eficiente, ofreciendo una interfaz altamente integrada con el lenguaje de programación
 Python, lo que la hace especialmente accesible para investigadores y desarrolladores.
 
-Aunque existen otras alternativas consolidadas, como **TensorFlow**, **JAX** y **Keras**,
-PyTorch destaca por su creciente popularidad y por su estrecha vinculación con la Linux
-Foundation, lo que garantiza un desarrollo sostenido y un soporte comunitario cada vez
-mayor. Además, múltiples proyectos de terceros, como **Ray**, utilizado para la creación
-de sistemas distribuidos de entrenamiento de modelos, también forman parte del ecosistema
-de la Linux Foundation. Este entorno colaborativo impulsa la innovación y asegura un
-soporte activo tanto por parte de empresas tecnológicas reconocidas como de la comunidad
-de código abierto.
+Aunque existen otras alternativas consolidadas, como **TensorFlow**, **JAX** y
+**Keras**, PyTorch destaca por su creciente popularidad y por su estrecha vinculación
+con la Linux Foundation, lo que garantiza un desarrollo sostenido y un soporte
+comunitario cada vez mayor. Además, múltiples proyectos de terceros, como **Ray**,
+utilizado para la creación de sistemas distribuidos de entrenamiento de modelos, también
+forman parte del ecosistema de la Linux Foundation. Este entorno colaborativo impulsa la
+innovación y asegura un soporte activo tanto por parte de empresas tecnológicas
+reconocidas como de la comunidad de código abierto.
 
 Una de las principales ventajas de PyTorch es su sintaxis intuitiva y expresiva, que
 sigue de forma natural los principios del estilo "**pythónico**", es decir, un diseño
@@ -468,8 +471,8 @@ limpio y legible que favorece la comprensión del código.
 
 Independientemente de la biblioteca elegida, los principios matemáticos y conceptuales
 que sustentan el aprendizaje profundo son los mismos. Las diferencias radican
-principalmente en la sintaxis y en las implementaciones específicas de cada entorno, pero
-la base teórica y las operaciones fundamentales definidas sobre tensores permanecen
+principalmente en la sintaxis y en las implementaciones específicas de cada entorno,
+pero la base teórica y las operaciones fundamentales definidas sobre tensores permanecen
 invariantes.
 
 ### Operaciones vectoriales
@@ -487,14 +490,14 @@ Esta distinción es particularmente relevante en entornos de programación, dond
 operaciones entre tensores deben cumplir las reglas de **_broadcasting_**, las cuales
 determinan cómo se alinean las dimensiones durante las operaciones aritméticas. En
 PyTorch, cuando las dimensiones de los tensores son incompatibles, puede ser necesario
-utilizar funciones como `squeeze()`, `unsqueeze()` o `view()` para ajustar su estructura.
-Dado que la biblioteca se actualiza con frecuencia, se recomienda consultar la
-documentación oficial para obtener información actualizada sobre las funciones
+utilizar funciones como `squeeze()`, `unsqueeze()` o `view()` para ajustar su
+estructura. Dado que la biblioteca se actualiza con frecuencia, se recomienda consultar
+la documentación oficial para obtener información actualizada sobre las funciones
 disponibles.
 
 Si se disponen dos vectores del mismo tamaño, $x$ y $y$, es posible combinarlos
-linealmente mediante coeficientes escalares $a$ y $b$, generando un nuevo vector $z$, tal
-que:
+linealmente mediante coeficientes escalares $a$ y $b$, generando un nuevo vector $z$,
+tal que:
 
 $$
 z = a x + b y.
@@ -512,7 +515,8 @@ $$
 Esta norma representa la distancia del vector al origen del sistema de coordenadas y
 constituye una medida fundamental en la evaluación de magnitudes y distancias.
 
-Otra operación esencial es el **producto escalar** (o **producto punto**), definido como:
+Otra operación esencial es el **producto escalar** (o **producto punto**), definido
+como:
 
 $$
 x \cdot y = \sum_i x_i \cdot y_i,
@@ -542,7 +546,8 @@ Este principio tiene una aplicación directa en los **_word embeddings_**,
 representaciones vectoriales del lenguaje en las que cada palabra se codifica como un
 punto dentro de un espacio semántico de alta dimensionalidad. Modelos como GPT-2 y GPT-3
 utilizan representaciones de entre 768 y más de 12000 dimensiones, lo que permite
-capturar relaciones semánticas y sintácticas a través de simples operaciones vectoriales.
+capturar relaciones semánticas y sintácticas a través de simples operaciones
+vectoriales.
 
 A continuación, se presenta un ejemplo de implementación de la similitud del coseno
 utilizando Python con la biblioteca **NumPy**:
@@ -595,10 +600,11 @@ valores iguales a 1, ya que cada vector presenta similitud máxima consigo mismo
 
 ### Operaciones matriciales
 
-Una matriz es un arreglo bidimensional que organiza los datos en filas y columnas, por lo
-que puede entenderse como una **colección ordenada de vectores**. Matemáticamente, una
-matriz $X \in \mathbb{R}^{A \times B}$ está compuesta por $A$ filas y $B$ columnas, donde
-cada elemento $x_{ij}$ representa el valor ubicado en la fila $i$ y la columna $j$.
+Una matriz es un arreglo bidimensional que organiza los datos en filas y columnas, por
+lo que puede entenderse como una **colección ordenada de vectores**. Matemáticamente,
+una matriz $X \in \mathbb{R}^{A \times B}$ está compuesta por $A$ filas y $B$ columnas,
+donde cada elemento $x_{ij}$ representa el valor ubicado en la fila $i$ y la columna
+$j$.
 
 Si se dispone de una matriz $X \in \mathbb{R}^{A \times B}$ y otra
 $Y \in \mathbb{R}^{B \times C}$, su **producto matricial** se define como:
@@ -616,8 +622,8 @@ Z_{ij} = \sum_{k=1}^{B} X_{ik} \cdot Y_{kj}.
 $$
 
 El producto matricial es una de las operaciones más utilizadas en el aprendizaje
-profundo, ya que permite procesar simultáneamente grandes volúmenes de información. En el
-contexto de una capa neuronal, los datos de entrada suelen representarse mediante una
+profundo, ya que permite procesar simultáneamente grandes volúmenes de información. En
+el contexto de una capa neuronal, los datos de entrada suelen representarse mediante una
 matriz donde cada fila corresponde a una muestra y cada columna a una característica. Al
 multiplicar esta matriz por otra que contiene los pesos del modelo, se obtiene una
 transformación lineal de las entradas, a la cual se suma posteriormente un vector de
@@ -633,30 +639,30 @@ $$
 Z_{ij} = X_{ij} \cdot Y_{ij}.
 $$
 
-El producto de Hadamard se emplea en múltiples contextos, entre los cuales destaca su uso
-en **mecanismos de enmascaramiento** (_masking_) durante el entrenamiento de modelos.
-Esta técnica permite ignorar valores específicos de un tensor para impedir que influyan
-en el cálculo de los gradientes o en la propagación de errores. Dicha propiedad es
-esencial en arquitecturas modernas como **_Transformers_**, donde se aplica para
+El producto de Hadamard se emplea en múltiples contextos, entre los cuales destaca su
+uso en **mecanismos de enmascaramiento** (_masking_) durante el entrenamiento de
+modelos. Esta técnica permite ignorar valores específicos de un tensor para impedir que
+influyan en el cálculo de los gradientes o en la propagación de errores. Dicha propiedad
+es esencial en arquitecturas modernas como **_Transformers_**, donde se aplica para
 restringir la atención a determinadas posiciones o para manejar secuencias de longitud
 variable sin afectar el aprendizaje global del modelo.
 
 ### Operaciones con tensores en PyTorch
 
 La biblioteca PyTorch proporciona un conjunto amplio, eficiente y flexible de
-herramientas para la creación, manipulación y transformación de tensores, que constituyen
-la estructura de datos fundamental en el aprendizaje profundo. Los tensores generalizan
-los conceptos de escalares, vectores y matrices hacia dimensiones superiores, lo que
-permite representar datos complejos de manera multidimensional y realizar operaciones
-matemáticas de forma vectorizada y optimizada.
+herramientas para la creación, manipulación y transformación de tensores, que
+constituyen la estructura de datos fundamental en el aprendizaje profundo. Los tensores
+generalizan los conceptos de escalares, vectores y matrices hacia dimensiones
+superiores, lo que permite representar datos complejos de manera multidimensional y
+realizar operaciones matemáticas de forma vectorizada y optimizada.
 
-A continuación, se presentan ejemplos prácticos y comentados que ilustran las operaciones
-más comunes con tensores en PyTorch. Estas operaciones son esenciales para comprender el
-funcionamiento interno del código empleado en la creación de modelos de aprendizaje
-profundo. En la práctica, muchas arquitecturas modernas o modificaciones de arquitecturas
-existentes surgen a partir de pequeñas variaciones en la manipulación de tensores, ya sea
-mediante la selección de elementos específicos (_slicing_), la optimización de cálculos o
-el uso de estrategias que reduzcan el coste computacional.
+A continuación, se presentan ejemplos prácticos y comentados que ilustran las
+operaciones más comunes con tensores en PyTorch. Estas operaciones son esenciales para
+comprender el funcionamiento interno del código empleado en la creación de modelos de
+aprendizaje profundo. En la práctica, muchas arquitecturas modernas o modificaciones de
+arquitecturas existentes surgen a partir de pequeñas variaciones en la manipulación de
+tensores, ya sea mediante la selección de elementos específicos (_slicing_), la
+optimización de cálculos o el uso de estrategias que reduzcan el coste computacional.
 
 Para crear tensores, es posible hacerlo a partir de listas, mediante inicialización
 aleatoria o con valores fijos:
@@ -688,8 +694,8 @@ Cada tensor contiene información sobre su **tipo de dato**, sus **dimensiones**
 **dispositivo de almacenamiento** (CPU o GPU). El tipo de dato (`dtype`) determina la
 precisión numérica del tensor; a mayor precisión, mayor será el rango de valores
 posibles, pero también el consumo de memoria. El dispositivo (`device`) es relevante
-porque un tensor ubicado en la GPU no puede ser manipulado directamente desde la CPU, por
-lo que es necesario transferirlo o copiarlo según sea necesario:
+porque un tensor ubicado en la GPU no puede ser manipulado directamente desde la CPU,
+por lo que es necesario transferirlo o copiarlo según sea necesario:
 
 ```py linenums="1"
 tensor = torch.rand((2, 3, 4))
@@ -789,9 +795,9 @@ print("Raíz cuadrada:", torch.sqrt(y))
 print("Seno:", torch.sin(x))
 ```
 
-Estas operaciones resultan especialmente útiles para inspeccionar distribuciones de datos
-o normalizar tensores antes del entrenamiento, tareas que contribuyen a estabilizar el
-aprendizaje de los modelos:
+Estas operaciones resultan especialmente útiles para inspeccionar distribuciones de
+datos o normalizar tensores antes del entrenamiento, tareas que contribuyen a
+estabilizar el aprendizaje de los modelos:
 
 ```py linenums="1"
 tensor = torch.randn((3, 4))  # Distribución normal
@@ -803,9 +809,9 @@ print("Índice del máximo:", tensor.argmax())
 ```
 
 Finalmente, PyTorch permite una **conversión directa entre tensores y arreglos de
-NumPy**, lo que facilita su integración con bibliotecas de análisis y visualización. Esta
-interoperabilidad permite combinar el poder de cálculo de PyTorch con la versatilidad de
-ecosistemas como NumPy, Matplotlib o Pandas:
+NumPy**, lo que facilita su integración con bibliotecas de análisis y visualización.
+Esta interoperabilidad permite combinar el poder de cálculo de PyTorch con la
+versatilidad de ecosistemas como NumPy, Matplotlib o Pandas:
 
 ```py linenums="1"
 import numpy as np
@@ -821,19 +827,19 @@ print("NumPy a Tensor:\n", nuevo_tensor)
 ```
 
 En conjunto, estas operaciones proporcionan una visión integral de las capacidades de
-PyTorch en la manipulación de tensores, mostrando su versatilidad, eficiencia y facilidad
-de integración con otros entornos de análisis. En capítulos posteriores, se emplearán
-estos fundamentos para la construcción de modelos de aprendizaje profundo basados en esta
-biblioteca.
+PyTorch en la manipulación de tensores, mostrando su versatilidad, eficiencia y
+facilidad de integración con otros entornos de análisis. En capítulos posteriores, se
+emplearán estos fundamentos para la construcción de modelos de aprendizaje profundo
+basados en esta biblioteca.
 
 ## Regresión lineal y logística
 
 Los modelos de regresión lineal y logística constituyen la base conceptual del
 aprendizaje profundo. También se conocen como modelos diferenciables, ya que su
-estructura está compuesta por transformaciones lineales seguidas de funciones no lineales
-que son derivables, lo que permite aplicar cálculo diferencial para optimizar sus
-parámetros mediante métodos basados en gradientes. Este principio es el fundamento de
-todas las arquitecturas de redes neuronales modernas.
+estructura está compuesta por transformaciones lineales seguidas de funciones no
+lineales que son derivables, lo que permite aplicar cálculo diferencial para optimizar
+sus parámetros mediante métodos basados en gradientes. Este principio es el fundamento
+de todas las arquitecturas de redes neuronales modernas.
 
 El entrenamiento de una neurona, o de una red neuronal, se apoya en dos procesos
 fundamentales: la **propagación hacia adelante (_forward propagation_)** y la
@@ -841,21 +847,21 @@ fundamentales: la **propagación hacia adelante (_forward propagation_)** y la
 
 La propagación hacia adelante consiste en calcular la predicción del modelo a partir de
 los datos de entrada. En este proceso, los datos ingresan por la capa de entrada y
-atraviesan las distintas capas de la red, aplicando sucesivas combinaciones lineales y no
-lineales hasta obtener una salida numérica. El resultado que produce el modelo antes de
-aplicar una función de activación final se conoce como **_logit_**. Este valor representa
-una proyección numérica de los datos de entrada en el espacio interno del modelo,
-resultado de las transformaciones que la red realiza. Posteriormente, el modelo compara
-esta salida con el valor real esperado y calcula una tasa de error o función de pérdida,
-la cual mide qué tan precisa ha sido la representación aprendida.
+atraviesan las distintas capas de la red, aplicando sucesivas combinaciones lineales y
+no lineales hasta obtener una salida numérica. El resultado que produce el modelo antes
+de aplicar una función de activación final se conoce como **_logit_**. Este valor
+representa una proyección numérica de los datos de entrada en el espacio interno del
+modelo, resultado de las transformaciones que la red realiza. Posteriormente, el modelo
+compara esta salida con el valor real esperado y calcula una tasa de error o función de
+pérdida, la cual mide qué tan precisa ha sido la representación aprendida.
 
-Por otro lado, la propagación hacia atrás es el proceso mediante el cual el modelo ajusta
-sus parámetros internos con el objetivo de minimizar el error obtenido en la propagación
-hacia adelante. En este proceso, los gradientes (las derivadas parciales de la función de
-pérdida respecto a cada parámetro) se propagan desde la salida hasta las capas iniciales
-del modelo. Dichos gradientes indican cómo deben modificarse los pesos y sesgos para
-reducir el error en las siguientes iteraciones, permitiendo así un aprendizaje progresivo
-y dirigido por el descenso del gradiente.
+Por otro lado, la propagación hacia atrás es el proceso mediante el cual el modelo
+ajusta sus parámetros internos con el objetivo de minimizar el error obtenido en la
+propagación hacia adelante. En este proceso, los gradientes (las derivadas parciales de
+la función de pérdida respecto a cada parámetro) se propagan desde la salida hasta las
+capas iniciales del modelo. Dichos gradientes indican cómo deben modificarse los pesos y
+sesgos para reducir el error en las siguientes iteraciones, permitiendo así un
+aprendizaje progresivo y dirigido por el descenso del gradiente.
 
 Un modelo lineal puede expresarse matemáticamente como:
 
@@ -868,8 +874,8 @@ $\mathbf{w} \in \mathbb{R}^n$ representa el vector de pesos del modelo,
 $b \in \mathbb{R}$ es el sesgo o término independiente, y $\hat{y} \in \mathbb{R}$ es la
 salida predicha por el modelo. Cuando la salida $\hat{y}$ no está restringida a un rango
 específico, el modelo se utiliza en tareas de regresión, donde el objetivo es predecir
-valores continuos. En este contexto, la salida puede tomar cualquier valor real, positivo
-o negativo.
+valores continuos. En este contexto, la salida puede tomar cualquier valor real,
+positivo o negativo.
 
 Sin embargo, cuando la salida está asociada a un conjunto discreto de clases
 $\mathcal{C} = \{1, 2, \dots, M\}$, el modelo aborda un problema de clasificación. En
@@ -877,13 +883,14 @@ estos casos, la representación numérica (_logits_) generada por el modelo se t
 en probabilidades mediante una función no lineal, generalmente una función sigmoide para
 clasificación binaria o una función _Softmax_ para clasificación multiclase. En la
 clasificación binaria ($M = 2$), el modelo aprende a distinguir entre dos posibles
-categorías (por ejemplo, "positivo" y "negativo", o "clase 0" y "clase 1"). En cambio, en
-los problemas multiclase, el modelo puede asignar cada entrada a una de varias categorías
-posibles, como en la clasificación de imágenes por tipo de objeto o raza de perro.
-Además, existen escenarios de clasificación multietiqueta, donde una misma entrada puede
-pertenecer simultáneamente a varias clases. Un ejemplo típico se da en los sistemas de
-visión artificial para conducción autónoma, en los cuales una sola imagen puede contener
-múltiples elementos etiquetables, como peatones, vehículos y señales de tráfico.
+categorías (por ejemplo, "positivo" y "negativo", o "clase 0" y "clase 1"). En cambio,
+en los problemas multiclase, el modelo puede asignar cada entrada a una de varias
+categorías posibles, como en la clasificación de imágenes por tipo de objeto o raza de
+perro. Además, existen escenarios de clasificación multietiqueta, donde una misma
+entrada puede pertenecer simultáneamente a varias clases. Un ejemplo típico se da en los
+sistemas de visión artificial para conducción autónoma, en los cuales una sola imagen
+puede contener múltiples elementos etiquetables, como peatones, vehículos y señales de
+tráfico.
 
 En los modelos diferenciables, la estructura general se puede describir como una
 composición de funciones lineales y no lineales:
@@ -898,21 +905,21 @@ $$
 f_{\ell}(\mathbf{x}) = \sigma_{\ell}(\mathbf{W}_{\ell}\mathbf{x} + \mathbf{b}_{\ell}).
 $$
 
-En esta formulación, $\mathbf{W}_\ell$ y $\mathbf{b}_\ell$ representan los pesos y sesgos
-de la capa $\ell$, respectivamente, mientras que $\sigma_{\ell}(\cdot)$ es una función de
-activación diferenciable. Esta función introduce no linealidad al modelo y permite
-restringir el rango de valores de salida, lo que dota al modelo de la capacidad de
-aproximar relaciones complejas y no lineales entre los datos de entrada y salida.
+En esta formulación, $\mathbf{W}_\ell$ y $\mathbf{b}_\ell$ representan los pesos y
+sesgos de la capa $\ell$, respectivamente, mientras que $\sigma_{\ell}(\cdot)$ es una
+función de activación diferenciable. Esta función introduce no linealidad al modelo y
+permite restringir el rango de valores de salida, lo que dota al modelo de la capacidad
+de aproximar relaciones complejas y no lineales entre los datos de entrada y salida.
 
 ### Clasificación mediante regresión logística
 
-En lugar de desarrollar manualmente una aplicación con reglas explícitas para identificar
-si una imagen contiene un gato u otro tipo de animal, se puede adoptar un enfoque basado
-en aprendizaje profundo. En este contexto, se construye un conjunto de datos compuesto
-por múltiples ejemplos de imágenes etiquetadas, algunas con gatos y otras sin ellos. Este
-conjunto permite que el modelo aprenda automáticamente a distinguir un gato de otros
-animales a partir de los patrones estadísticos presentes en los datos, sin requerir
-instrucciones específicas para cada caso.
+En lugar de desarrollar manualmente una aplicación con reglas explícitas para
+identificar si una imagen contiene un gato u otro tipo de animal, se puede adoptar un
+enfoque basado en aprendizaje profundo. En este contexto, se construye un conjunto de
+datos compuesto por múltiples ejemplos de imágenes etiquetadas, algunas con gatos y
+otras sin ellos. Este conjunto permite que el modelo aprenda automáticamente a
+distinguir un gato de otros animales a partir de los patrones estadísticos presentes en
+los datos, sin requerir instrucciones específicas para cada caso.
 
 El objetivo principal de este proceso es modelar la distribución de los datos de manera
 que el sistema sea capaz de identificar diferencias entre las distintas clases. En un
@@ -920,18 +927,19 @@ escenario de aprendizaje supervisado, cada ejemplo del conjunto de datos se asoc
 una etiqueta que indica si pertenece o no a la clase "gato". Con ello, el modelo aprende
 la relación entre las características de las imágenes y su respectiva clasificación.
 
-Durante este proceso, las etiquetas se representan mediante valores numéricos. Cada clase
-tiene asignado un identificador único. Este identificador puede gestionarse mediante un
-diccionario, en el que la clave representa el identificador numérico y el valor
-corresponde al nombre de la clase. Una vez que el modelo produce sus predicciones, se
-selecciona la clase con el valor más alto y se traduce nuevamente al nombre de la clase
-utilizando dicho diccionario. Por ejemplo, si el modelo predice que el índice más alto
-corresponde al identificador `1`, el sistema puede mapear este valor a la clase `"gato"`.
+Durante este proceso, las etiquetas se representan mediante valores numéricos. Cada
+clase tiene asignado un identificador único. Este identificador puede gestionarse
+mediante un diccionario, en el que la clave representa el identificador numérico y el
+valor corresponde al nombre de la clase. Una vez que el modelo produce sus predicciones,
+se selecciona la clase con el valor más alto y se traduce nuevamente al nombre de la
+clase utilizando dicho diccionario. Por ejemplo, si el modelo predice que el índice más
+alto corresponde al identificador `1`, el sistema puede mapear este valor a la clase
+`"gato"`.
 
 Gracias a la disponibilidad de grandes volúmenes de datos etiquetados, los sistemas
 supervisados se han convertido en los más empleados en la práctica. Cada muestra del
-conjunto de datos se considera independiente e idénticamente distribuida (i.i.d.), lo que
-significa que cada ejemplo es representativo y estadísticamente consistente con la
+conjunto de datos se considera independiente e idénticamente distribuida (i.i.d.), lo
+que significa que cada ejemplo es representativo y estadísticamente consistente con la
 distribución global de los datos. Este supuesto garantiza que el modelo pueda aprender
 patrones estables y generalizables, de modo que las representaciones internas que genera
 (también conocidas como espacios embebidos o espacios de representación) resulten
@@ -953,10 +961,10 @@ $(n, M)$, donde $n = 12288$, mientras que el vector de etiquetas $Y$ tendrá dim
 $(1, M)$ y contendrá los valores binarios correspondientes a cada muestra.
 
 Para resolver este problema, se emplea la regresión logística, un algoritmo de
-aprendizaje supervisado diseñado específicamente para tareas de clasificación binaria. Su
-funcionamiento es similar al de la regresión lineal, pero incorpora una **función de
-activación sigmoide** que transforma la salida del modelo en un valor comprendido entre 0
-y 1, interpretable como una probabilidad. La función sigmoide se define como:
+aprendizaje supervisado diseñado específicamente para tareas de clasificación binaria.
+Su funcionamiento es similar al de la regresión lineal, pero incorpora una **función de
+activación sigmoide** que transforma la salida del modelo en un valor comprendido entre
+0 y 1, interpretable como una probabilidad. La función sigmoide se define como:
 
 $$
 \sigma(z) = \frac{1}{1 + e^{-z}},
@@ -968,9 +976,9 @@ $$
 z = \mathbf{w}^\top \mathbf{x} + b.
 $$
 
-En esta formulación, $\mathbf{w}$ representa el vector de pesos, $b$ el término de sesgo,
-y $\mathbf{x}$ el vector de características de la imagen. La predicción final del modelo
-se expresa como:
+En esta formulación, $\mathbf{w}$ representa el vector de pesos, $b$ el término de
+sesgo, y $\mathbf{x}$ el vector de características de la imagen. La predicción final del
+modelo se expresa como:
 
 $$
 \hat{y} = \sigma(\mathbf{w}^\top \mathbf{x} + b),
@@ -986,17 +994,17 @@ de decisión (por ejemplo, 0.5), la imagen se clasifica como perteneciente a la 
 Una vez obtenidos los datos, es necesario formalizar el proceso mediante el cual un
 modelo ajusta sus predicciones a los resultados esperados. Este procedimiento se
 fundamenta en la **función de pérdida**, una magnitud escalar y diferenciable que
-cuantifica el error cometido por el modelo en una predicción individual. Su valor refleja
-el grado de discrepancia entre la salida estimada y el valor real, constituyendo así un
-indicador directo del rendimiento del modelo.
+cuantifica el error cometido por el modelo en una predicción individual. Su valor
+refleja el grado de discrepancia entre la salida estimada y el valor real, constituyendo
+así un indicador directo del rendimiento del modelo.
 
 Durante el entrenamiento, el objetivo principal es **minimizar la función de pérdida**,
-reduciendo la diferencia entre las predicciones generadas y los valores verdaderos. En el
-caso del aprendizaje supervisado, esta minimización se realiza comparando las etiquetas
-reales con las salidas del modelo. Por el contrario, en contextos no supervisados, donde
-no existen etiquetas explícitas, se optimizan otras métricas, como las distancias entre
-muestras o el error cuadrático medio entre reconstrucciones y los datos originales, entre
-otras.
+reduciendo la diferencia entre las predicciones generadas y los valores verdaderos. En
+el caso del aprendizaje supervisado, esta minimización se realiza comparando las
+etiquetas reales con las salidas del modelo. Por el contrario, en contextos no
+supervisados, donde no existen etiquetas explícitas, se optimizan otras métricas, como
+las distancias entre muestras o el error cuadrático medio entre reconstrucciones y los
+datos originales, entre otras.
 
 El proceso de optimización se ejecuta habitualmente mediante el **descenso del
 gradiente**. Durante este proceso, los parámetros del modelo, los pesos ($w$) y el sesgo
@@ -1031,13 +1039,13 @@ $$
 J(w, b) = -\frac{1}{M} \sum_{i=1}^{M} \Big[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \Big],
 $$
 
-donde $\hat{y}^{(i)} = \sigma(w^T x^{(i)} + b)$ es la probabilidad estimada por el modelo
-para el ejemplo $i$, $x^{(i)}$ representa el vector de características del ejemplo,
-$y^{(i)}$ es la etiqueta real y $\sigma(z)$ es la **función sigmoide**. Esta formulación
-penaliza de forma más efectiva los errores en problemas de clasificación binaria que el
-error cuadrático medio (_Mean Square Error_, MSE), ya que la _log-loss_ proporciona
-gradientes más estables y evita ciertos problemas de convergencia asociados a funciones
-no logarítmicas.
+donde $\hat{y}^{(i)} = \sigma(w^T x^{(i)} + b)$ es la probabilidad estimada por el
+modelo para el ejemplo $i$, $x^{(i)}$ representa el vector de características del
+ejemplo, $y^{(i)}$ es la etiqueta real y $\sigma(z)$ es la **función sigmoide**. Esta
+formulación penaliza de forma más efectiva los errores en problemas de clasificación
+binaria que el error cuadrático medio (_Mean Square Error_, MSE), ya que la _log-loss_
+proporciona gradientes más estables y evita ciertos problemas de convergencia asociados
+a funciones no logarítmicas.
 
 Sin embargo, el MSE sigue siendo ampliamente utilizado en tareas de regresión, donde se
 define como:
@@ -1070,10 +1078,10 @@ $$
 $$
 
 La pérdida de Huber es diferenciable en casi todos los puntos, salvo en el límite
-$|y_i - \hat{y}_i| = \delta$, aunque esta discontinuidad no genera inestabilidad numérica
-debido a la precisión finita de los cálculos. Por este motivo, se aplica habitualmente en
-contextos donde se busca un equilibrio entre la robustez frente a valores atípicos y la
-estabilidad del proceso de optimización.
+$|y_i - \hat{y}_i| = \delta$, aunque esta discontinuidad no genera inestabilidad
+numérica debido a la precisión finita de los cálculos. Por este motivo, se aplica
+habitualmente en contextos donde se busca un equilibrio entre la robustez frente a
+valores atípicos y la estabilidad del proceso de optimización.
 
 Finalmente, cabe destacar que un modelo que obtiene un coste bajo en el conjunto de
 entrenamiento no garantiza un buen rendimiento general. Este fenómeno, conocido como
@@ -1093,12 +1101,12 @@ de aprender patrones generalizables.
 ### Descenso del gradiente
 
 El descenso del gradiente constituye uno de los algoritmos fundamentales para el
-entrenamiento de modelos en aprendizaje automático. Su propósito es encontrar los valores
-de los parámetros que minimizan una determinada función de coste, garantizando que las
-predicciones del modelo se ajusten lo mejor posible a los datos observados.
+entrenamiento de modelos en aprendizaje automático. Su propósito es encontrar los
+valores de los parámetros que minimizan una determinada función de coste, garantizando
+que las predicciones del modelo se ajusten lo mejor posible a los datos observados.
 
-En el caso de la regresión logística, la función de coste $J(w, b)$ se define a partir de
-la función de pérdida logarítmica:
+En el caso de la regresión logística, la función de coste $J(w, b)$ se define a partir
+de la función de pérdida logarítmica:
 
 $$
 J(w, b) = -\frac{1}{M} \sum_{i=1}^{M} \Big[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \Big].
@@ -1121,9 +1129,9 @@ iterativa y puede resumirse en las siguientes fases:
 
 1. **Inicialización de los parámetros**: Se asignan valores iniciales, generalmente
    pequeños, ya sean ceros o valores aleatorios.
-2. **Propagación hacia adelante**: Se calculan las predicciones $\hat{y}$ a partir de los
-   datos de entrada $X$ y se evalúa la función de pérdida $\mathcal{L}(\hat{y}, y)$ y la
-   función de coste $J(w, b)$.
+2. **Propagación hacia adelante**: Se calculan las predicciones $\hat{y}$ a partir de
+   los datos de entrada $X$ y se evalúa la función de pérdida $\mathcal{L}(\hat{y}, y)$
+   y la función de coste $J(w, b)$.
 3. **Propagación hacia atrás**: Se obtienen las derivadas parciales $dw$ y $db$, que
    indican la dirección del ajuste de los parámetros.
 4. **Actualización de parámetros**: Se actualizan los valores de $w$ y $b$ según la
@@ -1205,14 +1213,14 @@ que permite avanzar hacia valores más bajos de la función objetivo.
 
 En el contexto de redes neuronales, el cálculo de derivadas necesarias para aplicar el
 descenso del gradiente se realiza mediante sistemas de **diferenciación automática**. En
-PyTorch, este proceso se gestiona mediante el módulo **`autograd`**, que permite calcular
-derivadas de manera automática sobre operaciones tensoriales y constituye la base del
-algoritmo de _backpropagation_. Cada tensor en PyTorch puede llevar asociada la propiedad
-`requires_grad=True`, que indica si debe participar en el cálculo de gradientes. PyTorch
-construye un grafo computacional dinámico que registra las operaciones realizadas sobre
-los tensores, y al invocar el método `backward()`, aplica la regla de la cadena para
-calcular las derivadas necesarias. Este mecanismo se conoce también como el modo inverso
-de diferenciación automática:
+PyTorch, este proceso se gestiona mediante el módulo **`autograd`**, que permite
+calcular derivadas de manera automática sobre operaciones tensoriales y constituye la
+base del algoritmo de _backpropagation_. Cada tensor en PyTorch puede llevar asociada la
+propiedad `requires_grad=True`, que indica si debe participar en el cálculo de
+gradientes. PyTorch construye un grafo computacional dinámico que registra las
+operaciones realizadas sobre los tensores, y al invocar el método `backward()`, aplica
+la regla de la cadena para calcular las derivadas necesarias. Este mecanismo se conoce
+también como el modo inverso de diferenciación automática:
 
 ```py linenums="1"
 import torch
@@ -1270,9 +1278,9 @@ $$
 $$
 
 donde $\rho \approx 0.9$ y $\epsilon \approx 10^{-8}$ para evitar divisiones por cero.
-Este ajuste permite que los parámetros con gradientes grandes reciban pasos más pequeños,
-mientras que aquellos con gradientes pequeños se actualizan más rápidamente, mejorando la
-estabilidad del entrenamiento.
+Este ajuste permite que los parámetros con gradientes grandes reciban pasos más
+pequeños, mientras que aquellos con gradientes pequeños se actualizan más rápidamente,
+mejorando la estabilidad del entrenamiento.
 
 El optimizador **Adam** combina las ventajas de Momentum y RMSprop, acumulando tanto la
 media de los gradientes como la media de sus cuadrados. Su formulación se realiza en
@@ -1363,35 +1371,35 @@ print("Adam:", adam(theta_init, grad))
 
 ### Métodos de regularización
 
-En el contexto de la regresión lineal, es posible obtener una solución analítica para los
-pesos del modelo mediante la **pseudoinversa de Moore–Penrose**, que proporciona una
-estimación cerrada de los parámetros cuando la matriz de diseño no es cuadrada o no tiene
-inversa directa. Esta solución se expresa como:
+En el contexto de la regresión lineal, es posible obtener una solución analítica para
+los pesos del modelo mediante la **pseudoinversa de Moore–Penrose**, que proporciona una
+estimación cerrada de los parámetros cuando la matriz de diseño no es cuadrada o no
+tiene inversa directa. Esta solución se expresa como:
 
 $$
 \mathbf{w} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y},
 $$
 
-donde $\mathbf{X} \in \mathbb{R}^{N \times n}$ representa la matriz de datos de entrada y
-$\mathbf{y} \in \mathbb{R}^N$ los valores objetivo. Sin embargo, este enfoque puede
+donde $\mathbf{X} \in \mathbb{R}^{N \times n}$ representa la matriz de datos de entrada
+y $\mathbf{y} \in \mathbb{R}^N$ los valores objetivo. Sin embargo, este enfoque puede
 resultar numéricamente inestable cuando la matriz $(\mathbf{X}^\top \mathbf{X})$ es casi
 singular, es decir, cuando algunos de sus valores propios son muy pequeños o cercanos a
 cero. En tales casos, pequeñas variaciones en los datos pueden producir grandes cambios
 en los parámetros estimados, lo que conduce a un modelo **sobreajustado** y con escasa
 capacidad de generalización.
 
-Para mitigar este problema y mejorar la estabilidad del modelo, se introduce un **término
-de regularización** en la función de coste. La regularización actúa como un mecanismo de
-control que penaliza los pesos excesivamente grandes, favoreciendo soluciones más
-estables y reduciendo la varianza del modelo. De este modo, se logra un equilibrio entre
-el ajuste a los datos de entrenamiento y la capacidad de generalización ante nuevos
-ejemplos. Los métodos más comunes son la **regularización L2 (_Ridge Regression_)** y la
-**regularización L1 (_Lasso Regression_)**.
+Para mitigar este problema y mejorar la estabilidad del modelo, se introduce un
+**término de regularización** en la función de coste. La regularización actúa como un
+mecanismo de control que penaliza los pesos excesivamente grandes, favoreciendo
+soluciones más estables y reduciendo la varianza del modelo. De este modo, se logra un
+equilibrio entre el ajuste a los datos de entrenamiento y la capacidad de generalización
+ante nuevos ejemplos. Los métodos más comunes son la **regularización L2 (_Ridge
+Regression_)** y la **regularización L1 (_Lasso Regression_)**.
 
-La regularización L2 agrega al término de error un componente proporcional al cuadrado de
-la magnitud de los pesos. Este término penaliza los parámetros de gran magnitud,
-promoviendo valores pequeños y distribuidos de manera más uniforme. Su función de pérdida
-se define como:
+La regularización L2 agrega al término de error un componente proporcional al cuadrado
+de la magnitud de los pesos. Este término penaliza los parámetros de gran magnitud,
+promoviendo valores pequeños y distribuidos de manera más uniforme. Su función de
+pérdida se define como:
 
 $$
 \mathcal{L}_{\text{Ridge}} = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2 + \lambda |\mathbf{w}|_2^2,
@@ -1405,8 +1413,8 @@ controlado. En la práctica, esto se traduce en cambios menos abruptos en la sal
 pequeñas desviaciones en la entrada, comportamiento que también se conoce como
 **decaimiento de los pesos (_weight decay_)**.
 
-Por otro lado, la regularización L1 incorpora un término basado en la suma de los valores
-absolutos de los pesos:
+Por otro lado, la regularización L1 incorpora un término basado en la suma de los
+valores absolutos de los pesos:
 
 $$
 \mathcal{L}_{\text{Lasso}} = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2 + \lambda |\mathbf{w}|_1.
@@ -1418,29 +1426,29 @@ significa que ciertos parámetros se eliminan completamente, dando lugar a model
 simples y con menos variables efectivamente activas. Este comportamiento convierte a la
 regularización L1 en una herramienta útil para selección de características, ya que
 identifica de manera implícita las variables más relevantes para la predicción. Sin
-embargo, la regularización L1 es menos común en aprendizaje profundo porque no interactúa
-bien con la no convexidad de los problemas de optimización y con el uso del descenso del
-gradiente.
+embargo, la regularización L1 es menos común en aprendizaje profundo porque no
+interactúa bien con la no convexidad de los problemas de optimización y con el uso del
+descenso del gradiente.
 
-La regularización y la normalización son técnicas fundamentales para mejorar la capacidad
-de generalización de los modelos de aprendizaje profundo y reducir el riesgo de
-sobreajuste. Ambas estrategias buscan limitar la dependencia excesiva del modelo respecto
-a los datos de entrenamiento, promoviendo representaciones más robustas y estables que
-permitan un rendimiento consistente en datos no vistos. Entre las técnicas de
-regularización más utilizadas destacan:
+La regularización y la normalización son técnicas fundamentales para mejorar la
+capacidad de generalización de los modelos de aprendizaje profundo y reducir el riesgo
+de sobreajuste. Ambas estrategias buscan limitar la dependencia excesiva del modelo
+respecto a los datos de entrenamiento, promoviendo representaciones más robustas y
+estables que permitan un rendimiento consistente en datos no vistos. Entre las técnicas
+de regularización más utilizadas destacan:
 
 - **Dropout**: Desactiva aleatoriamente un subconjunto de neuronas durante el
-  entrenamiento, impidiendo que las unidades desarrollen dependencias excesivas entre sí.
-  Esto obliga a la red a generar representaciones redundantes y más robustas. Durante la
-  inferencia, todas las neuronas se utilizan, pero la salida se convierte en una variable
-  aleatoria dependiente de las máscaras de desactivación aplicadas. Para obtener una
-  salida determinista, se puede aproximar el valor esperado mediante muestreo de Monte
-  Carlo (realizando múltiples pasadas hacia adelante con diferentes máscaras y
-  promediando los resultados), lo que además proporciona una medida de incertidumbre
-  sobre la predicción. No obstante, dado que realizar múltiples pasadas resulta costoso,
-  la práctica más habitual consiste en reemplazar las variables aleatorias capa por capa
-  mediante un ajuste proporcional de los pesos, lo que constituye una aproximación
-  razonable y eficiente.
+  entrenamiento, impidiendo que las unidades desarrollen dependencias excesivas entre
+  sí. Esto obliga a la red a generar representaciones redundantes y más robustas.
+  Durante la inferencia, todas las neuronas se utilizan, pero la salida se convierte en
+  una variable aleatoria dependiente de las máscaras de desactivación aplicadas. Para
+  obtener una salida determinista, se puede aproximar el valor esperado mediante
+  muestreo de Monte Carlo (realizando múltiples pasadas hacia adelante con diferentes
+  máscaras y promediando los resultados), lo que además proporciona una medida de
+  incertidumbre sobre la predicción. No obstante, dado que realizar múltiples pasadas
+  resulta costoso, la práctica más habitual consiste en reemplazar las variables
+  aleatorias capa por capa mediante un ajuste proporcional de los pesos, lo que
+  constituye una aproximación razonable y eficiente.
 
 - **Aumentación de datos (_data augmentation_)**: Crea ejemplos adicionales a partir de
   transformaciones aplicadas a los datos originales, como rotaciones, traslaciones,
@@ -1448,22 +1456,23 @@ regularización más utilizadas destacan:
   del conjunto de entrenamiento y hace que el modelo sea menos sensible a variaciones
   irrelevantes.
 
-- **Detención temprana (_early stopping_)**: Supervisa el rendimiento del modelo sobre el
-  conjunto de validación y detiene el entrenamiento cuando el error deja de mejorar,
+- **Detención temprana (_early stopping_)**: Supervisa el rendimiento del modelo sobre
+  el conjunto de validación y detiene el entrenamiento cuando el error deja de mejorar,
   evitando que la red se ajuste demasiado a las particularidades del conjunto de
   entrenamiento.
 
 - **Normalización de entradas**: Escala y centra las características de los datos para
-  garantizar magnitudes comparables, acelerando la convergencia, mejorando la estabilidad
-  numérica y evitando que ciertos parámetros dominen el aprendizaje. Una práctica
-  habitual consiste en restar la media y dividir por la desviación estándar de cada
-  característica, de modo que los datos queden centrados en cero con varianza unitaria.
+  garantizar magnitudes comparables, acelerando la convergencia, mejorando la
+  estabilidad numérica y evitando que ciertos parámetros dominen el aprendizaje. Una
+  práctica habitual consiste en restar la media y dividir por la desviación estándar de
+  cada característica, de modo que los datos queden centrados en cero con varianza
+  unitaria.
 
 En complemento a la regularización, las técnicas de **normalización de activaciones**
-resultan esenciales para estabilizar el entrenamiento y acelerar la convergencia. Durante
-la optimización, las activaciones pueden variar significativamente entre capas, lo que
-genera inestabilidad y dificulta el ajuste de los parámetros. La normalización busca
-mantener distribuciones equilibradas de las activaciones a lo largo de la red:
+resultan esenciales para estabilizar el entrenamiento y acelerar la convergencia.
+Durante la optimización, las activaciones pueden variar significativamente entre capas,
+lo que genera inestabilidad y dificulta el ajuste de los parámetros. La normalización
+busca mantener distribuciones equilibradas de las activaciones a lo largo de la red:
 
 - **_Batch Normalization_**: Normaliza las activaciones de cada capa utilizando la media
   y la varianza calculadas sobre los ejemplos de un mini-lote. Esto reduce el problema
@@ -1502,8 +1511,8 @@ donde $T > 0$ es el **parámetro de temperatura** que controla la "nitidez" de l
 distribución. Cuando el valor de $T$ es grande, las diferencias entre los exponentes se
 atenúan, y la distribución resultante se aproxima a una distribución uniforme, lo que
 refleja una mayor incertidumbre del modelo. Por el contrario, cuando $T$ tiende a cero,
-la probabilidad se concentra en la clase más probable, haciendo que las predicciones sean
-más deterministas.
+la probabilidad se concentra en la clase más probable, haciendo que las predicciones
+sean más deterministas.
 
 El proceso de predicción final se realiza seleccionando la clase con la probabilidad más
 alta:
@@ -1571,16 +1580,16 @@ entrenamiento del modelo sobre el conjunto de entrenamiento, obtención de los _
 probabilidades sobre un conjunto de validación independiente, aplicación de un método de
 calibración (como el escalado de temperatura, el _Platt scaling_ o la regresión
 isotónica), optimización de los parámetros del calibrador, evaluación del grado de
-calibración mediante métricas especializadas como el _Expected Calibration Error_ (ECE) o
-el _Maximum Calibration Error_ (MCE), e implementación del calibrador final para ajustar
-las probabilidades durante la inferencia en producción.
+calibración mediante métricas especializadas como el _Expected Calibration Error_ (ECE)
+o el _Maximum Calibration Error_ (MCE), e implementación del calibrador final para
+ajustar las probabilidades durante la inferencia en producción.
 
-Uno de los métodos más simples y eficaces para calibrar redes neuronales es el **escalado
-de temperatura** (_temperature scaling_), que consiste en ajustar un único parámetro
-$T > 0$ que reescala los _logits_ antes de aplicar la función _Softmax_. El valor de $T$
-se optimiza sobre un conjunto de validación minimizando la entropía cruzada. Cabe
-destacar que este ajuste no altera la clase predicha (el valor de $\arg\max$ permanece
-igual), sino que modifica la confianza asociada a cada predicción.
+Uno de los métodos más simples y eficaces para calibrar redes neuronales es el
+**escalado de temperatura** (_temperature scaling_), que consiste en ajustar un único
+parámetro $T > 0$ que reescala los _logits_ antes de aplicar la función _Softmax_. El
+valor de $T$ se optimiza sobre un conjunto de validación minimizando la entropía
+cruzada. Cabe destacar que este ajuste no altera la clase predicha (el valor de
+$\arg\max$ permanece igual), sino que modifica la confianza asociada a cada predicción.
 
 Para problemas de clasificación binaria, el **_Platt Scaling_** ofrece una alternativa
 paramétrica en la que los _logits_ se ajustan mediante una función sigmoide con
@@ -1721,16 +1730,16 @@ Para ilustrar el funcionamiento básico de los modelos de aprendizaje profundo, 
 considerarse el problema de estimar el precio de una vivienda. Si se representa
 gráficamente el tamaño de la casa frente a su precio, se observa una tendencia creciente
 positiva: a mayor tamaño de la vivienda, mayor precio. Una forma de capturar esta
-relación es mediante la **regresión lineal**, que consiste en ajustar una línea recta que
-describe la relación entre ambas variables. Esta línea se caracteriza por dos parámetros
-fundamentales: su posición vertical, determinada por el término independiente, y su
-pendiente, que define la tasa de cambio del precio respecto al tamaño. Sin embargo, este
-enfoque presenta limitaciones importantes. Por ejemplo, al extrapolar la línea recta
-hacia valores muy pequeños de tamaño, el modelo podría asignar precios negativos a
-viviendas extremadamente reducidas, lo cual carece de sentido práctico. Para resolver
-este problema, se incorporan funciones que restringen los resultados a intervalos válidos
-de salidas, garantizando que las predicciones mantengan coherencia con la realidad física
-del problema.
+relación es mediante la **regresión lineal**, que consiste en ajustar una línea recta
+que describe la relación entre ambas variables. Esta línea se caracteriza por dos
+parámetros fundamentales: su posición vertical, determinada por el término
+independiente, y su pendiente, que define la tasa de cambio del precio respecto al
+tamaño. Sin embargo, este enfoque presenta limitaciones importantes. Por ejemplo, al
+extrapolar la línea recta hacia valores muy pequeños de tamaño, el modelo podría asignar
+precios negativos a viviendas extremadamente reducidas, lo cual carece de sentido
+práctico. Para resolver este problema, se incorporan funciones que restringen los
+resultados a intervalos válidos de salidas, garantizando que las predicciones mantengan
+coherencia con la realidad física del problema.
 
 Este procedimiento puede comprenderse mejor mediante la analogía de una **neurona
 artificial**, también conocida como perceptrón. La neurona recibe el tamaño de la
@@ -1748,36 +1757,37 @@ biológica**. En el cerebro, una neurona se compone de tres partes principales: 
 transmite la señal de salida. Una neurona biológica se activa cuando la suma de los
 impulsos recibidos a través de las dendritas alcanza un umbral determinado, generando un
 potencial de acción (_spike_) que se propaga por el axón. Cuando esta señal llega a la
-**sinapsis**, la conexión con la siguiente neurona, el proceso de transmisión pasa de ser
-eléctrico a químico mediante la liberación de **neurotransmisores**. En la neurona
+**sinapsis**, la conexión con la siguiente neurona, el proceso de transmisión pasa de
+ser eléctrico a químico mediante la liberación de **neurotransmisores**. En la neurona
 receptora, estos neurotransmisores generan una nueva señal eléctrica, completando así la
 cadena de comunicación.
 
 La sinapsis posee un **detector de coincidencias** basado en receptores NMDA, que se
 activa cuando confluyen simultáneamente una señal química (llegada de neurotransmisores
 de otra neurona) y una señal eléctrica (despolarización de la membrana de la neurona
-receptora). Este mecanismo subyace al **principio hebbiano**: las neuronas que se activan
-juntas refuerzan sus conexiones mutuas. Además, mecanismos locales, como la activación
-simultánea de sinapsis cercanas, contribuyen a modular la fuerza de las conexiones. Esta
-capacidad de modificar el número y la sensibilidad de los receptores sinápticos se
-denomina **plasticidad sináptica**, y constituye la base biológica del aprendizaje.
+receptora). Este mecanismo subyace al **principio hebbiano**: las neuronas que se
+activan juntas refuerzan sus conexiones mutuas. Además, mecanismos locales, como la
+activación simultánea de sinapsis cercanas, contribuyen a modular la fuerza de las
+conexiones. Esta capacidad de modificar el número y la sensibilidad de los receptores
+sinápticos se denomina **plasticidad sináptica**, y constituye la base biológica del
+aprendizaje.
 
 Una neurona biológica presenta dos tipos diferenciados de conexiones dendríticas. Las
 **dendritas apicales** reciben conexiones de retroalimentación (_feedback_) con
 información asociativa procedente de áreas corticales superiores, mientras que las
 **dendritas basales** procesan conexiones de alimentación directa (_feedforward_) con
 información sensorial y motora local. Las redes neuronales artificiales actuales modelan
-principalmente la integración basal local junto con una plasticidad dependiente del error
-de salida, pero no capturan las señales apicales ni la plasticidad dependiente del
+principalmente la integración basal local junto con una plasticidad dependiente del
+error de salida, pero no capturan las señales apicales ni la plasticidad dependiente del
 contexto global o de los vecindarios neuronales, lo que representa una simplificación
 significativa respecto al sistema biológico original.
 
 No obstante, el valor de una vivienda depende de múltiples factores adicionales, como el
 número de dormitorios, el número de baños, la ubicación geográfica, la proximidad a
-servicios públicos o el estado de conservación de la propiedad. La incorporación de estas
-características incrementa la **dimensionalidad** de los datos. En este escenario, la
-simple regresión lineal se vuelve insuficiente, puesto que una única línea recta solo es
-capaz de relacionar linealmente dos variables. Para abordar problemas de mayor
+servicios públicos o el estado de conservación de la propiedad. La incorporación de
+estas características incrementa la **dimensionalidad** de los datos. En este escenario,
+la simple regresión lineal se vuelve insuficiente, puesto que una única línea recta solo
+es capaz de relacionar linealmente dos variables. Para abordar problemas de mayor
 complejidad, resulta necesario combinar múltiples perceptrones organizados en **capas**,
 lo que da lugar a arquitecturas que permiten modelar no solo relaciones lineales
 individuales entre pares de variables, sino también combinaciones complejas de múltiples
@@ -1797,46 +1807,46 @@ genera la predicción final del modelo. La profundidad de la red, determinada po
 número de capas ocultas, influye directamente en su capacidad para aprender relaciones
 complejas y no lineales entre las variables.
 
-Cada neurona artificial asigna un **peso** a cada característica de entrada, indicando la
-importancia relativa de esa variable en el resultado final. Además, cada neurona incluye
-un **sesgo** (_bias_), un valor adicional que permite ajustar la función de salida y
-otorga mayor flexibilidad al modelo. Tanto los pesos como el sesgo se inicializan de
-manera aleatoria al comienzo del entrenamiento y se ajustan progresivamente mediante
-algoritmos de optimización. Estos constituyen los **parámetros aprendibles** de los
-modelos de inteligencia artificial, cuya configuración final determina el comportamiento
-y las capacidades del modelo entrenado.
+Cada neurona artificial asigna un **peso** a cada característica de entrada, indicando
+la importancia relativa de esa variable en el resultado final. Además, cada neurona
+incluye un **sesgo** (_bias_), un valor adicional que permite ajustar la función de
+salida y otorga mayor flexibilidad al modelo. Tanto los pesos como el sesgo se
+inicializan de manera aleatoria al comienzo del entrenamiento y se ajustan
+progresivamente mediante algoritmos de optimización. Estos constituyen los **parámetros
+aprendibles** de los modelos de inteligencia artificial, cuya configuración final
+determina el comportamiento y las capacidades del modelo entrenado.
 
-El resultado de la combinación lineal de las entradas ponderadas por los pesos, sumado al
-sesgo, pasa posteriormente por una **función de activación no lineal**. Este componente
-es esencial, ya que otorga a la red la capacidad de capturar relaciones complejas y no
-lineales entre variables, superando las limitaciones de los modelos puramente lineales.
-Sin funciones de activación no lineales, una red neuronal multicapa se comportaría
-simplemente como un modelo lineal, independientemente de su profundidad. Un ejemplo
-clásico que ilustra esta limitación es el problema de la **puerta XOR**: a pesar de tener
-solo cuatro posibles combinaciones de entrada (00, 01, 10, 11), sus salidas (0, 1, 1, 0)
-no pueden separarse mediante una frontera de decisión lineal, lo que demuestra la
-necesidad de combinaciones no lineales para resolver incluso problemas aparentemente
-simples.
+El resultado de la combinación lineal de las entradas ponderadas por los pesos, sumado
+al sesgo, pasa posteriormente por una **función de activación no lineal**. Este
+componente es esencial, ya que otorga a la red la capacidad de capturar relaciones
+complejas y no lineales entre variables, superando las limitaciones de los modelos
+puramente lineales. Sin funciones de activación no lineales, una red neuronal multicapa
+se comportaría simplemente como un modelo lineal, independientemente de su profundidad.
+Un ejemplo clásico que ilustra esta limitación es el problema de la **puerta XOR**: a
+pesar de tener solo cuatro posibles combinaciones de entrada (00, 01, 10, 11), sus
+salidas (0, 1, 1, 0) no pueden separarse mediante una frontera de decisión lineal, lo
+que demuestra la necesidad de combinaciones no lineales para resolver incluso problemas
+aparentemente simples.
 
 El **teorema de aproximación universal** establece que una red neuronal con suficiente
-profundidad o anchura (donde la profundidad se refiere al número de capas y la anchura al
-número de neuronas por capa) y funciones de activación no lineales puede aproximar
+profundidad o anchura (donde la profundidad se refiere al número de capas y la anchura
+al número de neuronas por capa) y funciones de activación no lineales puede aproximar
 cualquier función continua con precisión arbitraria. Sin embargo, este resultado es de
-naturaleza teórica y no garantiza que dicha aproximación sea prácticamente alcanzable con
-los recursos y algoritmos de entrenamiento disponibles.
+naturaleza teórica y no garantiza que dicha aproximación sea prácticamente alcanzable
+con los recursos y algoritmos de entrenamiento disponibles.
 
 Las redes neuronales profundas constituyen una extensión de las redes neuronales
 artificiales tradicionales. Su principal diferencia radica en la presencia de múltiples
-capas ocultas, dispuestas de manera secuencial, lo que permite construir representaciones
-jerárquicas de la información. Las primeras capas de la red, situadas cerca de la
-entrada, suelen detectar únicamente características elementales. Por ejemplo, en
-arquitecturas diseñadas para procesar imágenes, las capas iniciales tienden a identificar
-líneas horizontales, verticales o diagonales. Conforme se avanza hacia capas más
-profundas, las representaciones se vuelven progresivamente más sofisticadas, ya que se
-construyen combinando las características detectadas en etapas anteriores. De este modo,
-en niveles intermedios es posible identificar formas más estructuradas, mientras que en
-las capas finales se logran representaciones de alto nivel que corresponden a objetos
-completos o conceptos abstractos.
+capas ocultas, dispuestas de manera secuencial, lo que permite construir
+representaciones jerárquicas de la información. Las primeras capas de la red, situadas
+cerca de la entrada, suelen detectar únicamente características elementales. Por
+ejemplo, en arquitecturas diseñadas para procesar imágenes, las capas iniciales tienden
+a identificar líneas horizontales, verticales o diagonales. Conforme se avanza hacia
+capas más profundas, las representaciones se vuelven progresivamente más sofisticadas,
+ya que se construyen combinando las características detectadas en etapas anteriores. De
+este modo, en niveles intermedios es posible identificar formas más estructuradas,
+mientras que en las capas finales se logran representaciones de alto nivel que
+corresponden a objetos completos o conceptos abstractos.
 
 ### Composición de funciones y no linealidad
 
@@ -1849,18 +1859,18 @@ $$
 f(x) = (f_2 \circ f_1)(x) = f_2(f_1(x)),
 $$
 
-donde cada función $f_\ell$ corresponde a una capa del modelo con sus propios parámetros.
-Esta composición puede extenderse a un número arbitrario de funciones, siempre que cada
-una conserve el tipo de datos de la capa anterior. Los parámetros de cada función se
-ajustan durante el entrenamiento de manera interdependiente, ya que la salida de una capa
-constituye la entrada de la siguiente.
+donde cada función $f_\ell$ corresponde a una capa del modelo con sus propios
+parámetros. Esta composición puede extenderse a un número arbitrario de funciones,
+siempre que cada una conserve el tipo de datos de la capa anterior. Los parámetros de
+cada función se ajustan durante el entrenamiento de manera interdependiente, ya que la
+salida de una capa constituye la entrada de la siguiente.
 
 Sin embargo, si todas las funciones de la composición son lineales, la cadena completa
 colapsa en una única transformación lineal, independientemente del número de capas. Por
 ejemplo, si se tienen dos funciones lineales sucesivas $f_1(x) = W_1 x + b_1$ y
 $f_2(h) = W_2 h + b_2$, la composición resulta en
-$f_2(f_1(x)) = W_2 W_1 x + W_2 b_1 + b_2$, que sigue siendo una función lineal. Por ello,
-la introducción de **funciones de activación no lineales** entre capas resulta
+$f_2(f_1(x)) = W_2 W_1 x + W_2 b_1 + b_2$, que sigue siendo una función lineal. Por
+ello, la introducción de **funciones de activación no lineales** entre capas resulta
 imprescindible para romper este colapso y dotar a la red de la capacidad de modelar
 relaciones complejas.
 
@@ -1875,10 +1885,10 @@ misma capa o de capas posteriores.
 
 Añadir capas ocultas hace que el problema de optimización de las redes neuronales se
 convierta en **no convexo**, lo que significa que la función de coste puede presentar
-múltiples mínimos locales. A mayor número de capas y parámetros, es decir, a mayor número
-de grados de libertad de la red, más no convexa es la función que debe optimizarse. En
-consecuencia, pequeños cambios en la inicialización de los parámetros pueden alterar
-significativamente el resultado final del entrenamiento.
+múltiples mínimos locales. A mayor número de capas y parámetros, es decir, a mayor
+número de grados de libertad de la red, más no convexa es la función que debe
+optimizarse. En consecuencia, pequeños cambios en la inicialización de los parámetros
+pueden alterar significativamente el resultado final del entrenamiento.
 
 ### Parámetros e hiperparámetros
 
@@ -1886,10 +1896,10 @@ En el entrenamiento de redes neuronales profundas resulta esencial distinguir en
 parámetros e hiperparámetros. Los **parámetros** incluyen los pesos y sesgos de la red,
 los cuales se aprenden automáticamente mediante algoritmos de optimización. Los
 **hiperparámetros**, en cambio, se definen antes del entrenamiento y controlan aspectos
-estructurales y dinámicos del modelo. Entre ellos destacan la **tasa de aprendizaje**, el
-número de iteraciones o épocas, la cantidad de capas ocultas, el número de neuronas por
-capa y la elección de funciones de activación. La búsqueda de hiperparámetros constituye
-un proceso iterativo en el que se combinan prueba y error con estrategias más
+estructurales y dinámicos del modelo. Entre ellos destacan la **tasa de aprendizaje**,
+el número de iteraciones o épocas, la cantidad de capas ocultas, el número de neuronas
+por capa y la elección de funciones de activación. La búsqueda de hiperparámetros
+constituye un proceso iterativo en el que se combinan prueba y error con estrategias más
 sistemáticas, con el fin de encontrar la configuración que produzca el mejor desempeño.
 
 ### Funciones de activación
@@ -1903,11 +1913,11 @@ la función de activación) y **post-activación** (después de aplicarla).
 
 En las **capas ocultas**, se emplean funciones de activación como:
 
-- **ReLU (_Rectified Linear Unit_)**: Es ampliamente utilizada en redes profundas, ya que
-  acelera el entrenamiento y evita problemas de gradientes muy pequeños. No obstante,
-  puede provocar **neuronas muertas**, que siempre devuelven cero. Para mitigar este
-  efecto se utilizan variantes como _Leaky ReLU_, que mantiene un pequeño gradiente para
-  valores negativos:
+- **ReLU (_Rectified Linear Unit_)**: Es ampliamente utilizada en redes profundas, ya
+  que acelera el entrenamiento y evita problemas de gradientes muy pequeños. No
+  obstante, puede provocar **neuronas muertas**, que siempre devuelven cero. Para
+  mitigar este efecto se utilizan variantes como _Leaky ReLU_, que mantiene un pequeño
+  gradiente para valores negativos:
 
 $$
 f(x) = \max(0, x).
@@ -1924,8 +1934,8 @@ $$
 - **Tangente hiperbólica (tanh)**: Normaliza las salidas en el rango $[-1, 1]$. Suele
   preferirse frente a la sigmoide en capas ocultas porque sus activaciones tienen media
   cercana a cero, lo que facilita el entrenamiento. Tanto la sigmoide como la tangente
-  hiperbólica tienden a saturarse en valores extremos, provocando gradientes muy pequeños
-  que ralentizan el proceso de aprendizaje:
+  hiperbólica tienden a saturarse en valores extremos, provocando gradientes muy
+  pequeños que ralentizan el proceso de aprendizaje:
 
 $$
 \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}.
@@ -2047,21 +2057,21 @@ print(f"Precisión final: {acc:.2f}%")
 ### División del conjunto de datos
 
 En el entrenamiento de modelos de aprendizaje automático, la gestión adecuada de los
-datos constituye un paso fundamental para garantizar un proceso de optimización eficiente
-y una evaluación rigurosa del rendimiento.
+datos constituye un paso fundamental para garantizar un proceso de optimización
+eficiente y una evaluación rigurosa del rendimiento.
 
 Como se mencionó anteriormente, el descenso de gradiente estocástico permite aplicar el
 algoritmo de optimización sobre subconjuntos de datos en lugar de sobre la totalidad del
 conjunto de entrenamiento. Al evaluar el gradiente en un lote reducido, se obtiene
-información temprana sobre el progreso de la optimización sin necesidad de procesar todas
-las muestras, lo que facilita un aprendizaje más rápido y actualizaciones de los
+información temprana sobre el progreso de la optimización sin necesidad de procesar
+todas las muestras, lo que facilita un aprendizaje más rápido y actualizaciones de los
 parámetros con mayor frecuencia.
 
 El uso de lotes resulta especialmente ventajoso en entornos con GPU, ya que estas
 permiten almacenar los datos en memoria gráfica y ejecutar cálculos de manera altamente
 paralelizada. El tamaño de los lotes depende principalmente de la capacidad de memoria
-disponible, siendo comunes valores como 32, 64, 128 o superiores. En general, se tiende a
-utilizar lotes tan grandes como lo permita la memoria, aunque el tamaño seleccionado
+disponible, siendo comunes valores como 32, 64, 128 o superiores. En general, se tiende
+a utilizar lotes tan grandes como lo permita la memoria, aunque el tamaño seleccionado
 puede afectar las métricas de evaluación del modelo. Por ejemplo, en arquitecturas
 basadas en _autoencoders_, se observa un mejor desempeño con lotes pequeños, ya que esto
 limita la tendencia de la red a memorizar patrones específicos. En contraste, en tareas
@@ -2070,23 +2080,24 @@ grandes suelen ser beneficiosos, ya que permiten calcular un mayor número de m�
 distancia entre pares de muestras y construir matrices de similitud más robustas.
 
 En contextos de aprendizaje autosupervisado, el modo en que se agrupan las muestras en
-lotes afecta directamente tanto a las funciones de coste como al proceso de optimización,
-ya que muchas de estas funciones se basan en medidas de distancia entre elementos de un
-mismo lote. Incluso en modelos de lenguaje de gran escala se ha observado que la forma de
-dividir los datos en lotes repercute en la salida final del modelo, generando
-variabilidad que se explica no solo por errores numéricos, sino también por la
-composición de los mini-lotes y las distribuciones de las muestras que los componen.
+lotes afecta directamente tanto a las funciones de coste como al proceso de
+optimización, ya que muchas de estas funciones se basan en medidas de distancia entre
+elementos de un mismo lote. Incluso en modelos de lenguaje de gran escala se ha
+observado que la forma de dividir los datos en lotes repercute en la salida final del
+modelo, generando variabilidad que se explica no solo por errores numéricos, sino
+también por la composición de los mini-lotes y las distribuciones de las muestras que
+los componen.
 
 El procedimiento habitual consiste en aplicar una permutación aleatoria (_shuffle_) al
 conjunto de entrenamiento y dividirlo en lotes consecutivos de tamaño fijo. Una vez
-procesados todos los lotes, se vuelve a permutar el conjunto y se repite el proceso. Esta
-división puede distribuirse entre múltiples nodos o GPU, lo que se conoce como
+procesados todos los lotes, se vuelve a permutar el conjunto y se repite el proceso.
+Esta división puede distribuirse entre múltiples nodos o GPU, lo que se conoce como
 **paralelización de datos**: cada GPU procesa de manera independiente un lote, calcula
 los gradientes correspondientes, y posteriormente todos los gradientes se agregan de
-forma síncrona para actualizar los parámetros globales de la red. Cuando el lote completo
-no cabe en una sola GPU, se puede recurrir a la **acumulación de gradientes**, que
-consiste en iterar sobre subconjuntos más pequeños acumulando los gradientes antes de
-realizar la actualización, aunque este enfoque es menos eficiente al no aprovechar
+forma síncrona para actualizar los parámetros globales de la red. Cuando el lote
+completo no cabe en una sola GPU, se puede recurrir a la **acumulación de gradientes**,
+que consiste en iterar sobre subconjuntos más pequeños acumulando los gradientes antes
+de realizar la actualización, aunque este enfoque es menos eficiente al no aprovechar
 plenamente la paralelización del hardware.
 
 ```py linenums="1"
@@ -2108,15 +2119,15 @@ conjuntos de datos se dividen en tres subconjuntos principales:
    vez completado el entrenamiento y optimizados los hiperparámetros.
 
 La proporción destinada a cada subconjunto depende de la cantidad de datos disponibles.
-Con bases de datos pequeñas, se suele aplicar una partición del 70 % para entrenamiento y
-30 % para prueba. En bases de datos más extensas, resulta común asignar un 60 % al
+Con bases de datos pequeñas, se suele aplicar una partición del 70 % para entrenamiento
+y 30 % para prueba. En bases de datos más extensas, resulta común asignar un 60 % al
 entrenamiento, 20 % a la validación y 20 % a la prueba. Es esencial que los subconjuntos
-de validación y prueba sigan la misma distribución que los datos de entrenamiento, ya que
-una discrepancia significativa puede generar degradaciones en las métricas de evaluación.
-Cuando los datos son escasos, la **validación cruzada K-fold** constituye una alternativa
-robusta: el conjunto de datos se divide en $K$ particiones, se entrenan $K$ modelos
-idénticos utilizando $K-1$ particiones para entrenamiento y la restante para validación,
-y la métrica final se obtiene como el promedio de las $K$ evaluaciones.
+de validación y prueba sigan la misma distribución que los datos de entrenamiento, ya
+que una discrepancia significativa puede generar degradaciones en las métricas de
+evaluación. Cuando los datos son escasos, la **validación cruzada K-fold** constituye
+una alternativa robusta: el conjunto de datos se divide en $K$ particiones, se entrenan
+$K$ modelos idénticos utilizando $K-1$ particiones para entrenamiento y la restante para
+validación, y la métrica final se obtiene como el promedio de las $K$ evaluaciones.
 
 En entornos de producción, las distribuciones de los datos suelen variar con el tiempo,
 fenómeno conocido como **cambio de concepto (_concept drift_)**. Para detectar y
@@ -2129,30 +2140,30 @@ datos fuera de distribución constituye una línea de investigación activa, con
 aplicaciones en el aprendizaje activo, el _meta-learning_ y la mitigación del olvido
 catastrófico.
 
-Es importante tener en cuenta ciertas consideraciones al dividir los datos. Si se trabaja
-con datos temporales (predicción del futuro a partir del pasado), no se deben mezclar
-aleatoriamente antes de la división, ya que esto crearía una fuga temporal donde el
-modelo se entrenaría con datos del futuro. En estos casos, los datos de prueba deben ser
-siempre posteriores a los de entrenamiento. Además, si existen datos duplicados o
-redundantes, es necesario asegurarse de que no aparezcan simultáneamente en los conjuntos
-de entrenamiento y validación, ya que esto equivaldría a evaluar el modelo con parte de
-sus propios datos de entrenamiento.
+Es importante tener en cuenta ciertas consideraciones al dividir los datos. Si se
+trabaja con datos temporales (predicción del futuro a partir del pasado), no se deben
+mezclar aleatoriamente antes de la división, ya que esto crearía una fuga temporal donde
+el modelo se entrenaría con datos del futuro. En estos casos, los datos de prueba deben
+ser siempre posteriores a los de entrenamiento. Además, si existen datos duplicados o
+redundantes, es necesario asegurarse de que no aparezcan simultáneamente en los
+conjuntos de entrenamiento y validación, ya que esto equivaldría a evaluar el modelo con
+parte de sus propios datos de entrenamiento.
 
 ### Sesgo y varianza
 
 El análisis de sesgo y varianza constituye una herramienta fundamental para comprender
 las fuentes de error en los modelos de aprendizaje automático. El **sesgo** se define
-como la diferencia sistemática entre las predicciones del modelo y los valores reales. Un
-sesgo alto indica la presencia de subajuste, lo que significa que el modelo no logra
+como la diferencia sistemática entre las predicciones del modelo y los valores reales.
+Un sesgo alto indica la presencia de subajuste, lo que significa que el modelo no logra
 capturar de manera adecuada la complejidad de la relación existente en los datos. Por
 otro lado, la **varianza** mide la sensibilidad del modelo frente a pequeñas variaciones
 en los datos de entrenamiento. Una varianza alta refleja la existencia de sobreajuste.
 
 La reducción del sesgo suele requerir un aumento en la capacidad de representación del
 modelo, mediante arquitecturas más profundas o complejas, el incremento del número de
-parámetros, un mayor tiempo de entrenamiento o la adopción de algoritmos alternativos. En
-contraste, para disminuir la varianza se recurre a estrategias orientadas a mejorar la
-capacidad de generalización, tales como el incremento de la cantidad y diversidad de
+parámetros, un mayor tiempo de entrenamiento o la adopción de algoritmos alternativos.
+En contraste, para disminuir la varianza se recurre a estrategias orientadas a mejorar
+la capacidad de generalización, tales como el incremento de la cantidad y diversidad de
 datos de entrenamiento, la aplicación de técnicas de regularización o ajustes en la
 arquitectura y en los hiperparámetros del modelo.
 
@@ -2203,13 +2214,14 @@ desempeño. En muchos casos, incrementar la cantidad y diversidad de datos dispo
 modificar de manera sustancial la arquitectura de la red genera beneficios mucho mayores
 que ajustes menores sobre los hiperparámetros.
 
-Las métricas de evaluación dependen directamente del tipo de aprendizaje empleado, aunque
-comparten el objetivo común de cuantificar la calidad de las predicciones. En aprendizaje
-supervisado de clasificación, destacan medidas como la **precisión**, el **recall** o
-sensibilidad, y la **puntuación F1**, definida como la media armónica entre la precisión
-y el recall. Más allá de las métricas de exactitud, es indispensable considerar
-indicadores de **eficiencia computacional**, tales como el tiempo de entrenamiento, la
-latencia en la inferencia, el consumo de memoria y la escalabilidad del modelo.
+Las métricas de evaluación dependen directamente del tipo de aprendizaje empleado,
+aunque comparten el objetivo común de cuantificar la calidad de las predicciones. En
+aprendizaje supervisado de clasificación, destacan medidas como la **precisión**, el
+**recall** o sensibilidad, y la **puntuación F1**, definida como la media armónica entre
+la precisión y el recall. Más allá de las métricas de exactitud, es indispensable
+considerar indicadores de **eficiencia computacional**, tales como el tiempo de
+entrenamiento, la latencia en la inferencia, el consumo de memoria y la escalabilidad
+del modelo.
 
 Para implementar una estrategia de aprendizaje coherente y sostenible, se recomienda
 emplear plataformas especializadas en la gestión de experimentos, como **MLflow**,
@@ -2221,20 +2233,20 @@ facilitando la **comparación justa entre diferentes configuraciones**.
 ### Aprendizaje por transferencia
 
 Además de las arquitecturas tradicionales, en el campo del aprendizaje profundo se han
-desarrollado enfoques que no constituyen arquitecturas en sí mismas, sino **paradigmas de
-aprendizaje** que buscan aprovechar de manera más eficiente los recursos computacionales
-y los datos disponibles.
+desarrollado enfoques que no constituyen arquitecturas en sí mismas, sino **paradigmas
+de aprendizaje** que buscan aprovechar de manera más eficiente los recursos
+computacionales y los datos disponibles.
 
-El **aprendizaje por transferencia** consiste en reutilizar el conocimiento adquirido por
-un modelo previamente entrenado en una tarea determinada para aplicarlo en otra tarea
-relacionada. La similitud entre las tareas es un requisito fundamental: no resulta viable
-transferir directamente el conocimiento de un modelo entrenado en visión por computadora
-a uno diseñado para procesar texto, ya que las representaciones internas aprendidas
-difieren por completo.
+El **aprendizaje por transferencia** consiste en reutilizar el conocimiento adquirido
+por un modelo previamente entrenado en una tarea determinada para aplicarlo en otra
+tarea relacionada. La similitud entre las tareas es un requisito fundamental: no resulta
+viable transferir directamente el conocimiento de un modelo entrenado en visión por
+computadora a uno diseñado para procesar texto, ya que las representaciones internas
+aprendidas difieren por completo.
 
 El grado de reutilización depende en gran medida de la disponibilidad de datos en la
-nueva tarea. Cuando los datos son escasos, suele reajustarse únicamente la parte final de
-la red, mientras que el resto de la arquitectura se congela, preservando así las
+nueva tarea. Cuando los datos son escasos, suele reajustarse únicamente la parte final
+de la red, mientras que el resto de la arquitectura se congela, preservando así las
 representaciones generales previamente aprendidas. En cambio, cuando se dispone de una
 cantidad suficiente de datos, es posible aplicar un ajuste fino o **_fine-tuning_**, que
 consiste en reentrenar toda la red para adaptar gradualmente los parámetros a las
@@ -2244,13 +2256,13 @@ particularidades del nuevo dominio.
 
 La diferenciación numérica, simbólica y automática constituye un conjunto de enfoques
 complementarios para obtener derivadas de funciones. Cada método se fundamenta en
-principios distintos y presenta características particulares que determinan su precisión,
-su coste computacional y su aplicabilidad.
+principios distintos y presenta características particulares que determinan su
+precisión, su coste computacional y su aplicabilidad.
 
 La **diferenciación numérica** aproxima la derivada a partir de valores concretos de la
-función, sin manipular expresiones algebraicas ni reglas simbólicas. Se basa directamente
-en la definición de derivada y sustituye el límite por un incremento finito $h$
-suficientemente pequeño. La formulación más simple es la diferencia hacia adelante,
+función, sin manipular expresiones algebraicas ni reglas simbólicas. Se basa
+directamente en la definición de derivada y sustituye el límite por un incremento finito
+$h$ suficientemente pequeño. La formulación más simple es la diferencia hacia adelante,
 mientras que la diferencia centrada ofrece mayor precisión con un error de orden
 $O(h^2)$:
 
@@ -2259,11 +2271,12 @@ f'(x) \approx \frac{f(x+h) - f(x)}{h}, \quad f'(x) \approx \frac{f(x+h) - f(x-h)
 $$
 
 El método opera exclusivamente con números y produce resultados aproximados cuya calidad
-depende de la elección de $h$. Si $h$ es demasiado grande, la aproximación se degrada; si
-es demasiado pequeño, emergen errores de redondeo asociados a la aritmética de coma
-flotante. Además, cada derivada requiere varias evaluaciones de la función, lo que vuelve
-esta técnica poco viable para problemas con grandes cantidades de variables. Por ello se
-emplea sobre todo con fines de validación o en contextos de baja dimensionalidad.
+depende de la elección de $h$. Si $h$ es demasiado grande, la aproximación se degrada;
+si es demasiado pequeño, emergen errores de redondeo asociados a la aritmética de coma
+flotante. Además, cada derivada requiere varias evaluaciones de la función, lo que
+vuelve esta técnica poco viable para problemas con grandes cantidades de variables. Por
+ello se emplea sobre todo con fines de validación o en contextos de baja
+dimensionalidad.
 
 La **diferenciación simbólica** opera directamente sobre la expresión matemática de la
 función y utiliza reglas formales de derivación para obtener una fórmula exacta. Este
@@ -2280,9 +2293,9 @@ función. Aplica las reglas del cálculo diferencial durante la ejecución del p
 propaga derivadas elementales a través de las operaciones que lo componen. El resultado
 es exacto hasta los límites de la precisión de máquina, sin incurrir en errores de
 aproximación ni en crecimiento explosivo de expresiones. En modo directo, el coste es
-proporcional al número de variables; en modo inverso, utilizado en aprendizaje automático
-para implementar _backpropagation_, el coste es comparable al de evaluar la propia
-función. Esta eficiencia explica su papel central en la optimización de modelos
+proporcional al número de variables; en modo inverso, utilizado en aprendizaje
+automático para implementar _backpropagation_, el coste es comparable al de evaluar la
+propia función. Esta eficiencia explica su papel central en la optimización de modelos
 contemporáneos.
 
 ## Redes neuronales convolucionales
@@ -2290,30 +2303,32 @@ contemporáneos.
 ### Procesamiento visual humano y su analogía con las redes convolucionales
 
 El procesamiento visual humano es un proceso jerárquico que transforma la información
-lumínica captada por los ojos en representaciones visuales complejas y significativas. La
-luz ingresa al ojo a través de la córnea y atraviesa el cristalino, que actúa como una
-lente convexa proyectando la imagen invertida sobre la retina. En la retina, los
+lumínica captada por los ojos en representaciones visuales complejas y significativas.
+La luz ingresa al ojo a través de la córnea y atraviesa el cristalino, que actúa como
+una lente convexa proyectando la imagen invertida sobre la retina. En la retina, los
 fotorreceptores (conos y bastones) convierten la energía lumínica en señales eléctricas,
 iniciando la codificación neuronal de la información visual.
 
-Estas señales se transmiten por el nervio óptico hasta el quiasma óptico, donde ocurre un
-cruce parcial de la información visual que permite la percepción binocular y contribuye a
-la percepción de profundidad. Posteriormente, las señales continúan hasta el núcleo
-geniculado lateral (LGN) del tálamo, que funciona como estación de relevo y organiza la
-información entrante. Desde el LGN, las señales se transmiten hacia la corteza visual
-primaria (V1), localizada en el lóbulo occipital, que se organiza de manera retinotópica.
+Estas señales se transmiten por el nervio óptico hasta el quiasma óptico, donde ocurre
+un cruce parcial de la información visual que permite la percepción binocular y
+contribuye a la percepción de profundidad. Posteriormente, las señales continúan hasta
+el núcleo geniculado lateral (LGN) del tálamo, que funciona como estación de relevo y
+organiza la información entrante. Desde el LGN, las señales se transmiten hacia la
+corteza visual primaria (V1), localizada en el lóbulo occipital, que se organiza de
+manera retinotópica.
 
 En la corteza visual primaria se distinguen tres tipos principales de células: células
 simples, que responden a bordes con orientación específica; células complejas, que
 detectan bordes o movimientos en rangos más amplios; y células hipercomplejas, que
 reaccionan ante combinaciones más sofisticadas, como esquinas o terminaciones de líneas.
-El procesamiento continúa en áreas corticales posteriores (V2, V4, IT), donde se analizan
-características más complejas, incluyendo texturas, formas tridimensionales, rostros y
-objetos completos.
+El procesamiento continúa en áreas corticales posteriores (V2, V4, IT), donde se
+analizan características más complejas, incluyendo texturas, formas tridimensionales,
+rostros y objetos completos.
 
 Las redes neuronales convolucionales, también conocidas como **_Convolutional Neural
-Networks_ (CNNs)**, son modelos computacionales diseñados para procesar datos visuales de
-manera eficiente, inspirados directamente en esta arquitectura del sistema visual humano:
+Networks_ (CNNs)**, son modelos computacionales diseñados para procesar datos visuales
+de manera eficiente, inspirados directamente en esta arquitectura del sistema visual
+humano:
 
 | Sistema Visual Humano                      | Redes Convolucionales (CNNs)                                     |
 | ------------------------------------------ | ---------------------------------------------------------------- |
@@ -2334,11 +2349,11 @@ patrones simples. A medida que se avanza jerárquicamente, los campos receptivos
 expanden y se vuelven más complejos, integrando información de múltiples regiones para
 formar representaciones más abstractas y globales.
 
-En las redes convolucionales, el campo receptivo se puede simular definiendo ceros en las
-matrices de pesos para aquellas regiones de píxeles que se encuentran fuera de la zona de
-interés. Cada píxel tiene una relación con sus vecinos que puede representarse como un
-grafo completamente conectado, donde la importancia de cada conexión depende de la
-distancia entre los píxeles. Al colocar un cero en la matriz de pesos, se elimina la
+En las redes convolucionales, el campo receptivo se puede simular definiendo ceros en
+las matrices de pesos para aquellas regiones de píxeles que se encuentran fuera de la
+zona de interés. Cada píxel tiene una relación con sus vecinos que puede representarse
+como un grafo completamente conectado, donde la importancia de cada conexión depende de
+la distancia entre los píxeles. Al colocar un cero en la matriz de pesos, se elimina la
 influencia de un píxel vecino sobre el píxel evaluado. El campo receptivo crece
 linealmente con el número de capas convolucionales, lo que motiva la noción de
 **localidad**: aunque una sola capa está limitada por el tamaño del _kernel_, una pila
@@ -2356,14 +2371,14 @@ convolución cierta invariancia a la traslación de la ventana (el propio _kerne
 filtro), aunque en la práctica esta propiedad se rompe cuando se combinan con otras
 operaciones como mecanismos de _pooling_.
 
-El principio subyacente que permite la transferencia de conocimiento entre dominios es la
-existencia de una estructura espacio-temporal en los datos. En el caso de las imágenes,
-esta estructura se refleja en la disposición relativa de los píxeles. Si se logra
-transformar otros tipos de datos en representaciones visuales que conserven dicha
+El principio subyacente que permite la transferencia de conocimiento entre dominios es
+la existencia de una estructura espacio-temporal en los datos. En el caso de las
+imágenes, esta estructura se refleja en la disposición relativa de los píxeles. Si se
+logra transformar otros tipos de datos en representaciones visuales que conserven dicha
 organización, es posible aplicar arquitecturas convolucionales de manera eficaz. Un
 ejemplo de este enfoque se observa en la conversión de series temporales en imágenes
-mediante técnicas como los _Gramian Angular Fields_, o en la transformación de señales de
-audio en espectrogramas de tipo _Mel_.
+mediante técnicas como los _Gramian Angular Fields_, o en la transformación de señales
+de audio en espectrogramas de tipo _Mel_.
 
 El principal desafío al trabajar con imágenes radica en la elevada cantidad de
 información que contienen. Una imagen en color de 64 × 64 píxeles con tres canales de
@@ -2385,8 +2400,8 @@ entrenan mediante descenso del gradiente, lo que permite al modelo descubrir pat
 mucho más complejos y adaptados a la tarea específica.
 
 Una propiedad fundamental de este mecanismo es la **invariancia al desplazamiento**, que
-permite reconocer un mismo patrón independientemente de su ubicación. Esta invariancia se
-origina gracias al compartimiento de pesos entre los diferentes filtros: lo que se
+permite reconocer un mismo patrón independientemente de su ubicación. Esta invariancia
+se origina gracias al compartimiento de pesos entre los diferentes filtros: lo que se
 aprende en una parte de la imagen se traslada a otra parte. No obstante, esta propiedad
 se manifiesta de manera estricta únicamente cuando la convolución se realiza con un
 tamaño de paso igual a uno, y puede perderse parcialmente al introducir variaciones como
@@ -2395,18 +2410,18 @@ _stride_, _padding_ o capas densas posteriores.
 A medida que la información avanza a través de las capas convolucionales, el tamaño
 espacial de las representaciones disminuye mientras que el número de canales se
 incrementa. Este proceso permite capturar progresivamente patrones de mayor nivel de
-abstracción. En las imágenes, la influencia de un píxel sobre sus vecinos suele reducirse
-con el incremento de la distancia, lo que implica que a mayor distancia entre píxeles,
-menor correlación existe entre ellos. Esta propiedad de **localidad** es fundamental en
-mecanismos modernos como la atención, que evalúan la importancia de los píxeles vecinos
-para obtener un mejor entendimiento de la semántica de la imagen.
+abstracción. En las imágenes, la influencia de un píxel sobre sus vecinos suele
+reducirse con el incremento de la distancia, lo que implica que a mayor distancia entre
+píxeles, menor correlación existe entre ellos. Esta propiedad de **localidad** es
+fundamental en mecanismos modernos como la atención, que evalúan la importancia de los
+píxeles vecinos para obtener un mejor entendimiento de la semántica de la imagen.
 
-Las capas convolucionales no dependen del tamaño de la imagen de entrada, sino del tamaño
-del filtro y del número de canales utilizados. Sin embargo, en la práctica resulta
-complicado procesar tensores de tamaños variables en un mismo lote, y además pueden
-surgir problemas como el olvido catastrófico, ya que entrenar con distribuciones de datos
-de tamaños muy diferentes altera las relaciones entre píxeles vecinos y las componentes
-de alta frecuencia.
+Las capas convolucionales no dependen del tamaño de la imagen de entrada, sino del
+tamaño del filtro y del número de canales utilizados. Sin embargo, en la práctica
+resulta complicado procesar tensores de tamaños variables en un mismo lote, y además
+pueden surgir problemas como el olvido catastrófico, ya que entrenar con distribuciones
+de datos de tamaños muy diferentes altera las relaciones entre píxeles vecinos y las
+componentes de alta frecuencia.
 
 ### Componentes de una capa convolucional
 
@@ -2416,8 +2431,8 @@ para evitar la pérdida de información en los márgenes y mantener las dimensio
 originales de la entrada. El **desplazamiento (_stride_)** define el número de píxeles
 que el filtro avanza en cada paso al recorrer la imagen; un valor mayor reduce las
 dimensiones de la salida y disminuye el número de cálculos necesarios. Cuando el tamaño
-del _stride_ coincide con el del filtro, el proceso es equivalente a dividir la imagen en
-fragmentos independientes (_patches_), concepto que ha dado lugar a arquitecturas
+del _stride_ coincide con el del filtro, el proceso es equivalente a dividir la imagen
+en fragmentos independientes (_patches_), concepto que ha dado lugar a arquitecturas
 avanzadas basadas en _Transformers_, como **ViT** (_Vision Transformer_), donde cada
 submatriz de la imagen se convierte en un _token_ que el modelo procesa.
 
@@ -2433,10 +2448,10 @@ Las convoluciones resultan efectivas por dos motivos principales: permiten una
 parámetros**, ya que un patrón aprendido en una región de la imagen puede aplicarse en
 cualquier otra.
 
-Tras la convolución, suele aplicarse una etapa de **agrupamiento (_pooling_)**, destinada
-a reducir las dimensiones intermedias y aportar robustez frente a pequeñas variaciones
-espaciales. La técnica más extendida es el **_max pooling_**, que selecciona el valor
-máximo dentro de cada región, priorizando la detección de la presencia de una
+Tras la convolución, suele aplicarse una etapa de **agrupamiento (_pooling_)**,
+destinada a reducir las dimensiones intermedias y aportar robustez frente a pequeñas
+variaciones espaciales. La técnica más extendida es el **_max pooling_**, que selecciona
+el valor máximo dentro de cada región, priorizando la detección de la presencia de una
 característica por encima de su ubicación exacta. Otra variante frecuente es el
 **_average pooling_**, que sustituye cada región por el valor promedio de sus elementos.
 Los mecanismos de _pooling_ global destruyen la información espacial, por lo que se
@@ -2470,7 +2485,8 @@ procesamiento:
   generalizarse considerando grupos de canales (_groupwise convolution_).
 - **Convolución separable en profundidad (_depthwise separable convolution_)**: Alterna
   convoluciones 1×1 (para mezclar canales) y convoluciones en profundidad (para mezclar
-  píxeles). Es común en CNNs diseñadas para dispositivos de bajo consumo, como MobileNet.
+  píxeles). Es común en CNNs diseñadas para dispositivos de bajo consumo, como
+  MobileNet.
 
 ### Evolución de las arquitecturas
 
@@ -2480,21 +2496,21 @@ rendimiento no mejora sino que se degrada, debido a fenómenos como la desaparic
 explosión de gradientes.
 
 La solución a este desafío surgió con las **redes residuales (ResNet)**, que incorporan
-**conexiones de atajo (_skip connections_)** que transmiten directamente las activaciones
-de una capa hacia otra más profunda. Cada bloque residual no aprende una transformación
-completa, sino la diferencia (_residuo_) entre la entrada y la salida esperada. Las redes
-residuales pueden verse como la suma de múltiples caminos donde la entrada permanece sin
-alterar a la par que recibe transformaciones o combinaciones de múltiples
-transformaciones. El número de caminos crece exponencialmente con el número de bloques
-residuales, y estos caminos pueden interpretarse como pequeños modelos que comparten
-información entre sí mediante _weight-sharing_. Desde una perspectiva neurocientífica,
-este mecanismo recuerda a la organización de la **columna cortical**, que se estructura
-en seis niveles jerárquicos: desde las capas superiores de reconexión con pocas neuronas,
-pasando por las capas intermedias de procesamiento y las capas que reciben información
-sensorial directa, hasta las capas inferiores que almacenan información espacial y de
-posición. El salto de información desde las capas inferiores (nivel 6) hacia las capas
-superiores (niveles 2 y 3) constituye una analogía biológica directa de las _skip
-connections_ empleadas en las redes residuales.
+**conexiones de atajo (_skip connections_)** que transmiten directamente las
+activaciones de una capa hacia otra más profunda. Cada bloque residual no aprende una
+transformación completa, sino la diferencia (_residuo_) entre la entrada y la salida
+esperada. Las redes residuales pueden verse como la suma de múltiples caminos donde la
+entrada permanece sin alterar a la par que recibe transformaciones o combinaciones de
+múltiples transformaciones. El número de caminos crece exponencialmente con el número de
+bloques residuales, y estos caminos pueden interpretarse como pequeños modelos que
+comparten información entre sí mediante _weight-sharing_. Desde una perspectiva
+neurocientífica, este mecanismo recuerda a la organización de la **columna cortical**,
+que se estructura en seis niveles jerárquicos: desde las capas superiores de reconexión
+con pocas neuronas, pasando por las capas intermedias de procesamiento y las capas que
+reciben información sensorial directa, hasta las capas inferiores que almacenan
+información espacial y de posición. El salto de información desde las capas inferiores
+(nivel 6) hacia las capas superiores (niveles 2 y 3) constituye una analogía biológica
+directa de las _skip connections_ empleadas en las redes residuales.
 
 Otra innovación relevante fue la **arquitectura Inception** (GoogLeNet), que aplica en
 paralelo filtros de distintos tamaños (1×1, 3×3 y 5×5) junto con una operación de
@@ -2508,8 +2524,8 @@ incorporó conexiones residuales junto con capas de expansión mediante filtros 
 ### Sistemas de detección de objetos
 
 En muchas aplicaciones de la visión computacional no basta con clasificar una imagen en
-su conjunto, sino que es imprescindible identificar **qué objetos aparecen en la escena y
-en qué lugar se encuentran**. Este desafío se aborda mediante la **detección de
+su conjunto, sino que es imprescindible identificar **qué objetos aparecen en la escena
+y en qué lugar se encuentran**. Este desafío se aborda mediante la **detección de
 objetos**, que combina simultáneamente la clasificación y la localización de los
 elementos presentes a través de recuadros delimitadores (_bounding boxes_).
 
@@ -2520,9 +2536,9 @@ convolucional a toda la imagen de manera simultánea, permitiendo detecciones en
 real.
 
 El desempeño de los modelos de detección se evalúa mediante métricas como la
-**Intersección sobre Unión (IoU)**, la **Supresión de No Máximos (NMS)** y las **Cajas de
-Anclaje (_anchor boxes_)**. Además de la detección convencional, existen variantes como
-la detección de puntos de referencia y los métodos basados en regiones.
+**Intersección sobre Unión (IoU)**, la **Supresión de No Máximos (NMS)** y las **Cajas
+de Anclaje (_anchor boxes_)**. Además de la detección convencional, existen variantes
+como la detección de puntos de referencia y los métodos basados en regiones.
 
 ### Segmentación semántica y convoluciones transpuestas
 
@@ -2532,49 +2548,50 @@ comprimidas, se emplea la **convolución transpuesta**, que expande las dimensio
 espaciales.
 
 Un hito en este ámbito lo constituye la **arquitectura U-Net**, que se estructura en una
-etapa de compresión (_encoder_) y una etapa de expansión (_decoder_), conectadas mediante
-**conexiones de omisión (_skip connections_)** que transfieren información directamente
-desde las capas de compresión a las de expansión, conservando detalles finos de bordes y
-contornos.
+etapa de compresión (_encoder_) y una etapa de expansión (_decoder_), conectadas
+mediante **conexiones de omisión (_skip connections_)** que transfieren información
+directamente desde las capas de compresión a las de expansión, conservando detalles
+finos de bordes y contornos.
 
 ### _One-Shot Learning_
 
 Los modelos de visión por computador suelen requerir grandes volúmenes de datos para
 alcanzar un entrenamiento eficaz. Sin embargo, en numerosos escenarios prácticos solo se
 dispone de un número muy reducido de ejemplos por clase. Este desafío se aborda mediante
-técnicas como el **_One-Shot Learning_** y el **_Few-Shot Learning_**, que buscan dotar a
-los sistemas de la capacidad de generalizar a partir de datos escasos.
+técnicas como el **_One-Shot Learning_** y el **_Few-Shot Learning_**, que buscan dotar
+a los sistemas de la capacidad de generalizar a partir de datos escasos.
 
 El principio fundamental consiste en aprender un **espacio de representación** en el que
 las imágenes similares se ubiquen próximas entre sí, mientras que las correspondientes a
-clases distintas aparezcan más alejadas. Una de las arquitecturas más representativas son
-las **redes siamesas**, que procesan en paralelo dos imágenes mediante una misma red
-convolucional que comparte parámetros. Otra estrategia ampliamente utilizada es la basada
-en la **pérdida triple (_triplet loss_)**, que organiza el entrenamiento a partir de
-tríos de imágenes: _anchor_, positiva y negativa.
+clases distintas aparezcan más alejadas. Una de las arquitecturas más representativas
+son las **redes siamesas**, que procesan en paralelo dos imágenes mediante una misma red
+convolucional que comparte parámetros. Otra estrategia ampliamente utilizada es la
+basada en la **pérdida triple (_triplet loss_)**, que organiza el entrenamiento a partir
+de tríos de imágenes: _anchor_, positiva y negativa.
 
 ### Aprendizaje contrastivo y autosupervisado
 
 El **aprendizaje autosupervisado** permite entrenar modelos robustos sin la necesidad de
 disponer de grandes volúmenes de datos etiquetados, generando automáticamente señales de
 supervisión a partir de los propios datos. Dentro de este paradigma, una de las
-estrategias más influyentes emplea la **pérdida contrastiva**, cuyo propósito es aprender
-un espacio de representación en el que las imágenes similares se ubiquen próximas entre
-sí.
+estrategias más influyentes emplea la **pérdida contrastiva**, cuyo propósito es
+aprender un espacio de representación en el que las imágenes similares se ubiquen
+próximas entre sí.
 
-En escenarios sin etiquetas, los **pares positivos** se generan mediante transformaciones
-aplicadas a una misma imagen (rotaciones, cambios de escala, recortes aleatorios,
-modificaciones de color), mientras que las **imágenes distintas** se consideran pares
-negativos.
+En escenarios sin etiquetas, los **pares positivos** se generan mediante
+transformaciones aplicadas a una misma imagen (rotaciones, cambios de escala, recortes
+aleatorios, modificaciones de color), mientras que las **imágenes distintas** se
+consideran pares negativos.
 
-El proceso de entrenamiento contrastivo incluye varias etapas esenciales: obtención de un
-conjunto de datos no etiquetados, generación de _embeddings_ mediante un modelo
+El proceso de entrenamiento contrastivo incluye varias etapas esenciales: obtención de
+un conjunto de datos no etiquetados, generación de _embeddings_ mediante un modelo
 preentrenado, optimización mediante _fine-tuning_ utilizando medidas de distancia entre
 _embeddings_, e iteración con ajuste manual de las muestras más problemáticas.
 
 Entre las funciones de pérdida más utilizadas destacan:
 
-La **Triplet Loss** se fundamenta en tres elementos (ancla, par positivo y par negativo):
+La **Triplet Loss** se fundamenta en tres elementos (ancla, par positivo y par
+negativo):
 
 $$
 L = \min_{\theta}\left(\max\left(0, \text{dist}(X, X^+) - \text{dist}(X, X^-) + \text{margen}\right)\right).
@@ -2596,8 +2613,8 @@ $$
 
 Entre las limitaciones del aprendizaje contrastivo se encuentran la dependencia de
 transformaciones adecuadas de aumentación de datos y la necesidad de un gran número de
-épocas y lotes suficientemente grandes para obtener pares negativos efectivos. Además, en
-sistemas con múltiples atributos finos, puede producirse un fenómeno de
+épocas y lotes suficientemente grandes para obtener pares negativos efectivos. Además,
+en sistemas con múltiples atributos finos, puede producirse un fenómeno de
 **_entanglement_** donde las características finas no son fácilmente separables, lo que
 provoca un colapso de las representaciones embebidas: muestras que deberían estar
 diferenciadas acaban con representaciones muy similares en el espacio latente. Este
@@ -2614,8 +2631,8 @@ apropiadas mediante búsqueda de similitud entre representaciones embebidas.
 
 ## Convolución en otros tipos de datos
 
-Las convoluciones no se limitan al procesamiento de imágenes, sino que pueden aplicarse a
-cualquier tipo de datos que presente una estructura espacio-temporal. En **series
+Las convoluciones no se limitan al procesamiento de imágenes, sino que pueden aplicarse
+a cualquier tipo de datos que presente una estructura espacio-temporal. En **series
 temporales**, se emplean convoluciones unidimensionales que capturan patrones locales a
 lo largo del eje temporal. En **audio**, la señal puede representarse mediante
 espectrogramas _Mel_ obtenidos a partir de la transformada discreta de Fourier, lo que
@@ -2628,17 +2645,17 @@ considerarse simétricas, mientras que las dimensiones temporales son asimétric
 señal de audio invertida en su eje temporal es, en general, inválida, y una serie
 temporal invertida representa una evolución del futuro hacia el pasado.
 
-En el ámbito del **procesamiento del lenguaje natural**, las frases o palabras se dividen
-en secuencias de unidades más pequeñas denominadas **_tokens_**. Un _token_ puede
-representar un carácter, una palabra completa, un fragmento intermedio entre ambos,
-signos de puntuación, símbolos especiales o incluso emojis, que pueden aportar
+En el ámbito del **procesamiento del lenguaje natural**, las frases o palabras se
+dividen en secuencias de unidades más pequeñas denominadas **_tokens_**. Un _token_
+puede representar un carácter, una palabra completa, un fragmento intermedio entre
+ambos, signos de puntuación, símbolos especiales o incluso emojis, que pueden aportar
 información contextual relevante (por ejemplo, para la detección de sentimientos). Esta
 división depende del tipo de arquitectura y de las decisiones de diseño durante la
 creación del modelo. Cada _token_ se convierte posteriormente en una representación
 embebida (_embedding_) que el modelo puede procesar.
 
-Empresas como OpenAI han publicado de forma abierta sus tokenizadores, que cuentan con un
-vocabulario definido para convertir el corpus de texto en _tokens_. La conversión de
+Empresas como OpenAI han publicado de forma abierta sus tokenizadores, que cuentan con
+un vocabulario definido para convertir el corpus de texto en _tokens_. La conversión de
 _tokens_ a _embeddings_ puede realizarse mediante modelos preentrenados o integrando el
 entrenamiento de los _embeddings_ junto con el resto de la red. Técnicas como _one-hot
 encoding_ resultan menos eficientes debido a la gran cantidad de ceros que generan,
@@ -2664,48 +2681,49 @@ calidad visual y la distribución de intensidades antes de alimentar un modelo. 
 entre los diferentes intervalos (_bins_) del histograma. Una variante más sofisticada es
 **CLAHE** (_Contrast Limited Adaptive Histogram Equalization_), que divide la imagen en
 ventanas (_patches_) y ecualiza cada una de forma independiente. Aunque esto mejora el
-contraste local, puede incrementar el ruido al perder información global. El parámetro de
-_clip limit_ permite limitar esta amplificación del ruido, controlando el contraste
+contraste local, puede incrementar el ruido al perder información global. El parámetro
+de _clip limit_ permite limitar esta amplificación del ruido, controlando el contraste
 máximo permitido en cada ventana.
 
 Estas técnicas de procesamiento pueden combinarse con las capacidades de las redes
-convolucionales para crear sistemas o _pipelines_ que permitan recopilar y curar datos de
-Internet. Por ejemplo, si se dispone de una representación embebida de una categoría de
-imágenes (como gatos), es posible utilizar sistemas de búsqueda por similitud entre
-_embeddings_ para ampliar el conjunto de datos, eliminar duplicados o filtrar imágenes no
-apropiadas, reduciendo así el coste de almacenamiento y refinando la calidad del conjunto
-de datos.
+convolucionales para crear sistemas o _pipelines_ que permitan recopilar y curar datos
+de Internet. Por ejemplo, si se dispone de una representación embebida de una categoría
+de imágenes (como gatos), es posible utilizar sistemas de búsqueda por similitud entre
+_embeddings_ para ampliar el conjunto de datos, eliminar duplicados o filtrar imágenes
+no apropiadas, reduciendo así el coste de almacenamiento y refinando la calidad del
+conjunto de datos.
 
 ## Modelos secuenciales
 
 Muchos problemas en inteligencia artificial se caracterizan por involucrar datos
 **secuenciales**, es decir, información organizada en un orden temporal o lógico.
 Ejemplos destacados incluyen el reconocimiento de voz, la generación de música, el
-análisis de sentimientos en texto, la interpretación de secuencias de ADN o la traducción
-automática de idiomas. A diferencia de las imágenes, donde la información espacial es
-clave, en las secuencias la dependencia entre elementos previos y posteriores resulta
-esencial.
+análisis de sentimientos en texto, la interpretación de secuencias de ADN o la
+traducción automática de idiomas. A diferencia de las imágenes, donde la información
+espacial es clave, en las secuencias la dependencia entre elementos previos y
+posteriores resulta esencial.
 
 En el contexto de los modelos secuenciales, resulta importante definir el concepto de
 **modelo causal**: una capa es causal si la salida correspondiente al $i$-ésimo elemento
-de la secuencia depende únicamente de los elementos anteriores o del propio elemento. Por
-ejemplo, una capa convolucional con _kernel_ de tamaño 1 es causal, ya que cada elemento
-se procesa considerando solo a sí mismo. Sin embargo, una capa convolucional con _kernel_
-de tamaño 3 no es causal, ya que considera un elemento a la izquierda y otro a la
-derecha. Cualquier convolución puede convertirse en su variante causal mediante el
-enmascaramiento parcial de los pesos correspondientes a conexiones no causales. Este es
-uno de los métodos utilizados en modelos como los _Transformers_ en la parte del
-decodificador, que funciona como un modelo autoregresivo gracias al enmascarado.
+de la secuencia depende únicamente de los elementos anteriores o del propio elemento.
+Por ejemplo, una capa convolucional con _kernel_ de tamaño 1 es causal, ya que cada
+elemento se procesa considerando solo a sí mismo. Sin embargo, una capa convolucional
+con _kernel_ de tamaño 3 no es causal, ya que considera un elemento a la izquierda y
+otro a la derecha. Cualquier convolución puede convertirse en su variante causal
+mediante el enmascaramiento parcial de los pesos correspondientes a conexiones no
+causales. Este es uno de los métodos utilizados en modelos como los _Transformers_ en la
+parte del decodificador, que funciona como un modelo autoregresivo gracias al
+enmascarado.
 
 ### Representación de secuencias
 
 En el procesamiento del lenguaje natural, las palabras deben transformarse en
 representaciones que puedan ser interpretadas por un modelo. Este procedimiento se
 denomina **tokenización** y consiste en asignar a cada palabra un índice único dentro de
-un diccionario y, posteriormente, transformarla en un vector que codifica su información.
-El proceso contempla también el uso de **_tokens_ especiales**, como un _token_ reservado
-para palabras desconocidas y un _token_ de fin de secuencia empleado en tareas de
-generación de texto.
+un diccionario y, posteriormente, transformarla en un vector que codifica su
+información. El proceso contempla también el uso de **_tokens_ especiales**, como un
+_token_ reservado para palabras desconocidas y un _token_ de fin de secuencia empleado
+en tareas de generación de texto.
 
 ### Redes neuronales recurrentes
 
@@ -2749,18 +2767,18 @@ post-entrenamiento.
 ### Mecanismo de atención
 
 El mecanismo de atención constituye un componente fundamental en las arquitecturas
-modernas de procesamiento de secuencias. Se implementa a través de tres vectores: **Query
-(Q)**, que representa lo que se está buscando; **Key (K)**, que codifica la información
-disponible que puede ser relevante; y **Value (V)**, que contiene el contenido asociado
-para construir la representación final. El funcionamiento consiste en comparar la _Query_
-con cada _Key_ para calcular pesos de relevancia relativa, que se aplican a los _Values_
-correspondientes para generar representaciones contextuales.
+modernas de procesamiento de secuencias. Se implementa a través de tres vectores:
+**Query (Q)**, que representa lo que se está buscando; **Key (K)**, que codifica la
+información disponible que puede ser relevante; y **Value (V)**, que contiene el
+contenido asociado para construir la representación final. El funcionamiento consiste en
+comparar la _Query_ con cada _Key_ para calcular pesos de relevancia relativa, que se
+aplican a los _Values_ correspondientes para generar representaciones contextuales.
 
 ### _Transformers_
 
 Los _Transformers_, introducidos en el artículo _Attention is All You Need_,
-revolucionaron el procesamiento de secuencias al eliminar la necesidad de recurrir a RNN,
-permitiendo un procesamiento paralelo de los datos. Desde una perspectiva
+revolucionaron el procesamiento de secuencias al eliminar la necesidad de recurrir a
+RNN, permitiendo un procesamiento paralelo de los datos. Desde una perspectiva
 neurocientífica, los _Transformers_ presentan similitudes funcionales con las **máquinas
 de Tolman-Eichenbaum (TEM)**, modelos computacionales del hipocampo que obtienen
 información de diferentes entornos, realizan una autocorrelación para evaluar las
@@ -2776,8 +2794,8 @@ componentes principales:
   manera autoregresiva. Emplea la representación generada por el _encoder_, junto con
   información adicional, para generar nuevo contenido.
 
-Cada bloque del _Transformer_ combina mecanismos de **autoatención (_self-attention_)** y
-redes totalmente conectadas. Dado que los _Transformers_ no procesan los elementos de
+Cada bloque del _Transformer_ combina mecanismos de **autoatención (_self-attention_)**
+y redes totalmente conectadas. Dado que los _Transformers_ no procesan los elementos de
 manera secuencial, se incorporan **_positional encodings_** para preservar información
 sobre el orden de los elementos. El **_multi-head attention_** constituye una extensión
 clave que permite al modelo observar relaciones desde múltiples perspectivas
@@ -2786,21 +2804,21 @@ simultáneamente.
 Existen múltiples variantes de la arquitectura _Transformer_:
 
 - **BERT (_Bidirectional Encoder Representations from Transformers_)**: Utiliza
-  únicamente el _encoder_. Su entrenamiento se basa en la enmascaración de palabras en un
-  texto y la predicción de las mismas. Es especialmente eficaz en tareas de clasificación
-  y análisis de sentimientos.
+  únicamente el _encoder_. Su entrenamiento se basa en la enmascaración de palabras en
+  un texto y la predicción de las mismas. Es especialmente eficaz en tareas de
+  clasificación y análisis de sentimientos.
 - **GPT (_Generative Pre-trained Transformer_)**: Utiliza solamente el _decoder_ y está
   orientado a la generación de texto. Se entrena proporcionando secuencias incompletas
   que el modelo debe completar. Es un **modelo autoregresivo**, donde la salida generada
   en el tiempo $t$ se utiliza como entrada en el tiempo $t+1$, lo que permite mantener
   coherencia en la generación.
-- **_Autoencoders_ enmascarados**: Se aplican principalmente en modelos visuales. Dividen
-  una imagen en múltiples parches, ocultan algunos de ellos, y el objetivo es reconstruir
-  los parches faltantes, de manera análoga al entrenamiento de BERT pero aplicado al
-  dominio visual.
+- **_Autoencoders_ enmascarados**: Se aplican principalmente en modelos visuales.
+  Dividen una imagen en múltiples parches, ocultan algunos de ellos, y el objetivo es
+  reconstruir los parches faltantes, de manera análoga al entrenamiento de BERT pero
+  aplicado al dominio visual.
 
-Estas arquitecturas basadas en _Transformers_ han destacado especialmente en el ámbito de
-la **inteligencia artificial generativa**, donde el modelo es capaz de generar nuevos
+Estas arquitecturas basadas en _Transformers_ han destacado especialmente en el ámbito
+de la **inteligencia artificial generativa**, donde el modelo es capaz de generar nuevos
 datos a partir de una distribución de probabilidades aprendida. Las alucinaciones que
 pueden presentar estos modelos se deben a factores como la insuficiencia de datos, la
 presencia de ruido o datos sucios, la falta de contexto o la ausencia de restricciones y
@@ -2810,8 +2828,8 @@ pautas adecuadas.
 
 Los grafos constituyen una estructura flexible y poderosa para representar información
 compleja. Están formados por **nodos** (o vértices) y **aristas** (o conexiones) que
-describen las relaciones existentes entre los elementos. Las **Redes Neuronales de Grafos
-(_Graph Neural Networks_, GNN)** están diseñadas para procesar directamente estas
+describen las relaciones existentes entre los elementos. Las **Redes Neuronales de
+Grafos (_Graph Neural Networks_, GNN)** están diseñadas para procesar directamente estas
 estructuras, extrayendo representaciones cada vez más ricas de los nodos y del grafo en
 su conjunto.
 
@@ -2819,16 +2837,17 @@ Cada nodo se representa mediante un vector de características que se actualiza 
 sucesivas iteraciones combinando la información propia del nodo con la de sus vecinos.
 Las operaciones de agregación (suma, promedio o máximo) deben ser conmutativas,
 garantizando que el resultado no dependa del orden en que se procesen los vecinos. La
-topología del grafo puede representarse mediante **matrices de adyacencia** o **listas de
-adyacencia**.
+topología del grafo puede representarse mediante **matrices de adyacencia** o **listas
+de adyacencia**.
 
-Las GNN permiten abordar problemas a nivel de grafo (clasificación de moléculas), a nivel
-de nodo (segmentación de imágenes, detección de usuarios influyentes) y a nivel de arista
-(sistemas de recomendación, predicción de enlaces). Entre las arquitecturas más
+Las GNN permiten abordar problemas a nivel de grafo (clasificación de moléculas), a
+nivel de nodo (segmentación de imágenes, detección de usuarios influyentes) y a nivel de
+arista (sistemas de recomendación, predicción de enlaces). Entre las arquitecturas más
 destacadas se encuentran las **Graph Convolutional Networks (GCN)** y las **Graph
 Attention Networks (GAT)**, que incorporan mecanismos de atención para ponderar la
 relevancia relativa de cada vecino. En grafos muy grandes, se introducen mecanismos como
-el **nodo maestro (_masternode_)** para centralizar la propagación de información global.
+el **nodo maestro (_masternode_)** para centralizar la propagación de información
+global.
 
 ## Otros paradigmas de aprendizaje
 
@@ -2848,10 +2867,10 @@ $$
 \min_{\theta} \sum_{i=1}^{T} w_i \cdot L_i(\theta, D_i),
 $$
 
-donde $D_i$ es el conjunto de datos de la tarea $i$ y $w_i$ permite ajustar la relevancia
-de cada tarea. Las principales estrategias incluyen el uso de _embeddings_ condicionales,
-sistemas _multi-head_ (un modelo único con múltiples salidas) y condicionales
-multiplicativos.
+donde $D_i$ es el conjunto de datos de la tarea $i$ y $w_i$ permite ajustar la
+relevancia de cada tarea. Las principales estrategias incluyen el uso de _embeddings_
+condicionales, sistemas _multi-head_ (un modelo único con múltiples salidas) y
+condicionales multiplicativos.
 
 ### _Meta-Learning_
 
@@ -2864,10 +2883,10 @@ escenarios con datos limitados o costosos de obtener.
 
 El **_Few-Shot Learning_ (FSL)** se centra en entrenar modelos que logren un alto
 rendimiento con un número muy limitado de ejemplos etiquetados por clase. Se organiza en
-torno a un **_Support Set_** (conjunto de entrenamiento con pocas muestras etiquetadas) y
-un **_Query Set_** (conjunto de prueba). El aprendizaje se describe según dos parámetros:
-**_K-shot Learning_** (número de ejemplos por clase) y **_N-way Classification_** (número
-de clases diferentes).
+torno a un **_Support Set_** (conjunto de entrenamiento con pocas muestras etiquetadas)
+y un **_Query Set_** (conjunto de prueba). El aprendizaje se describe según dos
+parámetros: **_K-shot Learning_** (número de ejemplos por clase) y **_N-way
+Classification_** (número de clases diferentes).
 
 Existen dos tipos de modelos en este régimen: los **modelos no parametrizados** (como
 _k-Nearest Neighbors_), simples y eficaces cuando se dispone de _embeddings_ de alta
@@ -2879,10 +2898,10 @@ dimensionalidad.
 
 El principal problema del aprendizaje supervisado radica en la cantidad de datos
 etiquetados que se requieren, el tiempo necesario para etiquetar de manera manual y los
-sesgos que pueden introducir los anotadores. La gran mayoría de los datos disponibles son
-no etiquetados, por lo que obtener abstracciones que permitan generalizaciones a partir
-de datos sin etiquetar resulta fundamental. Este es el proceso natural de aprendizaje
-humano: adquirir ideas y luego extrapolar el conocimiento.
+sesgos que pueden introducir los anotadores. La gran mayoría de los datos disponibles
+son no etiquetados, por lo que obtener abstracciones que permitan generalizaciones a
+partir de datos sin etiquetar resulta fundamental. Este es el proceso natural de
+aprendizaje humano: adquirir ideas y luego extrapolar el conocimiento.
 
 El aprendizaje autosupervisado está estrechamente relacionado con el aprendizaje
 multimodal. El aprendizaje requiere conocimiento previo y redundancia en las señales.
@@ -2902,16 +2921,16 @@ generadas) y aprendizaje de puntos clave de objetos.
 El flujo de trabajo para el desarrollo de modelos de aprendizaje profundo se estructura
 en tres fases principales.
 
-La primera fase consiste en **definir la tarea**: comprender el dominio del problema y la
-lógica subyacente, recopilar un conjunto de datos representativo, comprender qué
-representan los datos y elegir cómo medir el éxito. Es fundamental enmarcar correctamente
-el problema, identificando el tipo de tarea (clasificación binaria, multiclase,
-regresión, segmentación, etc.), las soluciones existentes y las restricciones del entorno
-(cifrado, latencia, dispositivo de destino). Un buen conjunto de datos es un activo que
-merece cuidado e inversión; si se dispone de tiempo adicional, dedicarlo a recopilar más
-datos suele ser más efectivo que buscar mejoras incrementales en el modelado. La
-infraestructura de anotación de datos determina la calidad de las etiquetas y, por tanto,
-la calidad del modelo.
+La primera fase consiste en **definir la tarea**: comprender el dominio del problema y
+la lógica subyacente, recopilar un conjunto de datos representativo, comprender qué
+representan los datos y elegir cómo medir el éxito. Es fundamental enmarcar
+correctamente el problema, identificando el tipo de tarea (clasificación binaria,
+multiclase, regresión, segmentación, etc.), las soluciones existentes y las
+restricciones del entorno (cifrado, latencia, dispositivo de destino). Un buen conjunto
+de datos es un activo que merece cuidado e inversión; si se dispone de tiempo adicional,
+dedicarlo a recopilar más datos suele ser más efectivo que buscar mejoras incrementales
+en el modelado. La infraestructura de anotación de datos determina la calidad de las
+etiquetas y, por tanto, la calidad del modelo.
 
 La segunda fase es **desarrollar un modelo**: preparar los datos para que puedan ser
 procesados (normalización, limpieza, manejo de valores faltantes), seleccionar un
@@ -2926,7 +2945,7 @@ siguen permitiendo resolver problemas de manera más elegante y con menos datos.
 La tercera fase es **desplegar el modelo**: presentar los resultados a las partes
 interesadas con expectativas realistas (evitando declaraciones abstractas como "98% de
 precisión" y prefiriendo hablar de tasas de falsos negativos y falsos positivos
-vinculadas a objetivos de negocio), optimizar el modelo para inferencia mediante técnicas
-como la **poda de pesos** (_weight pruning_) y la **cuantización de pesos** (_weight
-quantization_), y supervisar el rendimiento del modelo en producción para detectar
-degradaciones y recopilar datos para futuras iteraciones.
+vinculadas a objetivos de negocio), optimizar el modelo para inferencia mediante
+técnicas como la **poda de pesos** (_weight pruning_) y la **cuantización de pesos**
+(_weight quantization_), y supervisar el rendimiento del modelo en producción para
+detectar degradaciones y recopilar datos para futuras iteraciones.
