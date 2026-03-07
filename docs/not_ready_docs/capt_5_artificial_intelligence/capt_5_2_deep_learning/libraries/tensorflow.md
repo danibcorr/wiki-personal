@@ -22,13 +22,14 @@ recordatorio. No tiene ningún tipo de orden, ni pretende ser el primer capítul
 visualizar.
 
 - **La letra ‘x’ se asocia a la variable independiente**, lo que usamos para hacer
-  predicciones, por ejemplo imágenes. Mientras que la **letra ‘y’ se asocia a la variable
-  dependiente**, lo que se denominan etiquetas y es nuestro objetivo obtener una
-  predicción que tenga una alta probabilidad de parecerse a dicha ‘y’, un ejemplo de
+  predicciones, por ejemplo imágenes. Mientras que la **letra ‘y’ se asocia a la
+  variable dependiente**, lo que se denominan etiquetas y es nuestro objetivo obtener
+  una predicción que tenga una alta probabilidad de parecerse a dicha ‘y’, un ejemplo de
   etiquetas pueden ser los nombres de las imágenes que permiten clasificar razas de
   perros.
-- **weigth** = pesos: valores aleatorios con los que se inicializan a las neuronas, estos
-  parámetros son fundamentales para determinar el tipo de funcionamiento de una red.
+- **weigth** = pesos: valores aleatorios con los que se inicializan a las neuronas,
+  estos parámetros son fundamentales para determinar el tipo de funcionamiento de una
+  red.
   - Forma (shape) → w(tamaño input, número de neuronas)
 - **bias** = sesgo:
   - Forma (shape) → b(1, número de neuronas)
@@ -48,8 +49,8 @@ visualizar.
   independientes y un lote de variables dependientes.
 - **one-hot encoding**: vectores de 0’s con el tamaño del número de clases que tenga el
   dataset, cada categoría representa una posición en el vector por lo que si la imagen
-  contiene algún elemento de alguna clase el vector tendrá un 1 en la posición del vector
-  que corresponderá a su clase.
+  contiene algún elemento de alguna clase el vector tendrá un 1 en la posición del
+  vector que corresponderá a su clase.
 - Es importante saber que **una clasificación** pretende predecir una clase o categoría
   mientras que un modelo de **regresión** intenta predecir 1 o más cantidades numéricas.
 
@@ -76,9 +77,9 @@ if os.path.exists(lugar_descomprimir) == False:
 
 ### Utilizar Weights & Biases (wandb)
 
-Podemos utilizar WandB para el registro de la evolución de nuestro módulo. Utilizar WandB
-nos permite obtener un registro del aprendizaje del modelo, compartir información en
-tiempo real, etc.
+Podemos utilizar WandB para el registro de la evolución de nuestro módulo. Utilizar
+WandB nos permite obtener un registro del aprendizaje del modelo, compartir información
+en tiempo real, etc.
 
 ```py linenums="1"
 import wandb
@@ -211,8 +212,8 @@ plt.show()
 ### ImageDataGenerator
 
 Podemos utilizar generadores de datos para la manipulación de datos de nuestro dataset.
-Con ello, conseguimos realizar aumentación datos, divisiones de datos para entrenamiento,
-validación y pruebas, entre otras herramientras.
+Con ello, conseguimos realizar aumentación datos, divisiones de datos para
+entrenamiento, validación y pruebas, entre otras herramientras.
 
 Un posible uso sería el siguiente:
 
@@ -609,9 +610,9 @@ herramientas del repositorio.
 #### Anotaciones
 
 El modelo YOLO ha sido entrenado con datos de entrada con tamaños de (m, 608, 608, 3).
-Cada salida resultante, consiste en un cuadro delimitador (_bounding boxes_) con la clase
-reconocida. A su vez, cada cuadro está representado por 6 números (𝑝𝑐, 𝑏𝑥, 𝑏𝑦, 𝑏ℎ, 𝑏𝑤,
-𝑐). Para este ejemplo de algoritmo de YOLO, usaremos **yad2k** (YAD2K: Yet Another
+Cada salida resultante, consiste en un cuadro delimitador (_bounding boxes_) con la
+clase reconocida. A su vez, cada cuadro está representado por 6 números (𝑝𝑐, 𝑏𝑥, 𝑏𝑦, 𝑏ℎ,
+𝑏𝑤, 𝑐). Para este ejemplo de algoritmo de YOLO, usaremos **yad2k** (YAD2K: Yet Another
 Darknet 2 Keras) que cuenta con 80 clases.
 
 Las cajas de anclaje se eligen explorando los datos de entrenamiento para elegir
@@ -673,8 +674,8 @@ siguientes variables:
 - **box_confidence**: tensor de forma (19, 19, 5, 1) que contiene 𝑝𝑐 (probabilidad de
   confianza de que haya algún objeto) para cada una de las 5 cajas previstas en cada una
   de las 19x19 casillas.
-- **boxes**: tensor de forma (19, 19, 5, 4) que contiene el punto medio y las dimensiones
-  (𝑏𝑥, 𝑏𝑦, 𝑏ℎ, 𝑏𝑤) para cada una de las 5 cajas en cada celda.
+- **boxes**: tensor de forma (19, 19, 5, 4) que contiene el punto medio y las
+  dimensiones (𝑏𝑥, 𝑏𝑦, 𝑏ℎ, 𝑏𝑤) para cada una de las 5 cajas en cada celda.
 - **box_class_probs**: tensor de forma (19, 19, 5, 80) que contiene las "probabilidades
   de clase" (𝑐1, 𝑐2, ..., 𝑐80) para cada una de las 80 clases para cada una de las 5
   cajas por celda.
@@ -735,8 +736,8 @@ def iou(box1, box2):
 ```
 
 Implementar _Non-Max Suppression._ `Tensorflow` tiene dos funciones incorporadas que se
-utilizan para implementar la supresión de no-máximos (por lo que no es necesario utilizar
-la función iou()).
+utilizan para implementar la supresión de no-máximos (por lo que no es necesario
+utilizar la función iou()).
 
 ```py linenums="1"
 def yolo_non_max_suppression(scores, boxes, classes, max_boxes = 10, iou_threshold = 0.5):
@@ -775,8 +776,8 @@ def yolo_boxes_to_corners(box_xy, box_wh):
     ])
 ```
 
-Convertimos la salida de la codificación YOLO (un montón de cajas) en sus cajas predichas
-junto con sus puntuaciones, coordenadas de caja y clases.
+Convertimos la salida de la codificación YOLO (un montón de cajas) en sus cajas
+predichas junto con sus puntuaciones, coordenadas de caja y clases.
 
 ```py linenums="1"
 def yolo_eval(yolo_outputs, image_shape = (720, 1280), max_boxes=10, score_threshold=.6, iou_threshold=.5):

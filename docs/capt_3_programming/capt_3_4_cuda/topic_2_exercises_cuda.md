@@ -954,8 +954,8 @@ title: Ejercicios de CUDA en C
 
 Podemos utilizar el comando `!nsys profile --stats=true ./kernel` para obtener
 información sobre dicho kernel. Entre la información proporcionada, se encuentra el
-tiempo medio de ejecución del kernel po lo que sería muy útil para hacer evaluaciones del
-mejor reparto de bloques y hebras para el problema concreto.
+tiempo medio de ejecución del kernel po lo que sería muy útil para hacer evaluaciones
+del mejor reparto de bloques y hebras para el problema concreto.
 
 ### Optimización
 

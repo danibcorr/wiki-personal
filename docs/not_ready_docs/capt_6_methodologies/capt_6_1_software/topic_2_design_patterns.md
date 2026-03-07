@@ -5,4 +5,3 @@ Daniel Bazo Correa
 description: Diseño de patrones en software.
 title: Diseño de patrones.
 ---
-

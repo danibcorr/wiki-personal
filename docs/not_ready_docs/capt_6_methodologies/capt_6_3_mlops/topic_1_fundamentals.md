@@ -32,11 +32,11 @@ modelos sean eficaces, escalables y sostenibles.
 
 Un sistema de MLOps se compone de diversos elementos. En su núcleo está el modelo o
 algoritmo, que representa la solución entrenada en datos. Este modelo opera sobre una
-infraestructura que puede variar desde servicios en la nube hasta servidores locales o en
-los propios dispositivos (_on edge_), dependiendo de las necesidades. Una API o interfaz
-es esencial para procesar solicitudes y devolver predicciones, mientras que la gestión de
-predicciones y la monitorización aseguran la calidad, fiabilidad y rendimiento en tiempo
-real.
+infraestructura que puede variar desde servicios en la nube hasta servidores locales o
+en los propios dispositivos (_on edge_), dependiendo de las necesidades. Una API o
+interfaz es esencial para procesar solicitudes y devolver predicciones, mientras que la
+gestión de predicciones y la monitorización aseguran la calidad, fiabilidad y
+rendimiento en tiempo real.
 
 ## Los desafíos de MLOps
 
@@ -44,8 +44,9 @@ Uno de los principales desafíos en la adopción de metodologías de MLOps es la
 definición tanto del problema como de la posible solución. Además, es fundamental
 implementar tecnologías que puedan comunicarse eficazmente entre sí, permitiendo la
 creación de sistemas y procesos automatizados que agilicen la recopilación, el
-tratamiento, el análisis y el uso de los datos. Este enfoque requiere una infraestructura
-sólida, cuyo diseño y construcción demandan tiempo y conocimientos especializados.
+tratamiento, el análisis y el uso de los datos. Este enfoque requiere una
+infraestructura sólida, cuyo diseño y construcción demandan tiempo y conocimientos
+especializados.
 
 Una vez establecida la infraestructura necesaria para integrar los diferentes
 componentes, surgen nuevos retos en la etapa de puesta en producción.
@@ -75,8 +76,8 @@ abordar las siguientes áreas clave:
    Los pasos esenciales incluyen:
    - **Identificación de problemas y métricas clave**: Métricas como precisión, latencia
      y ROI (Retorno de Inversión) son fundamentales para medir el éxito del proyecto.
-   - **Propuesta de valor**: Se define cómo el producto resolverá problemas específicos y
-     generará beneficios para los usuarios.
+   - **Propuesta de valor**: Se define cómo el producto resolverá problemas específicos
+     y generará beneficios para los usuarios.
    - **Factibilidad**: Se evalúan los recursos necesarios (humanos, tecnológicos y
      financieros) para implementar la solución.
    - **Planificación**: Se establecen cronogramas y se asignan recursos para el
@@ -95,8 +96,8 @@ abordar las siguientes áreas clave:
    - **Manejo de desequilibrios**: Técnicas como el sobremuestreo o submuestreo
      equilibran clases desbalanceadas, asegurando que los datos sean representativos.
    - **División en conjuntos**: Los datos se dividen en conjuntos de entrenamiento,
-     validación y prueba, manteniendo distribuciones similares para evitar problemas como
-     el sobreajuste.
+     validación y prueba, manteniendo distribuciones similares para evitar problemas
+     como el sobreajuste.
 
 3. **Modelado**: El modelado implica seleccionar, entrenar y validar modelos de ML. Las
    principales actividades incluyen:
@@ -127,8 +128,8 @@ hasta la entrega de predicciones, tomando en cuenta:
 
 - **Carga de trabajo ML**: Definición de fuentes de datos, etiquetado y selección de
   características.
-- **Inferencia**: Elección entre inferencia en lotes o en tiempo real, dependiendo de los
-  requisitos del sistema.
+- **Inferencia**: Elección entre inferencia en lotes o en tiempo real, dependiendo de
+  los requisitos del sistema.
 - **Impacto real**: Garantizar que el sistema genere valor tangible y que su rendimiento
   mejore continuamente.
 
@@ -144,30 +145,30 @@ el mínimo impacto:
   modelo, lo que permite monitorear su desempeño y hacer ajustes según sea necesario.
 - **Rollback**: Esta estrategia permite revertir rápidamente al modelo anterior en caso
   de que el nuevo no cumpla con las expectativas o falle.
-- **Canary deployment**: En esta técnica, se asigna inicialmente un pequeño porcentaje de
-  tráfico al nuevo modelo, incrementándolo gradualmente si demuestra ser eficaz y
+- **Canary deployment**: En esta técnica, se asigna inicialmente un pequeño porcentaje
+  de tráfico al nuevo modelo, incrementándolo gradualmente si demuestra ser eficaz y
   estable.
 - **Blue-green deployment**: Utiliza dos entornos paralelos (uno activo y otro de
-  prueba), lo que facilita la implementación de cambios y una rápida recuperación en caso
-  de problemas.
+  prueba), lo que facilita la implementación de cambios y una rápida recuperación en
+  caso de problemas.
 
 ### Consideraciones de desarrollo
 
 El desarrollo de modelos de ML puede seguir dos enfoques principales:
-**_model-centric_**, enfocado en optimizar algoritmos, y **_data-centric_**, que prioriza
-la mejora de la calidad de los datos, lo cual es esencial para garantizar un buen
-rendimiento en producción.
+**_model-centric_**, enfocado en optimizar algoritmos, y **_data-centric_**, que
+prioriza la mejora de la calidad de los datos, lo cual es esencial para garantizar un
+buen rendimiento en producción.
 
 Es crucial realizar un _sanity check_ inicial para validar las hipótesis del modelo,
 establecer líneas base robustas y emplear herramientas de versionado como **MLFlow** o
 **DVC** para rastrear de manera efectiva modelos, datos y resultados.
 
-El mantenimiento continuo de los modelos requiere una supervisión constante para detectar
-**_drifts_** (desviaciones en el comportamiento del modelo) y **datos OOD** (fuera de
-distribución), así como la recolección de métricas clave para evaluar su rendimiento.
-Además, es fundamental equilibrar adecuadamente los conjuntos de datos y mantener la
-consistencia en las divisiones para entrenamiento, validación y prueba, garantizando que
-el modelo sea fiable y escalable a largo plazo.
+El mantenimiento continuo de los modelos requiere una supervisión constante para
+detectar **_drifts_** (desviaciones en el comportamiento del modelo) y **datos OOD**
+(fuera de distribución), así como la recolección de métricas clave para evaluar su
+rendimiento. Además, es fundamental equilibrar adecuadamente los conjuntos de datos y
+mantener la consistencia en las divisiones para entrenamiento, validación y prueba,
+garantizando que el modelo sea fiable y escalable a largo plazo.
 
 ## Otras notas
 
@@ -219,9 +220,9 @@ hay que definir los objetivos, la idea ejecutarlo y establecer métricas.
 1. Scoping  
    Définir une théorie, comme la précision requérante de l'outil, la technologie, la
    technologie, la technologie, la technologie, la technologie, la technologie, la
-   technologie, le temps, la technologie, la technologie, la technologie, la technologie,
-   la technologie, la technologie, les données, les données, les données, les données,
-   les données, les données, les données, et les données.  
+   technologie, le temps, la technologie, la technologie, la technologie, la
+   technologie, la technologie, la technologie, les données, les données, les données,
+   les données, les données, les données, les données, et les données.  
    (Esto depende de los datos, y el software)
 
 2. Data  
@@ -233,47 +234,48 @@ hay que definir los objetivos, la idea ejecutarlo y establecer métricas.
    données, las données son las données, los datos son las données, los datos son las
    données, los datos son las données, los datos son los datos, los datos son los datos,
    los datos son los datos, la información es una información, la información es una
-   información, la información es una información, la información es una información, las
-   données son las données, las données son las données, las données son las données, la
-   información es una información, las données son las données, las données son las
-   données, la información es una información, la información es una información, la
-   información es una información, los datos son los datos, los datos son los datos, los
-   datos son los datos, el software es una información, el software es una información,
-   el software es una información, el software es una información, los datos son los
-   datos, los datos son los datos, los datos son las données, los datos son las données,
-   los datos son las données, las données son las données, las données son las données,
-   las données son los datos, los datos son los datos, los datos son los datos, los datos
-   son las données, las données son las données, las données son las données, los datos
-   son los datos, los datos son los datos, los datos son las données, la información es
-   una información, la información es una información, la información es un software, la
-   información es un software, la información es un software, la información es un
-   software, los datos son los datos, los datos son los datos, los datos son las données,
-   el software es una información, el software es una información, el software es un
-   software, el software es un software, los datos son los datos, los datos son los
-   datos, los datos son los datos, un software es una información, un software es una
-   información, un software es un software, un software es un software, los datos son los
-   datos, los datos son los datos, los datos es una información, los datos es una
+   información, la información es una información, la información es una información,
+   las données son las données, las données son las données, las données son las
+   données, la información es una información, las données son las données, las données
+   son las données, la información es una información, la información es una
+   información, la información es una información, los datos son los datos, los datos
+   son los datos, los datos son los datos, el software es una información, el software
+   es una información, el software es una información, el software es una información,
+   los datos son los datos, los datos son los datos, los datos son las données, los
+   datos son las données, los datos son las données, las données son las données, las
+   données son las données, las données son los datos, los datos son los datos, los
+   datos son los datos, los datos son las données, las données son las données, las
+   données son las données, los datos son los datos, los datos son los datos, los datos
+   son las données, la información es una información, la información es una
+   información, la información es un software, la información es un software, la
+   información es un software, la información es un software, los datos son los datos,
+   los datos son los datos, los datos son las données, el software es una información,
+   el software es una información, el software es un software, el software es un
+   software, los datos son los datos, los datos son los datos, los datos son los datos,
+   un software es una información, un software es una información, un software es un
+   software, un software es un software, los datos son los datos, los datos son los
+   datos, los datos es una información, los datos es una información, los datos es un
+   software, los datos es un software, los datos es un software, los datos es un
+   software, las données son las données, las données son las données, las données son
+   las données, el software es una información, el software es una información, el
+   software es una información, un software es una información, los datos son los datos,
+   los datos son los datos, los datos es una información, el software es una
+   información, el software es una información, el software es un software, los datos
+   son los datos, los datos son los datos, el software es una información, los datos son
+   los datos, los datos son las données, el software es una información, los datos son
+   las données, los datos son las données, el software es una información, los datos son
+   las données, el software es un software, los datos son los datos, los datos son los
+   datos, un software es una información, los datos es una información, los datos es un
+   software, los datos es una información, los datos es un software, los datos es un
+   software, las données son las données, los datos son las données, los datos es una
+   información, los datos es una información, los datos es un software, las données son
+   las données, los datos es una información, los datos es una información, los datos es
+   una información, los datos es un software, la información es una información, la
+   información es una información, la información es un software, los datos son los
+   datos, los datos son los datos, el software es un software, los datos son los datos,
+   los datos son los datos, la información es una información, los datos es una
+   información, los datos es un software, los datos es la información, los datos es la
    información, los datos es un software, los datos es un software, los datos es un
-   software, los datos es un software, las données son las données, las données son las
-   données, las données son las données, el software es una información, el software es
-   una información, el software es una información, un software es una información, los
-   datos son los datos, los datos son los datos, los datos es una información, el
-   software es una información, el software es una información, el software es un
-   software, los datos son los datos, los datos son los datos, el software es una
-   información, los datos son los datos, los datos son las données, el software es una
-   información, los datos son las données, los datos son las données, el software es una
-   información, los datos son las données, el software es un software, los datos son los
-   datos, los datos son los datos, un software es una información, los datos es una
-   información, los datos es un software, los datos es una información, los datos es un
-   software, los datos es un software, las données son las données, los datos son las
-   données, los datos es una información, los datos es una información, los datos es un
-   software, las données son las données, los datos es una información, los datos es una
-   información, los datos es una información, los datos es un software, la información es
-   una información, la información es una información, la información es un software, los
-   datos son los datos, los datos son los datos, el software es un software, los datos
-   son los datos, los datos son los datos, la información es una información, los datos
-   es una información, los datos es un software, los datos es la información, los datos
-   es la información, los datos es un software, los datos es un software, los datos es un
    software
 
 Gear distintos que permiten detectar datos difíciles mediante una medición de la
@@ -296,20 +298,20 @@ Caso de uso de un deploymant:
 El primer permite regular la cantidad de tráfico de usuarios que van a usar un modelo u
 otro, el rollback permite volver al modelo anterior.
 
-Sharding: usar un modelo para realizar una recopilación de datos de una sola medición, el
-modelo de recopilación del modelo.
+Sharding: usar un modelo para realizar una recopilación de datos de una sola medición,
+el modelo de recopilación del modelo.
 
 Canary deployment: "pregunta" utiliza los tráficos de recopilación de datos para
-controlar la recopilación y monitorear su efectividad, anulando el modelo de tráfico para
-el paso.
+controlar la recopilación y monitorear su efectividad, anulando el modelo de tráfico
+para el paso.
 
 Blue green deployment: usar el modelo antiguo y nuevo modelo, un modelo que cambia a una
 nueva y otra, rollback rápido.
 
 3. Los modelos requerirán, eventualmente, desde cero o reentrando a datos, partes. Esto
-   también es un problema de investigación, continuidad, learning y catastróficas. Porque
-   (y) para no depender de un modelo, con el tiempo debido a la variabilidad del los
-   datos en producción.
+   también es un problema de investigación, continuidad, learning y catastróficas.
+   Porque (y) para no depender de un modelo, con el tiempo debido a la variabilidad del
+   los datos en producción.
 
 Algunos apoyaques:
 
@@ -322,7 +324,8 @@ Podemos tener 2 apoyaques de desarrollo:
 - Model centrí: mayor enfoque en mejorar el modelo, esto tiene unos datos de bedwomark,
   en SOTA → Researc.
 - Data centrí: mayor enfoque en mejorar los datos, no en incrementar los datos, sino en
-  tratarlos, tener un mejor autenticidad de los datos, etc. → Más útil en producción/uso.
+  tratarlos, tener un mejor autenticidad de los datos, etc. → Más útil en
+  producción/uso.
 
 Establecer las bases, (Importante para evaluar mejor)
 
@@ -331,7 +334,8 @@ Establecer las bases, (Importante para evaluar mejor)
 - Realizar comparaciones con sistemas empleados anteriormente.
 
 Podemos hacer un "sanity check" para comprobar el resultado del modelo, estrenando el
-modelo en nuestro sistema y comprobando si se ajusta, para luego estudiar si es óptimo.  
+modelo en nuestro sistema y comprobando si se ajusta, para luego estudiar si es
+óptimo.  
 Realizar los datos o corregir/despegar el código modelo.
 
 Priorizar el trabajo, enfocarse en las categorías para trabajar.
@@ -463,8 +467,8 @@ existente. (?)
 
 - Seguir una guía para la toma de decisiones durante los procesos.
 
-→ Recopilación de datos. → Creación estratégica de medición. → Comparativas de métodos de
-análisis de datos.
+→ Recopilación de datos. → Creación estratégica de medición. → Comparativas de métodos
+de análisis de datos.
 
 ---
 
@@ -711,17 +715,18 @@ análisis de datos.
 - No empresas no lo imputan las métricas de los modelos (F1-Score, precisión,
   interacción, latency, ...) si no mueve ninguna métrica de negocio. (Business Metrics).
 
-- Huidas compañias crean sus propias metálicas que las mueven a métricas a seguir por los
-  modelos.
+- Huidas compañias crean sus propias metálicas que las mueven a métricas a seguir por
+  los modelos.
 
-- Cuanto más tiempo se adopte el uso de ML, más eficientes serán las propias y más rápida
-  será el desarrollo, mueven tiempo de ingeniería y menos coste en la nube.
+- Cuanto más tiempo se adopte el uso de ML, más eficientes serán las propias y más
+  rápida será el desarrollo, mueven tiempo de ingeniería y menos coste en la nube.
 
 - El sistema debe seguir funcionando correctamente en el nivel deseado. Incluso con
   adversidades, no falla en hardware y software o errores humanos.
 
 - Un sistema puede escalar en complejidad, en volumen de trabajo, escalado en recursos
-  generacionales de forma dinámica y disponibilidad, la cantidad de artefactos a manejar.
+  generacionales de forma dinámica y disponibilidad, la cantidad de artefactos a
+  manejar.
 
 - Hay que estructurar novedades e infraestructuras con el fin de usar herramientas
   acordes y estandarizado. Entre grupos, código documentado, artefactos y versionados.
@@ -734,8 +739,8 @@ análisis de datos.
 
 - Paso:
 
-4. Scoping → 7. Data Engineering → 8. Model Development → 9. Monitoring and Control → 10.
-   Learning
+4. Scoping → 7. Data Engineering → 8. Model Development → 9. Monitoring and Control
+   → 10. Learning
 
 - En su experiencia los modelos de clasificación principalmente requieren al menos 100
   ejemplos por clase para aprender a clasificar.
@@ -754,9 +759,9 @@ Ajustable sin necesidad de reestructurar.
 
 - **Designing ML Systems (Cap 8)**
 
-- Los datos son interesantes de almacenar si se tiene como objeto sacar un muy de los por
-  lo que no es solo importante conocer cómo formatear los documentos sino también cómo se
-  estructuran.
+- Los datos son interesantes de almacenar si se tiene como objeto sacar un muy de los
+  por lo que no es solo importante conocer cómo formatear los documentos sino también
+  cómo se estructuran.
 
 - Conocer cómo colectar, procesar, almacenar, obtener y procesar grandes volúmenes de
   datos es esencial para crear sistemas de ML en producción.
@@ -778,11 +783,11 @@ First Party Data: datos recopilados por la propia empresa de sus usuarios y clie
 - JSON editable, por el humano pero al estar bien basado en texto captura, muchísimo
   espacio.
 
-- CSV es row-major: documentos consecutivos en una fila. Se almacena uno al lado del otro
-  en una columna. Los Parquet son column-major, lo mismo pero en columna.
+- CSV es row-major: documentos consecutivos en una fila. Se almacena uno al lado del
+  otro en una columna. Los Parquet son column-major, lo mismo pero en columna.
 
-- Por lo que sí una tabla es row-major acceder a sus valores por la fila. Será más rápido
-  que a sus columnas.
+- Por lo que sí una tabla es row-major acceder a sus valores por la fila. Será más
+  rápido que a sus columnas.
 
 - Por tanto, CSV es mejor para acceder a los parquet y Parquet a los columnas.
 
@@ -796,12 +801,12 @@ First Party Data: datos recopilados por la propia empresa de sus usuarios y clie
 
 - **df.info()** → **df.df.to_table()**.
 
-- El canto representamos los datos no solo afecta a una construcción, el sistema, sino el
-  problema que puede resolver el modelo.
+- El canto representamos los datos no solo afecta a una construcción, el sistema, sino
+  el problema que puede resolver el modelo.
 
 - Los modelos relacionados consisten en un modelo donde los datos están organizados en
-  relaciones (tuplas), sin orden (se puede mezclar (A,B) = (B,A)). y se debe almacenar en
-  ficheros como CSV o parquet.
+  relaciones (tuplas), sin orden (se puede mezclar (A,B) = (B,A)). y se debe almacenar
+  en ficheros como CSV o parquet.
 
 - Para especificar los datos que queremos de una base de datos es un querying lenguaje
   (SQL y NoSQL).
@@ -819,8 +824,8 @@ First Party Data: datos recopilados por la propia empresa de sus usuarios y clie
   formato para almacenarlos.
 
 Un reportorio para almacenar datos estructurados es un → data warehouse, datos no
-estructurados → data lake. Los datos que se suelen implementar para almacenar datos antes
-de ser procesados, los datos que han sido usados para almacenar datos que han sido
+estructurados → data lake. Los datos que se suelen implementar para almacenar datos
+antes de ser procesados, los datos que han sido usados para almacenar datos que han sido
 procesados → en formato para un uso.
 
 - Los formatos y modelos de datos especifican la interfaz sobre cómo los usuarios pueden
@@ -851,11 +856,11 @@ otro (data flow).
 - **REST**: perfilaciones, internet, predominantemente en APIs públicas. → HTTP es una
   implementación REST.
 
-- **RPC**: frameworko, está, entre los sistemas que pertenecen a la misma organización. →
-  principalmente en un mismo J. datacenter.
+- **RPC**: frameworko, está, entre los sistemas que pertenecen a la misma organización.
+  → principalmente en un mismo J. datacenter.
 
-- Los sistemas en tiempo real pueden ser: vistos, como sistemas inmersivos. → Se basan en
-  eventos. → Suelen ser sistemas pub-sub (publicación - subscripcion).
+- Los sistemas en tiempo real pueden ser: vistos, como sistemas inmersivos. → Se basan
+  en eventos. → Suelen ser sistemas pub-sub (publicación - subscripcion).
 
 - Cuando procesamos datos en lotes, se llama Batch Processing. → HAPReduce, y Spark son
   herramientas que procesan batch de forma eficiente.
@@ -864,9 +869,9 @@ otro (data flow).
   llegan sin escribir, primero en una base de datos → Apache Flink, es estable,
   distribuido (parallelización).
 
-- Batch Processing: comme on mesure fréquemment, que les procédures en stream. En ILH, il
-  est possible de mettre en place des procédures qui permettent de mettre en place des
-  processus de traitement.
+- Batch Processing: comme on mesure fréquemment, que les procédures en stream. En ILH,
+  il est possible de mettre en place des procédures qui permettent de mettre en place
+  des processus de traitement.
 
 - Designing ILS Systems (Cap. 4)
 
@@ -918,13 +923,13 @@ otro (data flow).
   realizar una búsqueda de hiperparametros.
 
 - Eliminación de columnas o filas (mientras al completo pueden producir pérdidas en la
-  precisión del modelo, generar sesgos, etc. → Se podrían completar valores utilizando la
-  media, mediana o moda.
+  precisión del modelo, generar sesgos, etc. → Se podrían completar valores utilizando
+  la media, mediana o moda.
 
 - Escalar fuentes que representan diferentes cosas (edad, sexo, salario, etc).
 
-- El Dato Linage es un fenómeno cuando una forma de etiquetas se altera. Se influye a los
-  fuentes para hacer predicciones y estimar información no esta disponible en la
+- El Dato Linage es un fenómeno cuando una forma de etiquetas se altera. Se influye a
+  los fuentes para hacer predicciones y estimar información no esta disponible en la
   referencia.
 
 - Si los datos tienen dependencia del tiempo hace un split de los datos basada en tiempo
@@ -934,9 +939,9 @@ otro (data flow).
   / normalización al set de entrenamiento, las estadísticas obtenidas aplican al
   test/valid (del train).
 
-- **Cuantos** más **pequenas** unas oportunidades de tener datos. Llega a un **computo**,
-  **software** y mayor consumo de **memoria** / **computo**, **software** y **latinencia
-  en informes**.
+- **Cuantos** más **pequenas** unas oportunidades de tener datos. Llega a un
+  **computo**, **software** y mayor consumo de **memoria** / **computo**, **software** y
+  **latinencia en informes**.
 
 - **Feature** - **Imputación** : SHAP, InterpertHL
 
@@ -960,8 +965,8 @@ otro (data flow).
 - Mejor balance de forma simple (no efectiva) es utilizar lotes más pequeños en el main
   window. Y lotes más grandes en los de el resto de windows.
 
-- Paper Related: Existen diferentes tipos de paralelización, datos, torneos, modelo, etc.
-  → El paper de Movie Gear de Meta usa en su arquitectura diferentes tipos de
+- Paper Related: Existen diferentes tipos de paralelización, datos, torneos, modelo,
+  etc. → El paper de Movie Gear de Meta usa en su arquitectura diferentes tipos de
   paralelización → Las múltiples paralelizaciones pueden ser conjuntas → Mejor uso del
   hardware.
 
@@ -976,9 +981,10 @@ otro (data flow).
   - Predicciones online: busca un predicción para un punto, como se recibe una petición.
     → Un demandado. → RESTful.
 
-  - Las predicciones en batalles es cuando los predicciones son generadas dado un periodo
-    o hay un trigger → Almacenados. → Un tablas SQL en una máquina, y demuestra conforme
-    se requiere. → Los datos de bandas de datos, data warehouses. → Batches, Features.
+  - Las predicciones en batalles es cuando los predicciones son generadas dado un
+    periodo o hay un trigger → Almacenados. → Un tablas SQL en una máquina, y demuestra
+    conforme se requiere. → Los datos de bandas de datos, data warehouses. → Batches,
+    Features.
 
 - Data parallelism:
   - P, torch: DistributedDataParallel library
@@ -1016,8 +1022,8 @@ Objetivos de un Data Scientist:
 
 - Analistas: analizar y recopilar datos para la creación de datos.
 
-- Modeling: modelar datos (computacionales) mediante el uso de estadística, ML o similar.
-  → Busqueda de patrones.
+- Modeling: modelar datos (computacionales) mediante el uso de estadística, ML o
+  similar. → Busqueda de patrones.
 
 - Working with the customer or user: tener mayor relación directa con el negocio. →
   Decisión Making.
@@ -1040,16 +1046,16 @@ Data Scientist: ML Engineer.
 
 - Conocer el margen o rango de tiempo en el que recopilar datos para hacer estimaciones.
 
-Por ejemplo, en Telco, recopilar datos de 1 semana suele ser ideal para conocer el patron
-de variabilidad o existencia de diferentes patrones.
+Por ejemplo, en Telco, recopilar datos de 1 semana suele ser ideal para conocer el
+patron de variabilidad o existencia de diferentes patrones.
 
 - Usar Cache para almacenar resultados frecuentes. Puede ser común y necesario para
   reducir costes latentes, etc.
 
 - Duda → Rebalance. The training dataset → SHOTE
 
-- Map: Formato para guardar modelos basados en Java virtual machine (JVM), muy usado para
-  guardar pipelines de Spark.
+- Map: Formato para guardar modelos basados en Java virtual machine (JVM), muy usado
+  para guardar pipelines de Spark.
 
 - Tipos de depósito:
   1. On-pipeline: Servidores propios.
@@ -1069,9 +1075,9 @@ de variabilidad o existencia de diferentes patrones.
 
 **Cap.3**
 
-- **Training** → [Model] → [Data] → [Data] → [Data] → [Data] → [Data] → [Train] → [Train]
-  → [Train] → [Train] → [Train] → [Data] → [Data] → [Data] → [Data] → [Model] → [Model] →
-  [Model] → [Model] → [Model] → [Data] → [Data] → [Data] → [Data]
+- **Training** → [Model] → [Data] → [Data] → [Data] → [Data] → [Data] → [Train] →
+  [Train] → [Train] → [Train] → [Train] → [Data] → [Data] → [Data] → [Data] → [Model] →
+  [Model] → [Model] → [Model] → [Model] → [Data] → [Data] → [Data] → [Data]
 - **Automatizar**  
   **entrenamientos**
 - **Detector de Drills**  
@@ -1090,8 +1096,8 @@ de variabilidad o existencia de diferentes patrones.
    se produce una en el uso de los datos, que alteran los patrones, existentes → por
    ejemplo, el cambio de intensidad de color (interferencia en UVC).
 
-- Pobles, soluciones : usar PCA/ACE para medir el error de reconstrucción multivariable →
-  medir la divergencia de o similar (Jensen - Shannon) y divergencia para medir la
+- Pobles, soluciones : usar PCA/ACE para medir el error de reconstrucción multivariable
+  → medir la divergencia de o similar (Jensen - Shannon) y divergencia para medir la
   divergencia de los distribuciones de cada factore individualmente.
 
 - MAL → Esto es un drift en los datos, los relaciones no cubrirán cambios en nuevo,
@@ -1104,8 +1110,8 @@ de variabilidad o existencia de diferentes patrones.
 
 - En la detección de las características de los features, puede que algunos de los
   features requiera mayor relevancia que otros de los outros.  
-  Esto se conduce a una distinción entre los rasgos que resultan más relevantes y los que
-  resultan menos relevantes.
+  Esto se conduce a una distinción entre los rasgos que resultan más relevantes y los
+  que resultan menos relevantes.
 
 - Podemos tener en cuenta la importancia de las características en ambos de dos
   situaciones que podrían ser:
@@ -1120,8 +1126,8 @@ de variabilidad o existencia de diferentes patrones.
 
 - **SHAP, los valores de las características en el modelo de los rasgos, pero no en el
   orden de los rasgos**.  
-  Esto se conduce a una distinción entre los rasgos que resultan más relevantes y los que
-  resultan menos relevantes.
+  Esto se conduce a una distinción entre los rasgos que resultan más relevantes y los
+  que resultan menos relevantes.
 
 - **SHAP en el modelo de los rasgos**, como el orden de los rasgos, pero esto solo hace
   que se concurr en el orden de los rasgos.
@@ -1136,8 +1142,8 @@ de variabilidad o existencia de diferentes patrones.
   como el orden de los rasgos, pero esto solo hace que se concurr en el orden del rasgo.
 
 - **SHAP en el modelo de los rasgos**  
-  como el orden de las características, pero esto solo hace que se concurr en el orden de
-  las características.
+  como el orden de las características, pero esto solo hace que se concurr en el orden
+  de las características.
 
 - **SHAP en el modelo de los rasgos**  
   como el orden de la alerta, pero esto solo hace que se concurr en el orden de la
@@ -1172,8 +1178,8 @@ de variabilidad o existencia de diferentes patrones.
 
 - Kubeflow utiliza kafka como hyperparameter search.
 
-- A la hora de crear soluciones es bueno crear ejemplos de historias posibles de usuarios
-  / clientes para detectar necesidades y dificultades.
+- A la hora de crear soluciones es bueno crear ejemplos de historias posibles de
+  usuarios / clientes para detectar necesidades y dificultades.
 
 - Herramiento Time serie forecasting: Propret.
 

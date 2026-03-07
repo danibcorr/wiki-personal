@@ -36,10 +36,10 @@ El modelo de desarrollo abierto de Linux, sustentado por una comunidad global de
 desarrolladores y usuarios, facilita una evolución constante, con mejoras continuas en
 rendimiento, estabilidad y seguridad. Esta diversidad se manifiesta en la existencia de
 múltiples distribuciones que integran el _kernel_ con diferentes herramientas, entornos
-gráficos y gestores de paquetes. Cuando estas componentes se combinan con configuraciones
-específicas y, en muchos casos, un entorno gráfico, se obtiene una **distribución**.
-Ejemplos representativos como Ubuntu, Debian, Fedora o Arch Linux ilustran cómo un mismo
-núcleo puede ajustarse a contextos de uso muy distintos.
+gráficos y gestores de paquetes. Cuando estas componentes se combinan con
+configuraciones específicas y, en muchos casos, un entorno gráfico, se obtiene una
+**distribución**. Ejemplos representativos como Ubuntu, Debian, Fedora o Arch Linux
+ilustran cómo un mismo núcleo puede ajustarse a contextos de uso muy distintos.
 
 ### La terminal
 
@@ -65,10 +65,10 @@ que especifican el objetivo de la acción.
     formato detallado, y el argumento `/home/usuario`, que especifica la ubicación del
     directorio cuyo contenido se desea visualizar.
 
-El propio sistema facilita la consulta y el aprendizaje mediante documentación integrada.
-Para ello, herramientas como `man`, `help` o `type` permiten comprender el funcionamiento
-interno de los comandos y distinguir entre utilidades externas, funciones internas o
-alias definidos por el usuario.
+El propio sistema facilita la consulta y el aprendizaje mediante documentación
+integrada. Para ello, herramientas como `man`, `help` o `type` permiten comprender el
+funcionamiento interno de los comandos y distinguir entre utilidades externas, funciones
+internas o alias definidos por el usuario.
 
 Los manuales se encuentran organizados en secciones que agrupan la información según su
 naturaleza, lo que permite acceder de manera más precisa a la documentación. Las
@@ -84,10 +84,11 @@ secciones más comunes son las siguientes:
 4. **Archivos especiales y dispositivos**: Describe archivos del sistema y dispositivos
    especiales ubicados en `/dev` u otras rutas del sistema de archivos. Ejemplo:
    `/dev/null`.
-5. **Formatos de archivo y convenciones**: Incluye descripciones de formatos de archivos,
-   convenciones de configuración y estructuras de datos. Ejemplo: `/etc/passwd`.
-6. **Juegos y diversiones**: Contiene documentación sobre juegos, ejemplos o programas de
-   entretenimiento incluidos en el sistema.
+5. **Formatos de archivo y convenciones**: Incluye descripciones de formatos de
+   archivos, convenciones de configuración y estructuras de datos. Ejemplo:
+   `/etc/passwd`.
+6. **Juegos y diversiones**: Contiene documentación sobre juegos, ejemplos o programas
+   de entretenimiento incluidos en el sistema.
 7. **Miscelánea**: Agrupa temas varios, convenciones, estándares o programas que no
    encajan en otras secciones.
 8. **Comandos de administración del sistema**: Incluye comandos reservados para la
@@ -103,8 +104,8 @@ directamente a la información relevante.
     `man 1 open` podría referirse a un comando de usuario llamado `open`.
 
 No todos los comandos necesariamente cuentan con una sección específica en el manual, en
-algunos casos, la información puede encontrarse únicamente mediante otras herramientas de
-ayuda o documentación externa.
+algunos casos, la información puede encontrarse únicamente mediante otras herramientas
+de ayuda o documentación externa.
 
 ### Comandos básicos
 
@@ -135,8 +136,8 @@ administración de sistemas locales y remotos.
 
 Estos son algunos de los comandos más utilizados para el día a día. Sin embargo, existen
 aún más comandos cuyo comportamiento puede verse alterado gracias a las opciones que
-ofrecen. Es por ello que resulta impracticable enumerar todos los comandos de Linux junto
-con sus múltiples opciones, debido a la gran cantidad y diversidad que presentan.
+ofrecen. Es por ello que resulta impracticable enumerar todos los comandos de Linux
+junto con sus múltiples opciones, debido a la gran cantidad y diversidad que presentan.
 
 Por esta razón, es posible utilizar la opción `--help` en cualquier comando para obtener
 información detallada sobre su uso, incluyendo las opciones disponibles y una breve
@@ -192,10 +193,10 @@ proceso de montaje.
 
 Dentro de esta estructura destacan una serie de directorios esenciales, entre ellos:
 
-- **/boot**: Alberga los componentes necesarios para el arranque del sistema, incluido el
-  kernel y el gestor **GRUB** (un programa que aparece al iniciar Linux y permite manejar
-  el proceso de inicio, permitiéndote elegir el sistema operativo en caso de que tengas
-  varias particiones, por ejemplo).
+- **/boot**: Alberga los componentes necesarios para el arranque del sistema, incluido
+  el kernel y el gestor **GRUB** (un programa que aparece al iniciar Linux y permite
+  manejar el proceso de inicio, permitiéndote elegir el sistema operativo en caso de que
+  tengas varias particiones, por ejemplo).
 - **/etc**: Concentra los archivos de configuración en formato de texto plano,
   determinando el comportamiento del sistema y sus servicios.
 - **/bin** y **/sbin**: Contienen ejecutables imprescindibles para la operación básica y
@@ -227,15 +228,15 @@ administrativas.
 ### Seguridad y permisos
 
 Cada archivo o directorio define privilegios de **lectura**, **escritura** y
-**ejecución** para tres categorías claramente diferenciadas: a) el **propietario**, b) el
-**grupo** asociado y c) el resto de usuarios, denominados **otros**.
+**ejecución** para tres categorías claramente diferenciadas: a) el **propietario**, b)
+el **grupo** asociado y c) el resto de usuarios, denominados **otros**.
 
 Este esquema limita el acceso indebido a los recursos. Por encima de estas restricciones
 se sitúa el **superusuario**, identificado como `root`, que posee control total sobre el
 sistema y puede ignorar el modelo de permisos convencional.
 
-La categoría de **otros** representa a cualquier usuario que no sea ni el propietario del
-archivo ni miembro del grupo asociado.
+La categoría de **otros** representa a cualquier usuario que no sea ni el propietario
+del archivo ni miembro del grupo asociado.
 
 El sistema evalúa los permisos siguiendo un orden de prioridad estricto: primero
 comprueba si el usuario es el propietario, en cuyo caso aplica los permisos
@@ -252,8 +253,9 @@ Los permisos se visualizan habitualmente mediante el comando `ls -l`, que muestr
 cadena simbólica como `rwxr-xr--`.
 
 Esta notación agrupa los permisos en tres bloques de tres caracteres, cada uno
-correspondiente al propietario, al grupo y a otros, respectivamente. Cada carácter indica
-si el permiso de lectura (`r`), escritura (`w`) o ejecución (`x`) está concedido o no.
+correspondiente al propietario, al grupo y a otros, respectivamente. Cada carácter
+indica si el permiso de lectura (`r`), escritura (`w`) o ejecución (`x`) está concedido
+o no.
 
 ???+ example "Ejemplo"
 
@@ -284,8 +286,8 @@ si el permiso de lectura (`r`), escritura (`w`) o ejecución (`x`) está concedi
 
     Es importante destacar que cada bloque de tres caracteres sigue siempre el orden `rwx`.
 
-Cuando un permiso no está habilitado, se reemplaza con un guion (`-`). Por ejemplo, `r--`
-indica que únicamente se permite la lectura, mientras que `rw-` permite lectura y
+Cuando un permiso no está habilitado, se reemplaza con un guion (`-`). Por ejemplo,
+`r--` indica que únicamente se permite la lectura, mientras que `rw-` permite lectura y
 escritura, pero no ejecución.
 
 ### Modificación de permisos
@@ -295,8 +297,8 @@ Podemos modificar los permisos de los archivos y directorios utilizando el coman
 
 En la **notación octal**, cada permiso tiene un valor numérico fijo, donde la lectura
 equivale a 4, la escritura a 2 y la ejecución a 1. La suma de estos valores determina el
-permiso final para cada categoría. El comando recibe siempre tres dígitos que representan
-de izquierda a derecha los permisos del propietario, del grupo y de otros.
+permiso final para cada categoría. El comando recibe siempre tres dígitos que
+representan de izquierda a derecha los permisos del propietario, del grupo y de otros.
 
 ???+ example "Ejemplo"
 
@@ -321,13 +323,13 @@ emplear operadores para añadir, quitar o asignar permisos.
       que pudiera tener ese grupo (como el de escritura) de una sola vez.
 
 El sistema emplea el comando `umask` para definir los permisos **por defecto** de los
-nuevos archivos y directorios. Mientras que `chmod` modifica permisos existentes, `umask`
-actúa como una máscara que restringe los permisos máximos iniciales.
+nuevos archivos y directorios. Mientras que `chmod` modifica permisos existentes,
+`umask` actúa como una máscara que restringe los permisos máximos iniciales.
 
-Para los archivos, el sistema parte de un valor máximo de lectura y escritura para todos,
-y para los directorios, de permisos completos. El valor de `umask` indica qué permisos
-deben eliminarse automáticamente, de modo que cuanto más restrictiva sea la máscara, más
-limitados serán los permisos resultantes.
+Para los archivos, el sistema parte de un valor máximo de lectura y escritura para
+todos, y para los directorios, de permisos completos. El valor de `umask` indica qué
+permisos deben eliminarse automáticamente, de modo que cuanto más restrictiva sea la
+máscara, más limitados serán los permisos resultantes.
 
 ???+ example "Ejemplo"
 
@@ -347,8 +349,8 @@ limitados serán los permisos resultantes.
 Además de los permisos, cada archivo y directorio posee un **propietario** y un
 **grupo**, que determinan quién ejerce la autoridad principal sobre él.
 
-El comando `chown` permite modificar esta propiedad, definiendo quién es el dueño y a qué
-grupo pertenece un recurso. A diferencia de `chmod`, que puede ser utilizado por el
+El comando `chown` permite modificar esta propiedad, definiendo quién es el dueño y a
+qué grupo pertenece un recurso. A diferencia de `chmod`, que puede ser utilizado por el
 propietario del archivo para ajustar sus permisos, `chown` requiere privilegios
 administrativos, ya que cambiar la propiedad implica transferir el control efectivo del
 recurso.
@@ -391,10 +393,11 @@ simultáneamente, y puede aplicarse de forma recursiva a directorios completos.
 
 La gestión de usuarios se completa con comandos orientados a la creación y mantenimiento
 de cuentas. Herramientas como `adduser` permiten crear nuevos usuarios de forma
-interactiva, mientras que `passwd` se utiliza para establecer o modificar contraseñas. La
-pertenencia a grupos puede consultarse mediante `groups`, tanto para el usuario actual
-como para cualquier otro usuario del sistema, y modificarse añadiendo usuarios a grupos
-específicos, como `sudo`, para concederles capacidades administrativas controladas.
+interactiva, mientras que `passwd` se utiliza para establecer o modificar contraseñas.
+La pertenencia a grupos puede consultarse mediante `groups`, tanto para el usuario
+actual como para cualquier otro usuario del sistema, y modificarse añadiendo usuarios a
+grupos específicos, como `sudo`, para concederles capacidades administrativas
+controladas.
 
 ???+ example "Ejemplos"
 
@@ -421,8 +424,8 @@ inicia un programa, el sistema operativo carga el archivo binario en memoria, as
 recursos necesarios y lo transforma en un proceso activo.
 
 Cada proceso es gestionado por el kernel y recibe un identificador único denominado
-**PID** (_Process ID_). Todos los procesos forman una jerarquía cuyo origen es el proceso
-con PID 1, gestionado actualmente por **`systemd`**.
+**PID** (_Process ID_). Todos los procesos forman una jerarquía cuyo origen es el
+proceso con PID 1, gestionado actualmente por **`systemd`**.
 
 A lo largo de su ciclo de vida, un proceso puede encontrarse en distintos estados, que
 van desde ejecución activa hasta espera o finalización, y puede supervisarse mediante

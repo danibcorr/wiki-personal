@@ -58,8 +58,8 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
 #### Escalabilidad en bases de datos
 
 - **Bases de datos relacionales**: Su escalabilidad es principalmente **vertical**, es
-  decir, aumentar la capacidad de hardware de una sola máquina. Las bases _NewSQL_ buscan
-  combinar la robustez de los datos relacionales con la escalabilidad de sistemas
+  decir, aumentar la capacidad de hardware de una sola máquina. Las bases _NewSQL_
+  buscan combinar la robustez de los datos relacionales con la escalabilidad de sistemas
   _NoSQL_.
     <p align="center">
     <img src="https://ausum.cloud/wp-content/uploads/2024/07/unnamed-768x513.jpg"/>
@@ -89,7 +89,8 @@ Para interactuar con bases de datos relacionales, se utilizan consultas SQL o
 
 Las bases de datos pueden almacenarse en:
 
-- **Servidores locales (_On-Premise_)**: Propiedad y mantenimiento a cargo de la empresa.
+- **Servidores locales (_On-Premise_)**: Propiedad y mantenimiento a cargo de la
+  empresa.
 - **Servidores en la nube (_Serverless_)**: Servicios administrados por terceros, como
   AWS o Azure.
 
@@ -121,7 +122,7 @@ Especifica las columnas que se desean recuperar de la base de datos.
 
     Para seleccionar columnas específicas:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location
@@ -131,7 +132,7 @@ Especifica las columnas que se desean recuperar de la base de datos.
 
     Para recuperar todas las columnas, utiliza `*`:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT *
     FROM
       job_posting_fact
@@ -143,7 +144,7 @@ Indica la tabla de donde se extraen los datos.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location
@@ -157,7 +158,7 @@ Permite filtrar las filas según una condición específica.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location,
@@ -176,7 +177,7 @@ orden descendente, se utiliza `DESC`.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location,
@@ -194,7 +195,7 @@ Restringe el número de filas devueltas por la consulta.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location
@@ -209,7 +210,7 @@ Recupera solo filas únicas, eliminando duplicados.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT DISTINCT
       salary_year_avg
     FROM
@@ -232,7 +233,7 @@ en mayúsculas por convención. Se pueden añadir comentarios a las consultas SQ
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     -- Este es un comentario de una línea
 
     /*
@@ -253,7 +254,7 @@ deben ser verdaderas para que la fila sea incluida en el resultado.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       condition1 AND condition2
     ```
@@ -265,7 +266,7 @@ por `OR` debe ser verdadera para que la fila sea incluida en el resultado.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       condition1 OR condition2
     ```
@@ -277,7 +278,7 @@ la fila es incluida en el resultado.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       NOT condition
     ```
@@ -288,19 +289,19 @@ Selecciona valores dentro de un rango.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       column BETWEEN value1 AND value2
     ```
 
 #### LIKE
 
-Busca un patrón específico en una columna usando caracteres comodín. `%` representa cero,
-uno o varios caracteres.
+Busca un patrón específico en una columna usando caracteres comodín. `%` representa
+cero, uno o varios caracteres.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       column LIKE 'pattern%'
     ```
@@ -311,7 +312,7 @@ Comprueba si un valor está en una lista de valores especificados.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       column IN (value1, value2, value3)
     ```
@@ -322,7 +323,7 @@ Compara si un valor es mayor o menor que el especificado.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       column > value
     ```
@@ -333,7 +334,7 @@ Compara si un valor es mayor o igual, o menor o igual al especificado.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       column >= value
     ```
@@ -345,7 +346,7 @@ Compara si un valor es mayor o igual, o menor o igual al especificado.
     combinar los operadores `AND`, `OR` y `BETWEEN` para formar una condición compleja en la
     cláusula `WHERE`, obteniendo la siguiente consulta:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short,
       job_location,
@@ -373,7 +374,7 @@ Este comodín representa cero, uno o varios caracteres.
     Por ejemplo, si se desea buscar todos los trabajos que contengan la palabra 'Analyst'
     en cualquier parte del título, se podría utilizar la siguiente consulta:
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       job_title LIKE '%Analyst%'
     ```
@@ -387,7 +388,7 @@ Este comodín representa exactamente un carácter.
     Por ejemplo, si se desea buscar todos los trabajos cuyo título tenga exactamente 10
     caracteres, se podría utilizar la siguiente consulta:
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       job_title LIKE '__________'
     ```
@@ -408,7 +409,7 @@ consultas.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_title_short AS job_title
     FROM
@@ -417,12 +418,12 @@ consultas.
 
 ### Operaciones
 
-SQL permite realizar operaciones aritméticas como suma, resta, multiplicación, división y
-módulo.
+SQL permite realizar operaciones aritméticas como suma, resta, multiplicación, división
+y módulo.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       hours_spent,
       hours_rate +  5 AS rate_hike
@@ -455,7 +456,7 @@ Estas funciones se pueden usar con las cláusulas `GROUP BY` y `HAVING`:
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       -- Realizar la suma de todos los salarios
       SUM(job_posting_fact.salary_year_avg) AS salary_sum,
@@ -482,7 +483,7 @@ Estas funciones se pueden usar con las cláusulas `GROUP BY` y `HAVING`:
     Otro ejemplo que muestra cómo se pueden usar estas funciones y cláusulas para obtener
     información más detallada sobre los trabajos:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       -- Nos quedamos con los tipos de trabajos
       job_posting_fact.job_title_short as Trabajos,
@@ -520,20 +521,20 @@ valores utilizando la cláusula `IS NOT NULL` en una consulta `WHERE`.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WHERE
       salary_year_avg IS NOT NULL
     ```
 
-Otra estrategia es reemplazar los valores `NULL` con un valor calculado, como el promedio
-de los valores no nulos que pertenecen a la misma categoría. Por ejemplo, si tenemos una
-tabla de ofertas de trabajo donde algunos registros tienen salarios publicados y otros
-no, podríamos rellenar los valores `NULL` con la media de los salarios de la misma
-categoría de trabajo.
+Otra estrategia es reemplazar los valores `NULL` con un valor calculado, como el
+promedio de los valores no nulos que pertenecen a la misma categoría. Por ejemplo, si
+tenemos una tabla de ofertas de trabajo donde algunos registros tienen salarios
+publicados y otros no, podríamos rellenar los valores `NULL` con la media de los
+salarios de la misma categoría de trabajo.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     UPDATE empleados
     SET salario = (
       SELECT AVG(salario)
@@ -568,7 +569,7 @@ Existen cuatro tipos de `JOIN`:
     datos asociados a ese identificador, como el nombre de la empresa, podemos hacer lo
     siguiente:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
       job_postings_fact.job_id,
       company_dim.name as Empresa
@@ -590,9 +591,10 @@ Existen cuatro tipos de `JOIN`:
 
 Para instalar PostgreSQL en Linux (PopOS en este caso), sigue estos pasos:
 
-1. **Instalación de PostgreSQL**: Puedes instalar PostgreSQL desde el repositorio oficial
-   de PostgreSQL o desde los repositorios de tu distribución. En PopOS, que está basado
-   en Ubuntu, puedes usar `apt`. Abre un terminal y ejecuta los siguientes comandos:
+1. **Instalación de PostgreSQL**: Puedes instalar PostgreSQL desde el repositorio
+   oficial de PostgreSQL o desde los repositorios de tu distribución. En PopOS, que está
+   basado en Ubuntu, puedes usar `apt`. Abre un terminal y ejecuta los siguientes
+   comandos:
 
    ```bash linenums="1"
    sudo apt update
@@ -602,9 +604,9 @@ Para instalar PostgreSQL en Linux (PopOS en este caso), sigue estos pasos:
    Esto instalará PostgreSQL y algunas utilidades adicionales.
 
 2. **Interfaz de usuario gráfica (GUI)**: Aunque PostgreSQL no viene con una interfaz
-   gráfica por defecto, puedes instalar pgAdmin, que es una interfaz gráfica popular para
-   PostgreSQL. Puedes instalar pgAdmin desde el repositorio oficial o descargándolo desde
-   su sitio web.
+   gráfica por defecto, puedes instalar pgAdmin, que es una interfaz gráfica popular
+   para PostgreSQL. Puedes instalar pgAdmin desde el repositorio oficial o descargándolo
+   desde su sitio web.
 
    Alternativamente, puedes usar herramientas de línea de comandos como `psql`, o
    integrar PostgreSQL con editores de texto como VS Code a través de extensiones.
@@ -622,36 +624,37 @@ Para instalar PostgreSQL en Linux (PopOS en este caso), sigue estos pasos:
    esperas.
 
 4. **Creación de un usuario y una base de datos**: Una vez instalado PostgreSQL, puedes
-   crear un usuario y una base de datos. Primero, cambia al usuario `postgres` y accede a
-   la consola `psql`:
+   crear un usuario y una base de datos. Primero, cambia al usuario `postgres` y accede
+   a la consola `psql`:
 
    ```bash linenums="1"
    sudo -i -u postgres
    psql
    ```
 
-   En la consola `psql`, ejecuta los siguientes comandos para crear un usuario y una base
-   de datos:
+   En la consola `psql`, ejecuta los siguientes comandos para crear un usuario y una
+   base de datos:
 
-   ```sql
+   ```sql linenums="1"
    CREATE USER nombre_usuario WITH ENCRYPTED PASSWORD 'clave';
    CREATE DATABASE nombre_database OWNER nombre_usuario;
    ```
 
-   Reemplaza `nombre_usuario` y `nombre_database` con los nombres deseados, y `clave` con
-   la contraseña deseada.
+   Reemplaza `nombre_usuario` y `nombre_database` con los nombres deseados, y `clave`
+   con la contraseña deseada.
 
 5. **Instalación de extensiones en VS Code**: Para trabajar con PostgreSQL en VS Code,
    instala las siguientes extensiones:
    - **SQLTools**: Proporciona soporte para consultas SQL y gestión de bases de datos.
    - **SQLTools PostgreSQL**: Un complemento específico para PostgreSQL.
 
-   Puedes buscar e instalar estas extensiones desde la pestaña de extensiones en VS Code.
+   Puedes buscar e instalar estas extensiones desde la pestaña de extensiones en VS
+   Code.
 
 6. **Permisos del usuario**: El usuario creado no tiene permisos para crear bases de
    datos por defecto. Para otorgar permisos, ejecuta el siguiente comando en `psql`:
 
-   ```sql
+   ```sql linenums="1"
    ALTER USER nombre_usuario CREATEDB;
    ```
 
@@ -661,12 +664,12 @@ Además, algunos comandos útiles en `psql` son:
 
 - **Listar bases de datos**:
 
-  ```sql
+  ```sql linenums="1"
   \l
   ```
 
 - **Listar usuarios**:
-  ```sql
+  ```sql linenums="1"
   \du
   ```
 
@@ -689,7 +692,7 @@ Este tipo de datos se utiliza para almacenar números enteros.
     Si tenemos una tabla de `empleados` y queremos almacenar la `edad` de cada empleado,
     puedes usar el tipo de datos `INT`.
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE empleados (
       id INT,
       nombre VARCHAR(100),
@@ -699,15 +702,15 @@ Este tipo de datos se utiliza para almacenar números enteros.
 
 #### VARCHAR o TEXT
 
-Estos tipos de datos se utilizan para almacenar cadenas de caracteres. `VARCHAR` requiere
-que especifiques una longitud máxima para los caracteres. `TEXT` se utiliza para cadenas
-de caracteres de longitud variable.
+Estos tipos de datos se utilizan para almacenar cadenas de caracteres. `VARCHAR`
+requiere que especifiques una longitud máxima para los caracteres. `TEXT` se utiliza
+para cadenas de caracteres de longitud variable.
 
 ???+ example "Ejemplo"
 
     Podemos usar `VARCHAR` para almacenar el `nombre` de los empleados.
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE empleados (
       id INT,
       nombre VARCHAR(100),
@@ -725,7 +728,7 @@ falso (1 o 0).
     Si queremos almacenar si un empleado ha completado una tarea, puedes usar el tipo de
     datos `BOOLEAN`.
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE tareas (
       id INT,
       descripcion VARCHAR(255),
@@ -741,7 +744,7 @@ Este tipo de datos se utiliza para almacenar fechas y horas.
 
     Podemos usar `TIMESTAMP` para almacenar la `fecha_de_contratacion` de un empleado.
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE empleados (
       id INT,
       nombre VARCHAR(100),
@@ -757,7 +760,7 @@ Este tipo de datos se utiliza para almacenar números decimales o de precisión 
 
     Podemos usar `NUMERIC` para almacenar el `salario` de un empleado.
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE empleados (
       id INT,
       nombre VARCHAR(100),
@@ -778,7 +781,7 @@ Crea nuevas tablas.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     CREATE TABLE job_applied(
       job_id INT,
       application_sent_date DATE,
@@ -799,7 +802,7 @@ Añade datos a una tabla.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     INSERT INTO job_applied(
       job_id,
       application_sent_date,
@@ -833,7 +836,7 @@ Modifica la estructura de una tabla existente.
 
     Podemos añadir una nueva columna a una tabla existente de la siguiente manera:
 
-    ```sql
+    ```sql  linenums="1"
     ALTER TABLE empleados
     ADD COLUMN email VARCHAR(255);
     ```
@@ -844,7 +847,7 @@ Modifica la estructura de una tabla existente.
     También podemos eliminar una columna existente de una tabla utilizando la instrucción
     `ALTER TABLE`.
 
-    ```sql
+    ```sql  linenums="1"
     ALTER TABLE empleados
     DROP COLUMN email;
     ```
@@ -859,7 +862,7 @@ Elimina una tabla y sus datos.
 
     Si queremos eliminar la tabla `empleados`, puedes hacerlo de la siguiente manera:
 
-    ```sql
+    ```sql  linenums="1"
     DROP TABLE empleados;
     ```
 
@@ -879,7 +882,7 @@ ciertas filas o columnas.
 
 !!! note "Sintaxis"
 
-    ```sql
+    ```sql  linenums="1"
     UPDATE nombre_tabla
     SET columna1 = valor1, columna2 = valor2, ...
     WHERE condicion;
@@ -899,19 +902,20 @@ ciertas filas o columnas.
     empleados que tienen un salario inferior a 30000 en un 10%, se podría hacer de la
     siguiente manera:
 
-    ```sql
+    ```sql  linenums="1"
     UPDATE empleados
     SET salario = salario * 1.1
     WHERE salario < 30000;
     ```
 
 En este caso, la cláusula `WHERE` se utiliza para seleccionar solo las filas donde el
-salario es inferior a 30000. Luego, la cláusula `SET` se utiliza para aumentar el salario
-de esas filas en un 10%.
+salario es inferior a 30000. Luego, la cláusula `SET` se utiliza para aumentar el
+salario de esas filas en un 10%.
 
-Es muy importante utilizar la cláusula `WHERE` cuando se utiliza la instrucción `UPDATE`,
-para evitar cambios no deseados en los datos. Siempre es una buena práctica hacer una
-copia de seguridad de los datos antes de realizar operaciones que pueden modificarlos.
+Es muy importante utilizar la cláusula `WHERE` cuando se utiliza la instrucción
+`UPDATE`, para evitar cambios no deseados en los datos. Siempre es una buena práctica
+hacer una copia de seguridad de los datos antes de realizar operaciones que pueden
+modificarlos.
 
 ### Tratamiento de columnas
 
@@ -923,7 +927,7 @@ Utilizando `RENAME COLUMN`.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     ALTER TABLE job_applied
     RENAME COLUMN contact TO contact_name;
     ```
@@ -934,7 +938,7 @@ Utilizando `TYPE`.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     ALTER TABLE job_applied
     ALTER COLUMN contact_name TYPE TEXT;
     ```
@@ -945,7 +949,7 @@ Utilizando `DROP COLUMN`.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     ALTER TABLE job_applied
     DROP COLUMN contact_name;
     ```
@@ -956,15 +960,15 @@ La instrucción `COPY` se usa para importar datos desde un archivo CSV a una tab
 
 !!! note "Sintaxis"
 
-    ```sql
+    ```sql  linenums="1"
     COPY nombre_tabla
     FROM ruta_archivo_csv
     DELIMITER ',' CSV HEADER;
     ```
 
-Aquí, `nombre_tabla` es la tabla destino, `ruta_archivo_csv` es la ubicación del archivo,
-y `DELIMITER ',' CSV HEADER` indica el delimitador y que la primera fila contiene los
-nombres de las columnas.
+Aquí, `nombre_tabla` es la tabla destino, `ruta_archivo_csv` es la ubicación del
+archivo, y `DELIMITER ',' CSV HEADER` indica el delimitador y que la primera fila
+contiene los nombres de las columnas.
 
 ### Funciones para fechas
 
@@ -976,7 +980,7 @@ Convierte un valor de fecha y hora a solo fecha.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT fecha_hora::DATE FROM nombre_tabla;
     ```
 
@@ -986,7 +990,7 @@ Convierte una fecha y hora a una zona horaria específica.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT NOW() AT TIME ZONE 'UTC';
     ```
 
@@ -998,7 +1002,7 @@ Obtiene partes específicas de una fecha.
 
     Ejemplo para filtrar fechas de enero:
 
-    ```sql
+    ```sql  linenums="1"
     WHERE EXTRACT(MONTH FROM fecha) = 1;
     ```
 
@@ -1016,7 +1020,7 @@ lenguajes de programación.
     Si se desea clasificar los trabajos en función del salario, se podría utilizar la
     siguiente consulta:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT job_title,
       CASE
         WHEN salary_year_avg > 100000 THEN 'High'
@@ -1039,7 +1043,7 @@ que permiten realizar consultas más complejas.
     Si se desea obtener el salario promedio de los trabajos de 'Data Scientist', se podría
     utilizar una subconsulta de la siguiente manera:
 
-    ```sql
+    ```sql  linenums="1"
     SELECT AVG(salary_year_avg)
     FROM (
       SELECT salary_year_avg
@@ -1056,7 +1060,7 @@ que permiten realizar consultas más complejas.
 
 ???+ example "Ejemplo"
 
-    ```sql
+    ```sql  linenums="1"
     WITH data_scientist_jobs AS (
       SELECT *
       FROM job_posting_fact
@@ -1078,7 +1082,7 @@ La operación `UNION` combina los resultados de varias consultas `SELECT`.
     Ejemplo para obtener títulos de trabajo únicos de 'Data Scientist' y 'Machine Learning
     Engineer':
 
-    ```sql
+    ```sql  linenums="1"
     SELECT job_title
     FROM job_posting_fact
     WHERE job_title = 'Data Scientist'

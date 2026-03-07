@@ -8,9 +8,9 @@ title: Logs
 
 ## Creación y registro de logs con Loguru
 
-El logging permite registrar y monitorizar las actividades de las aplicaciones durante su
-ejecución. A diferencia de `print`, los logs proporcionan una forma más estructurada y
-sofisticada de gestionar mensajes, lo cual es esencial en aplicaciones en producción.
+El logging permite registrar y monitorizar las actividades de las aplicaciones durante
+su ejecución. A diferencia de `print`, los logs proporcionan una forma más estructurada
+y sofisticada de gestionar mensajes, lo cual es esencial en aplicaciones en producción.
 
 Loguru simplifica la configuración de logs en comparación con la biblioteca `logging` de
 Python, que es más compleja de configurar. Loguru opera a través de una única instancia
@@ -28,8 +28,8 @@ from loguru import logger
 logger.info("¡Hola!, esto es un mensaje de información")
 ```
 
-Este código genera un log que incluye información sobre la fecha, hora de ejecución, tipo
-de log (`INFO`), función, módulo y la línea de código correspondiente.
+Este código genera un log que incluye información sobre la fecha, hora de ejecución,
+tipo de log (`INFO`), función, módulo y la línea de código correspondiente.
 
 ### Niveles de logs
 

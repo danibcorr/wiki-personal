@@ -18,13 +18,14 @@ Aquí se reúnen las palabras, términos, conceptos etc. claves a tener en cuent
 recordatorio. No tiene ningún tipo de orden.
 
 - **La letra ‘x’ se asocia a la variable independiente**, lo que usamos para hacer
-  predicciones, por ejemplo imágenes. Mientras que la **letra ‘y’ se asocia a la variable
-  dependiente**, lo que se denominan etiquetas y es nuestro objetivo obtener una
-  predicción que tenga una alta probabilidad de parecerse a dicha ‘y’, un ejemplo de
+  predicciones, por ejemplo imágenes. Mientras que la **letra ‘y’ se asocia a la
+  variable dependiente**, lo que se denominan etiquetas y es nuestro objetivo obtener
+  una predicción que tenga una alta probabilidad de parecerse a dicha ‘y’, un ejemplo de
   etiquetas pueden ser los nombres de las imágenes que permiten clasificar razas de
   perros.
-- **weigth** = pesos: valores aleatorios con los que se inicializan a las neuronas, estos
-  parámetros son fundamentales para determinar el tipo de funcionamiento de una red.
+- **weigth** = pesos: valores aleatorios con los que se inicializan a las neuronas,
+  estos parámetros son fundamentales para determinar el tipo de funcionamiento de una
+  red.
   - Forma (shape) → w(tamaño input, número de neuronas)
 - **bias** = sesgo:
   - Forma (shape) → b(1, número de neuronas)
@@ -44,8 +45,8 @@ recordatorio. No tiene ningún tipo de orden.
   independientes y un lote de variables dependientes.
 - **one-hot encoding**: vectores de 0’s con el tamaño del número de clases que tenga el
   dataset, cada categoría representa una posición en el vector por lo que si la imagen
-  contiene algún elemento de alguna clase el vector tendrá un 1 en la posición del vector
-  que corresponderá a su clase.
+  contiene algún elemento de alguna clase el vector tendrá un 1 en la posición del
+  vector que corresponderá a su clase.
 - Es importante saber que **una clasificación** pretende predecir una clase o categoría
   mientras que un modelo de **regresión** intenta predecir 1 o más cantidades numéricas.
 
@@ -160,9 +161,9 @@ for epoca in range(num_epocas):
 
 En ocasiones durante el entrenamiento la función de pérdida se puede quedar estancada y
 el modelo, a pesar de seguir entrenando, no mejora. Realizando modificaciones en el
-learning rate podemos conseguir que el modelo mejore. En concreto, en algunos papers como
-el de VGG o GoogleLeNet utilizan un scheduler en el que reducen el learning rate en un
-factor de 10 **(learning_rate_actual = learning_rate_anterior \* 0.1)** al reducir el
+learning rate podemos conseguir que el modelo mejore. En concreto, en algunos papers
+como el de VGG o GoogleLeNet utilizan un scheduler en el que reducen el learning rate en
+un factor de 10 **(learning_rate_actual = learning_rate_anterior \* 0.1)** al reducir el
 learning rate conforme se avanza en el aprendizaje podemos mejorar el accuracy y reducir
 la función de pérdida.
 

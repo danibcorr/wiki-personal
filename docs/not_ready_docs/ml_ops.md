@@ -13,8 +13,8 @@ description: Realizado por Daniel Bazo Correa.
 
 La implementación de la inteligencia artificial a nivel industrial no se limita a la
 creación de modelos. Existen otros desafíos al llevar estos procedimientos a producción.
-En general, el trabajo de un ingeniero de inteligencia artificial se divide en un 10% del
-tiempo dedicado al desarrollo de modelos y un 90% a la ingeniería, como el
+En general, el trabajo de un ingeniero de inteligencia artificial se divide en un 10%
+del tiempo dedicado al desarrollo de modelos y un 90% a la ingeniería, como el
 preprocesamiento de datos, obtención de características, optimización, evaluación y
 monitoreo de los modelos desarollados, creación y gestión des infraestructuras, entre
 otros.
@@ -34,10 +34,10 @@ esquema similar al siguiente:
 Cada paso siguiente proporciona información de retroalimentación para mejorar los
 resultados del modelo puesto en producción. Es importante tener en cuenta que un cambio
 en una parte requiere realizar cambios en el resto de componentes, por ejemplo, cambios
-de modelo, actualización de datos, reetiquetado, etc. Por lo tanto, se trata de un modelo
-continuo, donde el objetivo es poder obtener todas las métricas posibles para después del
-despliegue del modelo obtener información de latencia, sesgos, explicabilidad, etc, con
-la que mejorar la calidad de experiencia del usuario final.
+de modelo, actualización de datos, reetiquetado, etc. Por lo tanto, se trata de un
+modelo continuo, donde el objetivo es poder obtener todas las métricas posibles para
+después del despliegue del modelo obtener información de latencia, sesgos,
+explicabilidad, etc, con la que mejorar la calidad de experiencia del usuario final.
 
 Los datos son esenciales para la fiabilidad y eficiencia de los sistemas de inteligencia
 artificial. _MLOps_ y _DevOps_ son prácticas de ingeniería que buscan optimizar estos
@@ -45,36 +45,36 @@ sistemas. _MLOps_ combina Machine Learning, DevOps y desarrollo de software para
 estandarizar y simplificar la implementación, pruebas y liberación de modelos de Machine
 Learning. _DevOps_ une a los equipos de desarrollo y operaciones para mejorar la
 velocidad de entrega y la calidad del producto. Ambas prácticas se centran en la
-automatización, el monitoreo y la colaboración para asegurar la eficiencia y seguridad de
-los sistemas.
+automatización, el monitoreo y la colaboración para asegurar la eficiencia y seguridad
+de los sistemas.
 
 Podemos crear dos tipos de sistemas principales:
 
 - **_Model-centric_**, donde los datos son fijos y se mejora el código o el modelo.
 - **_Data-centric_**, donde los modelos son fijos y se mejora los datos.
 
-Los sistemas _Data-centric_ suelen ser más relevantes o utilizados debido a la naturaleza
-dinámica de los datos. Con el tiempo, los datos cambian y evolucionan, lo que puede
-afectar el rendimiento de los modelos de Machine Learning. Un ejemplo ilustrativo de esto
-se encuentra en los sistemas de predicción de emociones en textos. Uno de los conjuntos
-de datos más populares para este propósito es el de _IMDB_. Sin embargo, los datos de
-_IMDB_ se recopilaron en un período de tiempo anterior, cuando las formas de expresión
-escrita, los gustos y las tendencias eran diferentes a los actuales. Esto significa que
-si se utilizan datos más recientes con un modelo entrenado con los datos de _IMDB_, las
-predicciones del modelo podrían verse negativamente afectadas debido a estas diferencias.
-Por lo tanto, en tales casos, es crucial actualizar y mejorar los datos para mantener la
-eficacia del modelo.
+Los sistemas _Data-centric_ suelen ser más relevantes o utilizados debido a la
+naturaleza dinámica de los datos. Con el tiempo, los datos cambian y evolucionan, lo que
+puede afectar el rendimiento de los modelos de Machine Learning. Un ejemplo ilustrativo
+de esto se encuentra en los sistemas de predicción de emociones en textos. Uno de los
+conjuntos de datos más populares para este propósito es el de _IMDB_. Sin embargo, los
+datos de _IMDB_ se recopilaron en un período de tiempo anterior, cuando las formas de
+expresión escrita, los gustos y las tendencias eran diferentes a los actuales. Esto
+significa que si se utilizan datos más recientes con un modelo entrenado con los datos
+de _IMDB_, las predicciones del modelo podrían verse negativamente afectadas debido a
+estas diferencias. Por lo tanto, en tales casos, es crucial actualizar y mejorar los
+datos para mantener la eficacia del modelo.
 
-Una de las primeras y más importantes preguntas que debemos plantearnos es: **¿Cuál es el
-problema que el negocio está tratando de resolver?**. Comprender el contexto del negocio
-es crucial para el éxito de cualquier proyecto . Esto incluye conocer a los usuarios
-finales y sus necesidades, considerar los costos asociados con la recopilación y
-almacenamiento de datos, y evaluar si la inteligencia artificial es realmente la solución
-más adecuada para el problema en cuestión. Además, es importante entender el tipo de
-problema que estamos tratando de resolver, la información específica del dominio que
-podemos obtener, y las implicaciones de las predicciones incorrectas. Por ejemplo, ¿cómo
-afectarían al negocio las predicciones incorrectas? ¿Podrían tener un impacto financiero
-o de reputación? ¿Cómo podemos minimizar este riesgo?.
+Una de las primeras y más importantes preguntas que debemos plantearnos es: **¿Cuál es
+el problema que el negocio está tratando de resolver?**. Comprender el contexto del
+negocio es crucial para el éxito de cualquier proyecto . Esto incluye conocer a los
+usuarios finales y sus necesidades, considerar los costos asociados con la recopilación
+y almacenamiento de datos, y evaluar si la inteligencia artificial es realmente la
+solución más adecuada para el problema en cuestión. Además, es importante entender el
+tipo de problema que estamos tratando de resolver, la información específica del dominio
+que podemos obtener, y las implicaciones de las predicciones incorrectas. Por ejemplo,
+¿cómo afectarían al negocio las predicciones incorrectas? ¿Podrían tener un impacto
+financiero o de reputación? ¿Cómo podemos minimizar este riesgo?.
 
 ## 1.2. Herramientas
 
@@ -86,9 +86,9 @@ son:
   consumen datos y producen artefactos. Estos artefactos se integran en un registro del
   modelo para su evaluación y, posteriormente, se utilizan para ofrecer un servicio.
 
-- **ZenML**: Es una herramienta que permite desarrollar, ejecutar y gestionar sistemas de
-  Machine Learning. ZenML se basa en la arquitectura de _pipeline_, lo que facilita la
-  organización y reproducibilidad de los procesos de ML.
+- **ZenML**: Es una herramienta que permite desarrollar, ejecutar y gestionar sistemas
+  de Machine Learning. ZenML se basa en la arquitectura de _pipeline_, lo que facilita
+  la organización y reproducibilidad de los procesos de ML.
 
 Estas herramientas son fundamentales en el campo de MLOps, ya que proporcionan las
 funcionalidades necesarias para manejar eficientemente los flujos de trabajo de Machine
@@ -109,13 +109,14 @@ o escalar automáticamente según las necesidades del sistema.
 En general, dispondremos de un espacio de trabajo, denominado _workspace_, que
 proporciona un entorno para desarrollar sistemas utilizando las herramientas mencionadas
 anteriormente y que se ejecutará en un cluster. El objetivo es primero diseñar el
-producto, para posteriormente diseñar el sistema y finalmente comenzar con su desarrollo.
+producto, para posteriormente diseñar el sistema y finalmente comenzar con su
+desarrollo.
 
 ### 2.1.2. Producto
 
-El diseño del producto debe justificar la necesidad del producto y detallar sus objetivos
-e impacto. Para llevar a cabo el diseño del producto, debemos plantearnos una serie de
-preguntas que pueden surgir al seguir los pasos siguientes:
+El diseño del producto debe justificar la necesidad del producto y detallar sus
+objetivos e impacto. Para llevar a cabo el diseño del producto, debemos plantearnos una
+serie de preguntas que pueden surgir al seguir los pasos siguientes:
 
 1. **Definición del producto**: Identifica la necesidad del producto y describe sus
    objetivos e impacto.
@@ -131,8 +132,8 @@ preguntas que pueden surgir al seguir los pasos siguientes:
 
 5. **Solución**: Describe la solución necesaria para cumplir con tus objetivos,
    incluyendo las características principales que se desarrollarán, cómo se integrará el
-   producto con otros servicios, las soluciones alternativas que deberías considerar, las
-   limitaciones de las que debes ser consciente y las características que no vas a
+   producto con otros servicios, las soluciones alternativas que deberías considerar,
+   las limitaciones de las que debes ser consciente y las características que no vas a
    desarrollar por ahora.
 
 6. **Factibilidad**: Evalúa qué tan factible es tu solución y si tienes los recursos
@@ -150,17 +151,18 @@ aspectos:
    producción, el proceso de etiquetado y cómo decidimos sobre las características y
    etiquetas.
 
-3. **Métricas**: Vincula nuestros objetivos principales, que pueden ser cualitativos, con
-   métricas cuantitativas hacia las cuales nuestro modelo puede optimizar.
+3. **Métricas**: Vincula nuestros objetivos principales, que pueden ser cualitativos,
+   con métricas cuantitativas hacia las cuales nuestro modelo puede optimizar.
 
 4. **Evaluación del modelo**: Realiza la evaluación del modelo una vez que tenemos
    definidas nuestras métricas. Esto puede ser una evaluación sin conexión que requiere
-   un conjunto de datos de referencia estándar, o una evaluación en línea que asegura que
-   nuestro modelo continúe funcionando bien en producción.
+   un conjunto de datos de referencia estándar, o una evaluación en línea que asegura
+   que nuestro modelo continúe funcionando bien en producción.
 
 5. **Rendimiento en tiempo real**: Mide el rendimiento en tiempo real antes de
-   comprometernos a reemplazar nuestra versión existente del sistema. Esto puede implicar
-   la implementación de canarios internos, monitoreo del rendimiento proxy/real, etc.
+   comprometernos a reemplazar nuestra versión existente del sistema. Esto puede
+   implicar la implementación de canarios internos, monitoreo del rendimiento
+   proxy/real, etc.
 
 6. **Modelado**: Sigue principios básicos como la utilidad de extremo a extremo, prueba
    un sistema simple basado en reglas antes de pasar a otros más complejos, permite que
@@ -178,31 +180,32 @@ aspectos:
      separado para manejar las solicitudes y un monitoreo en tiempo real para evitar
      predicciones erróneas debido a un espacio de entrada ilimitado.
 
-8. **Retroalimentación**: Recibe retroalimentación sobre nuestro sistema e incorpórala en
-   la siguiente iteración. Esto puede involucrar tanto retroalimentación humana en el
+8. **Retroalimentación**: Recibe retroalimentación sobre nuestro sistema e incorpórala
+   en la siguiente iteración. Esto puede involucrar tanto retroalimentación humana en el
    ciclo como retroalimentación automática a través de la monitorización, etc.
 
 9. **Impacto real**: Asegúrate de que nuestros sistemas de ML estén teniendo un impacto
-   real. Interactúa constantemente con nuestros usuarios para iterar sobre por qué existe
-   nuestro sistema de ML y cómo puede mejorarse.
+   real. Interactúa constantemente con nuestros usuarios para iterar sobre por qué
+   existe nuestro sistema de ML y cómo puede mejorarse.
 
 ## 2.2. Datos
 
 ### 2.2.1. Origen, ubicación y división de los datos
 
 1. **Origen de los datos**: En cualquier proyecto de MLOps, los datos son el punto de
-   partida. Estos pueden provenir de diversas fuentes, como una base de datos, un archivo
-   CSV, un servicio web, entre otros.
+   partida. Estos pueden provenir de diversas fuentes, como una base de datos, un
+   archivo CSV, un servicio web, entre otros.
 
 2. **Ubicación de los datos**: La ubicación de los datos puede variar en función de las
    necesidades del sistema.
    - En **sistemas más sencillos**, donde la cantidad de datos no es muy grande, puede
-     ser suficiente alojarlos localmente en un servidor controlado por la propia empresa.
+     ser suficiente alojarlos localmente en un servidor controlado por la propia
+     empresa.
    - Sin embargo, si se requiere escalar el sistema o integrarlo con otras tecnologías,
      herramientas o utilidades, puede ser necesario recurrir a **servicios en la nube**
      proporcionados por empresas como Amazon S3 o Google Cloud Storage. Estos servicios
-     ofrecen la flexibilidad y escalabilidad necesarias para manejar grandes volúmenes de
-     datos y facilitar su acceso y procesamiento.
+     ofrecen la flexibilidad y escalabilidad necesarias para manejar grandes volúmenes
+     de datos y facilitar su acceso y procesamiento.
 
 3. **División de los datos**: Una vez que se han obtenido los datos, se procede a su
    división en conjuntos de entrenamiento, validación y pruebas. Esta división es
@@ -230,20 +233,21 @@ aspectos:
 3. **Evaluación del impacto de las técnicas de balanceo en el rendimiento del modelo**:
    Sin embargo, es importante tener en cuenta que el sobremuestreo puede llevar al
    sobreajuste si se generan ejemplos muy similares, y el submuestreo puede resultar en
-   pérdida de información si se eliminan ejemplos potencialmente útiles. Por lo tanto, se
-   deben aplicar con cuidado y evaluar su impacto en el rendimiento del modelo.
+   pérdida de información si se eliminan ejemplos potencialmente útiles. Por lo tanto,
+   se deben aplicar con cuidado y evaluar su impacto en el rendimiento del modelo.
 
 ### 2.2.3. Análisis Exploratorio de Datos (EDA)
 
 El _Exploratory Data Analysis (EDA)_ es un proceso cíclico que puede implementarse en
-diferentes etapas del desarrollo del proyecto, ya sea antes o después del etiquetado y el
-preprocesamiento de los datos, dependiendo de la definición del problema. El objetivo es
-comprender el conjunto de datos para asegurar que sea adecuado para la tarea en cuestión.
+diferentes etapas del desarrollo del proyecto, ya sea antes o después del etiquetado y
+el preprocesamiento de los datos, dependiendo de la definición del problema. El objetivo
+es comprender el conjunto de datos para asegurar que sea adecuado para la tarea en
+cuestión.
 
 Este proceso incluye varias actividades, entre las que se encuentran:
 
-1. **Visualización de gráficos**: Esta actividad permite obtener información relevante de
-   los datos. Por ejemplo, se pueden realizar visualizaciones de la distribución de
+1. **Visualización de gráficos**: Esta actividad permite obtener información relevante
+   de los datos. Por ejemplo, se pueden realizar visualizaciones de la distribución de
    etiquetas utilizando gráficos de barras para mostrar la cantidad de puntos de datos
    por etiqueta.
 
@@ -253,9 +257,9 @@ Este proceso incluye varias actividades, entre las que se encuentran:
    características, detectar anomalías, entre otros aspectos.
 
 3. **Creación de nubes de palabras**: Las nubes de palabras se utilizan para explorar la
-   frecuencia de palabras en los títulos y descripciones de los proyectos. El objetivo de
-   esta actividad es evaluar si estas características proporcionan suficiente información
-   única para predecicir las etiquetas correctamente.
+   frecuencia de palabras en los títulos y descripciones de los proyectos. El objetivo
+   de esta actividad es evaluar si estas características proporcionan suficiente
+   información única para predecicir las etiquetas correctamente.
 
 ### 2.2.4. Procesamiento de los datos
 
@@ -270,9 +274,9 @@ Este proceso puede dividirse en dos partes principales:
    información relevante en una vista única, la identificación y manejo de valores
    faltantes mediante la eliminación de filas o columnas, reemplazo de valores faltantes
    con estimaciones (por ejemplo, la media), la detección y manejo de valores atípicos
-   que pueden distorsionar los resultados del modelo, y la ingeniería de características,
-   que implica combinar características existentes de maneras únicas para extraer señales
-   adicionales.
+   que pueden distorsionar los resultados del modelo, y la ingeniería de
+   características, que implica combinar características existentes de maneras únicas
+   para extraer señales adicionales.
    - Algunas técnicas a utilizar: aumentación de datos, eliminación de muestras y la
      asignación de pesos por clases, etc.
 
@@ -289,8 +293,8 @@ Este proceso puede dividirse en dos partes principales:
 
 El procesamiento de datos distribuido es una estrategia esencial para manejar conjuntos
 de datos grandes y mejorar el rendimiento en aplicaciones de aprendizaje automático. El
-objetivo es realizar estos procedimientos de manera distribuida utilizando un _framework_
-que permita escalar estos sistemas de manera sencilla.
+objetivo es realizar estos procedimientos de manera distribuida utilizando un
+_framework_ que permita escalar estos sistemas de manera sencilla.
 
 En este contexto, **Ray** se destaca como una herramienta eficaz, ya que permite dividir
 la carga entre todas las máquinas posibles (_workers_), requiere mínimos cambios en el
@@ -301,15 +305,16 @@ tipos de tareas o entornos.
 
 El proceso de distribución de datos con Ray implica varias etapas:
 
-1. **Configuración**: Ray se configura para preservar el orden al realizar operaciones en
-   los datos, garantizando resultados reproducibles y deterministas.
+1. **Configuración**: Ray se configura para preservar el orden al realizar operaciones
+   en los datos, garantizando resultados reproducibles y deterministas.
 
-2. **Ingesta de datos**: Se pueden leer y procesar datos desde una variedad de formatos y
-   fuentes, como archivos CSV, utilizando las funciones de entrada/salida de Ray.
+2. **Ingesta de datos**: Se pueden leer y procesar datos desde una variedad de formatos
+   y fuentes, como archivos CSV, utilizando las funciones de entrada/salida de Ray.
 
 3. **División de datos**: Ray proporciona una función incorporada para dividir conjuntos
-   de datos en conjuntos de entrenamiento y validación. Esta función puede ser modificada
-   para estratificar la división basada en una columna específica, como la etiqueta.
+   de datos en conjuntos de entrenamiento y validación. Esta función puede ser
+   modificada para estratificar la división basada en una columna específica, como la
+   etiqueta.
 
 4. **Preprocesamiento**: Ray permite utilizar funciones de preprocesamiento existentes,
    como las implementadas en Pandas, de manera distribuida. Las operaciones de
@@ -320,11 +325,12 @@ El proceso de distribución de datos con Ray implica varias etapas:
 
 ### 2.3.1. Creación del modelo base
 
-El primer paso en el desarrollo de un modelo de aprendizaje automático es la creación del
-modelo base. Este modelo inicial puede ser tan simple como un conjunto de reglas
+El primer paso en el desarrollo de un modelo de aprendizaje automático es la creación
+del modelo base. Este modelo inicial puede ser tan simple como un conjunto de reglas
 `if-else`. A partir de este punto, se incrementa la complejidad del modelo de manera
 gradual, evaluando factores como la latencia y el tamaño del modelo en cada paso. El
-objetivo es lograr un equilibrio óptimo entre la complejidad del modelo y su rendimiento.
+objetivo es lograr un equilibrio óptimo entre la complejidad del modelo y su
+rendimiento.
 
 Para agregar complejidad a los modelos, se recomienda seguir un enfoque gradual:
 
@@ -340,12 +346,12 @@ Para agregar complejidad a los modelos, se recomienda seguir un enfoque gradual:
 
 ### 2.3.2. Entrenamiento distribuido
 
-El entrenamiento distribuido es una estrategia que facilita el entrenamiento eficiente de
-modelos de aprendizaje automático en sistemas distribuidos. Utilizando herramientas como
-Ray u otras plataformas similares, se puede aprovechar la escalabilidad inherente de los
-sistemas distribuidos. En este enfoque, un nodo central, también conocido como nodo
-maestro, orquesta el proceso de entrenamiento, mientras que los nodos trabajadores se
-encargan de entrenar el modelo y enviar los resultados al nodo central.
+El entrenamiento distribuido es una estrategia que facilita el entrenamiento eficiente
+de modelos de aprendizaje automático en sistemas distribuidos. Utilizando herramientas
+como Ray u otras plataformas similares, se puede aprovechar la escalabilidad inherente
+de los sistemas distribuidos. En este enfoque, un nodo central, también conocido como
+nodo maestro, orquesta el proceso de entrenamiento, mientras que los nodos trabajadores
+se encargan de entrenar el modelo y enviar los resultados al nodo central.
 
 Para implementar el entrenamiento distribuido, se deben seguir los siguientes pasos:
 
@@ -363,8 +369,8 @@ Para implementar el entrenamiento distribuido, se deben seguir los siguientes pa
 
 3. **Configuración del entorno de entrenamiento**: Se deben realizar ajustes en el
    entorno de entrenamiento para admitir la ejecución distribuida. Esto puede incluir la
-   configuración de la red, la asignación de recursos y la instalación de las bibliotecas
-   y dependencias necesarias.
+   configuración de la red, la asignación de recursos y la instalación de las
+   bibliotecas y dependencias necesarias.
 
 4. **Registro de métricas**: Es recomendable llevar un registro de las métricas de
    rendimiento del modelo durante el entrenamiento. Estas métricas pueden incluir la
@@ -389,16 +395,16 @@ adicionales, etc.
 ### 2.3.4. Optimización del modelo
 
 Las estrategias de entrenamiento distribuido son excelentes cuando nuestros datos o
-modelos son demasiado grandes para el entrenamiento, pero existen estrategias adicionales
-para hacer que los modelos sean más pequeños para su implementación. Algunas de las
-técnicas de compresión de modelos son:
+modelos son demasiado grandes para el entrenamiento, pero existen estrategias
+adicionales para hacer que los modelos sean más pequeños para su implementación. Algunas
+de las técnicas de compresión de modelos son:
 
 - **Pruning**: Elimina pesos (no estructurados) o canales enteros (estructurados) para
   reducir el tamaño de la red. El objetivo es preservar el rendimiento del modelo
   mientras se aumenta su dispersión.
 
-- **Quantization**: Reduce la huella de memoria de los pesos al reducir su precisión (por
-  ejemplo, de 32 bits a 8 bits). Podemos perder algo de precisión, pero no debería
+- **Quantization**: Reduce la huella de memoria de los pesos al reducir su precisión
+  (por ejemplo, de 32 bits a 8 bits). Podemos perder algo de precisión, pero no debería
   afectar demasiado al rendimiento.
 
 - **Distillation**: Entrena redes más pequeñas para "imitar" a las redes más grandes al
@@ -410,9 +416,9 @@ El ajuste de hiperparámetros es un procedimiento que se enfoca en descubrir los
 hiperparámetros ideales para un modelo de aprendizaje automático. Ray ofrece una
 herramienta llamada Ray Tune, la cual se integra con HyperOpt. Esta combinación permite
 definir un espacio de búsqueda y un algoritmo de búsqueda, entre otros aspectos. Además,
-Ray facilita la visualización del proceso de ajuste a través de herramientas como MLflow.
-Esto proporciona un mayor control y capacidad para seleccionar los parámetros más
-efectivos para el modelo.
+Ray facilita la visualización del proceso de ajuste a través de herramientas como
+MLflow. Esto proporciona un mayor control y capacidad para seleccionar los parámetros
+más efectivos para el modelo.
 
 Aquí se presentan algunas consideraciones clave a tener en cuenta al realizar el ajuste
 de hiperparámetros, sin importar el marco de trabajo que se esté utilizando:
@@ -422,8 +428,8 @@ de hiperparámetros, sin importar el marco de trabajo que se esté utilizando:
    ayudará a determinar qué hiperparámetros son relevantes para el problema y cuáles no.
 
 2. **Selección de hiperparámetros**: No todos los hiperparámetros son igualmente
-   importantes para todos los problemas. Algunos pueden tener un impacto significativo en
-   el rendimiento del modelo, mientras que otros pueden tener un impacto mínimo. Es
+   importantes para todos los problemas. Algunos pueden tener un impacto significativo
+   en el rendimiento del modelo, mientras que otros pueden tener un impacto mínimo. Es
    importante identificar cuáles son los hiperparámetros más relevantes para el problema
    en cuestión.
 
@@ -436,17 +442,17 @@ de hiperparámetros, sin importar el marco de trabajo que se esté utilizando:
 4. **Elección del método de búsqueda**: Existen varios métodos para buscar en el espacio
    de hiperparámetros, como la búsqueda en cuadrícula, la búsqueda aleatoria y los
    métodos de optimización bayesiana. La elección del método de búsqueda depende de
-   factores como el tamaño del espacio de búsqueda, el tiempo disponible para la búsqueda
-   y la complejidad del modelo.
+   factores como el tamaño del espacio de búsqueda, el tiempo disponible para la
+   búsqueda y la complejidad del modelo.
 
 5. **Validación cruzada**: La validación cruzada es una técnica que se utiliza para
    estimar el rendimiento de un modelo en datos no vistos. Es especialmente útil en el
    ajuste de hiperparámetros, ya que permite obtener una estimación más robusta del
    rendimiento del modelo para diferentes conjuntos de hiperparámetros.
 
-6. **Evaluación del rendimiento**: Es importante definir una métrica de rendimiento clara
-   y relevante para el problema que se está resolviendo. Esta métrica se utilizará para
-   comparar diferentes conjuntos de hiperparámetros y seleccionar el mejor.
+6. **Evaluación del rendimiento**: Es importante definir una métrica de rendimiento
+   clara y relevante para el problema que se está resolviendo. Esta métrica se utilizará
+   para comparar diferentes conjuntos de hiperparámetros y seleccionar el mejor.
 
 7. **Iteración y refinamiento**: El ajuste de hiperparámetros es un proceso iterativo. A
    medida que se obtienen más información sobre el rendimiento del modelo con diferentes
@@ -491,18 +497,18 @@ de hiperparámetros, sin importar el marco de trabajo que se esté utilizando:
    negativos para obtener una visión más detallada del rendimiento del modelo.
 
 8. **Inspección de las entradas del modelo**: Además de comparar las salidas predichas
-   con los valores verdaderos, también se puede inspeccionar las entradas del modelo para
-   entender qué características de la entrada son más influyentes para las predicciones
-   del modelo.
+   con los valores verdaderos, también se puede inspeccionar las entradas del modelo
+   para entender qué características de la entrada son más influyentes para las
+   predicciones del modelo.
 
 9. **Realización de pruebas de comportamiento**: Las pruebas de comportamiento, que
-   tratan el modelo como una caja negra y se centran en probar los datos de entrada y las
-   salidas esperadas, pueden ser útiles para evaluar el rendimiento del modelo en
+   tratan el modelo como una caja negra y se centran en probar los datos de entrada y
+   las salidas esperadas, pueden ser útiles para evaluar el rendimiento del modelo en
    condiciones más realistas.
 
 10. **Evaluación en línea**: Después de evaluar el rendimiento del modelo en un conjunto
-    de datos estático, se pueden utilizar técnicas de evaluación en línea para evaluar el
-    rendimiento del modelo en datos de producción reales.
+    de datos estático, se pueden utilizar técnicas de evaluación en línea para evaluar
+    el rendimiento del modelo en datos de producción reales.
 
 ### 2.3.7. Modelos como servicios
 
@@ -527,9 +533,9 @@ robustez. Aquí se presentan algunos puntos clave a considerar:
    requiere una respuesta en tiempo real, y puede ser más eficiente en términos de
    recursos computacionales.
 
-4. **Inferencia en tiempo real**: La inferencia en tiempo real implica hacer predicciones
-   sobre datos a medida que se reciben. Esto es crucial para muchas aplicaciones en
-   tiempo real, donde las decisiones deben tomarse rápidamente.
+4. **Inferencia en tiempo real**: La inferencia en tiempo real implica hacer
+   predicciones sobre datos a medida que se reciben. Esto es crucial para muchas
+   aplicaciones en tiempo real, donde las decisiones deben tomarse rápidamente.
 
 5. **Personalización del servicio**: Dependiendo de las necesidades del proyecto, puede
    ser necesario personalizar el servicio de implementación. Esto puede implicar la
@@ -552,12 +558,13 @@ experiment tracker.
 
 HAremos esto con MLflow.
 
-Modular el código principal en diferentes partes, principalmente para crear un pipeline y
-que pueda ser utilizado para procesos diferentes, al final es reutilizar procesos para
+Modular el código principal en diferentes partes, principalmente para crear un pipeline
+y que pueda ser utilizado para procesos diferentes, al final es reutilizar procesos para
 reducir tiempos de puesta en producción para tareas similares.
 
-También debemos monitorizar el funcionamiento del modelo cuando se realiza el deploymnet,
-cuando se utiliza para inferencia, para recopilar datos, ver el funcionamiento, etc.
+También debemos monitorizar el funcionamiento del modelo cuando se realiza el
+deploymnet, cuando se utiliza para inferencia, para recopilar datos, ver el
+funcionamiento, etc.
 
 Existen diferentes niveles
 
@@ -566,8 +573,8 @@ Existen diferentes niveles
   no se centran en el ML. Entra la parte de ingeniería.
 - Automated Training (nivel 2): existe un pipeline de entrenamiento, hay un tracking de
   los experimentos, y existe menorr fricción cuando se realiza un deployment.
-- Automated deployment (nivel 3): facil de desplegar un modelo, existen tests como canary
-  o A/B, existe monitorización de los modelos.
+- Automated deployment (nivel 3): facil de desplegar un modelo, existen tests como
+  canary o A/B, existe monitorización de los modelos.
 - FUll MLOps automation: todo el pipeline al completo automatizado.
 
 # Modulo 2
@@ -582,8 +589,8 @@ Existen diferentes niveles
   en caso contrario: dvc repro
 -
 
-DVC necesita de Git para el versionado, por lo que debemos crear un repositorio primero e
-inicializar Git con git init. Luego utilizamos
+DVC necesita de Git para el versionado, por lo que debemos crear un repositorio primero
+e inicializar Git con git init. Luego utilizamos
 
 dvc init
 
@@ -598,11 +605,12 @@ dvc add directorio_dataset
 
 Pero el dataset solo estará disponible de manera local, por lo que ninguna persona de
 nuetro grupo u oganizacion podra acceder a el. Para ello DVC cuenta con el comando
-remote. Remote permite almacenar el dataset en ubicaciones de almacenamiento distribuidas
-para tus conjuntos de datos y modelos ML (similares a las remotas Git, pero para activos
-en caché). Esta característica opcional se utiliza normalmente para compartir o realizar
-copias de seguridad de todos o algunos de sus datos. Se admiten varios tipos: Amazon S3,
-Google Drive, SSH, HTTP, sistemas de archivos locales, entre otros.
+remote. Remote permite almacenar el dataset en ubicaciones de almacenamiento
+distribuidas para tus conjuntos de datos y modelos ML (similares a las remotas Git, pero
+para activos en caché). Esta característica opcional se utiliza normalmente para
+compartir o realizar copias de seguridad de todos o algunos de sus datos. Se admiten
+varios tipos: Amazon S3, Google Drive, SSH, HTTP, sistemas de archivos locales, entre
+otros.
 
 Por ejemplo podemos utilizar el siguiente comando para agregar una carpeta de Google
 Drive como lugar de almacenamiento:
@@ -610,8 +618,8 @@ Drive como lugar de almacenamiento:
 dvc remote add -d storage gdrive://ID_CARPETA
 
 Del comando anterior, el ID_CARPETA es el identificador que aparece al final del enlace
-URL de la carpeta. En este caso incluso pedirá, si no está instalado, instalar un paquete
-pip, utilizamos el comando
+URL de la carpeta. En este caso incluso pedirá, si no está instalado, instalar un
+paquete pip, utilizamos el comando
 
 pip install dvc_gdrive
 
@@ -636,8 +644,8 @@ datos.
 
 ## EXperiment TRacking con MLflow
 
-Vamos a indicar primero que MLflow almacena todos los artefactos generados en una base de
-datos, para ello, vamos a utilizar como backend sqlite pero MLflow permite otras bases de
-datos.
+Vamos a indicar primero que MLflow almacena todos los artefactos generados en una base
+de datos, para ello, vamos a utilizar como backend sqlite pero MLflow permite otras
+bases de datos.
 
 mlflow ui --backend-store-uri sqlite:///mlflow.db

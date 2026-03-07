@@ -72,7 +72,7 @@ Analyst', solo quiero trabajos con salario > \$70k. Incluir solo trabajos ubicad
 
 ??? info "Solución"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
         job_posting_fact.job_title_short,
         job_posting_fact.salary_year_avg,
@@ -94,7 +94,7 @@ título del trabajo, la ubicación y el salario promedio anual.
 
 ??? info "Solución"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
         job_posting_fact.job_title,
         job_posting_fact.job_location,
@@ -114,7 +114,7 @@ la tarifa por hora aumenta en \$5.
 
 ??? info "Solución"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
         invoices_fact.project_id AS Proyecto,
         SUM(invoices_fact.hours_spent * invoices_fact.hours_rate) AS Coste_original,
@@ -133,7 +133,7 @@ Encontrar el salario promedio y el número de ofertas de trabajo para cada habil
 
 ??? info "Solución"
 
-    ```sql
+    ```sql  linenums="1"
     SELECT
         skills_dim.skills AS skill_name,
         COUNT(job_postings_fact.job_title) AS number_of_job_posting,

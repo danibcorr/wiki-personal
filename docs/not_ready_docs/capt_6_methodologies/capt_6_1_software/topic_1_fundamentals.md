@@ -15,33 +15,33 @@ versiones medias y la Z son Patch son soluciones arreglos de box y se van realiz
 incrementos de uno.
 
 El inicio de un proyecto empieza con una versión Millor en cero el valor del pack es
-decir de la Z. Se incrementa cuando se arreglan fallos de código que sean compatibles con
-todo lo existente una versión menor la Y, pues se incrementa cuando se añade una nueva
-funcionalidad compatible con el resto del código existente y una versión mayor pues
-incrementa cuando un nuevo cambio o nueva funcionalidad rompe con algo existente.
+decir de la Z. Se incrementa cuando se arreglan fallos de código que sean compatibles
+con todo lo existente una versión menor la Y, pues se incrementa cuando se añade una
+nueva funcionalidad compatible con el resto del código existente y una versión mayor
+pues incrementa cuando un nuevo cambio o nueva funcionalidad rompe con algo existente.
 
 Podemos añadir incluso etiquetas adicionales como pre Release, que al final pues tienen
-John lo que se conocen como identificadores por ejemplo una versión que es 3.1.4 es mayor
-que la versión 3.1.4-pre-release.
+John lo que se conocen como identificadores por ejemplo una versión que es 3.1.4 es
+mayor que la versión 3.1.4-pre-release.
 
 ## Diseño sistemas
 
-Un buen diseño debe incluir escalabilidad, mantenibilidad, eficiencia y fiabilidad. Es lo
-que se conoce como el teorema Cap C a P para crear sistemas distribuidos donde uno la
+Un buen diseño debe incluir escalabilidad, mantenibilidad, eficiencia y fiabilidad. Es
+lo que se conoce como el teorema Cap C a P para crear sistemas distribuidos donde uno la
 consistencia es un un cambio un dato en uno de un sistema distribuido debe estar
 reflejado en el resto de nodos como fichero compartido de Google Dox por ejemplo la
 disponibilidad tiene que ser que el servicio esté disponible para ser usado no tiene que
 ser tolerable a particiones, es decir que tiene éxito tiene que existir redundancia.
 Según este teorema solo podemos conseguir dos de tres haciendo compromisos la idea es
-encontrar la mejor solución posible para nuestro caso en particular. Para ello tenemos en
-cuenta los S Leo y ese lea los S.L. o son los service Level Objectif que son definiciones
-objetivos como niveles de latencia disponibilidad requerida y las S.L.A. son los service
-Level Agreement es ver si se cumple con los objetivos que es lo mínimo para cumplir decir
-que la velocidad de un sistema pues al final vienen en medido por dos parámetros o que
-veáis principales que son el truco de la latencia, el throughput se puede medir como el
-número de respuestas por segundo, que serían las peticiones de los usuarios en el número
-de acuerdos por segundo o las peticiones que sean las peticiones de la base de datos y la
-latencia, pues se mide en el tiempo de respuesta.
+encontrar la mejor solución posible para nuestro caso en particular. Para ello tenemos
+en cuenta los S Leo y ese lea los S.L. o son los service Level Objectif que son
+definiciones objetivos como niveles de latencia disponibilidad requerida y las S.L.A.
+son los service Level Agreement es ver si se cumple con los objetivos que es lo mínimo
+para cumplir decir que la velocidad de un sistema pues al final vienen en medido por dos
+parámetros o que veáis principales que son el truco de la latencia, el throughput se
+puede medir como el número de respuestas por segundo, que serían las peticiones de los
+usuarios en el número de acuerdos por segundo o las peticiones que sean las peticiones
+de la base de datos y la latencia, pues se mide en el tiempo de respuesta.
 
 Podemos utilizar mecanismos de cacheo para almacenar copias de datos para devolverla sin
 rehacerlas para ello podemos utilizar la caché del navegador utilizando pases datos
@@ -84,5 +84,5 @@ que se conoce como el self healing,
   identificar personas de manera única, en vez de recorrer todas las filas. Esto mejora
   el rendimiento de lectura pero empeora el rendimiento de escritura.
 
-- Podemos dividir bases de datos grandes, creando particiones. Para ello existen técnicas
-  de partición.
+- Podemos dividir bases de datos grandes, creando particiones. Para ello existen
+  técnicas de partición.

@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Introducción al desarrollo web.
-title: Desarrollo Web
+title: Fundamentos
 ---
 
 # Introducción al desarrollo web
@@ -31,16 +31,16 @@ organismo que define los cambios y particularidades de cada versión del estánd
 El modelo fundamental sobre el que se sustenta la web es el modelo **cliente-servidor**.
 En este esquema, múltiples clientes (ordenadores, dispositivos móviles, etc.) se
 comunican a través de Internet con un servidor centralizado, habitualmente alojado en un
-centro de datos. El flujo es el siguiente: el cliente realiza una petición (_request_) al
-servidor, este la procesa y devuelve una respuesta (_response_) que el cliente recibe y
-muestra al usuario.
+centro de datos. El flujo es el siguiente: el cliente realiza una petición (_request_)
+al servidor, este la procesa y devuelve una respuesta (_response_) que el cliente recibe
+y muestra al usuario.
 
 Este intercambio se rige por el protocolo **HTTP** (_HyperText Transfer Protocol_), que
 define cómo se estructuran y transmiten los mensajes entre ambas partes. Para
-comunicaciones seguras, se utiliza **HTTPS**, que añade una capa de encriptación antes de
-transmitir el contenido. Una petición HTTP tiene la siguiente forma básica:
+comunicaciones seguras, se utiliza **HTTPS**, que añade una capa de encriptación antes
+de transmitir el contenido. Una petición HTTP tiene la siguiente forma básica:
 
-```
+```bash linenums="1"
 GET / HTTP/1.1
 Host: ejemplo.com
 ```
@@ -61,8 +61,8 @@ errores del cliente (como el conocido `404 Not Found`), y los 5xx indican errore
 servidor.
 
 Cuando el navegador recibe la respuesta, procesa el contenido de forma secuencial y en
-orden. Cada línea de HTML es interpretada y renderizada progresivamente, lo que se conoce
-como **_page rendering_**.
+orden. Cada línea de HTML es interpretada y renderizada progresivamente, lo que se
+conoce como **_page rendering_**.
 
 ## Tipos de recursos web
 
@@ -74,8 +74,8 @@ dinámica e interactiva, con contenido que se genera y actualiza en tiempo real.
 En cuanto al contenido, existe una distinción entre páginas **estáticas** y
 **dinámicas**. En las páginas dinámicas, el contenido se genera en el servidor en el
 momento de la petición y se envía al navegador. Para reducir el número de peticiones y
-mejorar el rendimiento, se recurre a la **caché**, que almacena temporalmente recursos ya
-descargados.
+mejorar el rendimiento, se recurre a la **caché**, que almacena temporalmente recursos
+ya descargados.
 
 ## Hosting
 
@@ -96,11 +96,11 @@ demanda o requisitos estrictos de seguridad y disponibilidad.
 
 En el desarrollo web es importante distinguir entre librerías y frameworks. Una
 **librería** es un conjunto reducido de funcionalidades que resuelve un problema
-específico, como la validación de datos. Un **framework** agrupa un conjunto de librerías
-y establece una estructura de trabajo más amplia, pudiendo alterar la forma en que se
-desarrolla el proyecto. Ejemplos de frameworks son TypeScript, Astro o Docusaurus. Las
-librerías de Node.js se gestionan mediante **npm** (_Node Package Manager_), su gestor de
-paquetes oficial.
+específico, como la validación de datos. Un **framework** agrupa un conjunto de
+librerías y establece una estructura de trabajo más amplia, pudiendo alterar la forma en
+que se desarrolla el proyecto. Ejemplos de frameworks son TypeScript, Astro o
+Docusaurus. Las librerías de Node.js se gestionan mediante **npm** (_Node Package
+Manager_), su gestor de paquetes oficial.
 
 Las **APIs** (_Application Programming Interface_) actúan como intermediarias entre el
 usuario y un servicio, exponiendo funcionalidades de forma controlada. Existen varios
@@ -116,7 +116,7 @@ dispositivos IoT.
 HTML estructura el contenido mediante **etiquetas** (_tags_) y **elementos**. A
 continuación se presentan las etiquetas más habituales:
 
-```html
+```html linenums="1"
 <!-- Párrafo -->
 <p>Texto del párrafo.</p>
 
@@ -160,8 +160,8 @@ continuación se presentan las etiquetas más habituales:
 
 ## El DOM
 
-El **DOM** (_Document Object Model_) es una representación en forma de árbol de todos los
-elementos de una página HTML. Cuando el navegador carga una página, construye esta
+El **DOM** (_Document Object Model_) es una representación en forma de árbol de todos
+los elementos de una página HTML. Cuando el navegador carga una página, construye esta
 estructura jerárquica a partir del código HTML, donde cada etiqueta se convierte en un
 nodo del árbol. Por ejemplo, el nodo raíz sería `<html>`, del que parten `<head>` y
 `<body>`, y de estos, sus respectivos elementos hijos.
@@ -181,7 +181,7 @@ CSS (_Cascading Style Sheets_) define el aspecto visual de los elementos HTML. S
 sintaxis básica consiste en un **selector**, que identifica el elemento a estilizar,
 seguido de un **bloque de declaración** con pares propiedad-valor:
 
-```css
+```css linenums="1"
 h1 {
   color: purple;
 }
@@ -190,7 +190,7 @@ h1 {
 Para vincular una hoja de estilos externa a un documento HTML, se incluye la siguiente
 etiqueta en el `<head>`:
 
-```html
+```html linenums="1"
 <head>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -199,7 +199,7 @@ etiqueta en el `<head>`:
 CSS ofrece varios tipos de selectores para aplicar estilos con distintos niveles de
 especificidad:
 
-```css
+```css linenums="1"
 /* Selector de elemento */
 p {
   color: blue;
@@ -238,7 +238,7 @@ a:hover {
 
 Y su correspondencia en HTML:
 
-```html
+```html linenums="1"
 <p>Selector de elemento</p>
 <p id="mi-id">Selector de ID</p>
 <p class="mi-clase">Selector de clase</p>
@@ -282,10 +282,10 @@ que aplican estilos según las características del dispositivo).
 
 **Bootstrap** es una librería de CSS y JavaScript que facilita la creación de interfaces
 responsive mediante componentes reutilizables y un sistema de mallas predefinido. Su
-sistema de rejilla se basa en una jerarquía de 12 columnas y se estructura siempre con un
-contenedor (`container`), filas (`row`) y columnas (`col`):
+sistema de rejilla se basa en una jerarquía de 12 columnas y se estructura siempre con
+un contenedor (`container`), filas (`row`) y columnas (`col`):
 
-```html
+```html linenums="1"
 <div class="container">
   <div class="row">
     <!-- Ocupa 12 columnas en móvil, 6 en pantallas grandes (≥992px) -->
