@@ -41,7 +41,7 @@ nav = [
     {"Metodologías" = [
         {"DevOps" = [
             "capt_6_methodologies/capt_6_2_devops/topic_1_fundamentals.md",
-            "capt_6_methodologies/capt_6_2_devops/topic_2_containerization.md",
+            "capt_6_methodologies/capt_6_2_devops/topic_2_containers.md",
             "capt_6_methodologies/capt_6_2_devops/topic_3_automation.md"
         ]}
     ]},
