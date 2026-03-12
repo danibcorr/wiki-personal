@@ -24,121 +24,121 @@ title: Contenedores
 Docker es una plataforma de código abierto que facilita la creación, implementación y
 ejecución de aplicaciones mediante contenedores. Un contenedor empaqueta una aplicación
 junto con todas sus dependencias y configuraciones en una unidad estandarizada, lo que
-simplifica el desarrollo de software y garantiza la consistencia entre distintos
-entornos.
+simplifica el desarrollo de _software_ y garantiza la consistencia entre distintos
+entornos. Cabe mencionar que también existen alternativas de código abierto como Podman,
+que están ganando relevancia debido a los últimos cambios de licencia y uso de Docker en
+entornos empresariales.
 
-Una de las principales ventajas de Docker es que facilita las arquitecturas basadas en
-**microservicios**, ya que permite empaquetar cada servicio de forma independiente con
-sus propias dependencias, evitando así conflictos entre ellas. Por ejemplo, en Python,
-distintas bibliotecas pueden requerir versiones diferentes de una misma dependencia; sin
+Este tipo de arquitectura se basa en el concepto de **microservicios**, ya que permite
+empaquetar cada servicio de forma independiente con sus propias dependencias, evitando
+así conflictos entre ellas. La comunicación entre contenedores, es decir, entre cada
+microservicio, se realiza habitualmente mediante APIs. Por ejemplo, en Python, distintas
+bibliotecas pueden requerir versiones diferentes de una misma dependencia. Sin
 aislamiento, esto provoca errores difíciles de diagnosticar. Con Docker, cada contenedor
 escala de manera independiente y se le asignan recursos de forma dinámica.
 
 Entre sus características principales destacan la **portabilidad**, puesto que los
-contenedores se ejecutan en cualquier sistema que soporte Docker (aunque también existen
-alternativas de código abierto como Podman, que están ganando relevancia debido a los
-últimos cambios de licencia y uso de Docker en entornos empresariales); la **ligereza**,
-dado que comparten el kernel del sistema operativo del host, lo que los hace más rápidos
-de iniciar que las máquinas virtuales; la **consistencia**, al asegurar que una
-aplicación se ejecute de la misma manera en cualquier entorno; el **aislamiento**, ya que
-cada contenedor opera de manera independiente, mejorando la seguridad y evitando
-conflictos entre aplicaciones; y la **escalabilidad**, al facilitar la creación y
-eliminación rápida de instancias.
+contenedores se ejecutan en cualquier sistema que soporte Docker independientemente del
+sistema operativo del _host_. También destaca la **ligereza**, dado que comparten el
+_kernel_ del sistema operativo del _host_, lo que los hace más rápidos de iniciar que las
+máquinas virtuales. La **consistencia** asegura que una aplicación se ejecute de la misma
+manera en cualquier entorno. El **aislamiento** garantiza que cada contenedor opera de
+manera independiente, mejorando la seguridad y evitando conflictos entre aplicaciones.
+Por último, la **escalabilidad** facilita la creación y eliminación rápida de instancias.
 
 ### Contenedores frente a máquinas virtuales
 
 Los contenedores y las máquinas virtuales son tecnologías de virtualización que permiten
-ejecutar múltiples aplicaciones en un solo servidor físico. Aunque comparten objetivos
-similares, como optimizar el uso de recursos y asegurar el aislamiento, difieren
-significativamente en su implementación y arquitectura subyacente.
+ejecutar múltiples aplicaciones en un solo servidor físico, lo que se conoce como _host_.
+Aunque comparten objetivos similares, como optimizar el uso de recursos y asegurar el
+aislamiento, difieren significativamente en su implementación y arquitectura subyacente.
 
 <p align="center">
   <img src="https://profile.es/wp-content/media/image-1-1024x266.png"/>
   <br />
-  <em>Pasos para la creación de un contenedor Docker</em>
+  <em>Pasos para la creación de un contenedor en Docker</em>
 </p>
 
 Los contenedores constituyen una forma de virtualización a nivel del sistema operativo,
 también conocida como virtualización ligera. A diferencia de las máquinas virtuales, que
-virtualizan un sistema operativo completo, los contenedores comparten el núcleo del
-sistema operativo del host y ejecutan aplicaciones dentro de espacios de usuario
-completamente aislados. Cada contenedor contiene únicamente la aplicación y sus
+virtualizan un sistema operativo completo, los contenedores comparten el núcleo
+(_kernel_) del sistema operativo del _host_ y ejecutan aplicaciones dentro de espacios de
+usuario completamente aislados. Cada contenedor contiene únicamente la aplicación y sus
 dependencias (bibliotecas, archivos de configuración y variables de entorno), lo que lo
 hace extremadamente portátil y fácil de desplegar en diferentes entornos, desde la
 máquina local de un desarrollador hasta un clúster en la nube.
 
-El aislamiento de los contenedores se logra mediante tecnologías del kernel de Linux. Los
+El aislamiento de los contenedores se logra mediante diferentes técnicas. Los
 _namespaces_ (espacios de nombres) aíslan recursos del sistema operativo: `pid` aísla los
 identificadores de procesos, `net` proporciona pilas de red separadas, `mnt` aísla los
 puntos de montaje del sistema de archivos, `ipc` aísla recursos de comunicación entre
-procesos, `uts` aísla nombres de host y dominios, y `user` aísla identificadores de
-usuarios y grupos. Por su parte, los _cgroups_ (grupos de control) gestionan el uso de
-recursos como CPU, memoria y disco, garantizando que los contenedores no consuman más
-recursos de los asignados. Además, el _Union Filesystem_ (UFS) permite que los
-contenedores se construyan en capas: las capas de solo lectura contienen archivos del
-sistema, mientras que las capas de escritura se mantienen en la parte superior,
-minimizando el uso de almacenamiento y facilitando el desarrollo iterativo.
+procesos, `uts` aísla nombres de _host_ y dominios, y `user` aísla identificadores de
+usuarios y grupos.
+
+Por otra parte, los _cgroups_ (grupos de control) gestionan el uso de recursos como CPU,
+memoria y disco, garantizando que los contenedores no consuman más recursos de los
+asignados. Además, el _Union Filesystem_ (UFS) permite que los contenedores se construyan
+en capas. Las capas de solo lectura contienen archivos del sistema, mientras que las
+capas de escritura se mantienen en la parte superior, minimizando el uso de
+almacenamiento y facilitando el desarrollo iterativo.
 
 Las máquinas virtuales, por su parte, representan una tecnología de virtualización más
 tradicional que permite ejecutar múltiples sistemas operativos en un servidor físico
 mediante un hipervisor, como VMware o VirtualBox. Un hipervisor puede ejecutarse
-directamente en el hardware del servidor (tipo 1) o sobre un sistema operativo (tipo 2),
-gestionando la creación y ejecución de múltiples máquinas virtuales y asignando recursos
-de hardware de forma eficiente. Cada máquina virtual dispone de su propio sistema
-operativo completo, lo que proporciona un aislamiento más fuerte que los contenedores,
-pero a costa de un mayor consumo de CPU, memoria y almacenamiento, así como tiempos de
-inicio más prolongados.
+directamente en el _hardware_ del servidor (virtualización tipo 1) o sobre un sistema
+operativo (virtualización tipo 2), gestionando la creación y ejecución de múltiples
+máquinas virtuales y asignando recursos de _hardware_ de forma eficiente. Cada máquina
+virtual dispone de su propio sistema operativo completo, lo que proporciona un
+aislamiento más fuerte que los contenedores, pero a costa de un mayor consumo de CPU,
+memoria y almacenamiento, así como tiempos de inicio más prolongados.
 
 Los contenedores resultan ideales para desarrollo y pruebas, arquitecturas de
-microservicios y despliegue continuo, mientras que las máquinas virtuales son más
-adecuadas para aplicaciones monolíticas que requieren aislamiento completo del sistema
-operativo, entornos con múltiples sistemas operativos y cargas de trabajo heredadas.
+microservicios y despliegue continuo (por ejemplo, en herramientas de CI/CD que ofrecen
+GitLab, GitHub o similares), mientras que las máquinas virtuales son más adecuadas para
+aplicaciones monolíticas que requieren aislamiento completo del sistema operativo,
+entornos con múltiples sistemas operativos y cargas de trabajo heredadas.
 
 En la nube, proveedores como Amazon Web Services (AWS), Google Cloud Platform (GCP) y
 Microsoft Azure ofrecen servicios tanto de contenedores (AWS ECS/Fargate, EKS, Azure
 Kubernetes Service (AKS) y Google Kubernetes Engine (GKE)) como de máquinas virtuales
-(EC2 en AWS, VM Instances en GCP y Azure Virtual Machines).
-
-Para la gestión local de contenedores, herramientas como Docker Desktop, Docker CLI y
-Docker Compose permiten desarrollar, gestionar y desplegar contenedores en entornos de
-desarrollo.
+(EC2 en AWS, VM _Instances_ en GCP y Azure Virtual Machines). Para la gestión local de
+contenedores, herramientas como Docker Desktop o Docker CLI permiten desarrollar,
+gestionar y desplegar contenedores en entornos de desarrollo.
 
 ### Arquitectura de Docker Engine
 
 Docker Engine se compone de tres elementos fundamentales. El primero es **Docker CLI**,
 una interfaz de línea de comandos que puede ejecutarse incluso en una máquina remota. El
 segundo es la **REST API**, que actúa como canal de comunicación entre el CLI y el
-Daemon. El tercero es el **Docker Daemon**, que gestiona imágenes, contenedores, redes y
-volúmenes. El CLI puede comunicarse con un Daemon remoto a través de la REST API, lo que
-permite gestionar contenedores en servidores remotos de forma transparente.
+_daemon_. El tercero es el **Docker _Daemon_**, que gestiona imágenes, contenedores,
+redes y volúmenes. El CLI puede comunicarse con un _daemon_ remoto a través de la REST
+API, lo que permite gestionar contenedores en servidores remotos de forma transparente.
 
-### Contenedores y kernel
+Los contenedores **comparten el _kernel_ del _host_**. Si el _host_ tiene un _kernel_
+Linux, no se pueden ejecutar contenedores Windows de forma nativa, y viceversa. Al
+instalar Docker en Windows, se crea una instancia de Linux mediante WSL sobre la que
+Docker ejecuta los contenedores.
 
-Los contenedores **comparten el kernel del host**. Si el host tiene un kernel Linux, no
-se pueden ejecutar contenedores Windows de forma nativa, y viceversa. Al instalar Docker
-en Windows, se crea una instancia de Linux mediante WSL2 sobre la que Docker ejecuta los
-contenedores.
+### _Tags_ e imágenes
 
-Es importante tener en cuenta que un contenedor **no es un sistema operativo completo**,
-sino que está pensado para alojar servicios y aplicaciones. Si se ejecuta una imagen como
-Ubuntu sin ningún proceso activo, el contenedor se detendrá inmediatamente al no tener
-ninguna tarea que mantener.
+Las imágenes utilizan **_tags_** para identificar variantes según el sistema operativo
+base (Alpine, Debian, Ubuntu), la versión del paquete y otros criterios. Si no se
+especifica un _tag_, Docker utiliza `latest` por defecto, lo cual **no se considera buena
+práctica**, ya que no se tiene control sobre las versiones utilizadas y podrían aparecer
+nuevos problemas no contemplados previamente. Por ello, se recomienda fijar siempre la
+versión y actualizarla de forma controlada, por ejemplo, ante problemas de seguridad. Las
+propias imágenes públicas en Docker Hub suelen disponer de un sistema de alertas que
+notifica cuando una imagen se ve comprometida o se detecta algún tipo de fallo o mejora
+relevante en el servicio al que corresponde.
 
-### Tags e imágenes
+???+ example "Ejemplo"
 
-Las imágenes utilizan **tags** para identificar variantes según el sistema operativo base
-(Alpine, Debian, Ubuntu), la versión del paquete, entre otros criterios. Las imágenes
-basadas en **Alpine** son considerablemente más ligeras que las basadas en Debian o
-Ubuntu. Si no se especifica un tag, Docker utiliza `latest` por defecto, lo cual **no se
-considera buena práctica**. Se recomienda fijar la versión y actualizarla de forma
-controlada, por ejemplo, ante problemas de seguridad o mejoras relevantes.
+    ```bash linenums="1"
+    # Especificar versión con tag
+    docker run redis:4.0
+    ```
 
-```bash linenums="1"
-# Especificar versión con tag
-docker run redis:4.0
-```
-
-Los tags soportados se consultan en la documentación de cada imagen en Docker Hub.
+    Los *tags* soportados se consultan en la documentación de cada imagen en Docker Hub.
 
 ### Recopilación de comandos
 
@@ -160,8 +160,8 @@ gestión de contenedores con Docker:
 |                `docker stop ID_contenedor`                |                                                                       Detiene un contenedor usando su ID.                                                                       |
 |               `docker rm nombre_contenedor`               |                                                                        Elimina un contenedor de Docker.                                                                         |
 | `docker run -d -p 8080:80 -i --name Debian debian:latest` | Crea y ejecuta un contenedor mapeando puertos. `-d`: Ejecuta el contenedor en segundo plano. `-p`: Mapeo de puertos. `-i`: Acceso al terminal. `--name`: Nombre del contenedor. |
-|         `docker exec -it nombre_contenedor bash`          |                                  Ejecuta un comando en el contenedor; en este caso, accede al terminal del contenedor para interactuar con él.                                  |
-|  `docker cp ruta_host nombre_contenedor:ruta_contenedor`  |                                                                     Copia archivos del host al contenedor.                                                                      |
+|         `docker exec -it nombre_contenedor bash`          |                                  Ejecuta un comando en el contenedor, en este caso, accede al terminal del contenedor para interactuar con él.                                  |
+|  `docker cp ruta_host nombre_contenedor:ruta_contenedor`  |                                                                    Copia archivos del _host_ al contenedor.                                                                     |
 |             `docker stats nombre_contenedor`              |                                                       Monitorea el uso de CPU, memoria y ancho de banda de un contenedor.                                                       |
 |                      `docker stats`                       |                                                      Monitorea el uso de recursos de todos los contenedores en ejecución.                                                       |
 |                    `docker network ls`                    |                                                                 Muestra todas las redes configuradas en Docker.                                                                 |
@@ -175,26 +175,31 @@ gestión de contenedores con Docker:
 |              `docker logs nombre_contenedor`              |                                                                      Muestra los registros del contenedor.                                                                      |
 |            `docker logs -f nombre_contenedor`             |                                                            Muestra los registros del contenedor de manera continua.                                                             |
 |         `docker tag nombre_imagen nueva_etiqueta`         |                                                                              Etiqueta una imagen.                                                                               |
-|                      `docker login`                       |                                                                          Inicia sesión en un registry.                                                                          |
+|                      `docker login`                       |                                                                         Inicia sesión en un _registry_.                                                                         |
 |                `docker push nombre_imagen`                |                                                                          Sube una imagen a Docker Hub.                                                                          |
-|                      `docker logout`                      |                                                                          Cierra sesión en un registry.                                                                          |
+|                      `docker logout`                      |                                                                         Cierra sesión en un _registry_.                                                                         |
 |                `docker system prune --all`                |                                                    Elimina todos los contenedores detenidos e imágenes que no estén en uso.                                                     |
 |                   `docker volume prune`                   |                                                                Elimina todos los volúmenes que no estén en uso.                                                                 |
-|                  `docker network prune`                   |                                         Elimina todas las redes que no estén en uso, excepto las predeterminadas (bridge, none, host).                                          |
+|                  `docker network prune`                   |                                      Elimina todas las redes que no estén en uso, excepto las predeterminadas (_bridge_, _none_, _host_).                                       |
 |    `docker update [OPTIONS] CONTAINER [CONTAINER...]`     |                     Actualiza la configuración de uno o varios contenedores. [Documentación](https://docs.docker.com/engine/reference/commandline/update/)                      |
 |    `docker run --cpu-shares=512 -m 256m nombre_imagen`    |                                                        Especifica recursos de sistema (CPU, memoria) para un contenedor.                                                        |
 |               `docker stop $(docker ps -q)`               |                                                                  Detiene todos los contenedores en ejecución.                                                                   |
 |             `docker start $(docker ps -a -q)`             |                                                                         Inicia todos los contenedores.                                                                          |
 |              `docker rm $(docker ps -a -q)`               |                                                                         Elimina todos los contenedores.                                                                         |
 
-### Modo interactivo y attach/detach
+### Modo interactivo y _attach_/_detach_
 
-Por defecto, los contenedores de Docker no leen la entrada estándar (stdin). Para
-interactuar con un contenedor se utilizan las opciones `-i` (modo interactivo, que mapea
-stdin) y `-t` (que crea un pseudo-terminal):
+Es importante tener en cuenta que un contenedor **no es un sistema operativo completo**,
+sino que está pensado para alojar servicios y aplicaciones. Si se ejecuta una imagen como
+Ubuntu sin ningún proceso activo, el contenedor se detiene inmediatamente al no tener
+ninguna tarea que mantener.
+
+Los contenedores de Docker no leen la entrada estándar (_stdin_) de forma predeterminada.
+Para interactuar con un contenedor se utilizan las opciones `-i` (modo interactivo, que
+mapea _stdin_) y `-t` (que crea un pseudoterminal):
 
 ```bash linenums="1"
-# Modo interactivo con pseudo-terminal
+# Modo interactivo con pseudoterminal
 docker run -it <imagen> bash
 
 # Ejemplo: acceder al bash de una imagen con uv preinstalado
@@ -216,19 +221,19 @@ docker attach <id>
 
 ### Acceso a contenedores mediante mapeo de puertos
 
-El mapeo de puertos, o _port mapping_, asigna un puerto específico del host al puerto de
-un contenedor, lo que permite que una aplicación dentro del contenedor sea accesible
-desde el host o desde otros contenedores.
+El mapeo de puertos, o _port mapping_, asigna un puerto específico del _host_ al puerto
+de un contenedor, lo que permite que una aplicación dentro del contenedor sea accesible
+desde el _host_ o desde otros contenedores.
 
 ???+ example "Ejemplo"
 
-    El siguiente comando crea un contenedor de MongoDB y mapea el puerto 27017 del host al puerto 27017 del contenedor:
+    El siguiente comando crea un contenedor de MongoDB y mapea el puerto 27017 del *host* al puerto 27017 del contenedor:
 
     ```bash linenums="1"
     docker container create -p 27017:27017 --name mongodb mongo
     ```
 
-    En este comando, `-p` mapea un puerto del host al puerto del contenedor, `mongodb` es el nombre del contenedor y `mongo` es la imagen utilizada.
+    En este comando, `-p` mapea un puerto del *host* al puerto del contenedor, `mongodb` es el nombre del contenedor y `mongo` es la imagen utilizada.
 
 ### Crear e iniciar un contenedor
 
@@ -264,7 +269,7 @@ Estas variables configuran el usuario y la contraseña del administrador de la b
 datos durante la inicialización del contenedor. Es importante revisar la documentación de
 cada imagen, ya que las variables de entorno varían según la imagen utilizada.
 
-### Dockerfile
+### _Dockerfile_
 
 Un `Dockerfile` es un archivo de texto con instrucciones que permiten construir una
 imagen Docker personalizada. Cada imagen se construye sobre una imagen previa, que puede
@@ -327,11 +332,11 @@ docker create -p 27017:27017 --name mongodb --network mi-nueva-red mongo
 
 Docker ofrece diferentes modos de red:
 
-|    Tipo    | Descripción                                                                                                                                                      |
-| :--------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **bridge** | Red por defecto. Docker asigna IPs internas a cada contenedor. Los contenedores pueden comunicarse entre sí y se accede desde el host mediante mapeo de puertos. |
-|  **host**  | El contenedor usa directamente la red del host, sin aislamiento de red.                                                                                          |
-|  **none**  | Sin conectividad de red, completamente aislado.                                                                                                                  |
+|     Tipo     | Descripción                                                                                                                                                        |
+| :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **_bridge_** | Red por defecto. Docker asigna IPs internas a cada contenedor. Los contenedores pueden comunicarse entre sí y se accede desde el _host_ mediante mapeo de puertos. |
+|  **_host_**  | El contenedor usa directamente la red del _host_, sin aislamiento de red.                                                                                          |
+|  **_none_**  | Sin conectividad de red, completamente aislado.                                                                                                                    |
 
 Además, se pueden crear **redes personalizadas** que permiten especificar el rango de
 direcciones IP y otros parámetros. En lugar de usar `--link` (considerado _legacy_), se
@@ -394,11 +399,11 @@ significa que, incluso si un contenedor se elimina, los datos asociados a los vo
 permanecen disponibles, lo cual resulta especialmente útil cuando se desea mantener
 información a través de reinicios o actualizaciones de contenedores.
 
-Los volúmenes pueden ser de diferentes tipos: los **volúmenes anónimos**, que carecen de
-nombre y no pueden referenciarse explícitamente desde otros contenedores; los **volúmenes
-de host**, que permiten especificar qué carpeta del sistema anfitrión se monta dentro del
-contenedor; y los **volúmenes nombrados**, que disponen de un nombre y pueden
-referenciarse en otros contenedores o en múltiples servicios.
+Los volúmenes pueden ser de diferentes tipos. Los **volúmenes anónimos** carecen de
+nombre y no pueden referenciarse explícitamente desde otros contenedores. Los **volúmenes
+de _host_** permiten especificar qué carpeta del sistema anfitrión se monta dentro del
+contenedor. Los **volúmenes nombrados** disponen de un nombre y pueden referenciarse en
+otros contenedores o en múltiples servicios.
 
 Para montar un volumen directamente desde la línea de comandos se utiliza la opción `-v`:
 
@@ -451,21 +456,21 @@ automatizada.
 
 Existen registros públicos y privados para almacenar y gestionar imágenes de Docker:
 
-| Registro                  | Tipo               | Características clave                                         |
-| :------------------------ | :----------------- | :------------------------------------------------------------ |
-| Docker Hub                | Público/Privado    | El más grande; imágenes oficiales y despliegues automatizados |
-| Amazon ECR                | Gestionado (AWS)   | Integración con ECS, EKS y Fargate; pago por uso              |
-| Azure Container Registry  | Gestionado (Azure) | Geo-replicación y soporte de Helm charts                      |
-| Google Artifact Registry  | Gestionado (GCP)   | Sucesor de GCR; escaneo de vulnerabilidades y gestión IAM     |
-| GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para CI/CD                       |
-| Harbor                    | Open Source        | RBAC y firmado de imágenes                                    |
-| JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos                         |
+| Registro                  | Tipo               | Características clave                                             |
+| :------------------------ | :----------------- | :---------------------------------------------------------------- |
+| Docker Hub                | Público/Privado    | El más grande, con imágenes oficiales y despliegues automatizados |
+| Amazon ECR                | Gestionado (AWS)   | Integración con ECS, EKS y Fargate, con pago por uso              |
+| Azure Container Registry  | Gestionado (Azure) | Geo-replicación y soporte de _Helm charts_                        |
+| Google Artifact Registry  | Gestionado (GCP)   | Sucesor de GCR, con escaneo de vulnerabilidades y gestión IAM     |
+| GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para CI/CD                           |
+| Harbor                    | _Open source_      | RBAC y firmado de imágenes                                        |
+| JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos                             |
 
 ### Almacenamiento interno de Docker
 
 Todos los ficheros de Docker se encuentran en `/var/lib/docker`. Docker **cachea las
-capas intermedias** de las imágenes, incluso entre diferentes Dockerfiles, lo que ahorra
-espacio y tiempo de construcción.
+capas intermedias** de las imágenes, incluso entre diferentes _Dockerfiles_, lo que
+ahorra espacio y tiempo de construcción.
 
 ```bash linenums="1"
 sudo ls -l /var/lib/docker
@@ -482,8 +487,8 @@ sudo ls -l /var/lib/docker
 La adopción de Kubernetes se motiva principalmente por la necesidad de administrar de
 manera eficiente y escalable múltiples contenedores distribuidos en diversos servidores.
 Kubernetes facilita la orquestación de estos contenedores a través de una infraestructura
-declarativa, en la que los usuarios definen la configuración deseada en un manifiesto —un
-archivo de configuración— que se procesa mediante la API de Kubernetes. La plataforma
+declarativa, en la que los usuarios definen la configuración deseada en un manifiesto (un
+archivo de configuración) que se procesa mediante la API de Kubernetes. La plataforma
 asume la responsabilidad de distribuir la carga de trabajo entre los nodos disponibles y
 de administrar los recursos requeridos por los contenedores.
 
@@ -496,7 +501,7 @@ implementación y administración de aplicaciones en contenedores a gran escala.
 ### Componentes de Kubernetes
 
 **Kubectl** es una interfaz de línea de comandos que facilita la interacción con un
-clúster de Kubernetes, permitiendo la gestión de objetos como pods, servicios y
+clúster de Kubernetes, permitiendo la gestión de objetos como _pods_, servicios y
 despliegues.
 
 Para la creación de un clúster de Kubernetes en un entorno local, se utiliza
@@ -509,29 +514,29 @@ se utiliza el comando `minikube start`, y para verificar su estado, `minikube st
 
 Un nodo representa la unidad más pequeña dentro de un clúster de Kubernetes. Puede ser
 una máquina física o una máquina virtual donde se ejecutan las aplicaciones. Kubernetes
-abstrae el hardware subyacente, permitiendo una gestión eficiente de los requisitos de
+abstrae el _hardware_ subyacente, permitiendo una gestión eficiente de los requisitos de
 recursos. Si un nodo no puede proporcionar más recursos o falla, Kubernetes redistribuye
 las cargas de trabajo a otros nodos disponibles. Existen diferentes tipos de nodos: los
-nodos bajo demanda (_On-Demand Nodes_), que se crean cuando los recursos requeridos son
-elevados (CPU, GPU, RAM), y los nodos al mejor precio (_Spot Nodes_), que son más
+nodos bajo demanda (_on-demand nodes_), que se crean cuando los recursos requeridos son
+elevados (CPU, GPU, RAM), y los nodos al mejor precio (_spot nodes_), que son más
 económicos pero pueden ser retirados en cualquier momento.
 
-### Pods
+### _Pods_
 
-Un pod es la unidad mínima de ejecución en Kubernetes y puede contener uno o más
+Un _pod_ es la unidad mínima de ejecución en Kubernetes y puede contener uno o más
 contenedores que comparten los mismos recursos y red local. Todos los contenedores dentro
-del mismo pod pueden comunicarse entre sí y comparten el mismo entorno de red. Al escalar
-un pod, todos los contenedores dentro de él se escalan conjuntamente.
+del mismo _pod_ pueden comunicarse entre sí y comparten el mismo entorno de red. Al
+escalar un _pod_, todos los contenedores dentro de él se escalan conjuntamente.
 
 ### Clúster
 
 Un clúster es un conjunto de nodos, también conocidos como _workers_, que se ejecutan en
 Kubernetes. La relación entre las aplicaciones que se ejecutan en cada nodo es
 independiente. Por ejemplo, si se dispone de un servidor de Proxmox con dos máquinas
-virtuales, VM1 y VM2, a pesar de que cuenten con diferentes pods, si todos están
-gestionados por Kubernetes, ambos formarán parte del mismo clúster.
+virtuales, VM1 y VM2, a pesar de que cuenten con diferentes _pods_, si todos están
+gestionados por Kubernetes, ambos forman parte del mismo clúster.
 
-### StatefulSet y volúmenes
+### _StatefulSet_ y volúmenes
 
 Dado que no se puede garantizar el lugar de ejecución de una aplicación, el uso del disco
 local para almacenar datos resulta inviable, siendo útil únicamente para almacenamiento
@@ -540,9 +545,9 @@ recursos como la CPU, GPU y RAM gestionados por los clústeres, deben adjuntarse
 clúster desde unidades locales o en la nube. Estos volúmenes no se asocian a un nodo en
 particular.
 
-**StatefulSet** permite la creación de pods con volúmenes persistentes, garantizando la
-integridad de los datos incluso si el pod se reinicia o se elimina. A continuación se
-muestra un ejemplo:
+**_StatefulSet_** permite la creación de _pods_ con volúmenes persistentes, garantizando
+la integridad de los datos incluso si el _pod_ se reinicia o se elimina. A continuación
+se muestra un ejemplo:
 
 ```yaml linenums="1"
 apiVersion: apps/v1
@@ -579,9 +584,9 @@ spec:
             storage: 1Gi
 ```
 
-Para verificar el estado de los volúmenes y los StatefulSets se utilizan los comandos
-`kubectl get pvc` (para consultar la asignación del volumen, capacidad, etc.) y
-`kubectl get sts` (para consultar los StatefulSets).
+Para verificar el estado de los volúmenes y los _StatefulSets_ se utilizan los comandos
+`kubectl get pvc` (para consultar la asignación del volumen, capacidad y otros detalles)
+y `kubectl get sts` (para consultar los _StatefulSets_).
 
 ### Manifiestos
 
@@ -593,12 +598,12 @@ Un concepto importante asociado es el de _namespace_, que constituye la divisió
 del clúster de Kubernetes y permite separar la carga del clúster. Se pueden crear
 políticas para separar tráfico entre _namespaces_, aunque por defecto los datos de un
 _namespace_ son visibles desde otro. Para obtener los _namespaces_ del clúster se utiliza
-`kubectl get ns`, para obtener los pods de un _namespace_ específico se emplea
+`kubectl get ns`, para obtener los _pods_ de un _namespace_ específico se emplea
 `kubectl -n nombre_namespace get pods -o wide` (la opción `-o wide` proporciona
-información adicional como la IP del pod y el nodo), y para eliminar un pod se usa
+información adicional como la IP del _pod_ y el nodo), y para eliminar un _pod_ se usa
 `kubectl -n nombre_namespace delete pod nombre_pod`.
 
-A continuación se muestra un ejemplo de manifiesto para crear un pod simple:
+A continuación se muestra un ejemplo de manifiesto para crear un _pod_ simple:
 
 ```yaml linenums="1"
 apiVersion: v1
@@ -612,7 +617,7 @@ spec:
 ```
 
 Para aplicar el manifiesto se ejecuta `kubectl apply -f nombre.yaml`, y para consultar el
-estado del pod, `kubectl get pods`.
+estado del _pod_, `kubectl get pods`.
 
 El siguiente ejemplo muestra un manifiesto más complejo que incluye variables de entorno,
 solicitudes y límites de recursos, así como _readiness probe_ y _liveness probe_:
@@ -659,15 +664,16 @@ spec:
 
 En este manifiesto, la sección `resources.requests` define los recursos garantizados que
 la instancia debe tener disponibles para poder realizar el despliegue, medidos en
-milicores para CPU (donde 1000 milicores equivalen a 1 core). La sección
-`resources.limits` establece el límite máximo de recursos que el pod puede consumir; si
-se excede, el kernel de Linux finaliza el proceso y el pod se reinicia. La _readiness
-probe_ indica a Kubernetes que el pod está listo para recibir tráfico, mientras que la
-_liveness probe_ confirma que el pod sigue activo y no debe ser eliminado.
+_milicores_ para CPU (donde 1000 _milicores_ equivalen a 1 _core_). La sección
+`resources.limits` establece el límite máximo de recursos que el _pod_ puede consumir. Si
+se excede dicho límite, el _kernel_ de Linux finaliza el proceso y el _pod_ se reinicia.
+La _readiness probe_ indica a Kubernetes que el _pod_ está listo para recibir tráfico,
+mientras que la _liveness probe_ confirma que el _pod_ sigue activo y no debe ser
+eliminado.
 
 ### Despliegue y gestión de réplicas
 
-Un despliegue (_Deployment_) permite declarar el número de réplicas de pods y asegurar
+Un despliegue (_deployment_) permite declarar el número de réplicas de _pods_ y asegurar
 que el estado deseado se mantenga, monitorizándolos de forma continua:
 
 ```yaml linenums="1"
@@ -692,10 +698,10 @@ spec:
             - containerPort: 80
 ```
 
-### DaemonSet
+### _DaemonSet_
 
-Un DaemonSet es una forma de despliegue que garantiza que un pod se ejecute en todos los
-nodos del clúster, con exactamente un pod por nodo. No se especifica el número de
+Un _DaemonSet_ es una forma de despliegue que garantiza que un _pod_ se ejecute en todos
+los nodos del clúster, con exactamente un _pod_ por nodo. No se especifica el número de
 réplicas, ya que depende del número de nodos. Se utiliza habitualmente para servicios de
 monitoreo:
 
@@ -722,15 +728,15 @@ spec:
 
 #### Tipos de servicios
 
-Los servicios en Kubernetes permiten acceder a los pods desde dentro y fuera del clúster.
-Existen varios tipos de servicios según las necesidades de exposición.
+Los servicios en Kubernetes permiten acceder a los _pods_ desde dentro y fuera del
+clúster. Existen varios tipos de servicios según las necesidades de exposición.
 
 **ClusterIP** proporciona una dirección IP virtual única a nivel de clúster, facilitando
-la comunicación y el balanceo de carga entre pods de forma interna.
+la comunicación y el balanceo de carga entre _pods_ de forma interna.
 
-**NodePort** crea un puerto en cada nodo que recibe el tráfico y lo redirige a los pods
+**NodePort** crea un puerto en cada nodo que recibe el tráfico y lo redirige a los _pods_
 correspondientes, permitiendo que la aplicación sea accesible desde fuera del clúster.
-Suele utilizar puertos dentro del rango 30000-32767:
+Suele utilizar puertos dentro del rango 30000 a 32767:
 
 ```yaml linenums="1"
 apiVersion: v1
@@ -748,7 +754,7 @@ spec:
 ```
 
 **LoadBalancer** está orientado a proveedores de la nube y crea un balanceador de carga
-que proporciona una IP estable para el servidor, facilitando su acceso desde internet:
+que proporciona una IP estable para el servidor, facilitando su acceso desde Internet:
 
 ```yaml linenums="1"
 apiVersion: v1
@@ -764,15 +770,15 @@ spec:
       targetPort: 80
 ```
 
-#### Ingress
+#### _Ingress_
 
-Ingress administra el acceso externo a los servicios del clúster, típicamente HTTP.
+_Ingress_ administra el acceso externo a los servicios del clúster, típicamente HTTP.
 Proporciona balanceo de carga y terminación SSL, y permite el acceso al servicio mediante
 _paths_. Suele requerirse un controlador Ingress-Nginx que se instala por separado.
 
-### Networking y almacenamiento
+### _Networking_ y almacenamiento
 
-Cada pod en Kubernetes tiene su propia dirección IP, y para comunicar pods en diferentes
-nodos se utiliza el _Cloud Cluster Networking Interface_. En cuanto al almacenamiento,
-**etcd** es un almacén de datos clave-valor distribuido utilizado para guardar datos de
-configuración, estado y metadatos del clúster.
+Cada _pod_ en Kubernetes tiene su propia dirección IP, y para comunicar _pods_ en
+diferentes nodos se utiliza el _Cloud Cluster Networking Interface_. En cuanto al
+almacenamiento, **etcd** es un almacén de datos clave-valor distribuido utilizado para
+guardar datos de configuración, estado y metadatos del clúster.
