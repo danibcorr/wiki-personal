@@ -42,7 +42,8 @@ nav = [
         {"DevOps" = [
             "capt_6_methodologies/capt_6_2_devops/topic_1_fundamentals.md",
             "capt_6_methodologies/capt_6_2_devops/topic_2_containers.md",
-            "capt_6_methodologies/capt_6_2_devops/topic_3_automation.md"
+            "capt_6_methodologies/capt_6_2_devops/topic_3_orchestrators.md",
+            "capt_6_methodologies/capt_6_2_devops/topic_4_automation.md"
         ]}
     ]},
     {"Dominios" = [

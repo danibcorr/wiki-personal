@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main, dev]
 
-env:
-  SRC_PYTHON_VERSION: "3.11"
-
 jobs:
   build-deploy-docs:
     name: Build and Deploy Documentation

@@ -1,14 +1,10 @@
 # Cómo contribuir a wiki-personal
 
-¡Hola y bienvenido! Nos alegra que estés interesado en contribuir al proyecto
+¡Hola y bienvenido! Me alegra que estés interesado en contribuir al proyecto
 **wiki-personal**.
 
-Apreciamos todo tipo de contribuciones, ya sea contenido, reportes de errores o nuevas
+Aprecio todo tipo de contribuciones, ya sea contenido, reportes de errores o nuevas
 funciones.
-
-## ¿Quieres unirte al equipo?
-
-Si te interesa colaborar más estrechamente, no dudes en contactarnos.
 
 ## Cómo contribuir
 
@@ -20,8 +16,8 @@ Existen dos formas principales de contribuir:
 
 ### Paso 1: Abrir un issue
 
-Comienza abriendo un **issue** para describir tu propuesta o el problema que
-encontraste. Esto nos ayuda a evaluar y guiar el trabajo antes de hacer cambios.
+Comienza abriendo un **issue** para describir tu propuesta o el problema que encontraste.
+Esto nos ayuda a evaluar y guiar el trabajo antes de hacer cambios.
 
 > Si tu cambio es pequeño (por ejemplo, corregir un error tipográfico), puedes omitir
 > este paso y abrir directamente un pull request.
@@ -55,44 +51,37 @@ Una vez aprobado, un mantenedor hará el **merge** del pull request.
 
 ## Configurar entorno
 
-Puedes configurar tu entorno de desarrollo de dos formas:
+### Requisitos previos
 
-### Opción 1: Contenedor de desarrollo
+- Python >= 3.11
+- [uv](https://docs.astral.sh/uv/) (gestor de paquetes y entornos virtuales)
+- `git`
 
-Soportamos **Visual Studio Code**, **GitHub Codespaces** y **JetBrains IDEs** con
-contenedores de desarrollo preconfigurados para un setup fácil.
+### Instalación
 
-### Opción 2: Configuración local
+1. Clona el repositorio.
+2. Ejecuta:
 
-Para trabajar localmente:
-
-1. Instala `git` y `node.js`.
-2. Clona el repositorio.
-3. Ejecuta:
-
-```bash linenums="1"
-make install
+```bash
+make setup
 ```
 
-Esto instalará todas las dependencias necesarias.
+Esto instalará todas las dependencias del proyecto mediante `uv sync`.
 
 ## Comandos útiles
 
 El proyecto usa un **Makefile** para automatizar tareas comunes:
 
-| Comando           | Descripción                                     |
-| ----------------- | ----------------------------------------------- |
-| `make dev`        | Inicia el servidor de desarrollo                |
-| `make build`      | Construye el sitio para producción              |
-| `make serve`      | Sirve el sitio construido localmente            |
-| `make format`     | Formatea el código (JS, CSS, MD)                |
-| `make typecheck`  | Revisa tipos con TypeScript                     |
-| `make setup-i18n` | Configura traducciones                          |
-| `make clean`      | Limpia cache y dependencias                     |
-| `make all`        | Ejecuta `build` y todas las tareas relacionadas |
+| Comando                       | Descripción                                          |
+| ----------------------------- | ---------------------------------------------------- |
+| `make setup`                  | Instala las dependencias del proyecto                |
+| `make doc`                    | Inicia el servidor de documentación local (zensical) |
+| `make clean-cache-temp-files` | Limpia archivos de caché y temporales                |
+| `make pipeline`               | Ejecuta limpieza y validaciones                      |
+| `make all`                    | Ejecuta `setup`, `pipeline` y `doc`                  |
 
-> Recomendamos usar `make dev` para previsualizar cambios mientras editas documentación
-> o contenido.
+> Recomendamos usar `make doc` para previsualizar cambios mientras editas documentación o
+> contenido.
 
 ## Estilo de documentación
 
@@ -101,9 +90,6 @@ Un buen contenido/documentación debe ser:
 - Claro y conciso
 - Bien estructurado con títulos, subtítulos y listas
 - Consistente en formato y estilo
-
-Si estás agregando funciones o componentes de Docusaurus, incluye ejemplos y
-descripciones completas.
 
 ## Otras formas de contribuir
 

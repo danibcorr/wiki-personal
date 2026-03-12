@@ -11,18 +11,12 @@ title: CI/CD
 
 ## Introducción
 
-<p align="center">
-  <img src="../../../assets/img/docs/logos/github-logo.png" width="500"/>
-  <br />
-  <em>Logo de GitHub</em>
-</p>
-
-GitHub es una plataforma de desarrollo colaborativo diseñada para la gestión de
-proyectos de software. Proporciona herramientas avanzadas para el control de versiones
-mediante Git, así como funcionalidades para la integración y entrega continua
-(_Continuous Integration_ - CI y _Continuous Deployment_ - CD, respectivamente). Con el
-tiempo, GitHub se ha consolidado como una herramienta esencial para desarrolladores y
-equipos de software, destacando entre sus características GitHub Actions, que permite la
+GitHub es una plataforma de desarrollo colaborativo diseñada para la gestión de proyectos
+de software. Proporciona herramientas avanzadas para el control de versiones mediante
+Git, así como funcionalidades para la integración y entrega continua (_Continuous
+Integration_ - CI y _Continuous Deployment_ - CD, respectivamente). Con el tiempo, GitHub
+se ha consolidado como una herramienta esencial para desarrolladores y equipos de
+software, destacando entre sus características GitHub Actions, que permite la
 automatización de flujos de trabajo directamente dentro de los repositorios facilitando
 la integración con servicios externos, y GitHub Pages, que ofrece una manera sencilla de
 publicar sitios web estáticos directamente desde un repositorio.
@@ -30,8 +24,8 @@ publicar sitios web estáticos directamente desde un repositorio.
 Una de las principales ventajas de utilizar GitHub Actions en lugar de herramientas como
 Jenkins u otras soluciones similares es su integración nativa con GitHub. Además, su
 Marketplace proporciona un amplio catálogo de acciones desarrolladas tanto por GitHub
-como por terceros, lo que permite extender y personalizar los flujos de trabajo de
-manera eficiente.
+como por terceros, lo que permite extender y personalizar los flujos de trabajo de manera
+eficiente.
 
 ## GitHub Actions
 
@@ -40,8 +34,8 @@ eficiencia y reduciendo errores en la integración y despliegue de software. La
 integración continua (CI) se refiere a la automatización de la integración de código en
 un repositorio compartido, asegurando que los cambios sean validados continuamente
 mediante pruebas y compilaciones. El despliegue continuo (CD) automatiza el proceso de
-despliegue de código en entornos de producción, facilitando la entrega continua de
-nuevas versiones del software.
+despliegue de código en entornos de producción, facilitando la entrega continua de nuevas
+versiones del software.
 
 ### GitHub Actions y su funcionamiento
 
@@ -52,9 +46,9 @@ secuencia dependiendo de las necesidades del proyecto.
 
 El _runner_ de GitHub Actions es un servidor que ejecuta estos _workflows_ en un entorno
 definido, permitiendo la compilación del código para distintos sistemas operativos, la
-ejecución de pruebas en paralelo, la validación de código con herramientas como
-_linters_ y analizadores estáticos, y la implementación de código en producción o
-entornos de _staging_.
+ejecución de pruebas en paralelo, la validación de código con herramientas como _linters_
+y analizadores estáticos, y la implementación de código en producción o entornos de
+_staging_.
 
 Para definir un _workflow_, se crea un archivo `.yml` dentro de la carpeta
 `.github/workflows/`:
@@ -92,11 +86,11 @@ dentro del repositorio:
 name: Nombre del Workflow
 ```
 
-Los disparadores (`on`) determinan cuándo debe ejecutarse el _workflow_. Pueden
-activarse mediante eventos como `push`, `pull_request` o ejecuciones programadas.
-También es posible definir permisos a nivel global o dentro de un _job_ específico. Si
-varios _jobs_ requieren los mismos permisos, es recomendable declararlos a nivel del
-_workflow_ en lugar de repetirlos en cada _job_.
+Los disparadores (`on`) determinan cuándo debe ejecutarse el _workflow_. Pueden activarse
+mediante eventos como `push`, `pull_request` o ejecuciones programadas. También es
+posible definir permisos a nivel global o dentro de un _job_ específico. Si varios _jobs_
+requieren los mismos permisos, es recomendable declararlos a nivel del _workflow_ en
+lugar de repetirlos en cada _job_.
 
 ???+ example "Ejemplo"
 
@@ -139,11 +133,11 @@ _workflow_ en lugar de repetirlos en cada _job_.
     ```
 
 Los _jobs_ representan las unidades de trabajo dentro de un _workflow_. Cada _job_ se
-compone de una serie de _steps_ que definen las acciones a ejecutar de manera
-secuencial. Por defecto, los _jobs_ se ejecutan en paralelo a menos que uno dependa
-explícitamente de otro mediante la directiva `needs`. Cada _job_ se ejecuta en una nueva
-máquina virtual, y se debe especificar un sistema operativo con `runs-on`, permitiendo
-elegir entre Linux, macOS y Windows:
+compone de una serie de _steps_ que definen las acciones a ejecutar de manera secuencial.
+Por defecto, los _jobs_ se ejecutan en paralelo a menos que uno dependa explícitamente de
+otro mediante la directiva `needs`. Cada _job_ se ejecuta en una nueva máquina virtual, y
+se debe especificar un sistema operativo con `runs-on`, permitiendo elegir entre Linux,
+macOS y Windows:
 
 ???+ example "Ejemplo"
 
@@ -396,27 +390,26 @@ _workflow_:
 | macos-latest   | 12      | production |
 | windows-latest | 16      | Cualquiera |
 
-Los beneficios del uso de matrices incluyen la eficiencia al probar múltiples entornos
-en paralelo, la flexibilidad para excluir combinaciones no necesarias y la
-automatización escalable, ideal para probar en distintos sistemas sin escribir múltiples
-_workflows_. Este enfoque resulta especialmente útil en proyectos que requieren pruebas
-en múltiples versiones de software, diferentes entornos (_staging_/producción) o
-compatibilidad con varios sistemas operativos.
+Los beneficios del uso de matrices incluyen la eficiencia al probar múltiples entornos en
+paralelo, la flexibilidad para excluir combinaciones no necesarias y la automatización
+escalable, ideal para probar en distintos sistemas sin escribir múltiples _workflows_.
+Este enfoque resulta especialmente útil en proyectos que requieren pruebas en múltiples
+versiones de software, diferentes entornos (_staging_/producción) o compatibilidad con
+varios sistemas operativos.
 
 ## Jenkins
 
 Jenkins es una aplicación basada en servidor, de código abierto, que facilita la
 integración continua y la automatización de la construcción, pruebas y despliegue de
-software. Utiliza un sistema de _plugins_ para integrarse con servicios de terceros,
-como proveedores de la nube, repositorios de código y herramientas de notificación. Su
-funcionamiento se basa en la detección de cambios en el código fuente: cuando se
-producen _commits_, Jenkins los compila y, si la construcción es correcta, procede al
-despliegue; en caso contrario, genera alertas para que el equipo pueda actuar
-rápidamente.
+software. Utiliza un sistema de _plugins_ para integrarse con servicios de terceros, como
+proveedores de la nube, repositorios de código y herramientas de notificación. Su
+funcionamiento se basa en la detección de cambios en el código fuente: cuando se producen
+_commits_, Jenkins los compila y, si la construcción es correcta, procede al despliegue;
+en caso contrario, genera alertas para que el equipo pueda actuar rápidamente.
 
-Jenkins abarca las principales etapas del ciclo DevOps: control de versiones,
-integración continua, monitorización continua, testeo continuo, gestión de la
-configuración y despliegue continuo.
+Jenkins abarca las principales etapas del ciclo DevOps: control de versiones, integración
+continua, monitorización continua, testeo continuo, gestión de la configuración y
+despliegue continuo.
 
 ### Arquitectura maestro-esclavo
 
@@ -429,12 +422,12 @@ aislamiento de entornos de ejecución.
 
 ### Tipos de plugins
 
-Los _plugins_ más destacados de Jenkins se agrupan en varias categorías: los de
-interfaz, relacionados con la interfaz gráfica de Jenkins; los de plataforma, vinculados
-al sistema operativo; los administrativos, destinados a la gestión de usuarios y
-permisos; los de construcción, que permiten notificar el resultado de la compilación de
-una aplicación; y los de gestión del código fuente, que facilitan la comunicación entre
-Jenkins y repositorios como GitLab o GitHub.
+Los _plugins_ más destacados de Jenkins se agrupan en varias categorías: los de interfaz,
+relacionados con la interfaz gráfica de Jenkins; los de plataforma, vinculados al sistema
+operativo; los administrativos, destinados a la gestión de usuarios y permisos; los de
+construcción, que permiten notificar el resultado de la compilación de una aplicación; y
+los de gestión del código fuente, que facilitan la comunicación entre Jenkins y
+repositorios como GitLab o GitHub.
 
 ### Creación de pipelines
 
@@ -448,6 +441,5 @@ conveniente complementar Jenkins con herramientas de aprovisionamiento como Ansi
 
 Para conectar Jenkins con GitHub es necesario instalar el _plugin_ de GitHub en Jenkins,
 crear un _personal access token_ desde los ajustes del perfil de GitHub y, a
-continuación, configurar el enlace en la sección de configuración del sistema de
-Jenkins, donde aparece la opción para establecer la conexión con GitHub mediante dicho
-token.
+continuación, configurar el enlace en la sección de configuración del sistema de Jenkins,
+donde aparece la opción para establecer la conexión con GitHub mediante dicho token.

@@ -29,13 +29,16 @@ entornos. Cabe mencionar que también existen alternativas de código abierto co
 que están ganando relevancia debido a los últimos cambios de licencia y uso de Docker en
 entornos empresariales.
 
+<p align="center">
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240715174859/Microservices-with-Docker-Containers.webp"/>
+  <br />
+  <em>Sistema basado en Microservicios</em>
+</p>
+
 Este tipo de arquitectura se basa en el concepto de **microservicios**, ya que permite
 empaquetar cada servicio de forma independiente con sus propias dependencias, evitando
 así conflictos entre ellas. La comunicación entre contenedores, es decir, entre cada
-microservicio, se realiza habitualmente mediante APIs. Por ejemplo, en Python, distintas
-bibliotecas pueden requerir versiones diferentes de una misma dependencia. Sin
-aislamiento, esto provoca errores difíciles de diagnosticar. Con Docker, cada contenedor
-escala de manera independiente y se le asignan recursos de forma dinámica.
+microservicio, se realiza habitualmente mediante APIs.
 
 Entre sus características principales destacan la **portabilidad**, puesto que los
 contenedores se ejecutan en cualquier sistema que soporte Docker independientemente del
@@ -63,10 +66,12 @@ Los contenedores constituyen una forma de virtualización a nivel del sistema op
 también conocida como virtualización ligera. A diferencia de las máquinas virtuales, que
 virtualizan un sistema operativo completo, los contenedores comparten el núcleo
 (_kernel_) del sistema operativo del _host_ y ejecutan aplicaciones dentro de espacios de
-usuario completamente aislados. Cada contenedor contiene únicamente la aplicación y sus
-dependencias (bibliotecas, archivos de configuración y variables de entorno), lo que lo
-hace extremadamente portátil y fácil de desplegar en diferentes entornos, desde la
-máquina local de un desarrollador hasta un clúster en la nube.
+usuario completamente aislados.
+
+Cada contenedor contiene únicamente la aplicación y sus dependencias (bibliotecas,
+archivos de configuración y variables de entorno), lo que lo hace extremadamente portátil
+y fácil de desplegar en diferentes entornos, desde la máquina local de un desarrollador
+hasta un clúster en la nube.
 
 El aislamiento de los contenedores se logra mediante diferentes técnicas. Los
 _namespaces_ (espacios de nombres) aíslan recursos del sistema operativo: `pid` aísla los
@@ -103,21 +108,28 @@ Microsoft Azure ofrecen servicios tanto de contenedores (AWS ECS/Fargate, EKS, A
 Kubernetes Service (AKS) y Google Kubernetes Engine (GKE)) como de máquinas virtuales
 (EC2 en AWS, VM _Instances_ en GCP y Azure Virtual Machines). Para la gestión local de
 contenedores, herramientas como Docker Desktop o Docker CLI permiten desarrollar,
-gestionar y desplegar contenedores en entornos de desarrollo.
+gestionar y desplegar contenedores.
 
 ### Arquitectura de Docker Engine
 
 Docker Engine se compone de tres elementos fundamentales. El primero es **Docker CLI**,
 una interfaz de línea de comandos que puede ejecutarse incluso en una máquina remota. El
 segundo es la **REST API**, que actúa como canal de comunicación entre el CLI y el
-_daemon_. El tercero es el **Docker _Daemon_**, que gestiona imágenes, contenedores,
-redes y volúmenes. El CLI puede comunicarse con un _daemon_ remoto a través de la REST
-API, lo que permite gestionar contenedores en servidores remotos de forma transparente.
+_daemon_. El tercero es el **Docker Daemon**, que gestiona imágenes, contenedores, redes
+y volúmenes. El CLI puede comunicarse con un _daemon_ remoto a través de la REST API, lo
+que permite gestionar contenedores en servidores remotos de forma transparente.
 
-Los contenedores **comparten el _kernel_ del _host_**. Si el _host_ tiene un _kernel_
-Linux, no se pueden ejecutar contenedores Windows de forma nativa, y viceversa. Al
-instalar Docker en Windows, se crea una instancia de Linux mediante WSL sobre la que
-Docker ejecuta los contenedores.
+!!! info
+
+    Un ***daemon*** es un tipo de programa que se ejecuta en segundo plano, en lugar de bajo
+    el control directo de un usuario. Son procesos autónomos que inician durante el
+    arranque del sistema y gestionan tareas recurrentes como servicios de red, impresión
+    o sincronización.
+
+Hay que tener en cuenta que los contenedores **comparten el _kernel_ del _host_**. Si el
+_host_ tiene un _kernel_ Linux, no se pueden ejecutar contenedores Windows de forma
+nativa, y viceversa. Sin embargo, al instalar Docker en Windows, se crea una instancia de
+Linux mediante WSL sobre la que Docker ejecuta los contenedores.
 
 ### _Tags_ e imágenes
 
@@ -126,8 +138,9 @@ base (Alpine, Debian, Ubuntu), la versión del paquete y otros criterios. Si no 
 especifica un _tag_, Docker utiliza `latest` por defecto, lo cual **no se considera buena
 práctica**, ya que no se tiene control sobre las versiones utilizadas y podrían aparecer
 nuevos problemas no contemplados previamente. Por ello, se recomienda fijar siempre la
-versión y actualizarla de forma controlada, por ejemplo, ante problemas de seguridad. Las
-propias imágenes públicas en Docker Hub suelen disponer de un sistema de alertas que
+versión y actualizarla de forma controlada, por ejemplo, ante problemas de seguridad.
+
+Las propias imágenes públicas en Docker Hub suelen disponer de un sistema de alertas que
 notifica cuando una imagen se ve comprometida o se detecta algún tipo de fallo o mejora
 relevante en el servicio al que corresponde.
 
@@ -196,30 +209,40 @@ ninguna tarea que mantener.
 
 Los contenedores de Docker no leen la entrada estándar (_stdin_) de forma predeterminada.
 Para interactuar con un contenedor se utilizan las opciones `-i` (modo interactivo, que
-mapea _stdin_) y `-t` (que crea un pseudoterminal):
+mapea _stdin_) y `-t` (que crea un pseudoterminal).
 
-```bash linenums="1"
-# Modo interactivo con pseudoterminal
-docker run -it <imagen> bash
+???+ example "Ejemplo"
 
-# Ejemplo: acceder al bash de una imagen con uv preinstalado
-docker run -it ghcr.io/astral-sh/uv:debian bash
-```
+    ```bash linenums="1"
+    # Modo interactivo con pseudoterminal
+    docker run -it <imagen> bash
+
+    # Ejemplo: acceder al bash de una imagen con uv preinstalado
+    docker run -it ghcr.io/astral-sh/uv:debian bash
+    ```
 
 Cuando se ejecuta un contenedor sin la opción `-d`, el terminal queda en modo _attach_
 (primer plano). Para ejecutar en segundo plano se utiliza `-d` (modo _detached_). Si se
-desea volver al primer plano de un contenedor que se encuentra en segundo plano, se
-emplea el siguiente procedimiento:
+desea volver al primer plano de un contenedor que se encuentra en segundo plano debemos
+utilizar el comando `attach` junto con el ID del contenedor.
 
-```bash linenums="1"
-# Obtener el ID del contenedor
-docker ps
+???+ example "Ejemplo"
 
-# Volver al primer plano
-docker attach <id>
-```
+    ```bash linenums="1"
+    # Obtener el ID del contenedor
+    docker ps
+
+    # Volver al primer plano
+    docker attach <id>
+    ```
 
 ### Acceso a contenedores mediante mapeo de puertos
+
+<p align="center">
+  <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1691510841387/a2a15178-1cb1-4fc3-8c38-9c5e5da38c40.png"/>
+  <br />
+  <em>Mapeo de puertos</em>
+</p>
 
 El mapeo de puertos, o _port mapping_, asigna un puerto específico del _host_ al puerto
 de un contenedor, lo que permite que una aplicación dentro del contenedor sea accesible
@@ -273,25 +296,26 @@ cada imagen, ya que las variables de entorno varían según la imagen utilizada.
 
 Un `Dockerfile` es un archivo de texto con instrucciones que permiten construir una
 imagen Docker personalizada. Cada imagen se construye sobre una imagen previa, que puede
-ser oficial de Docker o una personalizada. A continuación se muestra un ejemplo de
-`Dockerfile`:
+ser oficial de Docker o una personalizada.
 
-```dockerfile linenums="1"
-# Imagen base
-FROM node:18
+???+ example "Ejemplo"
 
-# Crear un directorio para el código
-RUN mkdir -p /home/app
+    ```dockerfile linenums="1"
+    # Imagen base
+    FROM node:18
 
-# Copiar los archivos del host al contenedor
-COPY . /home/app
+    # Crear un directorio para el código
+    RUN mkdir -p /home/app
 
-# Exponer el puerto de la aplicación
-EXPOSE 3000
+    # Copiar los archivos del host al contenedor
+    COPY . /home/app
 
-# Ejecutar la aplicación
-CMD ["node", "/home/app/index.js"]
-```
+    # Exponer el puerto de la aplicación
+    EXPOSE 3000
+
+    # Ejecutar la aplicación
+    CMD ["node", "/home/app/index.js"]
+    ```
 
 Para construir una imagen a partir de un `Dockerfile` se utiliza el siguiente comando:
 
@@ -302,29 +326,38 @@ docker build -t nombre-imagen:etiqueta ruta/dockerfile
 #### ENTRYPOINT y CMD
 
 `ENTRYPOINT` define el comando base del contenedor, mientras que `CMD` proporciona
-argumentos por defecto que pueden sobreescribirse al ejecutar el contenedor:
+argumentos por defecto que pueden sobreescribirse al ejecutar el contenedor.
 
-```dockerfile linenums="1"
-FROM ubuntu
-ENTRYPOINT ["sleep"]
-CMD ["5"]
-```
+???+ example "Ejemplo"
 
-```bash linenums="1"
-# Usa el valor por defecto (sleep 5)
-docker run <imagen>
+    Teniendo el siguiente `Dockerfile`:
 
-# Sobreescribe el argumento (sleep 10)
-docker run <imagen> 10
-```
+    ```dockerfile linenums="1"
+    FROM ubuntu
+    ENTRYPOINT ["sleep"]
+    CMD ["5"]
+    ```
+
+    Podemos utilizar el siguiente comando para hacer un sleep de 5 segundos, que es el
+    valor por defecto definido en la imagen:
+
+    ```bash linenums="1"
+    docker run <imagen>
+    ```
+
+    O podemos modificar el valor:
+
+    ```bash linenums="1"
+    docker run <imagen> 10
+    ```
 
 ### Redes en Docker
 
 Para permitir la comunicación entre contenedores, es necesario configurar una red
-interna. Docker permite crear redes personalizadas con
+interna. Docker permite crear redes personalizadas con el comando
 `docker network create mi-nueva-red`, y los contenedores que pertenecen a la misma red
 pueden comunicarse entre sí utilizando su nombre como dominio. Para crear un contenedor
-en una red específica:
+en una red específica podemos utilizar el siguiente comando:
 
 ```bash linenums="1"
 docker create -p 27017:27017 --name mongodb --network mi-nueva-red mongo
@@ -352,43 +385,42 @@ como un conjunto de servicios interconectados. Utiliza un archivo de configuraci
 redes, volúmenes y otros aspectos relacionados con los contenedores, simplificando la
 gestión de aplicaciones complejas compuestas por varios contenedores.
 
-A continuación se muestra un ejemplo de `docker-compose.yml`:
+???+ example "Ejemplo"
 
-```yaml linenums="1"
-version: "3.9"
+    En este ejemplo se definen dos servicios: uno para la aplicación (`mi-app`), que se
+    construye a partir del contexto del directorio actual y mapea el puerto 3000, y otro
+    para MongoDB (`mongodb`), que utiliza una imagen preexistente, mapea el puerto 27017
+    y establece las credenciales de acceso mediante variables de entorno.
 
-services:
-  mi-app:
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - mongodb
+    ```yaml linenums="1"
+    version: "3.9"
 
-  mongodb:
-    image: mongo
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=<usuario>
-      - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
-```
+    services:
+      mi-app:
+        build: .
+        ports:
+          - "3000:3000"
+        links:
+          - mongodb
 
-En este archivo se definen dos servicios: uno para la aplicación (`mi-app`), que se
-construye a partir del contexto del directorio actual y mapea el puerto 3000, y otro para
-MongoDB (`mongodb`), que utiliza una imagen preexistente, mapea el puerto 27017 y
-establece las credenciales de acceso mediante variables de entorno.
+      mongodb:
+        image: mongo
+        ports:
+          - "27017:27017"
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=<usuario>
+          - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
+    ```
 
 Para iniciar los servicios definidos en el archivo se ejecuta `docker compose up`, que
 descarga las imágenes necesarias, crea los contenedores y los pone en funcionamiento.
+
 Para detener y eliminar los servicios, incluidos los contenedores, redes y volúmenes
 asociados, se utiliza `docker compose down`. Otros comandos útiles son
 `docker-compose scale servicio=num_instancias` para escalar servicios y
 `docker-compose logs servicio` para consultar los registros.
 
-La directiva `build:` permite construir la imagen desde un directorio local en lugar de
-descargarla de Docker Hub. También se pueden definir redes personalizadas dentro del
-archivo Compose. Se recomienda consultar el
+Se recomienda consultar el
 [historial de versiones de Docker Compose](https://docs.docker.com/compose/intro/history/)
 para conocer las diferencias de sintaxis y mejoras entre versiones.
 
@@ -405,52 +437,62 @@ de _host_** permiten especificar qué carpeta del sistema anfitrión se monta de
 contenedor. Los **volúmenes nombrados** disponen de un nombre y pueden referenciarse en
 otros contenedores o en múltiples servicios.
 
-Para montar un volumen directamente desde la línea de comandos se utiliza la opción `-v`:
+Para montar un volumen directamente desde la línea de comandos se utiliza la opción `-v`.
 
-```bash linenums="1"
-# Mapear directorio del host a directorio del contenedor
-docker run -v /opt/datadir:/var/lib/mysql mysql
+???+ example "Ejemplo"
 
-# Otro ejemplo con uv
-docker run -v ./Disco:/home/disco -it ghcr.io/astral-sh/uv:debian bash
-```
+    Para mapear el directorio del _host_ al directorio del contenedor, podemos utilizar
+    el comando:
 
-Para añadir un volumen a un contenedor existente, es necesario **recrear el contenedor**
-con el comando del volumen.
+    ```bash linenums="1"
+    docker run -v ./Disco:/home/disco -it ghcr.io/astral-sh/uv:debian bash
+    ```
 
-El siguiente ejemplo muestra un `docker-compose.yml` con volúmenes:
+!!!warning
 
-```yaml linenums="1"
-version: "3.9"
+    Para añadir un volumen a un contenedor existente, es necesario **recrear el contenedor**
+    con el comando del volumen.
 
-services:
-  mi-app:
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - mongodb
+También podemos definir `docker-compose.yml` con volúmenes.
 
-  mongodb:
-    image: mongo
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=<usuario>
-      - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
+???+ example "Ejemplo"
+
+    En este ejemplo, el servicio `mongodb` utiliza un volumen nombrado llamado
+    `mongo-data` para almacenar los datos persistentes de la base de datos. Este volumen
+    se monta en el directorio `/data/db` del contenedor, lo que asegura que los datos de
+    MongoDB se conserven incluso si el contenedor es detenido o eliminado. Docker se
+    encarga de gestionar la creación y almacenamiento de dicho volumen de forma
+    completamente automatizada.
+
+    ```yaml linenums="1"
+    version: "3.9"
+
+    services:
+      mi-app:
+        build: .
+        ports:
+          - "3000:3000"
+        links:
+          - mongodb
+
+      mongodb:
+        image: mongo
+        ports:
+          - "27017:27017"
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=<usuario>
+          - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
+        volumes:
+          - mongo-data:/data/db
+
     volumes:
-      - mongo-data:/data/db
+      mongo-data:
+    ```
 
-volumes:
-  mongo-data:
-```
-
-En este ejemplo, el servicio `mongodb` utiliza un volumen nombrado llamado `mongo-data`
-para almacenar los datos persistentes de la base de datos. Este volumen se monta en el
-directorio `/data/db` del contenedor, lo que asegura que los datos de MongoDB se
-conserven incluso si el contenedor es detenido o eliminado. Docker se encarga de
-gestionar la creación y almacenamiento de dicho volumen de forma completamente
-automatizada.
+Todos los ficheros de Docker se encuentran en `/var/lib/docker`. Docker **cachea las
+capas intermedias** de las imágenes, incluso entre diferentes _Dockerfiles_, lo que
+ahorra espacio y tiempo de construcción. En ese mismo directorio podemos ver los
+volumenes disponibles.
 
 ### Registros de imágenes
 
@@ -465,320 +507,3 @@ Existen registros públicos y privados para almacenar y gestionar imágenes de D
 | GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para CI/CD                           |
 | Harbor                    | _Open source_      | RBAC y firmado de imágenes                                        |
 | JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos                             |
-
-### Almacenamiento interno de Docker
-
-Todos los ficheros de Docker se encuentran en `/var/lib/docker`. Docker **cachea las
-capas intermedias** de las imágenes, incluso entre diferentes _Dockerfiles_, lo que
-ahorra espacio y tiempo de construcción.
-
-```bash linenums="1"
-sudo ls -l /var/lib/docker
-```
-
-## Kubernetes
-
-<p align="center">
-  <img src="../../../assets/img/docs/logos/kubernetes-logo.png" width="500"/>
-  <br />
-  <em>Logo de Kubernetes</em>
-</p>
-
-La adopción de Kubernetes se motiva principalmente por la necesidad de administrar de
-manera eficiente y escalable múltiples contenedores distribuidos en diversos servidores.
-Kubernetes facilita la orquestación de estos contenedores a través de una infraestructura
-declarativa, en la que los usuarios definen la configuración deseada en un manifiesto (un
-archivo de configuración) que se procesa mediante la API de Kubernetes. La plataforma
-asume la responsabilidad de distribuir la carga de trabajo entre los nodos disponibles y
-de administrar los recursos requeridos por los contenedores.
-
-Kubernetes también posibilita la construcción de _pipelines_ ETL utilizando herramientas
-como Spark o Airflow, y se emplea extensamente en el entrenamiento de modelos de
-aprendizaje automático, como se evidencia en su uso con Kubeflow. Al gestionar la
-infraestructura de cómputo, redes y almacenamiento, Kubernetes simplifica la
-implementación y administración de aplicaciones en contenedores a gran escala.
-
-### Componentes de Kubernetes
-
-**Kubectl** es una interfaz de línea de comandos que facilita la interacción con un
-clúster de Kubernetes, permitiendo la gestión de objetos como _pods_, servicios y
-despliegues.
-
-Para la creación de un clúster de Kubernetes en un entorno local, se utiliza
-**Minikube**. Esta herramienta permite la ejecución de Kubernetes de manera local para
-fines de prueba o desarrollo, creando un clúster con uno o varios nodos virtualizados.
-Por defecto, Minikube crea un clúster que contiene un nodo. Para inicializar el clúster
-se utiliza el comando `minikube start`, y para verificar su estado, `minikube status`.
-
-### Nodos
-
-Un nodo representa la unidad más pequeña dentro de un clúster de Kubernetes. Puede ser
-una máquina física o una máquina virtual donde se ejecutan las aplicaciones. Kubernetes
-abstrae el _hardware_ subyacente, permitiendo una gestión eficiente de los requisitos de
-recursos. Si un nodo no puede proporcionar más recursos o falla, Kubernetes redistribuye
-las cargas de trabajo a otros nodos disponibles. Existen diferentes tipos de nodos: los
-nodos bajo demanda (_on-demand nodes_), que se crean cuando los recursos requeridos son
-elevados (CPU, GPU, RAM), y los nodos al mejor precio (_spot nodes_), que son más
-económicos pero pueden ser retirados en cualquier momento.
-
-### _Pods_
-
-Un _pod_ es la unidad mínima de ejecución en Kubernetes y puede contener uno o más
-contenedores que comparten los mismos recursos y red local. Todos los contenedores dentro
-del mismo _pod_ pueden comunicarse entre sí y comparten el mismo entorno de red. Al
-escalar un _pod_, todos los contenedores dentro de él se escalan conjuntamente.
-
-### Clúster
-
-Un clúster es un conjunto de nodos, también conocidos como _workers_, que se ejecutan en
-Kubernetes. La relación entre las aplicaciones que se ejecutan en cada nodo es
-independiente. Por ejemplo, si se dispone de un servidor de Proxmox con dos máquinas
-virtuales, VM1 y VM2, a pesar de que cuenten con diferentes _pods_, si todos están
-gestionados por Kubernetes, ambos forman parte del mismo clúster.
-
-### _StatefulSet_ y volúmenes
-
-Dado que no se puede garantizar el lugar de ejecución de una aplicación, el uso del disco
-local para almacenar datos resulta inviable, siendo útil únicamente para almacenamiento
-temporal como caché. Kubernetes emplea volúmenes persistentes que, a diferencia de otros
-recursos como la CPU, GPU y RAM gestionados por los clústeres, deben adjuntarse al propio
-clúster desde unidades locales o en la nube. Estos volúmenes no se asocian a un nodo en
-particular.
-
-**_StatefulSet_** permite la creación de _pods_ con volúmenes persistentes, garantizando
-la integridad de los datos incluso si el _pod_ se reinicia o se elimina. A continuación
-se muestra un ejemplo:
-
-```yaml linenums="1"
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: my-csi-app-set
-spec:
-  selector:
-    matchLabels:
-      app: my-frontend
-  serviceName: "my-frontend"
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: my-frontend
-    spec:
-      containers:
-        - name: my-frontend
-          image: busybox
-          args:
-            - sleep
-            - infinity
-          volumeMounts:
-            - name: data
-              mountPath: "/data"
-  volumeClaimTemplates:
-    - metadata:
-        name: csi-pvc
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
-```
-
-Para verificar el estado de los volúmenes y los _StatefulSets_ se utilizan los comandos
-`kubectl get pvc` (para consultar la asignación del volumen, capacidad y otros detalles)
-y `kubectl get sts` (para consultar los _StatefulSets_).
-
-### Manifiestos
-
-Un manifiesto es un archivo en formato YAML o JSON que especifica cómo desplegar una
-aplicación en un clúster de Kubernetes. Este archivo se conoce como un registro de
-intención, donde se le indica a Kubernetes el estado deseado del clúster.
-
-Un concepto importante asociado es el de _namespace_, que constituye la división lógica
-del clúster de Kubernetes y permite separar la carga del clúster. Se pueden crear
-políticas para separar tráfico entre _namespaces_, aunque por defecto los datos de un
-_namespace_ son visibles desde otro. Para obtener los _namespaces_ del clúster se utiliza
-`kubectl get ns`, para obtener los _pods_ de un _namespace_ específico se emplea
-`kubectl -n nombre_namespace get pods -o wide` (la opción `-o wide` proporciona
-información adicional como la IP del _pod_ y el nodo), y para eliminar un _pod_ se usa
-`kubectl -n nombre_namespace delete pod nombre_pod`.
-
-A continuación se muestra un ejemplo de manifiesto para crear un _pod_ simple:
-
-```yaml linenums="1"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-spec:
-  containers:
-    - name: nginx
-      image: nginx:alpine
-```
-
-Para aplicar el manifiesto se ejecuta `kubectl apply -f nombre.yaml`, y para consultar el
-estado del _pod_, `kubectl get pods`.
-
-El siguiente ejemplo muestra un manifiesto más complejo que incluye variables de entorno,
-solicitudes y límites de recursos, así como _readiness probe_ y _liveness probe_:
-
-```yaml linenums="1"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-spec:
-  containers:
-    - name: nginx
-      image: nginx:alpine
-      env:
-        - name: MI_VARIABLE
-          value: "valor_ejemplo"
-        - name: MI_OTRA_VARIABLE
-          value: "otro_valor"
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-      resources:
-        requests:
-          memory: "64Mi"
-          cpu: "200m"
-        limits:
-          memory: "128Mi"
-          cpu: "500m"
-      readinessProbe:
-        httpGet:
-          path: /
-          port: 80
-        initialDelaySeconds: 5
-        periodSeconds: 10
-      livenessProbe:
-        tcpSocket:
-          port: 80
-        initialDelaySeconds: 15
-        periodSeconds: 20
-      ports:
-        - containerPort: 80
-```
-
-En este manifiesto, la sección `resources.requests` define los recursos garantizados que
-la instancia debe tener disponibles para poder realizar el despliegue, medidos en
-_milicores_ para CPU (donde 1000 _milicores_ equivalen a 1 _core_). La sección
-`resources.limits` establece el límite máximo de recursos que el _pod_ puede consumir. Si
-se excede dicho límite, el _kernel_ de Linux finaliza el proceso y el _pod_ se reinicia.
-La _readiness probe_ indica a Kubernetes que el _pod_ está listo para recibir tráfico,
-mientras que la _liveness probe_ confirma que el _pod_ sigue activo y no debe ser
-eliminado.
-
-### Despliegue y gestión de réplicas
-
-Un despliegue (_deployment_) permite declarar el número de réplicas de _pods_ y asegurar
-que el estado deseado se mantenga, monitorizándolos de forma continua:
-
-```yaml linenums="1"
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:alpine
-          ports:
-            - containerPort: 80
-```
-
-### _DaemonSet_
-
-Un _DaemonSet_ es una forma de despliegue que garantiza que un _pod_ se ejecute en todos
-los nodos del clúster, con exactamente un _pod_ por nodo. No se especifica el número de
-réplicas, ya que depende del número de nodos. Se utiliza habitualmente para servicios de
-monitoreo:
-
-```yaml linenums="1"
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: nginx-daemonset
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:alpine
-```
-
-### Exponer aplicaciones
-
-#### Tipos de servicios
-
-Los servicios en Kubernetes permiten acceder a los _pods_ desde dentro y fuera del
-clúster. Existen varios tipos de servicios según las necesidades de exposición.
-
-**ClusterIP** proporciona una dirección IP virtual única a nivel de clúster, facilitando
-la comunicación y el balanceo de carga entre _pods_ de forma interna.
-
-**NodePort** crea un puerto en cada nodo que recibe el tráfico y lo redirige a los _pods_
-correspondientes, permitiendo que la aplicación sea accesible desde fuera del clúster.
-Suele utilizar puertos dentro del rango 30000 a 32767:
-
-```yaml linenums="1"
-apiVersion: v1
-kind: Service
-metadata:
-  name: mi-servicio
-spec:
-  type: NodePort
-  selector:
-    app: mi-aplicacion
-  ports:
-    - port: 80
-      targetPort: 9376
-      nodePort: 30007
-```
-
-**LoadBalancer** está orientado a proveedores de la nube y crea un balanceador de carga
-que proporciona una IP estable para el servidor, facilitando su acceso desde Internet:
-
-```yaml linenums="1"
-apiVersion: v1
-kind: Service
-metadata:
-  name: mi-servicio
-spec:
-  type: LoadBalancer
-  selector:
-    app: mi-aplicacion
-  ports:
-    - port: 80
-      targetPort: 80
-```
-
-#### _Ingress_
-
-_Ingress_ administra el acceso externo a los servicios del clúster, típicamente HTTP.
-Proporciona balanceo de carga y terminación SSL, y permite el acceso al servicio mediante
-_paths_. Suele requerirse un controlador Ingress-Nginx que se instala por separado.
-
-### _Networking_ y almacenamiento
-
-Cada _pod_ en Kubernetes tiene su propia dirección IP, y para comunicar _pods_ en
-diferentes nodos se utiliza el _Cloud Cluster Networking Interface_. En cuanto al
-almacenamiento, **etcd** es un almacén de datos clave-valor distribuido utilizado para
-guardar datos de configuración, estado y metadatos del clúster.
