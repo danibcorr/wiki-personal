@@ -16,8 +16,8 @@ Existen dos formas principales de contribuir:
 
 ### Paso 1: Abrir un issue
 
-Comienza abriendo un **issue** para describir tu propuesta o el problema que encontraste.
-Esto nos ayuda a evaluar y guiar el trabajo antes de hacer cambios.
+Comienza abriendo un **issue** para describir tu propuesta o el problema que
+encontraste. Esto nos ayuda a evaluar y guiar el trabajo antes de hacer cambios.
 
 > Si tu cambio es pequeño (por ejemplo, corregir un error tipográfico), puedes omitir
 > este paso y abrir directamente un pull request.
@@ -80,8 +80,8 @@ El proyecto usa un **Makefile** para automatizar tareas comunes:
 | `make pipeline`               | Ejecuta limpieza y validaciones                      |
 | `make all`                    | Ejecuta `setup`, `pipeline` y `doc`                  |
 
-> Recomendamos usar `make doc` para previsualizar cambios mientras editas documentación o
-> contenido.
+> Recomendamos usar `make doc` para previsualizar cambios mientras editas documentación
+> o contenido.
 
 ## Estilo de documentación
 

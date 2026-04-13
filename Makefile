@@ -1,6 +1,7 @@
 .PHONY: setup \
 		clean-cache-temp-files \
 		doc  \
+		format \
 		pipeline all
 
 .DEFAULT_GOAL := all
@@ -28,5 +29,10 @@ doc:
 pipeline: clean-cache-temp-files
 	@echo "✅ Pipeline complete."
 
-all: setup pipeline doc
+format:
+	@echo "Formatting documents..."
+	@npx prettier --write .
+	@echo "✅ Formatting complete."
+
+all: setup format pipeline doc
 	@echo "✅ All tasks complete."

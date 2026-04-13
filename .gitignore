@@ -27,3 +27,4 @@ __pycache__/
 # Exceptions
 !/.devcontainer/*
 !/.github/**
+node_modules/
