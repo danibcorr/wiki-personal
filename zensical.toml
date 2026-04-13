@@ -46,11 +46,6 @@ nav = [
             "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
         ]}
     ]},
-    {"Dominios" = [
-        {"Telecomunicaciones" = [
-            "domain_specific/introduction_to_telecommunications.md"
-        ]}
-    ]},
     {"Otros" = [
         "topic_A_interviews/cv_guide.md"
     ]},
