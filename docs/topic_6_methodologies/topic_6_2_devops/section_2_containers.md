@@ -507,3 +507,176 @@ Existen registros públicos y privados para almacenar y gestionar imágenes de D
 | GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para CI/CD                           |
 | Harbor                    | _Open source_      | RBAC y firmado de imágenes                                        |
 | JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos                             |
+
+### Optimización del tamaño de imágenes
+
+El tamaño de una imagen Docker influye directamente en los tiempos de descarga,
+despliegue y almacenamiento. Reducir el tamaño de las imágenes es una práctica
+recomendada que mejora la eficiencia del flujo de trabajo y disminuye los costes de
+infraestructura. Existen varias estrategias complementarias para lograrlo.
+
+#### Selección de imágenes base ligeras
+
+La elección de la imagen base es el factor que más impacto tiene en el tamaño final.
+Imágenes como Alpine o las variantes Debian Slim ofrecen un sistema operativo mínimo que
+reduce significativamente el peso de la imagen resultante en comparación con las
+distribuciones completas.
+
+#### Limpieza de caché y metadatos
+
+Cuando se instalan paquetes del sistema operativo dentro de una imagen, los gestores de
+paquetes almacenan caché y metadatos que no son necesarios en tiempo de ejecución.
+Eliminar estos ficheros temporales tras la instalación reduce el tamaño de la capa
+resultante. Es importante encadenar los comandos de instalación y limpieza en una única
+instrucción `RUN` para que la caché no persista en capas intermedias.
+
+???+ example "Ejemplo: Instalación con limpieza de caché"
+
+    En este ejemplo se instalan las dependencias del sistema y se eliminan los ficheros
+    temporales en la misma instrucción `RUN`, evitando que la caché de `apt` persista
+    en la imagen final:
+
+    ```dockerfile linenums="1"
+    FROM python:3.13-slim-bookworm
+
+    RUN apt-get update && apt-get install --no-install-recommends -y \
+            build-essential \
+            curl \
+            ca-certificates && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+    ```
+
+#### Gestión de dependencias por grupos
+
+Los gestores de dependencias como uv o Poetry permiten definir grupos diferenciados de
+dependencias (producción, desarrollo, documentación, pruebas). Al construir la imagen de
+producción, se instalan únicamente las dependencias necesarias para la ejecución,
+excluyendo herramientas de desarrollo, _linters_ o _frameworks_ de pruebas que
+incrementarían el tamaño de la imagen sin aportar valor en el entorno de despliegue.
+
+#### Copiar solo lo necesario
+
+Es recomendable copiar exclusivamente los ficheros que la aplicación necesita para
+ejecutarse, en lugar de copiar todo el directorio del proyecto. Esto evita incluir
+ficheros de configuración local, documentación, pruebas o directorios como `.git` que no
+son necesarios en la imagen final. El uso de un fichero `.dockerignore` complementa esta
+práctica al excluir automáticamente ficheros y directorios no deseados durante el
+proceso de construcción.
+
+#### _Multi-stage builds_
+
+Las construcciones multietapa permiten dividir el proceso de creación de una imagen en
+varias fases, cada una con su propia imagen base. Una primera etapa, más pesada, se
+encarga de compilar el proyecto e instalar las dependencias, mientras que una segunda
+etapa, basada en una imagen ligera, recibe únicamente los artefactos necesarios para la
+ejecución. De este modo, las herramientas de compilación y las dependencias de
+desarrollo no forman parte de la imagen final.
+
+???+ example "Ejemplo: _Multi-stage build_ con uv"
+
+    En este ejemplo, la etapa `builder` utiliza una imagen completa de Python para
+    instalar las dependencias del proyecto con uv. La etapa `production` parte de una
+    imagen Slim y copia únicamente el entorno virtual generado en la etapa anterior,
+    obteniendo una imagen final significativamente más ligera:
+
+    ```dockerfile linenums="1"
+    ## Builder Stage
+    FROM python:3.13-bookworm AS builder
+
+    RUN apt-get update && apt-get install --no-install-recommends -y \
+            build-essential && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    ADD https://astral.sh/uv/install.sh /install.sh
+    RUN chmod -R 655 /install.sh && /install.sh && rm /install.sh
+
+    ENV PATH="/root/.local/bin:$PATH"
+
+    WORKDIR /app
+    COPY ./pyproject.toml .
+    RUN uv sync
+
+    ## Production Stage
+    FROM python:3.13-slim-bookworm AS production
+
+    WORKDIR /app
+    COPY . .
+    COPY --from=builder /app/.venv .venv
+
+    ENV PATH="/app/.venv/bin:$PATH"
+
+    EXPOSE $PORT
+
+    CMD ["uvicorn", "src.main:app", "--log-level", "info", \
+         "--host", "0.0.0.0", "--port", "8080"]
+    ```
+
+### Seguridad en contenedores
+
+Por defecto, los procesos dentro de un contenedor Docker se ejecutan como usuario
+`root`. Aunque el aislamiento proporcionado por los _namespaces_ limita el alcance de
+este usuario, ejecutar aplicaciones como `root` dentro del contenedor sigue
+representando un riesgo de seguridad, especialmente si se produce una vulnerabilidad que
+permita escapar del contenedor. La práctica recomendada consiste en crear un usuario sin
+privilegios y ejecutar la aplicación con dicho usuario.
+
+#### Ejecución con usuario no privilegiado
+
+La instrucción `RUN useradd` permite crear un usuario dentro de la imagen, y la
+directiva `USER` establece que todos los comandos posteriores se ejecuten con ese
+usuario en lugar de `root`. Esta configuración se aplica habitualmente en la etapa de
+producción de un _multi-stage build_.
+
+#### Gestión de secretos en tiempo de construcción
+
+Las variables de entorno definidas con `ENV` en un `Dockerfile` quedan almacenadas en
+las capas de la imagen y son visibles mediante `docker inspect`. Para información
+sensible como contraseñas o claves de acceso, Docker proporciona el mecanismo de _build
+secrets_ mediante `--mount=type=secret`, que permite acceder a los secretos durante la
+construcción sin que estos persistan en la imagen final.
+
+???+ example "Ejemplo: Imagen segura con usuario no privilegiado y _build secrets_"
+
+    En este ejemplo, la etapa de producción crea un usuario `appuser` sin privilegios, monta los secretos de forma temporal durante la construcción y copia únicamente el código fuente necesario:
+
+    ```dockerfile linenums="1"
+    ## Builder Stage
+    FROM python:3.13-bookworm AS builder
+
+    RUN apt-get update && apt-get install --no-install-recommends -y \
+            build-essential && \
+        apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    ADD https://astral.sh/uv/install.sh /install.sh
+    RUN chmod -R 655 /install.sh && /install.sh && rm /install.sh
+
+    ENV PATH="/root/.local/bin:$PATH"
+
+    WORKDIR /app
+    COPY ./pyproject.toml .
+    RUN uv sync
+
+    ## Production Stage
+    FROM python:3.13-slim-bookworm AS production
+
+    RUN --mount=type=secret,id=DB_PASSWORD \
+        --mount=type=secret,id=DB_USER \
+        --mount=type=secret,id=DB_NAME \
+        --mount=type=secret,id=DB_HOST \
+        --mount=type=secret,id=ACCESS_TOKEN_SECRET_KEY \
+        echo "Secrets available during build"
+
+    RUN useradd --create-home appuser
+    USER appuser
+
+    WORKDIR /app
+    COPY /src src
+    COPY --from=builder /app/.venv .venv
+
+    ENV PATH="/app/.venv/bin:$PATH"
+
+    EXPOSE $PORT
+
+    CMD ["uvicorn", "src.main:app", "--log-level", "info", \
+         "--host", "0.0.0.0", "--port", "8080"]
+    ```
