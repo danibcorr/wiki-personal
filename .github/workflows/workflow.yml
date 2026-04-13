@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main, dev]
 
-env:
-  SRC_PYTHON_VERSION: "3.11"
-
 jobs:
   build-deploy-docs:
     name: Build and Deploy Documentation
@@ -22,6 +19,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+
+      - name: Check formatting
+        run: npx prettier@3 --check .
 
       - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env

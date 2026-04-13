@@ -171,14 +171,14 @@ aspectos:
 
 7. **Inferencia**: Decide si prefieres realizar inferencia en lotes (sin conexión) o en
    tiempo real (en línea).
-   - La **inferencia en lotes** permite hacer predicciones en lotes y almacenarlas para
-     una inferencia de baja latencia. No requiere un servicio separado, pero las
-     predicciones pueden volverse obsoletas si cambian los intereses del usuario.
+    - La **inferencia en lotes** permite hacer predicciones en lotes y almacenarlas para
+      una inferencia de baja latencia. No requiere un servicio separado, pero las
+      predicciones pueden volverse obsoletas si cambian los intereses del usuario.
 
-   - La **inferencia en línea** ofrece predicciones en tiempo real y puede proporcionar
-     una experiencia de usuario más significativa. Sin embargo, requiere un servicio
-     separado para manejar las solicitudes y un monitoreo en tiempo real para evitar
-     predicciones erróneas debido a un espacio de entrada ilimitado.
+    - La **inferencia en línea** ofrece predicciones en tiempo real y puede proporcionar
+      una experiencia de usuario más significativa. Sin embargo, requiere un servicio
+      separado para manejar las solicitudes y un monitoreo en tiempo real para evitar
+      predicciones erróneas debido a un espacio de entrada ilimitado.
 
 8. **Retroalimentación**: Recibe retroalimentación sobre nuestro sistema e incorpórala
    en la siguiente iteración. Esto puede involucrar tanto retroalimentación humana en el
@@ -198,14 +198,14 @@ aspectos:
 
 2. **Ubicación de los datos**: La ubicación de los datos puede variar en función de las
    necesidades del sistema.
-   - En **sistemas más sencillos**, donde la cantidad de datos no es muy grande, puede
-     ser suficiente alojarlos localmente en un servidor controlado por la propia
-     empresa.
-   - Sin embargo, si se requiere escalar el sistema o integrarlo con otras tecnologías,
-     herramientas o utilidades, puede ser necesario recurrir a **servicios en la nube**
-     proporcionados por empresas como Amazon S3 o Google Cloud Storage. Estos servicios
-     ofrecen la flexibilidad y escalabilidad necesarias para manejar grandes volúmenes
-     de datos y facilitar su acceso y procesamiento.
+    - En **sistemas más sencillos**, donde la cantidad de datos no es muy grande, puede
+      ser suficiente alojarlos localmente en un servidor controlado por la propia
+      empresa.
+    - Sin embargo, si se requiere escalar el sistema o integrarlo con otras tecnologías,
+      herramientas o utilidades, puede ser necesario recurrir a **servicios en la nube**
+      proporcionados por empresas como Amazon S3 o Google Cloud Storage. Estos servicios
+      ofrecen la flexibilidad y escalabilidad necesarias para manejar grandes volúmenes
+      de datos y facilitar su acceso y procesamiento.
 
 3. **División de los datos**: Una vez que se han obtenido los datos, se procede a su
    división en conjuntos de entrenamiento, validación y pruebas. Esta división es
@@ -277,8 +277,8 @@ Este proceso puede dividirse en dos partes principales:
    que pueden distorsionar los resultados del modelo, y la ingeniería de
    características, que implica combinar características existentes de maneras únicas
    para extraer señales adicionales.
-   - Algunas técnicas a utilizar: aumentación de datos, eliminación de muestras y la
-     asignación de pesos por clases, etc.
+    - Algunas técnicas a utilizar: aumentación de datos, eliminación de muestras y la
+      asignación de pesos por clases, etc.
 
 2. **Transformación de los datos**: Esta etapa puede implicar tareas como la
    normalización de los datos para ajustar las escalas de las características de manera
@@ -287,7 +287,7 @@ Este proceso puede dividirse en dos partes principales:
    características, que convierte características categóricas en representaciones
    numéricas, y la extracción de características, que deriva nuevas características de
    las existentes para resaltar la información relevante.
-   - Algunas técnicas a utilizar: PCA, _Auto Encoders_, tokenización (LLM), etc.
+    - Algunas técnicas a utilizar: PCA, _Auto Encoders_, tokenización (LLM), etc.
 
 ### 2.2.5. Distribución de los datos
 
@@ -358,9 +358,9 @@ Para implementar el entrenamiento distribuido, se deben seguir los siguientes pa
 1. **División de los datos entre los nodos trabajadores**: Cada nodo trabajador recibe
    una porción de los datos para entrenar el modelo. Esta división de datos permite que
    cada nodo trabajador pueda entrenar el modelo de manera independiente y paralela.
-   - **Componentes a tener en cuenta**: Número de nodos trabajadores, el uso de unidades
-     de procesamiento gráfico (_GPU_), los recursos asignados a cada nodo y la
-     disponibilidad de recursos de CPU, entre otros.
+    - **Componentes a tener en cuenta**: Número de nodos trabajadores, el uso de
+      unidades de procesamiento gráfico (_GPU_), los recursos asignados a cada nodo y la
+      disponibilidad de recursos de CPU, entre otros.
 
 2. **Preparación del modelo para la ejecución distribuida**: Es necesario adaptar el
    modelo para permitir su entrenamiento en múltiples nodos trabajadores de manera
@@ -484,9 +484,9 @@ de hiperparámetros, sin importar el marco de trabajo que se esté utilizando:
    precisión, en muchos casos, se requiere una evaluación más detallada y matizada.
 
 5. **Preparación para la evaluación**: Antes de comenzar la evaluación, es importante:
-   - Definir claramente las métricas que se van a priorizar.
-   - Evitar la sobreoptimización en una métrica específica, ya que podría comprometer
-     otros aspectos del rendimiento del modelo.
+    - Definir claramente las métricas que se van a priorizar.
+    - Evitar la sobreoptimización en una métrica específica, ya que podría comprometer
+      otros aspectos del rendimiento del modelo.
 
 6. **Configuración de la evaluación**: Al configurar la evaluación, se deben preparar
    todos los datos necesarios, incluyendo las etiquetas verdaderas, las etiquetas

@@ -9,40 +9,41 @@ copyright = "Copyright &copy; 2026 Daniel Bazo Correa"
 nav = [
     {"Inicio" = "index.md"},
     {"Sistemas Operativos" = [
-        "capt_1_operative_systems/topic_1_linux.md"
+        "topic_1_operative_systems/section_1_linux.md"
     ]},
     {"Herramientas" = [
-        "capt_2_tools/topic_1_git.md"
+        "topic_2_tools/section_1_git.md"
     ]},
     {"Programación" = [
         {"Python" = [
-            "capt_3_programming/capt_3_1_python/topic_1_environments.md",
-            "capt_3_programming/capt_3_1_python/topic_2_python.md",
-            "capt_3_programming/capt_3_1_python/topic_3_arrays.md",
-            "capt_3_programming/capt_3_1_python/topic_4_leetcode.md",
-            "capt_3_programming/capt_3_1_python/topic_5_libraries.md",
+            "topic_3_programming/topic_3_1_python/section_1_environments.md",
+            "topic_3_programming/topic_3_1_python/section_2_fundamentals.md",
+            "topic_3_programming/topic_3_1_python/section_3_arrays.md",
+            "topic_3_programming/topic_3_1_python/section_4_leetcode.md",
+            "topic_3_programming/topic_3_1_python/section_5_libraries.md",
         ]},
         {"Scripting" = [
-            "capt_3_programming/capt_3_2_scripting/topic_1_bash.md",
-            "capt_3_programming/capt_3_2_scripting/topic_2_makefile.md"
+            "topic_3_programming/topic_3_2_scripting/section_1_bash.md",
+            "topic_3_programming/topic_3_2_scripting/section_2_makefile.md"
         ]},
         {"Bases de Datos" = [
-            "capt_3_programming/capt_3_3_databases/topic_1_sql.md",
-            "capt_3_programming/capt_3_3_databases/topic_2_exercises_sql.md"
+            "topic_3_programming/topic_3_3_databases/section_1_sql.md",
+            "topic_3_programming/topic_3_3_databases/section_2_exercises.md"
         ]},
         {"CUDA" = [
-            "capt_3_programming/capt_3_4_cuda/topic_1_cuda.md",
-            "capt_3_programming/capt_3_4_cuda/topic_2_exercises_cuda.md"
+            "topic_3_programming/topic_3_4_cuda/section_1_fundamentals.md",
+            "topic_3_programming/topic_3_4_cuda/section_2_exercises.md"
         ]},
         {"Front End" = [
-            "capt_3_programming/capt_3_5_front_end/topic_1_introduction.md"
+            "topic_3_programming/topic_3_5_front_end/section_1_fundamentals.md"
         ]}
     ]},
     {"Metodologías" = [
         {"DevOps" = [
-            "capt_6_methodologies/capt_6_2_devops/topic_1_fundamentals.md",
-            "capt_6_methodologies/capt_6_2_devops/topic_2_containers.md",
-            "capt_6_methodologies/capt_6_2_devops/topic_3_automation.md"
+            "topic_6_methodologies/topic_6_2_devops/section_1_fundamentals.md",
+            "topic_6_methodologies/topic_6_2_devops/section_2_containers.md",
+            "topic_6_methodologies/topic_6_2_devops/section_3_orchestrators.md",
+            "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
         ]}
     ]},
     {"Dominios" = [
@@ -51,7 +52,7 @@ nav = [
         ]}
     ]},
     {"Otros" = [
-        "capt_A_interviews/cv_guide.md"
+        "topic_A_interviews/cv_guide.md"
     ]},
 ]
 extra_css = ["stylesheets/extra.css"]
