@@ -440,7 +440,7 @@ las etapas y las variables globales.
 
     !!!note "Nota"
 
-        Cuando no se especifica una imagen, GitLab utiliza una por defecto, por lo que es recomendable definirla explícitamente para garantizar la reproducibilidad del entorno. Si no se asigna un _stage_ a un _job_, GitLab lo asigna automáticamente al _stage_ `test`. Los ficheros creados o modificados durante la ejecución de un _job_ no se confirman (_commit_) automáticamente en el repositorio.
+        Cuando no se especifica una imagen, GitLab utiliza una por defecto, por lo que es recomendable definirla explícitamente para garantizar la reproducibilidad del entorno. Las imágenes se obtienen de Docker Hub u otros registros de contenedores, y es buena práctica fijar versiones específicas en lugar de utilizar etiquetas como `latest`. La directiva `image` definida a nivel global (fuera de los _jobs_) se aplica a todos los _jobs_ del _pipeline_; para que un _job_ concreto utilice una imagen diferente, basta con redefinir `image` dentro de ese _job_. Si no se asigna un _stage_ a un _job_, GitLab lo asigna automáticamente al _stage_ `test`. Los ficheros creados o modificados durante la ejecución de un _job_ no se confirman (_commit_) automáticamente en el repositorio.
 
 ### _Jobs_ y configuración
 
@@ -484,6 +484,14 @@ ejecución del _pipeline_.
           - coverage.xml
         expire_in: 1 hour
     ```
+
+Además de las variables definidas directamente en el archivo `.gitlab-ci.yml`, GitLab
+permite configurar variables CI/CD desde los ajustes del repositorio, en la sección
+**Settings > CI/CD > Variables**. Esto resulta especialmente útil para almacenar valores
+sensibles como _tokens_ de acceso, credenciales, direcciones de correo u otros datos que
+no deben incluirse en el código fuente. Estas variables quedan disponibles
+automáticamente en todos los _pipelines_ del repositorio y pueden referenciarse en los
+_jobs_ de la misma forma que las variables globales del archivo YAML.
 
 ### Opciones de control de _jobs_
 
