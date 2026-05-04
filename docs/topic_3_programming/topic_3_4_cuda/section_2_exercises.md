@@ -649,7 +649,7 @@ title: Ejercicios de CUDA en C
     <figure markdown="span">
 
 
-      ![](/assets/img/docs/Matrix.jpg)
+      ![](../../assets/img/docs/Matrix.jpg)
 
 
     </figure>
@@ -785,7 +785,7 @@ title: Ejercicios de CUDA en C
     <figure markdown="span">
 
 
-      ![](/assets/img/docs/Thermal_Conductivity.jpg)
+      ![](../../assets/img/docs/Thermal_Conductivity.jpg)
 
 
     </figure>

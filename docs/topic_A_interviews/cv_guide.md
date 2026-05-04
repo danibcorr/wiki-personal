@@ -51,14 +51,14 @@ CV en las siguientes secciones:
 - **Resumen profesional:** Un breve párrafo de entre 60 y 100 palabras que resuma la
   especialidad, los logros más relevantes y las palabras clave alineadas con el puesto.
 - **Experiencia profesional:** Presentada en orden cronológico inverso (de lo más
-  reciente a lo más antiguo) bajo el formato: **[Puesto] | [Empresa] | [Fechas]**. Se
-  deben describir logros concretos y medibles utilizando la **fórmula XYZ**: _"Logré X,
-  medido por Y, realizando Z"_. Es fundamental reflejar tanto **habilidades técnicas
+  reciente a lo más antiguo) bajo el formato: **\[Puesto\] | \[Empresa\] | \[Fechas\]**.
+  Se deben describir logros concretos y medibles utilizando la **fórmula XYZ**: _"Logré
+  X, medido por Y, realizando Z"_. Es fundamental reflejar tanto **habilidades técnicas
   (_hard skills_)** como **habilidades blandas (_soft skills_)**, siempre aplicadas a
   situaciones reales. En los primeros años de carrera, el peso de la parte técnica suele
   ser mayor.
-- **Educación y certificaciones:** Formato: **[Grado académico] | [Institución] |
-  [Año]**. Se incluyen certificaciones técnicas de peso (AWS, Azure, etc.). Los cursos
+- **Educación y certificaciones:** Formato: **\[Grado académico\] | \[Institución\] |
+  \[Año\]**. Se incluyen certificaciones técnicas de peso (AWS, Azure, etc.). Los cursos
   en línea (como Coursera) pueden mencionarse en la entrevista, pero generalmente no
   aportan valor al CV y restan espacio para proyectos más relevantes.
 - **Proyectos y publicaciones (opcional):** Sección valiosa para perfiles con poca
@@ -111,7 +111,7 @@ Consejos clave para destacar:
 Estructura recomendada:
 
 1. **Encabezado:** Datos de contacto del remitente y del destinatario.
-2. **Saludo personalizado:** "Estimado/a [Nombre]".
+2. **Saludo personalizado:** "Estimado/a \[Nombre\]".
 3. **Primer párrafo (gancho):** Expresa la motivación para unirse a la empresa,
    demostrando conocimiento de su cultura y proyectos actuales.
 4. **Cuerpo (2–3 párrafos):** Relaciona la experiencia con los requisitos del puesto y

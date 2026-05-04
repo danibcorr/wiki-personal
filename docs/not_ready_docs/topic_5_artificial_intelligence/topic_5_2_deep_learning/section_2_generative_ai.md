@@ -187,9 +187,9 @@ el tipo de entrenamiento:
 
 Los modelos incorporan tokens específicos para diversas funciones:
 
-- **[CLS]**: Indica la representación global de la secuencia, utilizada en tareas de
+- **\[CLS\]**: Indica la representación global de la secuencia, utilizada en tareas de
   clasificación o comparación entre secuencias.
-- **[PAD]**: Rellena secuencias hasta la longitud máxima permitida por el modelo.
+- **\[PAD\]**: Rellena secuencias hasta la longitud máxima permitida por el modelo.
 - **Máscara**: Utilizada en modelos enmascarados para predecir tokens ocultos.
 
 El entrenamiento de modelos de lenguaje incluye varias fases:

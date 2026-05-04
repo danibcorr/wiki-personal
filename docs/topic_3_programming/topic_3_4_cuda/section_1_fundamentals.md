@@ -14,7 +14,7 @@ title: Fundamentos
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Nvidia CUDA](../../../assets/img/docs/logos/cuda-logo.png){ width="200" }
+  ![Logo de Nvidia CUDA](../../assets/img/docs/logos/cuda-logo.png){ width="200" }
   <figcaption>Logo de Nvidia CUDA</figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ bibliotecas y aplicaciones de CUDA en Python.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/B0FF9827-9E32-46F2-8365-FA0E686C649D.png)
+![](../../assets/img/docs/B0FF9827-9E32-46F2-8365-FA0E686C649D.png)
 
 </figure>
 
@@ -84,7 +84,7 @@ obtener el máximo rendimiento.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/EEA7EE5C-1D79-4B88-8DF7-37E17BF0D2FF.jpeg)
+![](../../assets/img/docs/EEA7EE5C-1D79-4B88-8DF7-37E17BF0D2FF.jpeg)
 
 </figure>
 
@@ -99,7 +99,7 @@ NVIDIA.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled (1).png)
+![](<../../assets/img/docs/Untitled%20(1).png>)
 
 </figure>
 
@@ -113,7 +113,7 @@ una GPU.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 1 (1).png)
+![](<../../assets/img/docs/Untitled%201%20(1).png>)
 
 </figure>
 
@@ -124,7 +124,7 @@ núcleos para float32, 32 núcleos para float64 y 8 unidades tensoriales.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 2.png)
+![](../../assets/img/docs/Untitled%202.png)
 
 </figure>
 
@@ -133,7 +133,7 @@ crear diseños más complejos al replicarlo.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 3.png)
+![](../../assets/img/docs/Untitled%203.png)
 
 </figure>
 
@@ -147,7 +147,7 @@ diagrama ilustra el proceso de operación de cada núcleo tensorial por ciclo de
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 4 (2).png)
+![](<../../assets/img/docs/Untitled%204%20(2).png>)
 
 </figure>
 
@@ -163,7 +163,7 @@ modernas.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 5 (2).png)
+![](<../../assets/img/docs/Untitled%205%20(2).png>)
 
 </figure>
 
@@ -184,7 +184,7 @@ ambos componentes.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 6 (2).png)
+![](<../../assets/img/docs/Untitled%206%20(2).png>)
 
 </figure>
 
@@ -319,7 +319,7 @@ $$
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 7 (1).png)
+![](<../../assets/img/docs/Untitled%207%20(1).png>)
 
 </figure>
 
@@ -329,7 +329,7 @@ casos donde el número de hilos excede el número de tareas, se debe asegurar qu
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 8 (1).png)
+![](<../../assets/img/docs/Untitled%208%20(1).png>)
 
 </figure>
 
@@ -362,7 +362,7 @@ unificada**, que facilita el intercambio de datos entre ambos componentes.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 9.png)
+![](../../assets/img/docs/Untitled%209.png)
 
 </figure>
 
@@ -376,7 +376,7 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 10 (1).png)
+![](<../../assets/img/docs/Untitled%2010%20(1).png>)
 
 </figure>
 
@@ -390,7 +390,7 @@ directamente.
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/AB407146-6A59-4476-A97F-B0D7BF2AA8CC.png)
+![](../../assets/img/docs/AB407146-6A59-4476-A97F-B0D7BF2AA8CC.png)
 
 </figure>
 
@@ -520,7 +520,7 @@ int main()
 
 <figure markdown="span">
 
-![](../../../assets/img/docs/Untitled 12.png)
+![](../../assets/img/docs/Untitled%2012.png)
 
 </figure>
 

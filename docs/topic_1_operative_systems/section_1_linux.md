@@ -12,7 +12,7 @@ title: Linux
 ## Introducción
 
 <figure markdown="span">
-  ![Mascota de Linux](../../assets/img/docs/logos/linux-logo.png){ width="300" }
+  ![Mascota de Linux](../assets/img/docs/logos/linux-logo.png){ width="300" }
   <figcaption>Mascota de Linux</figcaption>
 </figure>
 
@@ -48,7 +48,7 @@ ejecutables por el sistema. Aunque existen alternativas modernas, **Bash** se ma
 como la _shell_ más extendida y estandarizada.
 
 <figure markdown="span">
-  ![Ejemplo de una ventana de una shell o terminal en PopOS](../../assets/img/docs/shell-example.png)
+  ![Ejemplo de una ventana de una shell o terminal en PopOS](../assets/img/docs/shell-example.png)
   <figcaption>Ejemplo de una ventana de una shell o terminal en PopOS</figcaption>
 </figure>
 

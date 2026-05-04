@@ -14,7 +14,7 @@ title: Git
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Git](../../assets/img/docs/logos/git-logo.png)
+  ![Logo de Git](../assets/img/docs/logos/git-logo.png)
   <figcaption>Logo de Git</figcaption>
 </figure>
 
@@ -65,7 +65,7 @@ restaurar versiones anteriores de manera segura y organizada.
 ### Áreas de trabajo
 
 <figure markdown="span">
-  ![Áreas de trabajo en Git](../../assets/img/docs/git-stages.png)
+  ![Áreas de trabajo en Git](../assets/img/docs/git-stages.png)
   <figcaption>Áreas de trabajo en Git. <a href="https://ihcantabria.github.io/ApuntesGit/_images/comandos-workflow.png">Fuente</a></figcaption>
 </figure>
 
@@ -126,7 +126,7 @@ _Command-line Interface_) que permite la interacción con Git mediante el uso de
 de Linux.
 
 Si quieres conocer sobre estos comandos y lo básico sobre Linux, puedes dirigirte a este
-[apartado](docs/capt_1_operative_systems/topic_1_linux.md).
+[apartado](../topic_1_operative_systems/section_1_linux.md).
 
 ### Configuración de Git
 
@@ -322,7 +322,7 @@ _source_ puede ser la rama `dev` y la _target_ puede ser la rama `main` o `maste
 ### _Trunk-Based Development_
 
 <figure markdown="span">
-  ![Esquema de desarrollo Trunk-Based](../../assets/img/docs/trunk-based-git.png)
+  ![Esquema de desarrollo Trunk-Based](../assets/img/docs/trunk-based-git.png)
   <figcaption>Esquema de desarrollo Trunk-Based. <a href="https://statusneo.com/wp-content/uploads/2022/12/Beginners%20Guide%20to%20Trunk-Based%20Development.png">Fuente</a></figcaption>
 </figure>
 
@@ -348,7 +348,7 @@ Sin embargo, presenta las siguientes desventajas:
 ### Git Flow
 
 <figure markdown="span">
-  ![Esquema de desarrollo Git Flow](../../assets/img/docs/git-flow-git.png)
+  ![Esquema de desarrollo Git Flow](../assets/img/docs/git-flow-git.png)
   <figcaption>Esquema de desarrollo Git Flow. <a href="https://images.edrawmax.com/what-is/gitflow-diagram/2-git-flow-model.png">Fuente</a></figcaption>
 </figure>
 

@@ -94,7 +94,7 @@ toggle.name = "Switch to light mode"
 repo = "fontawesome/brands/github"
 
 [project.extra]
-homepage = "https://danibcorr.github.io/web/"
+homepage = "https://www.linkedin.com/in/danibcorr/"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/linkedin"

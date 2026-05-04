@@ -7,7 +7,7 @@ title: Orquestadores
 ## Kubernetes
 
 <figure markdown="span">
-  ![Logo de Kubernetes](../../../assets/img/docs/logos/kubernetes-logo.png){ width="500" }
+  ![Logo de Kubernetes](../../assets/img/docs/logos/kubernetes-logo.png){ width="500" }
   <figcaption>Logo de Kubernetes</figcaption>
 </figure>
 

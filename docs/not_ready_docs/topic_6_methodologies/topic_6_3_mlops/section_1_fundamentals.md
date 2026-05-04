@@ -13,7 +13,7 @@ title: MLOps
 ## Introducción
 
 <p align="center">
-  <img src="/assets/img/docs/logos/mlops-logo.png" width="500"/>
+  <img src="../../../assets/img/docs/logos/mlops-logo.png" width="500"/>
   <br />
   <em>Ciclo de vide de un proyecto MLOps</em>
 </p>
@@ -1078,9 +1078,10 @@ patron de variabilidad o existencia de diferentes patrones.
 
 **Cap.3**
 
-- **Training** → [Model] → [Data] → [Data] → [Data] → [Data] → [Data] → [Train] →
-  [Train] → [Train] → [Train] → [Train] → [Data] → [Data] → [Data] → [Data] → [Model] →
-  [Model] → [Model] → [Model] → [Model] → [Data] → [Data] → [Data] → [Data]
+- **Training** → \[Model\] → \[Data\] → \[Data\] → \[Data\] → \[Data\] → \[Data\] →
+  \[Train\] → \[Train\] → \[Train\] → \[Train\] → \[Train\] → \[Data\] → \[Data\] →
+  \[Data\] → \[Data\] → \[Model\] → \[Model\] → \[Model\] → \[Model\] → \[Model\] →
+  \[Data\] → \[Data\] → \[Data\] → \[Data\]
 - **Automatizar**  
   **entrenamientos**
 - **Detector de Drills**  

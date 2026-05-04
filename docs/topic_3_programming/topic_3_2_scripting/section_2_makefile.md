@@ -11,14 +11,14 @@ title: Makefile
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Makefile](../../../assets/img/docs/logos/makefile-logo.png){ width="300" }
+  ![Logo de Makefile](../../assets/img/docs/logos/makefile-logo.png){ width="300" }
   <figcaption>Logo de Makefile</figcaption>
 </figure>
 
 Un **Makefile** es un archivo de configuración utilizado por la herramienta `make`, que
 permite automatizar el proceso de compilación y ejecución de proyectos de software.
 Generalmente, se emplea en entornos con sistemas operativos basados en GNU/Linux y puede
-contener comandos en [Bash](./topic_1_bash.md).
+contener comandos en [Bash](./section_1_bash.md).
 
 El uso de Makefiles ofrece varios beneficios en el desarrollo de software, siendo el más
 destacado la capacidad de automatización de tareas repetitivas.

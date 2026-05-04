@@ -16,7 +16,7 @@ title: Contenedores
 ## Docker
 
 <figure markdown="span">
-  ![Logo de Docker](../../../assets/img/docs/logos/docker-logo.png){ width="500" }
+  ![Logo de Docker](../../assets/img/docs/logos/docker-logo.png){ width="500" }
   <figcaption>Logo de Docker</figcaption>
 </figure>
 

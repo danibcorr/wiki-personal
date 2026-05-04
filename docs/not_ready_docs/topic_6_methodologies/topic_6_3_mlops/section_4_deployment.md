@@ -69,7 +69,7 @@ sidebar_position: 10 authors:
 ## Motivación
 
 <p align="center">
-  <img src="/assets/img/docs/logos/onnx-logo.png" width="500"/>
+  <img src="../../../assets/img/docs/logos/onnx-logo.png" width="500"/>
   <br />
   <em>Logo de ONNX.</em>
 </p>
