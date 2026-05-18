@@ -148,15 +148,67 @@ ellas sean accesibles desde el exterior. Las subredes privadas, en cambio, carec
 esta ruta, por lo que los recursos que contienen solo pueden comunicarse dentro de la
 VPC o a través de mecanismos controlados como puertas de enlace NAT.
 
-La seguridad a nivel de red se gestiona mediante los **grupos de seguridad** (_Security
-Groups_), que actúan como cortafuegos virtuales a nivel de instancia. Cada grupo de
-seguridad define reglas de entrada y salida que especifican qué tipo de tráfico se
-permite. Por ejemplo, para un servidor web es habitual configurar un grupo de seguridad
-que permita tráfico HTTP (puerto 80) y HTTPS (puerto 443) desde cualquier origen,
-mientras que el acceso SSH (puerto 22) se restringe a direcciones IP específicas. Los
-grupos de seguridad son _stateful_, lo que significa que si se permite una conexión de
-entrada, la respuesta correspondiente se permite automáticamente sin necesidad de una
-regla de salida explícita.
+### Direccionamiento CIDR
+
+El rango de direcciones IP de una VPC y sus subredes se define mediante la notación
+**CIDR** (_Classless Inter-Domain Routing_). Una dirección IPv4 está compuesta por 32
+bits. La notación CIDR indica cuántos bits son fijos (identifican la red) y cuántos son
+libres (disponibles para asignar a los recursos). Por ejemplo, `10.0.0.0/24` significa
+que los primeros 24 bits son fijos y los 8 restantes están disponibles, lo que permite
+direcciones desde `10.0.0.0` hasta `10.0.0.255` (256 direcciones). Es importante tener
+en cuenta que AWS reserva siempre 5 direcciones por subred: la dirección de red, la de
+_broadcast_ y tres adicionales para uso interno.
+
+### Conectividad con Internet y redes externas
+
+Para que una VPC tenga acceso a Internet, es necesario asociar un **Internet Gateway**
+(IGW) a la VPC y configurar la tabla de enrutamiento de las subredes públicas para
+dirigir el tráfico hacia él. Las subredes privadas no disponen de esta ruta y, por
+tanto, sus recursos no son accesibles directamente desde Internet.
+
+Para conectar una VPC con redes privadas externas, como centros de datos _on-premise_ o
+redes corporativas, AWS ofrece varias opciones:
+
+| Servicio                 | Descripción                                                                                                                                                                                                                      |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **AWS Client VPN**       | Servicio completamente gestionado y elástico que permite conectar trabajadores remotos y redes _on-premise_ a AWS sin requerir _hardware_ dedicado. Escala automáticamente.                                                      |
+| **AWS Site-to-Site VPN** | Establece conexiones cifradas entre redes _on-premise_ y AWS a través de Internet, con alta disponibilidad y escalado elástico.                                                                                                  |
+| **AWS PrivateLink**      | Permite establecer conexiones privadas entre una VPC y servicios externos, otras VPCs u otros recursos, manteniendo el tráfico dentro de la red de AWS.                                                                          |
+| **AWS Direct Connect**   | Conexión física privada y dedicada entre las instalaciones del cliente y AWS. Requiere tender fibra óptica hasta un punto de presencia de AWS, ofreciendo mayor ancho de banda y menor latencia que las conexiones por Internet. |
+
+El **Virtual Private Gateway** es el componente del lado de AWS que permite establecer
+una conexión VPN. Se asocia a una VPC y actúa como punto de terminación de los túneles
+VPN, permitiendo que el tráfico procedente de la red corporativa acceda a los recursos
+de la VPC de forma segura.
+
+### Control de tráfico: Security Groups y ACL
+
+La seguridad a nivel de red se gestiona mediante dos mecanismos complementarios.
+
+Los **grupos de seguridad** (_Security Groups_) actúan como cortafuegos virtuales **a
+nivel de instancia**. Cada grupo de seguridad define reglas de entrada y salida que
+especifican qué tipo de tráfico se permite. Por ejemplo, para un servidor web es
+habitual configurar un grupo de seguridad que permita tráfico HTTP (puerto 80) y HTTPS
+(puerto 443) desde cualquier origen, mientras que el acceso SSH (puerto 22) se restringe
+a direcciones IP específicas. Los grupos de seguridad son **_stateful_**, lo que
+significa que si se permite una conexión de entrada, la respuesta correspondiente se
+permite automáticamente sin necesidad de una regla de salida explícita.
+
+Las **listas de control de acceso de red** (_Network ACL_ o NACL) operan **a nivel de
+subred**. Cada subred tiene asociada una NACL que evalúa los paquetes que entran y salen
+de ella. A diferencia de los grupos de seguridad, las NACL son **_stateless_**: no
+recuerdan si un paquete fue permitido previamente, por lo que cada paquete (tanto de
+entrada como de salida) se evalúa de forma independiente contra las reglas definidas. Un
+paquete que sale de una subred debe cumplir las reglas de salida de la NACL de origen, y
+para entrar en la subred de destino debe cumplir las reglas de entrada de la NACL de
+destino.
+
+| Característica      | Security Group   | Network ACL             |
+| :------------------ | :--------------- | :---------------------- |
+| Nivel de aplicación | Instancia        | Subred                  |
+| Estado              | _Stateful_       | _Stateless_             |
+| Reglas              | Solo de permiso  | De permiso y denegación |
+| Evaluación          | Todas las reglas | En orden numérico       |
 
 ## Servicios de cómputo
 

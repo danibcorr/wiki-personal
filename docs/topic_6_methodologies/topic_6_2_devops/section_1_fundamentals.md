@@ -172,16 +172,54 @@ requisitos funcionales y no funcionales definidos a nivel de negocio.
 
 ## Arquitectura de microservicios
 
+### Aplicaciones monolíticas frente a microservicios
+
+En una arquitectura monolítica, todas las funcionalidades de la aplicación están
+integradas en un único bloque de código con una integración completa entre componentes.
+Este enfoque presenta problemas a medida que el sistema crece: conflictos en el
+versionado de dependencias, desarrollo más lento al requerir coordinación entre equipos
+y _releases_ más arriesgadas, ya que todo debe funcionar como un único bloque.
+
 La arquitectura de microservicios propone dividir una aplicación en servicios pequeños,
 autónomos y sin estado, cada uno de los cuales gestiona su propia lógica y persiste su
-información en una base de datos independiente. Esta separación favorece la resiliencia,
-ya que un fallo en un servicio no compromete necesariamente al resto del sistema.
+información en una base de datos independiente. Cada servicio se corresponde con una
+funcionalidad de negocio, debe ser _self-contained_ e independiente. Esta separación
+favorece la resiliencia, ya que un fallo en un servicio no compromete necesariamente al
+resto del sistema.
 
 Los microservicios facilitan la escalabilidad horizontal, permitiendo incrementar el
 número de instancias de un servicio concreto en función de la demanda, en lugar de
 escalar verticalmente un único servidor. Combinados con infraestructuras en la nube,
 constituyen la base de los enfoques _cloud-native_, que simplifican la actualización, el
 despliegue y la operación continua de aplicaciones complejas.
+
+### Comunicación entre microservicios
+
+La comunicación entre microservicios se realiza habitualmente mediante **APIs REST** a
+través de peticiones HTTP. Además, existen otros mecanismos complementarios:
+
+- **_Message Broker_**: Intermediario que gestiona el envío y la recepción de mensajes
+  entre servicios. Permite desacoplar emisor y receptor, procesar mensajes en cola de
+  forma paralela y proteger a los servicios de sobrecargas cuando los patrones de
+  mensajes son escalables.
+- **_Service Mesh_**: Capa de infraestructura de _software_ que gestiona la comunicación
+  entre microservicios, encargándose del enrutamiento, la seguridad y la observabilidad.
+  Se compone de un **plano de datos**, que despliega _proxys_ junto a cada microservicio
+  para interceptar el tráfico, y un **plano de control**, que administra, configura y
+  coordina el comportamiento de dichos _proxys_.
+
+El uso de un _Service Mesh_ añade complejidad al sistema, especialmente en la
+observabilidad, pero herramientas como Kubernetes facilitan su gestión.
+
+### Organización del código: monorepo frente a polirepo
+
+Existen dos estrategias principales para organizar el código fuente de los
+microservicios:
+
+| Estrategia   | Descripción                                                                                  |
+| :----------- | :------------------------------------------------------------------------------------------- |
+| **Monorepo** | Todos los microservicios residen en un único repositorio, facilitando la visibilidad global. |
+| **Polirepo** | Cada microservicio tiene su propio repositorio, favoreciendo la independencia entre equipos. |
 
 ### Patrones de resiliencia
 

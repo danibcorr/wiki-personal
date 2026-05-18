@@ -18,11 +18,11 @@ uso y la compatibilidad de cada uno de los paquetes detallados a continuación, 
 buscar nuevas alternativas, ya que con el tiempo podría ser que algunas de estas
 librerías queden obsoletas.
 
-| Librería         | Descripción                                                                                                                                   |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **PyPDF**        | Permite manipular archivos PDF, incluyendo lectura, escritura, combinación y extracción de contenido.                                         |
-| **argparse**     | Proporciona herramientas para crear interfaces de línea de comandos, con definición de argumentos, opciones y ayuda automática.               |
-| **SQLModel**     | Facilita la interacción con bases de datos SQL mediante modelos de datos, combinando SQLAlchemy y Pydantic.                                   |
-| **Cookiecutter** | Genera proyectos a partir de plantillas, estandarizando la estructura de directorios y archivos para iniciar proyectos de manera consistente. |
-| **SlowApi**      | Permite asignar un límite en el número de peticiones para APIs en FastAPI                                                                     |
-| **python-dotenv** | Carga variables de entorno desde un archivo `.env` al entorno del proceso, facilitando la gestión de configuración y secretos.               |
+| Librería          | Descripción                                                                                                                                   |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PyPDF**         | Permite manipular archivos PDF, incluyendo lectura, escritura, combinación y extracción de contenido.                                         |
+| **argparse**      | Proporciona herramientas para crear interfaces de línea de comandos, con definición de argumentos, opciones y ayuda automática.               |
+| **SQLModel**      | Facilita la interacción con bases de datos SQL mediante modelos de datos, combinando SQLAlchemy y Pydantic.                                   |
+| **Cookiecutter**  | Genera proyectos a partir de plantillas, estandarizando la estructura de directorios y archivos para iniciar proyectos de manera consistente. |
+| **SlowApi**       | Permite asignar un límite en el número de peticiones para APIs en FastAPI                                                                     |
+| **python-dotenv** | Carga variables de entorno desde un archivo `.env` al entorno del proceso, facilitando la gestión de configuración y secretos.                |

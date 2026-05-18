@@ -617,6 +617,10 @@ que se destruye al finalizar, por lo que la caché debe almacenarse fuera del co
 
 !!!note "Nota"
 
+    El Docker _executor_ también permite utilizar Docker-in-Docker (DinD) mediante imágenes especiales como `docker:dind`, lo que habilita la ejecución de comandos de Docker dentro de los propios _jobs_. Esto resulta útil para construir, etiquetar y publicar imágenes de contenedores directamente desde el _pipeline_.
+
+!!!note "Nota"
+
     En el caso de submódulos de Git, es necesario activar los permisos de _job token_ para que un repositorio pueda acceder a otro durante el clonado, especialmente cuando no pertenecen al mismo grupo.
 
 ### _Stages_ especiales

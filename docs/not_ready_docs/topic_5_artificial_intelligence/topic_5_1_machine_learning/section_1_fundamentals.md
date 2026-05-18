@@ -475,6 +475,28 @@ distribuciones de probabilidad continuas.
 
     Por lo tanto, la probabilidad de que un valor de esta distribución normal se encuentre en el intervalo $[142.5, 155.7]$ es aproximadamente del 47.72%.
 
+#### Asimetría (_skewness_) y curtosis (_kurtosis_)
+
+Además de la media y la varianza, existen dos medidas que caracterizan la forma de una
+distribución: la **asimetría** (_skewness_) y la **curtosis** (_kurtosis_).
+
+La **asimetría** indica hacia qué lado se inclina la distribución respecto a la media:
+
+| Valor del _skew_ | Interpretación                                                           |
+| :--------------- | :----------------------------------------------------------------------- |
+| Negativo (< 0)   | Cola extendida hacia la izquierda. Se cumple que media < mediana < moda. |
+| Cero             | Distribución simétrica. Media, mediana y moda coinciden.                 |
+| Positivo (> 0)   | Cola extendida hacia la derecha. Se cumple que moda < mediana < media.   |
+
+La **curtosis** mide cómo de concentrados están los datos alrededor de la media, es
+decir, la altura y la estrechez de la distribución, así como el peso de las colas:
+
+| Tipo         | Valor    | Descripción                                                                   |
+| :----------- | :------- | :---------------------------------------------------------------------------- |
+| Leptocúrtica | Positiva | Distribución alta y estrecha, con colas pesadas (más valores extremos).       |
+| Mesocúrtica  | Cero     | Distribución normal estándar.                                                 |
+| Platicúrtica | Negativa | Distribución plana y ancha, con mayor dispersión pero menos valores extremos. |
+
 #### Distribución exponencial (continua)
 
 La distribución exponencial se emplea para modelar el tiempo transcurrido entre eventos

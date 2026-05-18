@@ -160,3 +160,44 @@ class MiClase:
     def metodo_publico(self):
         return self._variable_interna
 ```
+
+### Principios de código limpio
+
+Más allá de las convenciones de estilo, el código limpio se rige por principios que
+favorecen la legibilidad, el mantenimiento y la escalabilidad:
+
+- **Separación de responsabilidades**: Cada parte del código debe tener una tarea
+  específica. Una función, una única tarea.
+- **Minimizar dependencias entre módulos**: Diseñar módulos como si fueran
+  microservicios, con interfaces claras y acoplamiento mínimo.
+- **_Naming_ descriptivo**: Utilizar nombres de variables y funciones fáciles de
+  interpretar, buscar y entender.
+- **Evitar comentarios innecesarios**: Si el código necesita un comentario para
+  explicarse, es preferible extraer una función o variable con un nombre descriptivo.
+- **Principio de responsabilidad única**: No agrupar toda la lógica en clases cuando la
+  programación funcional puede ser suficiente.
+- **Validación cerca de los datos**: La validación debe estar siempre lo más cerca
+  posible de la fuente de datos.
+
+### _Clean Architecture_
+
+_Clean Architecture_ propone una separación clara entre la **lógica de negocio**
+(aquello que no está limitado por la tecnología) y la **lógica de la aplicación** (que
+depende de la tecnología utilizada). El objetivo es que el código sea elegante, robusto,
+mantenible, escalable y funcional.
+
+La arquitectura se organiza en capas concéntricas con dependencias que apuntan siempre
+hacia el interior:
+
+| Capa (de interior a exterior) | Responsabilidad                                                               |
+| :---------------------------- | :---------------------------------------------------------------------------- |
+| **Dominio**                   | Entidades y reglas de negocio puras. No conoce las capas exteriores.          |
+| **Casos de uso (Aplicación)** | Orquesta la lógica de negocio. El dominio no sabe de los casos de uso.        |
+| **Adaptadores**               | Convierte datos entre el formato de los casos de uso y el del mundo exterior. |
+| **Externo (Infraestructura)** | _Frameworks_, bases de datos, UI, navegador, APIs externas.                   |
+
+Un flujo típico sería: el usuario accede a la capa de **presentación** (externa), que
+invoca la capa de **aplicación**, la cual se comunica con la **infraestructura** (base
+de datos) y opera sobre el **dominio**. Esta estructura de capas se refleja directamente
+en la organización de carpetas del proyecto, lo que facilita una división clara de la
+lógica y la aplicación de buenas prácticas.
