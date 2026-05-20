@@ -1,8 +1,8 @@
 ---
 authors: Daniel Bazo Correa
 description:
-    Creación y gestión de entornos virtuales de Python con VENV, Anaconda y Poetry
-title: Entornos
+    Creación y gestión de entornos virtuales de Python con VENV, Anaconda, Poetry y uv
+title: Entornos virtuales
 ---
 
 ## Bibliografía
@@ -14,19 +14,18 @@ title: Entornos
 
 ## Introducción
 
-Existen varias opciones para la gestión de paquetes en Python. Independientemente de la
-que elijas, mi recomendación es optar siempre por la alternativa más simple y
-minimalista, aunque también dependerá mucho del entorno de desarrollo que tengas en la
-empresa o de a lo que estés acostumbrado. Recuerda que, al final, estas siguen siendo
-herramientas que tienes que considerar y, si te aportan mejoras, implementarlas
-gradualmente. Cuanto menor sea el número de dependencias y más ligero sea el entorno,
-más fácil será llevarlo a producción (por ejemplo, en una imagen de Docker), compartirlo
-con tu equipo o mantenerlo en el tiempo.
+En el ecosistema de Python existen diversas herramientas para la gestión de paquetes y
+entornos virtuales. La elección de una u otra depende del contexto de trabajo, las
+necesidades del equipo y la infraestructura disponible. No obstante, como principio
+general, resulta conveniente optar por la alternativa más simple y minimalista posible.
+Un entorno con pocas dependencias es más fácil de llevar a producción (por ejemplo,
+dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener a
+lo largo del tiempo.
 
-En la actualidad, las opciones que más recomiendo son **Poetry** y **uv**. Ambas
-herramientas agilizan la creación y gestión de entornos, permiten mantener las
-configuraciones del proyecto de forma organizada mediante un archivo `pyproject.toml` y,
-sobre todo, favorecen la **reproducibilidad** de los proyectos.
+En la actualidad, las herramientas más recomendables son **Poetry** y **uv**. Ambas
+agilizan la creación y gestión de entornos, permiten organizar las configuraciones del
+proyecto mediante un archivo `pyproject.toml` y, sobre todo, favorecen la
+**reproducibilidad** de los proyectos.
 
 ### Anaconda
 
@@ -36,31 +35,31 @@ sobre todo, favorecen la **reproducibilidad** de los proyectos.
 </figure>
 
 **Anaconda** es una plataforma de código abierto diseñada para la creación y gestión de
-entornos virtuales en Python, enfocada en proyectos de ciencia de datos y aprendizaje
+entornos virtuales en Python, orientada a proyectos de ciencia de datos y aprendizaje
 automático. Proporciona una distribución de Python con numerosas bibliotecas
-preinstaladas, un gestor de paquetes propio y herramientas como
+preinstaladas, un gestor de paquetes propio denominado
+[_Conda_](https://anaconda.org/anaconda/repo) y herramientas integradas como
 [_Jupyter_](https://jupyter.org/).
 
-La gestión de paquetes en Anaconda se realiza mediante
-_[Conda](https://anaconda.org/anaconda/repo)_, aunque también es posible utilizar
-_[PIP](https://pypi.org/)_. Sin embargo, no es recomendable mezclar ambos, ya que pueden
-surgir errores en la compatibilidad de paquetes.
+La gestión de paquetes se realiza principalmente a través de _Conda_, aunque también es
+posible utilizar [_PIP_](https://pypi.org/). Sin embargo, mezclar ambos gestores no es
+recomendable, ya que pueden surgir conflictos en la resolución de dependencias.
 
-Durante años fue la plataforma más usada en ciencia de datos, ya que ofrecía un
-ecosistema completo (Jupyter, Spyder, RStudio, etc.) de manera muy sencilla. Sin
-embargo, con el tiempo ha presentado limitaciones como una **licencia más restrictiva**
-para empresas y un **exceso de dependencias por defecto**.
-
-Hoy en día existen alternativas más eficientes, modernas y ligeras, como **Poetry** y
-**uv**, que utilizan el gestor de entornos virtuales de Python y evitan instalar
-paquetes innecesarios.
+Durante años, Anaconda fue la plataforma dominante en ciencia de datos gracias a su
+ecosistema completo (_Jupyter_, _Spyder_, _RStudio_, entre otros) y su facilidad de uso.
+Con el tiempo, sin embargo, ha presentado limitaciones relevantes, como una **licencia
+más restrictiva** para entornos empresariales y un **exceso de dependencias por
+defecto** que incrementan innecesariamente el tamaño del entorno.
 
 ### VENV
 
-Por otro lado, [`VENV`](https://docs.python.org/3/library/venv.html) es una alternativa
-más ligera para la creación de entornos virtuales sin las dependencias adicionales de
-Anaconda, y que ya viene por defecto cuando instalamos Python. En este caso, la gestión
-de paquetes se lleva a cabo con _[PIP](https://pypi.org/)_.
+[`VENV`](https://docs.python.org/3/library/venv.html) es el módulo estándar de Python
+para la creación de entornos virtuales. A diferencia de Anaconda, no incluye
+dependencias adicionales y viene integrado en la instalación base de Python. La gestión
+de paquetes se realiza mediante [_PIP_](https://pypi.org/), el gestor de paquetes por
+defecto del lenguaje. Su principal ventaja es la simplicidad y la ausencia de
+herramientas externas, aunque carece de funcionalidades avanzadas como la gestión de
+grupos de dependencias o la resolución determinista de versiones.
 
 ### Poetry
 
@@ -69,72 +68,59 @@ de paquetes se lleva a cabo con _[PIP](https://pypi.org/)_.
   <figcaption>Logo de Poetry</figcaption>
 </figure>
 
-[`Poetry`](https://python-poetry.org/) es otra herramienta de gestión de dependencias en
-proyectos de Python.
+[`Poetry`](https://python-poetry.org/) es una herramienta de gestión de dependencias y
+empaquetado para proyectos de Python. Permite administrar dependencias organizadas por
+grupos (_producción_, _pruebas_, _documentación_, entre otros), lo que elimina la
+necesidad de mantener múltiples archivos `requirements.txt` o de concentrar todas las
+dependencias en un único fichero.
 
-Permite, entre otras cosas, administrar dependencias por grupos (_producción_,
-_pruebas_, _documentación_, etc.), eliminando la necesidad de crear múltiples ficheros
-de requisitos de dependencias (los `requirements.txt`) o de tener un único fichero.
-
-También permite crear y manejar entornos virtuales automáticamente, y facilitar la
-creación de _wheels_ para empaquetar proyectos y publicarlos en
-_[PyPI](https://pypi.org/)_ o en tu repositorio de paquetes privado.
+Además, Poetry crea y gestiona entornos virtuales de forma automática y facilita la
+generación de _wheels_ para empaquetar proyectos y publicarlos en
+[_PyPI_](https://pypi.org/) o en repositorios de paquetes privados.
 
 ### uv
 
 [`uv`](https://docs.astral.sh/uv/) es una de las herramientas más recientes y eficientes
-para la gestión de entornos virtuales y dependencias en Python, y es la que
-personalmente utilizo y recomiendo. Su objetivo principal es simplificar y acelerar
-tareas que tradicionalmente requieren múltiples herramientas, como `pip`, `poetry` o
-`venv`.
+para la gestión de entornos virtuales y dependencias en Python. Su objetivo principal es
+simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas,
+como `pip`, `poetry` o `venv`, unificándolas en un único binario.
 
-Una de sus principales ventajas es la posibilidad de crear un entorno virtual por
-proyecto. Esta es la mejor práctica, ya que así evitamos mezclar dependencias entre
-proyectos, lo que puede llevar a conflictos entre versiones.
+Una de sus principales ventajas es la creación de un entorno virtual aislado por
+proyecto, lo que constituye una buena práctica para evitar conflictos entre versiones de
+distintos desarrollos. Su velocidad es notablemente superior a la de otras alternativas,
+ya que utiliza _Rust_ internamente para la resolución e instalación de dependencias en
+milisegundos.
 
-Lo que más me ha impresionado de `uv` es su velocidad, en parte gracias a que utiliza
-Rust para instalar y resolver dependencias en milisegundos, superando a `pip` y
-`poetry`. Además, permite crear un sistema similar a `cargo` de Rust, basado en archivos
-`pyproject.toml`, donde podemos definir metadatos de nuestro proyecto, gestionar
-paquetes con sus versiones, especificar la versión de Python requerida, así como
-configuraciones específicas de proyectos que instalemos, como linters o similares.
+`uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, similar al
+sistema `cargo` de _Rust_, donde se definen los metadatos del proyecto, las dependencias
+con sus versiones, la versión de Python requerida y las configuraciones de herramientas
+auxiliares como _linters_ o _test runners_. Además, permite la **gestión automática de
+entornos**: no requiere que Python esté previamente instalado en el sistema, ya que `uv`
+se encarga de descargarlo y configurarlo de forma transparente.
 
-Por otro lado, `uv` permite la **gestión automática de entornos**, no requiere
-configuraciones adicionales para crear y mantener entornos virtuales, por lo que no
-necesitas tener instalado Python en el sistema que estés utilizando, `uv` lo hace de
-forma automática.
-
-## Utilidades para la gestión de entornos
+## Creación y activación de entornos
 
 En el desarrollo de software con Python, la creación de un entorno virtual es una
-práctica necesaria.
-
-Este proceso consiste en generar una instancia aislada del intérprete de Python,
-permitiendo que las dependencias de un proyecto específico no interfieran con las
+práctica fundamental. Un entorno virtual genera una instancia aislada del intérprete de
+Python, de modo que las dependencias de un proyecto específico no interfieran con las
 bibliotecas globales del sistema ni con otros desarrollos simultáneos. Esta segmentación
 garantiza la reproducibilidad del código y evita conflictos de versiones.
 
-A continuación, se describen los procedimientos para la gestión de entornos según la
-herramienta seleccionada:
+A continuación se describen los procedimientos para la creación y activación de entornos
+según la herramienta seleccionada:
 
 === "VENV"
 
-      1.  **Preparación del repositorio**: Para acceder a versiones específicas de Python que
-         pueden no estar presentes en los repositorios oficiales de la distribución, se añade
-         el repositorio especializado:
+      1.  **Preparación del repositorio**: Para acceder a versiones específicas de Python que pueden no estar presentes en los repositorios oficiales de la distribución, se añade el repositorio especializado:
          ```bash  linenums="1"
          sudo add-apt-repository ppa:deadsnakes/ppa
          sudo apt update
          ```
-      2.  **Instalación del entorno de ejecución**: Se procede a instalar la versión deseada
-         de Python (por ejemplo, la 3.10) junto con los binarios de desarrollo y el gestor de
-         paquetes `pip`:
+      2.  **Instalación del entorno de ejecución**: Se instala la versión deseada de Python (por ejemplo, la 3.10) junto con los binarios de desarrollo y el gestor de paquetes `pip`:
          ```bash  linenums="1"
          sudo apt install python3.10 python3.10-venv python3.10-dev python3-pip
          ```
-      3.  **Despliegue y activación**: Se genera la estructura del entorno dentro del
-         directorio del proyecto y se activa para que el intérprete actual apunte a dicha
-         ubicación:
+      3.  **Despliegue y activación**: Se genera la estructura del entorno dentro del directorio del proyecto y se activa para que el intérprete apunte a dicha ubicación:
          ```bash  linenums="1"
          python3.10 -m venv nombre_del_entorno
          source nombre_del_entorno/bin/activate
@@ -142,18 +128,12 @@ herramienta seleccionada:
 
 === "Anaconda"
 
-      1.  **Instalación inicial**: El proceso comienza con la descarga e instalación de la
-         suite desde su portal oficial. En sistemas Windows, se recomienda el uso del
-         _Anaconda Prompt_ para garantizar que las variables de entorno estén correctamente
-         configuradas.
-      2.  **Gestión de entornos con Conda**: A diferencia de otras herramientas, Conda permite
-         definir la versión de Python de forma explícita durante la creación:
+      1.  **Instalación inicial**: El proceso comienza con la descarga e instalación de la suite desde su portal oficial. En sistemas Windows, se recomienda el uso del *Anaconda Prompt* para garantizar que las variables de entorno estén correctamente configuradas.
+      2.  **Creación del entorno**: A diferencia de otras herramientas, *Conda* permite definir la versión de Python de forma explícita durante la creación:
          ```bash  linenums="1"
          conda create --name nombre_del_entorno python=3.10
          ```
-      3.  **Activación e interoperabilidad**: Una vez activado el entorno, es posible integrar
-         `pip` si una librería no se encuentra en los canales de Conda, aunque se debe
-         proceder con cautela para evitar inconsistencias:
+      3.  **Activación e interoperabilidad**: Una vez activado el entorno, es posible integrar `pip` si una biblioteca no se encuentra en los canales de *Conda*, aunque se debe proceder con cautela para evitar inconsistencias:
          ```bash  linenums="1"
          conda activate nombre_del_entorno
          conda install pip
@@ -162,16 +142,12 @@ herramienta seleccionada:
 
 === "Poetry"
 
-      1.  **Configuración del entorno local**: Para facilitar la visibilidad y el
-         mantenimiento, es recomendable configurar Poetry de modo que aloje los entornos
-         virtuales dentro de la carpeta raíz del proyecto:
+      1.  **Configuración del entorno local**: Es recomendable configurar Poetry de modo que aloje los entornos virtuales dentro de la carpeta raíz del proyecto, lo que facilita su visibilidad y mantenimiento:
          ```bash  linenums="1"
          pip install poetry
          poetry config virtualenvs.in-project true
          ```
-      2.  **Inicialización y despliegue**: Al crear un nuevo proyecto, la herramienta genera
-         automáticamente la estructura de archivos necesaria y, tras la instalación de
-         dependencias, gestiona la creación del entorno virtual de forma transparente:
+      2.  **Inicialización y despliegue**: Al crear un nuevo proyecto, la herramienta genera automáticamente la estructura de archivos necesaria y, tras la instalación de dependencias, gestiona la creación del entorno virtual de forma transparente:
          ```bash  linenums="1"
          poetry new nombre_del_proyecto
          cd nombre_del_proyecto
@@ -180,13 +156,11 @@ herramienta seleccionada:
 
 === "uv"
 
-      1.  **Instalación y configuración inicial**: Se instala mediante un script de ejecución
-         rápida que configura el binario en el sistema:
+      1.  **Instalación y configuración inicial**: Se instala mediante un *script* de ejecución rápida que configura el binario en el sistema:
          ```bash  linenums="1"
          curl -LsSf https://astral.sh/uv/install.sh | sh
          ```
-      2.  **Ciclo de vida del proyecto**: El flujo de trabajo con `uv` permite inicializar un
-         proyecto y crear su entorno virtual correspondiente con una latencia mínima:
+      2.  **Ciclo de vida del proyecto**: El flujo de trabajo con `uv` permite inicializar un proyecto y crear su entorno virtual correspondiente con una latencia mínima:
          ```bash  linenums="1"
          uv init nombre_del_proyecto
          cd nombre_del_proyecto
@@ -194,13 +168,153 @@ herramienta seleccionada:
          uv pip install nombre_del_paquete
          ```
 
+## Estructura de un `pyproject.toml` con uv
+
+El archivo `pyproject.toml` constituye el punto central de configuración de un proyecto
+Python gestionado con `uv`. En él se definen los metadatos del proyecto, las
+dependencias organizadas por grupos, los índices de paquetes y la configuración de
+herramientas auxiliares. Este enfoque centralizado elimina la necesidad de mantener
+múltiples archivos de configuración dispersos por el proyecto.
+
+A continuación se muestra un ejemplo completo con las secciones más relevantes:
+
+```toml linenums="1"
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "mi-proyecto"
+version = "1.0.0"
+description = "Descripción del proyecto"
+readme = "README.md"
+requires-python = "==3.11.*"
+authors = [
+    {name = "Tu Nombre", email = "tu@email.com"},
+]
+
+[tool.uv]
+default-groups = "all"
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
+
+[tool.uv.sources]
+mi-paquete-local = { path = "ruta/al/paquete", editable = true }
+paquete-privado = { index = "mi_indice_privado" }
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+
+[[tool.uv.index]]
+name = "mi_indice_privado"
+url = "https://mi-servidor.com/api/packages/pypi/simple/"
+authenticate = "always"
+
+[dependency-groups]
+core = [
+    "numpy==1.26.4",
+    "pandas==2.2.0",
+]
+notebooks = [
+    "ipykernel==6.29.0",
+    "matplotlib==3.8.2",
+]
+pipeline = [
+    "pytest==8.0.0",
+    "pytest-cov==4.1.0",
+    "ruff==0.2.0",
+    "mypy==1.8.0",
+    "pre-commit==3.6.0",
+]
+docs = [
+    "mkdocs==1.5.3",
+    "mkdocs-material==9.5.0",
+]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+extend-exclude = [".venv", ".uv-cache", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "PL", "UP", "N", "B", "I"]
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = [".venv/", ".uv-cache/", "notebooks/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = ["--strict-markers", "--tb=short"]
+```
+
+La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
+especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
+instalable.
+
+La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
+descripción, versión de Python requerida y autores. Este formato sigue el estándar
+definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración de
+metadatos en el ecosistema Python.
+
+La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
+`default-groups` indica qué grupos de dependencias se instalan por defecto, mientras que
+`cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
+_commit_ de _git_.
+
+La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
+específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
+paquetes alojados en índices privados.
+
+La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
+posible definir múltiples índices simultáneamente, estableciendo PyPI como índice por
+defecto y añadiendo repositorios privados con autenticación obligatoria.
+
+La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
+(_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
+instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
+integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en un
+entorno de desarrollo local podrían instalarse todos los grupos.
+
+Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
+centralizan la configuración de herramientas del proyecto dentro del propio
+`pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
+`.flake8`, `mypy.ini` o `pytest.ini`.
+
+### Instalación de dependencias por grupos
+
+Con `uv`, la instalación de dependencias de grupos específicos se realiza mediante el
+comando `uv sync`:
+
+```bash linenums="1"
+# Instalar solo el grupo core
+uv sync --group core
+
+# Instalar varios grupos simultáneamente
+uv sync --group core --group notebooks
+
+# Instalar todos los grupos
+uv sync --all-groups
+```
+
+## Operaciones comunes de mantenimiento
+
 ### Gestión de la caché
 
-En muchas ocasiones, estos gestores de entorno almacenan en caché la información de los
-paquetes que instalan, lo que puede llevar a ocupar una gran cantidad de espacio en el
-disco o incluso generar conflictos cuando tenemos paquetes corruptos. Para liberar
-espacio o solucionar problemas con dependencias, se puede purgar/eliminar la caché con
-los siguientes comandos:
+Los gestores de entorno almacenan en caché la información de los paquetes que instalan.
+Con el tiempo, esta caché puede ocupar una cantidad significativa de espacio en disco o
+generar conflictos cuando existen paquetes corruptos. Para liberar espacio o solucionar
+problemas con dependencias, es posible purgar la caché con los siguientes comandos:
 
 === "PIP"
 
@@ -228,31 +342,22 @@ los siguientes comandos:
 
 ### Actualización de paquetes
 
-El software evoluciona de forma continua. Los paquetes que se utilizan habitualmente
-incorporan nuevas funcionalidades o corrigen errores y vulnerabilidades de seguridad en
-versiones posteriores. Por lo tanto, mantener las dependencias actualizadas es clave
-para el correcto funcionamiento del proyecto.
+El _software_ evoluciona de forma continua. Los paquetes incorporan nuevas
+funcionalidades, corrigen errores y resuelven vulnerabilidades de seguridad en versiones
+posteriores. Mantener las dependencias actualizadas es esencial para el correcto
+funcionamiento y la seguridad del proyecto.
 
 === "PIP"
 
-      1. Actualizar todos los paquetes
-
-         Puedes utilizar el siguiente comando para actualizar todos los paquetes:
+      1. Actualizar todos los paquetes:
 
          ```bash linenums="1"
          pip freeze | grep -v "^\-e" | cut -d = -f 1 | xargs -n1 pip install -U
          ```
 
-         Donde:
+         Este comando encadena varias operaciones: `pip freeze` genera la lista de paquetes instalados, `grep -v "^\-e"` excluye las instalaciones en modo editable, `cut -d = -f 1` extrae únicamente los nombres de los paquetes y `xargs -n1 pip install -U` actualiza cada uno de ellos.
 
-         - `pip freeze`: Genera una lista de los paquetes instalados.
-         - `grep -v "^\-e"`: Excluye las instalaciones en modo editable.
-         - `cut -d = -f 1`: Extrae solo los nombres de los paquetes, sin las versiones.
-         - `xargs -n1 pip install -U`: Actualiza cada paquete.
-
-      2. Actualizar un paquete específico
-
-         Para actualizar un paquete específico:
+      2. Actualizar un paquete específico:
 
          ```bash linenums="1"
          pip install --upgrade nombre_del_paquete
@@ -260,20 +365,15 @@ para el correcto funcionamiento del proyecto.
 
 === "Anaconda"
 
-      1. Actualizar todos los paquetes
+      1. Actualizar todos los paquetes:
 
-         Aunque Anaconda permite la instalación de paquetes con PIP, se recomienda evitar
-         mezclar paquetes del repositorio de Anaconda y PIP, ya que esto podría causar
-         conflictos. Si decides usar paquetes de Anaconda, puedes actualizar todos los
-         paquetes con:
+         Se recomienda evitar mezclar paquetes del repositorio de Anaconda con los de PIP, ya que esto puede causar conflictos en la resolución de dependencias.
 
          ```bash linenums="1"
          conda update --all
          ```
 
-      2. Actualizar un paquete específico
-
-         Para actualizar un paquete específico:
+      2. Actualizar un paquete específico:
 
          ```bash linenums="1"
          conda update nombre_del_paquete
@@ -281,15 +381,13 @@ para el correcto funcionamiento del proyecto.
 
 === "Poetry"
 
-      1. Actualizar todos los paquetes
+      1. Actualizar todos los paquetes:
 
          ```bash linenums="1"
          poetry update
          ```
 
-      2. Actualizar un paquete específico
-
-         Para actualizar un paquete específico:
+      2. Actualizar un paquete específico:
 
          ```bash linenums="1"
          poetry update nombre_del_paquete
@@ -297,13 +395,13 @@ para el correcto funcionamiento del proyecto.
 
 === "uv"
 
-      1. Actualizar todos los paquetes
+      1. Actualizar todos los paquetes:
 
          ```bash linenums="1"
          uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
          ```
 
-      2. Actualizar un paquete específico
+      2. Actualizar un paquete específico:
 
          ```bash linenums="1"
          uv pip install --upgrade nombre_del_paquete
@@ -311,20 +409,20 @@ para el correcto funcionamiento del proyecto.
 
 ### Instalación de paquetes desde un archivo de requisitos
 
-Cuando un proyecto necesita dependencias específicas, es útil usar un archivo
-`requirements.txt`. Aunque hoy en día, con sistemas como los que ofrecen los ficheros
-`toml` en uv o Poetry, cada vez lo recomiendo menos, en el caso de que lo necesites,
-aquí tienes los pasos a seguir:
+Aunque los sistemas basados en `pyproject.toml` (como `uv` o Poetry) hacen cada vez
+menos necesario el uso de archivos `requirements.txt`, en determinados contextos puede
+seguir siendo útil. El procedimiento consiste en crear un archivo con los paquetes y
+versiones deseadas e instalarlo mediante el gestor correspondiente.
 
-1.  **Crear un archivo `requirements.txt`** con los paquetes y versiones deseadas:
+Ejemplo de archivo `requirements.txt`:
 
-    ```plaintext linenums="1"
-    numpy==1.21.0
-    pandas>=1.3.0
-    requests
-    ```
+```plaintext linenums="1"
+numpy==1.21.0
+pandas>=1.3.0
+requests
+```
 
-2.  **Instalar los paquetes desde el archivo**:
+Instalación según la herramienta:
 
 === "PIP"
 
@@ -344,14 +442,11 @@ aquí tienes los pasos a seguir:
       uv pip install -r requirements.txt
       ```
 
-### Eliminar un entorno
+### Eliminación de un entorno
 
 === "VENV, Poetry, uv"
 
-      En la mayoría de los casos, los entornos creados con `VENV`, `Poetry` y `uv` se alojan
-      dentro del propio directorio del proyecto. Por ello, si ya no los necesitas, basta con
-      eliminar la carpeta correspondiente para borrar por completo el entorno junto con toda
-      su información.
+      En la mayoría de los casos, los entornos creados con `VENV`, `Poetry` y `uv` se alojan dentro del propio directorio del proyecto. Para eliminarlos, basta con borrar la carpeta correspondiente:
 
       ```bash  linenums="1"
       rm -rf nombre_del_entorno
@@ -359,55 +454,30 @@ aquí tienes los pasos a seguir:
 
 === "Anaconda"
 
-      1.  **Listar los entornos disponibles**:
+      1.  Listar los entornos disponibles:
 
          ```bash  linenums="1"
          conda env list
          ```
 
-      2.  **Eliminar un entorno**:
+      2.  Eliminar un entorno:
 
          ```bash  linenums="1"
          conda env remove --name nombre_del_entorno
          ```
 
-### Integración del entorno con Jupyter
-
-Para utilizar un entorno virtual dentro de **Jupyter**, es necesario seguir estos pasos:
-
-1.  **Instalar `ipykernel` en el entorno**: Primero, debes añadir `ipykernel` como
-    dependencia dentro del entorno virtual. Para ello, instala el paquete utilizando el
-    gestor de dependencias correspondiente (por ejemplo, `pip`, `poetry`, `uv` o
-    `conda`).
-2.  **Registrar el entorno en Jupyter**: Este paso es necesario únicamente cuando el
-    entorno virtual se encuentra en un directorio diferente al del proyecto. En la
-    mayoría de los entornos de desarrollo, como **VSCode**, si el entorno está dentro
-    del directorio del proyecto, se detectará automáticamente y podrás seleccionar el
-    kernel asociado sin pasos adicionales. En caso de que necesites registrar el entorno
-    manualmente, ejecuta:
-
-```bash linenums="1"
-python -m ipykernel install --user --name=nombre_del_entorno
-```
-
-En el caso de utilizar `uv`, si has empleado el comando `uv venv`, por defecto `uv`
-creará un entorno en la raíz del proyecto en la que te encuentras, con la versión de
-Python especificada en el `pyproject.toml`. Con ello, al utilizar Jupyter Notebooks,
-VSCode detectará directamente que el entorno se encuentra en la raíz del proyecto sin
-necesidad de ejecutar los comandos anteriores.
-
 ### Eliminación de paquetes instalados
 
 === "PIP"
 
-      Eliminar todos los paquetes
+      Eliminar todos los paquetes:
 
       ```bash  linenums="1"
       pip list --format=freeze > installed.txt
       pip uninstall -r installed.txt -y
       ```
 
-      Eliminar un paquete específico
+      Eliminar un paquete específico:
 
       ```bash  linenums="1"
       pip uninstall nombre_del_paquete
@@ -430,3 +500,25 @@ necesidad de ejecutar los comandos anteriores.
       ```bash  linenums="1"
       uv pip uninstall nombre_del_paquete
       ```
+
+## Integración con _Jupyter_
+
+Para utilizar un entorno virtual dentro de _Jupyter_, es necesario instalar el paquete
+`ipykernel` como dependencia del entorno mediante el gestor correspondiente (`pip`,
+`poetry`, `uv` o `conda`).
+
+El registro manual del entorno como _kernel_ de _Jupyter_ solo es necesario cuando el
+entorno virtual se encuentra en un directorio diferente al del proyecto. En la mayoría
+de los entornos de desarrollo modernos, como VSCode, si el entorno reside dentro del
+directorio del proyecto, se detecta automáticamente y es posible seleccionar el _kernel_
+asociado sin pasos adicionales. En caso de que sea necesario registrarlo manualmente, se
+ejecuta el siguiente comando:
+
+```bash linenums="1"
+python -m ipykernel install --user --name=nombre_del_entorno
+```
+
+En el caso particular de `uv`, cuando se emplea el comando `uv venv`, el entorno se crea
+por defecto en la raíz del proyecto con la versión de Python especificada en el
+`pyproject.toml`. De este modo, al utilizar _Jupyter Notebooks_ en VSCode, el entorno se
+detecta directamente sin necesidad de ejecutar el comando de registro anterior.

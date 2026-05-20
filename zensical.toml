@@ -38,12 +38,47 @@ nav = [
             "topic_3_programming/topic_3_5_front_end/section_1_fundamentals.md"
         ]}
     ]},
+    {"Inteligencia Artificial" = [
+        {"Machine Learning" = [
+            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_1_fundamentals.md"
+        ]},
+        {"Deep Learning" = [
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_1_fundamentals.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_2_generative_ai.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_3_graph_neural_networks.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_4_reinforcement_learning.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_5_agents.md"
+        ]},
+        {"Librerías" = [
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/jax.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/pytorch.md",
+            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/tensorflow.md"
+        ]}
+    ]},
     {"Metodologías" = [
+        {"Ingeniería de Software" = [
+            "topic_6_methodologies/topic_6_1_software/section_1_fundamentals.md",
+            "topic_6_methodologies/topic_6_1_software/section_2_design_patterns.md",
+            "topic_6_methodologies/topic_6_1_software/section_3_sustainable_code.md",
+            "topic_6_methodologies/topic_6_1_software/section_4_data_structure.md",
+            "topic_6_methodologies/topic_6_1_software/section_5_cloud_computing.md"
+        ]},
         {"DevOps" = [
             "topic_6_methodologies/topic_6_2_devops/section_1_fundamentals.md",
             "topic_6_methodologies/topic_6_2_devops/section_2_containers.md",
             "topic_6_methodologies/topic_6_2_devops/section_3_orchestrators.md",
             "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
+        ]},
+        {"MLOps" = [
+            "topic_6_methodologies/topic_6_3_mlops/section_1_fundamentals.md",
+            "topic_6_methodologies/topic_6_3_mlops/section_2_experiment_management.md",
+            "topic_6_methodologies/topic_6_3_mlops/section_3_monitoring.md",
+            "topic_6_methodologies/topic_6_3_mlops/section_4_deployment.md"
+        ]}
+    ]},
+    {"Cloud" = [
+        {"AWS" = [
+            "topic_7_cloud/topic_7_1_aws/section_1_fundamentals.md"
         ]}
     ]},
     {"Otros" = [
