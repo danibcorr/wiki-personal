@@ -207,11 +207,11 @@ lógica y la aplicación de buenas prácticas.
 El versionado semántico (_Semantic Versioning_) es un sistema estandarizado para
 controlar las versiones del software, representado mediante el formato `X.Y.Z`:
 
-| Componente | Significado | Se incrementa cuando... |
-|:-----------|:------------|:------------------------|
+| Componente    | Significado   | Se incrementa cuando...                                    |
+| :------------ | :------------ | :--------------------------------------------------------- |
 | **X** (Major) | Versión mayor | Un cambio rompe la compatibilidad con versiones anteriores |
-| **Y** (Minor) | Versión menor | Se añade funcionalidad compatible con lo existente |
-| **Z** (Patch) | Parche | Se corrigen errores sin alterar la compatibilidad |
+| **Y** (Minor) | Versión menor | Se añade funcionalidad compatible con lo existente         |
+| **Z** (Patch) | Parche        | Se corrigen errores sin alterar la compatibilidad          |
 
 Un proyecto comienza en la versión `0.1.0` durante su desarrollo inicial. A partir de la
 versión `1.0.0`, se considera estable y se aplican las reglas de incremento de forma
@@ -235,10 +235,9 @@ errores y reduce el riesgo de regresiones.
 
 ## Desarrollo guiado por comportamiento (BDD)
 
-El _Behavior-Driven Development_ (BDD) extiende TDD centrándose en el comportamiento
-del sistema desde la perspectiva del usuario final. En lugar de pruebas unitarias
-aisladas, BDD describe escenarios de alto nivel en un lenguaje cercano al dominio del
-problema.
+El _Behavior-Driven Development_ (BDD) extiende TDD centrándose en el comportamiento del
+sistema desde la perspectiva del usuario final. En lugar de pruebas unitarias aisladas,
+BDD describe escenarios de alto nivel en un lenguaje cercano al dominio del problema.
 
 Este enfoque facilita la comunicación entre desarrolladores y responsables de negocio,
 ya que las pruebas se expresan de forma comprensible para todos los actores. BDD valida

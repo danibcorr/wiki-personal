@@ -14,12 +14,12 @@ title: CI/CD
 La mejora continua requiere medir de forma sistemática el desempeño de los procesos de
 entrega de software:
 
-| Métrica | Descripción |
-|:--------|:------------|
-| **Lead Time** | Tiempo desde la concepción de una idea hasta su despliegue en producción |
-| **Change Failure Rate** | Proporción de cambios que generan fallos o incidencias |
-| **MTTR** (_Mean Time to Recovery_) | Tiempo promedio para recuperar un sistema tras una falla |
-| **MTTF** (_Mean Time to Failure_) | Tiempo medio de funcionamiento antes de un fallo |
+| Métrica                            | Descripción                                                              |
+| :--------------------------------- | :----------------------------------------------------------------------- |
+| **Lead Time**                      | Tiempo desde la concepción de una idea hasta su despliegue en producción |
+| **Change Failure Rate**            | Proporción de cambios que generan fallos o incidencias                   |
+| **MTTR** (_Mean Time to Recovery_) | Tiempo promedio para recuperar un sistema tras una falla                 |
+| **MTTF** (_Mean Time to Failure_)  | Tiempo medio de funcionamiento antes de un fallo                         |
 
 Estas métricas, utilizadas de manera conjunta, permiten identificar cuellos de botella,
 evaluar la estabilidad del sistema y orientar las decisiones de mejora.

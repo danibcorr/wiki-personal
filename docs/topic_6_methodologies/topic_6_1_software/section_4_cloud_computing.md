@@ -17,19 +17,19 @@ cómputo) a través de Internet. Sus características principales son:
 
 ### Modelos de despliegue
 
-| Modelo | Descripción |
-|:-------|:------------|
+| Modelo           | Descripción                                                              |
+| :--------------- | :----------------------------------------------------------------------- |
 | **Nube pública** | Infraestructura compartida gestionada por un proveedor (AWS, GCP, Azure) |
-| **Nube privada** | Infraestructura dedicada a una única organización |
-| **Nube híbrida** | Combinación de nube pública y privada |
+| **Nube privada** | Infraestructura dedicada a una única organización                        |
+| **Nube híbrida** | Combinación de nube pública y privada                                    |
 
 ### Modelos de servicio
 
-| Modelo | Descripción |
-|:-------|:------------|
+| Modelo                                 | Descripción                                         |
+| :------------------------------------- | :-------------------------------------------------- |
 | **IaaS** (Infrastructure as a Service) | Se gestiona desde el sistema operativo hacia arriba |
-| **PaaS** (Platform as a Service) | Se gestiona solo la aplicación y los datos |
-| **SaaS** (Software as a Service) | Se consume el software directamente |
+| **PaaS** (Platform as a Service)       | Se gestiona solo la aplicación y los datos          |
+| **SaaS** (Software as a Service)       | Se consume el software directamente                 |
 
 ## Diseño de sistemas distribuidos
 
@@ -41,10 +41,10 @@ fiabilidad.
 En sistemas distribuidos, el teorema CAP establece que solo es posible garantizar dos de
 las tres propiedades siguientes simultáneamente:
 
-| Propiedad | Descripción |
-|:----------|:------------|
-| **Consistencia** (Consistency) | Todos los nodos reflejan el mismo dato en el mismo instante |
-| **Disponibilidad** (Availability) | El sistema responde a todas las peticiones |
+| Propiedad                                          | Descripción                                                 |
+| :------------------------------------------------- | :---------------------------------------------------------- |
+| **Consistencia** (Consistency)                     | Todos los nodos reflejan el mismo dato en el mismo instante |
+| **Disponibilidad** (Availability)                  | El sistema responde a todas las peticiones                  |
 | **Tolerancia a particiones** (Partition Tolerance) | El sistema sigue funcionando ante fallos de red entre nodos |
 
 La clave es encontrar el compromiso adecuado para cada caso de uso.
@@ -83,9 +83,9 @@ usuario, reduciendo la latencia.
 Un servidor proxy actúa como intermediario entre cliente y servidor. Funciones
 principales: cacheo, anonimización, balanceo de carga y filtrado de tráfico.
 
-| Tipo | Descripción |
-|:-----|:------------|
-| **Forward proxy** | Actúa en nombre del cliente |
+| Tipo              | Descripción                  |
+| :---------------- | :--------------------------- |
+| **Forward proxy** | Actúa en nombre del cliente  |
 | **Reverse proxy** | Actúa en nombre del servidor |
 
 ### Balanceadores de carga
@@ -121,10 +121,10 @@ Los datos pueden clasificarse según su formato:
 
 ### Data Warehouse vs Data Lake
 
-| Enfoque | Proceso | Uso |
-|:--------|:--------|:----|
-| **Data Warehouse** | ETL (Extract, Transform, Load) | Datos ya transformados y listos para análisis |
-| **Data Lake** | ELT (Extract, Load, Transform) | Datos almacenados en crudo, transformados bajo demanda |
+| Enfoque            | Proceso                        | Uso                                                    |
+| :----------------- | :----------------------------- | :----------------------------------------------------- |
+| **Data Warehouse** | ETL (Extract, Transform, Load) | Datos ya transformados y listos para análisis          |
+| **Data Lake**      | ELT (Extract, Load, Transform) | Datos almacenados en crudo, transformados bajo demanda |
 
 En la práctica ambos conviven, ya que transformar todo un flujo continuo puede ser
 costoso y diferentes equipos pueden requerir transformaciones distintas.

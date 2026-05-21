@@ -711,9 +711,9 @@ Mecanismos complementarios:
 
 ### Organización del código: monorepo frente a polirepo
 
-| Estrategia | Descripción |
-|:-----------|:------------|
-| **Monorepo** | Todos los microservicios en un único repositorio. Facilita la visibilidad global. |
+| Estrategia   | Descripción                                                                           |
+| :----------- | :------------------------------------------------------------------------------------ |
+| **Monorepo** | Todos los microservicios en un único repositorio. Facilita la visibilidad global.     |
 | **Polirepo** | Cada microservicio en su propio repositorio. Favorece la independencia entre equipos. |
 
 ## Infraestructura como Código (IaC)
