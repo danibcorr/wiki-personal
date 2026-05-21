@@ -680,3 +680,51 @@ construcción sin que estos persistan en la imagen final.
     CMD ["uvicorn", "src.main:app", "--log-level", "info", \
          "--host", "0.0.0.0", "--port", "8080"]
     ```
+
+## Arquitectura de microservicios
+
+### Aplicaciones monolíticas frente a microservicios
+
+En una arquitectura monolítica, todas las funcionalidades están integradas en un único
+bloque de código. A medida que el sistema crece, esto genera conflictos de dependencias,
+desarrollo más lento y _releases_ más arriesgadas.
+
+La arquitectura de microservicios divide la aplicación en servicios pequeños, autónomos
+y sin estado, cada uno con su propia lógica y base de datos independiente. Cada servicio
+se corresponde con una funcionalidad de negocio y es _self-contained_. Esta separación
+favorece la resiliencia (un fallo en un servicio no compromete al resto) y la
+escalabilidad horizontal (se escalan instancias de un servicio concreto según la
+demanda).
+
+### Comunicación entre microservicios
+
+La comunicación se realiza habitualmente mediante **APIs REST** a través de HTTP.
+Mecanismos complementarios:
+
+- **_Message Broker_**: Intermediario que gestiona el envío y recepción de mensajes
+  entre servicios. Permite desacoplar emisor y receptor, procesar mensajes en cola de
+  forma paralela y proteger servicios de sobrecargas.
+- **_Service Mesh_**: Capa de infraestructura que gestiona la comunicación entre
+  microservicios (enrutamiento, seguridad, observabilidad). Se compone de un **plano de
+  datos** (_proxys_ junto a cada microservicio) y un **plano de control** (administra y
+  coordina los _proxys_).
+
+### Organización del código: monorepo frente a polirepo
+
+| Estrategia | Descripción |
+|:-----------|:------------|
+| **Monorepo** | Todos los microservicios en un único repositorio. Facilita la visibilidad global. |
+| **Polirepo** | Cada microservicio en su propio repositorio. Favorece la independencia entre equipos. |
+
+## Infraestructura como Código (IaC)
+
+La Infraestructura como Código (_Infrastructure as Code_) consiste en definir y
+gestionar la infraestructura mediante código versionado. Este enfoque garantiza
+reproducibilidad, trazabilidad y coherencia entre entornos, permitiendo crear y destruir
+infraestructuras de forma automatizada y predecible.
+
+Docker y plataformas de orquestación como Kubernetes desempeñan un papel central en IaC,
+al facilitar la gestión de contenedores, la automatización de despliegues y la
+alineación entre los entornos de desarrollo, pruebas y producción. Tratar la
+infraestructura como un artefacto más del software refuerza la eficiencia operativa y
+reduce la dependencia de configuraciones manuales.

@@ -9,23 +9,46 @@ title: CI/CD
 - [ML in Production: From Data Scientist to ML Engineer](https://www.udemy.com/course/ml-in-production/?couponCode=SKILLS4SALEA)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 
+## Métricas clave
+
+La mejora continua requiere medir de forma sistemática el desempeño de los procesos de
+entrega de software:
+
+| Métrica | Descripción |
+|:--------|:------------|
+| **Lead Time** | Tiempo desde la concepción de una idea hasta su despliegue en producción |
+| **Change Failure Rate** | Proporción de cambios que generan fallos o incidencias |
+| **MTTR** (_Mean Time to Recovery_) | Tiempo promedio para recuperar un sistema tras una falla |
+| **MTTF** (_Mean Time to Failure_) | Tiempo medio de funcionamiento antes de un fallo |
+
+Estas métricas, utilizadas de manera conjunta, permiten identificar cuellos de botella,
+evaluar la estabilidad del sistema y orientar las decisiones de mejora.
+
 ## Introducción
 
-GitHub es una plataforma de desarrollo colaborativo diseñada para la gestión de
-proyectos de software. Proporciona herramientas avanzadas para el control de versiones
-mediante Git, así como funcionalidades para la integración y entrega continua
-(_Continuous Integration_ - CI y _Continuous Deployment_ - CD, respectivamente). Con el
-tiempo, GitHub se ha consolidado como una herramienta esencial para desarrolladores y
-equipos de software, destacando entre sus características GitHub Actions, que permite la
-automatización de flujos de trabajo directamente dentro de los repositorios facilitando
-la integración con servicios externos, y GitHub Pages, que ofrece una manera sencilla de
-publicar sitios web estáticos directamente desde un repositorio.
+La integración continua (CI) y el despliegue continuo (CD) constituyen prácticas
+esenciales para garantizar la calidad y la velocidad de entrega del software:
 
-Una de las principales ventajas de utilizar GitHub Actions en lugar de herramientas como
-Jenkins u otras soluciones similares es su integración nativa con GitHub. Además, su
-Marketplace proporciona un amplio catálogo de acciones desarrolladas tanto por GitHub
-como por terceros, lo que permite extender y personalizar los flujos de trabajo de
-manera eficiente.
+- **CI**: Integración frecuente de cambios en la rama principal, acompañada de procesos
+  automáticos de construcción y pruebas.
+- **CD**: Automatización del despliegue del software en entornos de producción o
+  equivalentes.
+
+Una implementación madura de CI/CD incluye _commits_ frecuentes, pruebas automatizadas,
+revisión de código mediante _pull requests_ y el uso de técnicas como **_feature
+flags_**, que permiten activar o desactivar funcionalidades sin necesidad de nuevos
+despliegues.
+
+### Herramientas
+
+GitHub es una plataforma de desarrollo colaborativo que proporciona herramientas
+avanzadas para el control de versiones mediante Git, así como funcionalidades de CI/CD.
+Destaca GitHub Actions para la automatización de flujos de trabajo y GitHub Pages para
+publicar sitios web estáticos desde un repositorio.
+
+Una de las principales ventajas de GitHub Actions frente a herramientas como Jenkins es
+su integración nativa con GitHub. Su Marketplace proporciona un amplio catálogo de
+acciones desarrolladas tanto por GitHub como por terceros.
 
 ## GitHub Actions
 

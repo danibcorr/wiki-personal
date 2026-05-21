@@ -201,3 +201,46 @@ invoca la capa de **aplicación**, la cual se comunica con la **infraestructura*
 de datos) y opera sobre el **dominio**. Esta estructura de capas se refleja directamente
 en la organización de carpetas del proyecto, lo que facilita una división clara de la
 lógica y la aplicación de buenas prácticas.
+
+## Versionado semántico (SemVer)
+
+El versionado semántico (_Semantic Versioning_) es un sistema estandarizado para
+controlar las versiones del software, representado mediante el formato `X.Y.Z`:
+
+| Componente | Significado | Se incrementa cuando... |
+|:-----------|:------------|:------------------------|
+| **X** (Major) | Versión mayor | Un cambio rompe la compatibilidad con versiones anteriores |
+| **Y** (Minor) | Versión menor | Se añade funcionalidad compatible con lo existente |
+| **Z** (Patch) | Parche | Se corrigen errores sin alterar la compatibilidad |
+
+Un proyecto comienza en la versión `0.1.0` durante su desarrollo inicial. A partir de la
+versión `1.0.0`, se considera estable y se aplican las reglas de incremento de forma
+estricta.
+
+Es posible añadir etiquetas adicionales como _pre-release_ (por ejemplo,
+`3.1.4-alpha.1`), que siempre tienen menor precedencia que la versión estable
+correspondiente (`3.1.4 > 3.1.4-alpha.1`).
+
+## Desarrollo guiado por pruebas (TDD)
+
+El _Test-Driven Development_ (TDD) propone escribir las pruebas antes del código de
+producción. El ciclo fundamental se resume en la secuencia _Red-Green-Refactor_:
+
+1. **Red**: Escribir una prueba que falla (la funcionalidad aún no existe).
+2. **Green**: Implementar el código mínimo necesario para que la prueba pase.
+3. **Refactor**: Mejorar la calidad interna del código sin alterar su comportamiento.
+
+Este proceso contribuye a mantener un diseño limpio, facilita la detección temprana de
+errores y reduce el riesgo de regresiones.
+
+## Desarrollo guiado por comportamiento (BDD)
+
+El _Behavior-Driven Development_ (BDD) extiende TDD centrándose en el comportamiento
+del sistema desde la perspectiva del usuario final. En lugar de pruebas unitarias
+aisladas, BDD describe escenarios de alto nivel en un lenguaje cercano al dominio del
+problema.
+
+Este enfoque facilita la comunicación entre desarrolladores y responsables de negocio,
+ya que las pruebas se expresan de forma comprensible para todos los actores. BDD valida
+que el software cumple con los requisitos funcionales y no funcionales definidos a nivel
+de negocio.

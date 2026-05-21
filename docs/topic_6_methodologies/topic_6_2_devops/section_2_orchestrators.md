@@ -326,3 +326,15 @@ Cada _pod_ en Kubernetes tiene su propia dirección IP, y para comunicar _pods_ 
 diferentes nodos se utiliza el _Cloud Cluster Networking Interface_. En cuanto al
 almacenamiento, **etcd** es un almacén de datos clave-valor distribuido utilizado para
 guardar datos de configuración, estado y metadatos del clúster.
+
+### Patrones de resiliencia
+
+Para reforzar la robustez de los sistemas distribuidos orquestados, se emplean patrones
+de resiliencia ampliamente contrastados:
+
+| Patrón | Descripción |
+|:-------|:------------|
+| **Retry** | Gestiona errores transitorios mediante reintentos controlados con incrementos progresivos en el tiempo de espera (_backoff_) |
+| **Circuit Breaker** | Evita que un servicio continúe llamando a dependencias que están fallando, previniendo efectos en cascada |
+| **Bulkhead** | Aísla recursos para que los fallos de un componente no afecten a otros |
+| **Monkey Testing** | Introduce fallos deliberados en el sistema para evaluar su capacidad de recuperación ante situaciones imprevistas |

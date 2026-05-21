@@ -57,17 +57,15 @@ nav = [
     ]},
     {"Metodologías" = [
         {"Ingeniería de Software" = [
-            "topic_6_methodologies/topic_6_1_software/section_1_fundamentals.md",
-            "topic_6_methodologies/topic_6_1_software/section_2_design_patterns.md",
-            "topic_6_methodologies/topic_6_1_software/section_3_sustainable_code.md",
-            "topic_6_methodologies/topic_6_1_software/section_4_data_structure.md",
-            "topic_6_methodologies/topic_6_1_software/section_5_cloud_computing.md"
+            "topic_6_methodologies/topic_6_1_software/section_1_design_patterns.md",
+            "topic_6_methodologies/topic_6_1_software/section_2_sustainable_code.md",
+            "topic_6_methodologies/topic_6_1_software/section_3_data_structure.md",
+            "topic_6_methodologies/topic_6_1_software/section_4_cloud_computing.md"
         ]},
         {"DevOps" = [
-            "topic_6_methodologies/topic_6_2_devops/section_1_fundamentals.md",
-            "topic_6_methodologies/topic_6_2_devops/section_2_containers.md",
-            "topic_6_methodologies/topic_6_2_devops/section_3_orchestrators.md",
-            "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
+            "topic_6_methodologies/topic_6_2_devops/section_1_containers.md",
+            "topic_6_methodologies/topic_6_2_devops/section_2_orchestrators.md",
+            "topic_6_methodologies/topic_6_2_devops/section_3_ci_cd.md"
         ]},
         {"MLOps" = [
             "topic_6_methodologies/topic_6_3_mlops/section_1_fundamentals.md",
