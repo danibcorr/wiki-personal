@@ -36,6 +36,9 @@ nav = [
         ]},
         {"Front End" = [
             "topic_3_programming/topic_3_5_front_end/section_1_fundamentals.md"
+        ]},
+        {"Rust" = [
+            "topic_3_programming/topic_3_6_rust/section_1_fundamentals.md"
         ]}
     ]},
     {"Inteligencia Artificial" = [
