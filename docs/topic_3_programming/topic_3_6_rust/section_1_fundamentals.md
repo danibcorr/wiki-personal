@@ -13,7 +13,7 @@ title: Fundamentos
 ## Introducción
 
 **Rust** es un lenguaje de programación de sistemas desarrollado originalmente por
-Mozilla Research, cuyo diseño persigue tres objetivos fundamentales: seguridad de
+Mozilla Research cuyo diseño persigue tres objetivos fundamentales: seguridad de
 memoria, concurrencia libre de _data races_ y rendimiento comparable al de C y C++. A
 diferencia de otros lenguajes que dependen de un _garbage collector_ para gestionar la
 memoria en tiempo de ejecución, Rust introduce un sistema de _ownership_ (propiedad) que
@@ -21,14 +21,32 @@ verifica la corrección del uso de la memoria en tiempo de compilación. Este en
 elimina categorías enteras de errores comunes, como los accesos a memoria liberada o las
 condiciones de carrera, sin incurrir en penalizaciones de rendimiento.
 
-El lenguaje resulta especialmente adecuado para el desarrollo de software de sistemas,
+El lenguaje resulta especialmente adecuado para el desarrollo de _software_ de sistemas,
 herramientas de línea de comandos, servicios web de alto rendimiento y cualquier
 contexto en el que el control preciso sobre los recursos sea un requisito.
+
+### Compilación directa con `rustc`
+
+El compilador de Rust (`rustc`) permite compilar archivos fuente de forma directa sin
+necesidad de un gestor de proyectos. Los archivos de código fuente utilizan la extensión
+`.rs`. Una vez compilado, se genera un binario ejecutable con el mismo nombre del
+archivo fuente:
+
+```bash linenums="1"
+# Compilar un archivo fuente
+rustc main.rs
+
+# Ejecutar el binario generado
+./main
+```
 
 ### Primer programa
 
 Todo programa en Rust comienza su ejecución en la función `main`, que actúa como punto
-de entrada. La macro `println!` permite imprimir texto en la salida estándar:
+de entrada obligatorio. La macro `println!` permite imprimir texto en la salida
+estándar. El signo de exclamación indica que se trata de una macro y no de una función
+convencional, lo que significa que genera código adicional en tiempo de compilación para
+extender la sintaxis del lenguaje:
 
 ```rust linenums="1"
 fn main() {
@@ -39,26 +57,61 @@ fn main() {
 ### Cargo
 
 **Cargo** es la herramienta oficial de Rust que integra la gestión de paquetes, la
-compilación del código y la ejecución de pruebas en un único flujo de trabajo. Cuando se
+compilación del código y la ejecución de pruebas en un único flujo de trabajo. Viene
+preinstalado con Rust y se puede verificar su versión con `cargo --version`. Cuando se
 crea un proyecto con Cargo, este genera automáticamente la estructura de directorios
 necesaria junto con un archivo `Cargo.toml` que describe las dependencias y la
-configuración del proyecto.
+configuración del proyecto. Cargo espera que los archivos de código fuente se encuentren
+en el directorio `src/`. Es importante que el analizador de Rust (_rust-analyzer_)
+detecte el fichero `Cargo.toml` en el directorio raíz del proyecto para ofrecer
+funcionalidades de autocompletado y diagnóstico en el entorno de desarrollo.
 
 ```bash linenums="1"
-# Crear un nuevo proyecto
+# Verificar la versión instalada
+cargo --version
+
+# Crear un nuevo proyecto (genera Cargo.toml y src/main.rs)
 cargo new nombre_proyecto
+
+# Inicializar un proyecto en un directorio existente
+cargo init
+
+# Verificar que el código compila sin generar ejecutable (más rápido)
+cargo check
+
+# Compilar el proyecto (genera el binario en target/debug/)
+cargo build
 
 # Compilar y ejecutar en modo debug
 cargo run
+
+# Compilar y ejecutar en modo silencioso (oculta mensajes de compilación)
+cargo run -q
 
 # Compilar y ejecutar en modo release (con optimizaciones)
 cargo run --release
 ```
 
-La diferencia entre ambos modos de compilación es relevante: el modo _debug_ incluye
+La diferencia entre ambos modos de compilación es relevante. El modo _debug_ incluye
 comprobaciones adicionales (como la detección de _overflow_ aritmético) y genera código
-sin optimizar para facilitar la depuración, mientras que el modo _release_ produce un
-binario optimizado destinado a producción.
+sin optimizar para facilitar la depuración. El modo _release_ produce un binario
+optimizado destinado a producción. Además, si el código fuente no ha cambiado desde la
+última compilación, Cargo no lo recompila, lo que acelera el ciclo de desarrollo.
+
+!!!tip "Flujo de trabajo recomendado"
+
+    Durante el desarrollo, es preferible usar `cargo check` para verificar rápidamente que el código compila (ya que no genera un ejecutable) y reservar `cargo build` o `cargo run` para cuando se necesite ejecutar el programa.
+
+### Documentación _offline_
+
+Rust incluye una copia local de la documentación oficial que se puede consultar sin
+conexión a internet mediante `rustup doc`, que abre la documentación en el navegador. Si
+no está instalada, se puede añadir con el siguiente comando:
+
+```bash linenums="1"
+rustup component add rust-docs
+rustup doc
+```
 
 ## Variables y constantes
 
@@ -132,11 +185,14 @@ En cuanto al comportamiento ante desbordamiento aritmético (_overflow_), Rust a
 estrategia diferente según el modo de compilación. En modo _debug_, el compilador
 detecta el _overflow_ y genera un error que detiene la ejecución. En modo _release_, se
 aplica _wrapping_ (el valor desborda de forma silenciosa y vuelve al inicio del rango),
-lo que puede producir resultados inesperados si no se gestiona adecuadamente.
+lo que puede producir resultados inesperados si no se gestiona adecuadamente. El mismo
+principio se aplica al _underflow_, donde un valor desciende por debajo del mínimo
+representable para su tipo.
 
 Para mejorar la legibilidad de literales numéricos extensos, Rust permite insertar
 guiones bajos como separadores visuales en cualquier posición dentro del número, tanto
-en enteros como en decimales.
+en enteros como en decimales. Estos separadores no afectan al valor numérico y el
+compilador los ignora por completo.
 
 ```rust linenums="1"
 fn main() {
@@ -208,10 +264,16 @@ fn main() {
 
 ### Conversión de tipos
 
-La conversión entre tipos numéricos se realiza mediante la palabra clave `as`, que
-efectúa un _casting_ explícito. Para convertir cadenas de texto a tipos numéricos se
-utiliza el método `.parse()`, que devuelve un `Result` y requiere gestión de errores
-(habitualmente mediante `.expect()` o _pattern matching_).
+Rust no realiza conversiones de tipo de forma implícita. Para efectuar un _casting_
+explícito entre tipos numéricos se utiliza la palabra clave `as`. Solo se permiten
+conversiones seguras y directas, como cambiar el tamaño de un entero (de 32 bits a 64
+bits), convertir enteros a flotantes o transformar caracteres en sus valores numéricos
+correspondientes (código ASCII o Unicode).
+
+Para convertir cadenas de texto a tipos numéricos se utiliza el método `.parse()`, que
+devuelve un `Result` y requiere gestión de errores (habitualmente mediante `.expect()` o
+_pattern matching_). Es recomendable aplicar `.trim()` antes de `.parse()` para eliminar
+posibles espacios en blanco o saltos de línea que puedan interferir con la conversión.
 
 ```rust linenums="1"
 const MULTIPLICADOR: u32 = 2;
@@ -272,7 +334,9 @@ fn main() {
 Los _arrays_ en Rust tienen un tamaño fijo que debe conocerse en tiempo de compilación.
 Se almacenan íntegramente en el _stack_, lo que los hace muy eficientes en términos de
 acceso. Todos los elementos de un _array_ deben ser del mismo tipo. La sintaxis de
-declaración incluye el tipo y la cantidad de elementos entre corchetes: `[T; N]`.
+declaración incluye el tipo y la cantidad de elementos entre corchetes: `[T; N]`. Esta
+restricción de tamaño fijo existe porque los tipos simples en Rust se almacenan en el
+_stack_, que requiere conocer el espacio exacto que ocupará cada dato.
 
 También es posible inicializar un _array_ con un valor repetido mediante la sintaxis
 `[valor; cantidad]`, que resulta útil cuando se necesita una colección de tamaño fijo
@@ -297,8 +361,10 @@ fn main() {
 
 Los vectores (`Vec<T>`) constituyen la alternativa dinámica a los _arrays_. Su tamaño
 puede crecer o decrecer en tiempo de ejecución, ya que almacenan sus datos en el _heap_.
-Se crean habitualmente mediante la macro `vec![]` y permiten añadir elementos con el
-método `.push()`.
+Se crean habitualmente mediante la macro `vec![]` (que permite inicializar un vector con
+valores predefinidos) y permiten añadir elementos con el método `.push()`. Para imprimir
+tipos compuestos como vectores se utiliza el formato de _debug_ `{:?}` dentro de las
+macros de impresión.
 
 ```rust linenums="1"
 fn main() {
@@ -320,6 +386,10 @@ La macro `dbg!` resulta especialmente útil durante el desarrollo, ya que imprim
 archivo, la línea y el valor de una expresión en la salida de error estándar,
 facilitando la depuración sin necesidad de configurar un depurador completo.
 
+!!!warning "_Ownership_ en `dbg!`"
+
+    La macro `dbg!` toma el _ownership_ del valor que recibe, por lo que la variable no podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe pasar una referencia: `dbg!(&variable)`.
+
 ```rust linenums="1"
 fn imprimir_nombre(nombre: &str) {
     println!("Hola {}!", nombre);
@@ -333,7 +403,7 @@ fn main() {
     imprimir_nombre("Dani");
 
     let resultado = sumar_valores(1, 2);
-    dbg!(resultado);
+    dbg!(&resultado);
 }
 ```
 
@@ -465,30 +535,52 @@ fundamentales que el compilador verifica de forma estática:
 3. Cuando el propietario sale del ámbito (_scope_) en el que fue declarado, el valor se
    libera automáticamente mediante la operación _drop_.
 
+Este comportamiento es análogo al de un _garbage collector_ en otros lenguajes, con la
+diferencia fundamental de que la liberación de recursos se determina en tiempo de
+compilación y no en tiempo de ejecución.
+
 ### _Stack_ y _heap_
 
 Para comprender el _ownership_ es necesario distinguir entre las dos regiones de memoria
-que utiliza un programa. El **_stack_** (pila) almacena datos cuyo tamaño se conoce en
-tiempo de compilación, como enteros, referencias `&str` y _arrays_. Las operaciones
-sobre el _stack_ son extremadamente rápidas porque consisten en apilar y desapilar
-valores de tamaño fijo.
+que utiliza un programa.
+
+El **_stack_** (pila) almacena datos cuyo tamaño se conoce en tiempo de compilación,
+como enteros, flotantes, booleanos, referencias `&str` y _arrays_. Las operaciones sobre
+el _stack_ son extremadamente rápidas porque consisten en apilar y desapilar valores de
+tamaño fijo siguiendo una estructura LIFO (_Last In, First Out_). En el _stack_ no
+existe diferencia entre una copia superficial (_shallow copy_) y una copia profunda
+(_deep copy_), ya que ambas producen el mismo resultado al tratarse de valores de tamaño
+fijo.
 
 El **_heap_** (montículo) almacena datos cuyo tamaño puede variar en tiempo de
 ejecución, como `String` o `Vec`. Cuando se crea un valor en el _heap_, el sistema
 reserva un bloque de memoria y devuelve un puntero que se almacena en el _stack_ junto
-con la longitud y la capacidad del dato.
+con la longitud actual y la capacidad reservada. El acceso al _heap_ es más lento porque
+requiere seguir punteros para localizar los datos. Para realizar copias de tipos
+almacenados en el _heap_ es necesario efectuar una copia profunda mediante `.clone()`,
+lo que puede resultar costoso en términos de rendimiento.
+
+Como ejemplo ilustrativo, un literal de cadena como `"Bob"` declarado con
+`let palabra: &str = "Bob"` reside completamente en el _stack_ porque su tamaño se
+conoce en tiempo de compilación y no puede modificarse. En cambio,
+`let palabra: String = String::from("Bob")` almacena el puntero, la longitud y la
+capacidad en el _stack_, mientras que el contenido real de la cadena reside en el
+_heap_.
 
 ### _Move_ y _clone_
 
 Cuando se asigna una variable que contiene datos en el _heap_ a otra variable, Rust no
 copia el contenido. En su lugar, transfiere la propiedad (_move_) a la nueva variable e
 invalida la original, impidiendo su uso posterior. Este comportamiento previene la
-liberación doble de memoria (_double free_), un error común en lenguajes como C.
+liberación doble de memoria (_double free_), un error común en lenguajes como C, que se
+produciría si dos variables apuntasen al mismo bloque de memoria y ambas intentasen
+liberarlo al salir de su _scope_.
 
 Para los tipos que residen exclusivamente en el _stack_ (como los enteros), la
-asignación realiza una copia completa de los bits, ya que el coste es despreciable. Si
-se necesita una copia profunda de un valor en el _heap_, se utiliza el método
-`.clone()`, que duplica tanto el puntero como el contenido al que apunta.
+asignación realiza una copia completa de los bits, ya que el coste es despreciable. Este
+comportamiento está determinado por el _trait_ `Copy`. Si se necesita una copia profunda
+de un valor en el _heap_, se utiliza el método `.clone()`, que duplica tanto los
+metadatos como el contenido al que apunta.
 
 ```rust linenums="1"
 fn main() {
@@ -510,6 +602,24 @@ fn main() {
 }
 ```
 
+### _Ownership_ en funciones
+
+Una función puede devolver el _ownership_ de un valor, permitiendo que la variable
+receptora en el ámbito que la invoca se convierta en la nueva propietaria. Cada variable
+que recibe el resultado de una función adquiere su propio _ownership_ independiente.
+
+```rust linenums="1"
+fn crear_saludo() -> String {
+    String::from("Hola")
+}
+
+fn main() {
+    let saludo_1 = crear_saludo();
+    let saludo_2 = crear_saludo();
+    println!("{}, {}", saludo_1, saludo_2);
+}
+```
+
 ## Referencias y _borrowing_
 
 Las **referencias** permiten acceder al valor de una variable sin adquirir su
@@ -524,7 +634,7 @@ tipos de referencias:
 
 El compilador garantiza en tiempo de compilación que nunca coexistan referencias
 mutables e inmutables sobre el mismo dato, eliminando así la posibilidad de _data
-races_.
+races_. Las referencias son inmutables por defecto, al igual que las variables.
 
 ```rust linenums="1"
 fn normalize_text(text: &String) -> String {
@@ -556,12 +666,41 @@ fn main() {
 
 !!!warning "Reglas de _borrowing_"
 
-    El compilador aplica las siguientes restricciones sobre las referencias para garantizar
-    la seguridad de memoria:
+    El compilador aplica las siguientes restricciones sobre las referencias para garantizar la seguridad de memoria:
 
     - Se pueden mantener **múltiples referencias inmutables** (`&T`) de forma simultánea.
     - Solo se permite **una referencia mutable** (`&mut T`) activa a la vez.
     - No pueden coexistir referencias mutables e inmutables activas sobre el mismo valor.
+    - **No se puede modificar la variable original** mientras exista una referencia mutable activa a ella. La referencia mutable debe salir del _scope_ antes de poder usar la variable original de nuevo.
+
+    Estas restricciones existen porque Rust no dispone de un mecanismo de sincronización implícito. Si dos variables pudiesen mantener referencias mutables al mismo dato, se producirían condiciones de carrera que corromperían la memoria.
+
+### _Dangling references_
+
+Rust impide devolver referencias a datos locales de una función, ya que al finalizar la
+ejecución de la función se realiza un _drop_ de sus variables y la referencia apuntaría
+a memoria liberada. Esto se conoce como _dangling reference_. La solución consiste en
+devolver el valor directamente (transfiriendo el _ownership_) en lugar de una
+referencia:
+
+```rust linenums="1"
+// ❌ Error de compilación: dangling reference
+// fn crear_texto() -> &String {
+//     let s = String::from("hola");
+//     &s // `s` se libera al salir de la función
+// }
+
+// ✅ Correcto: se devuelve el ownership
+fn crear_texto() -> String {
+    let s = String::from("hola");
+    s
+}
+
+fn main() {
+    let texto = crear_texto();
+    println!("{}", texto);
+}
+```
 
 ## _Slices_
 
@@ -569,6 +708,8 @@ Los _slices_ son referencias a una subsecuencia contigua de elementos dentro de 
 colección, sin adquirir el _ownership_ de los datos subyacentes. Se representan con el
 tipo `&[T]` y se construyen especificando un rango sobre la colección original mediante
 la sintaxis `&coleccion[inicio..fin]`, donde `inicio` es inclusivo y `fin` es exclusivo.
+Si se omite el índice inicial, se toma desde el primer elemento. Si se omite el índice
+final, se incluyen todos los elementos hasta el último.
 
 Los _slices_ resultan especialmente útiles para trabajar con porciones de _arrays_ o
 vectores sin necesidad de copiar los datos, lo que los convierte en una herramienta
@@ -640,8 +781,7 @@ fn main() {
 
 !!!note "Dependencia externa"
 
-    Este ejemplo requiere añadir el _crate_ `rand` como dependencia en el archivo
-    `Cargo.toml` del proyecto:
+    Este ejemplo requiere añadir el _crate_ `rand` como dependencia en el archivo `Cargo.toml` del proyecto:
 
     ```toml
     [dependencies]
