@@ -1,9 +1,7 @@
 ---
-sidebar_position: 6
-authors:
-Daniel Bazo Correa
-description: Creación y uso de logs en Python.
-title: Logs
+authors: Daniel Bazo Correa
+description: Logging con Loguru y monitorización con Prometheus y Grafana.
+title: Monitorización y logs
 ---
 
 ## Creación y registro de logs con Loguru

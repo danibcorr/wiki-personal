@@ -1,21 +1,16 @@
 ---
-
-authors:
-Daniel Bazo Correa
-title: Tensorflow
+authors: Daniel Bazo Correa
+description: Guía práctica de TensorFlow para visión, NLP y audio.
+title: TensorFlow
 ---
 
-<div align="justify">
-
-# Tensorflow
-
-## Bibliografía
+## Referencias
 
 - [https://www.tensorflow.org/api_docs](https://www.tensorflow.org/api_docs)
 - [Deep Learning by deeplearning.ai | Coursera](https://www.coursera.org/specializations/deep-learning)
 - [Certificado profesional de DeepLearning.AI desarrollador de TensorFlow | Coursera](https://www.coursera.org/professional-certificates/tensorflow-in-practice)
 
-## Anexo A: Terminología útil
+## Terminología
 
 Aquí se reúnen las palabras, términos, conceptos etc. claves a tener en cuenta a modo de
 recordatorio. No tiene ningún tipo de orden, ni pretende ser el primer capítulo a
@@ -54,7 +49,7 @@ visualizar.
 - Es importante saber que **una clasificación** pretende predecir una clase o categoría
   mientras que un modelo de **regresión** intenta predecir 1 o más cantidades numéricas.
 
-## Capítulo 0: Útiles
+## Utilidades
 
 ### Descomprimir ficheros
 
@@ -259,7 +254,7 @@ history = modelo.fit(
             )
 ```
 
-## Capítulo 1: Visión Computacional
+## Visión computacional
 
 ### Teoría previa
 
@@ -846,7 +841,7 @@ Finalmente, probamos el modelo:
 out_scores, out_boxes, out_classes = predict("download.jpeg")
 ```
 
-## Capítulo 2: Procesamiento del Lenguaje Natural, NLP
+## Procesamiento del lenguaje natural
 
 ### Teoría
 
@@ -854,7 +849,7 @@ Modelos secuenciales:
 
 Transformers:
 
-## Capítulo 3: Procesamiento de Audio
+## Procesamiento de audio
 
 ### Reconocimiento de audio
 

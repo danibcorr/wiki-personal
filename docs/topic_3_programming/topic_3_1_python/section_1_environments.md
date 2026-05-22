@@ -5,7 +5,7 @@ description:
 title: Entornos virtuales
 ---
 
-## Bibliografía
+## Referencias
 
 - [VENV Docs](https://docs.python.org/3/library/venv.html)
 - [Poetry Docs](https://python-poetry.org/)

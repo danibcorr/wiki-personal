@@ -4,7 +4,7 @@ description: Gestiona y manipula bases de datos de manera eficiente utilizando S
 title: SQL
 ---
 
-## Bibliografía
+## Referencias
 
 - [SQL for Data Analytics - Learn SQL in 4 Hours](https://youtu.be/7mz73uXD9DA?si=hGvaEhnRn0z7ExQI)
 - [Escalabilidad vertical vs. horizontal: diferencias, ventajas, Kubernetes y cuál elegir](https://ausum.cloud/escalabilidad-vertical-vs-horizontal-diferencias-ventajas-kubernetes-y-cual-elegir/)
@@ -17,7 +17,7 @@ IBM, SQL permite realizar consultas, actualizar datos, eliminar registros, y cre
 modificar estructuras de bases de datos. Su sintaxis es simple e intuitiva, facilitando
 su aprendizaje y uso.
 
-## Conceptos básicos
+## Fundamentos
 
 ### Introducción
 
@@ -584,7 +584,7 @@ Existen cuatro tipos de `JOIN`:
     `job_id` en `job_postings_fact` no tiene una coincidencia en `company_dim`, el valor de
     `Empresa` será `NULL` para ese registro.
 
-## Conceptos avanzados
+## Consultas avanzadas
 
 ### Instalación de PostgreSQL en Linux
 

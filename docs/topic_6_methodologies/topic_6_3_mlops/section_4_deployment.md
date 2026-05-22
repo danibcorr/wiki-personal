@@ -1,9 +1,7 @@
 ---
-sidebar_position: 9
-authors:
-Daniel Bazo Correa
-description: Crea y almacena tus artefactos en repositorios.
-title: Creacion de APIs
+authors: Daniel Bazo Correa
+description: APIs, ONNX Runtime y publicación de paquetes.
+title: Despliegue y distribución
 ---
 
 ## API
@@ -53,14 +51,7 @@ dominios.
 
 ---
 
-sidebar_position: 10 authors:
-
-- name: Daniel Bazo Correa description: Exportación de modelos para inferencia con ONNX.
-  title: ONNX
-
----
-
-## Bibliografía
+## Referencias
 
 - [Everything You Want to Know About ONNX](https://www.youtube.com/watch?v=cK5AyawZSUI&list=WL&index=38)
 - [ONNX](https://onnx.ai/)
@@ -250,15 +241,6 @@ adaptadores LoRA. Además, ofrece integración con plataformas como **Hugging Fa
 **Azure AI**. Un mecanismo de caché integrado permite mejorar la productividad al
 almacenar y reutilizar optimizaciones previas, reduciendo el tiempo de cómputo en
 experimentaciones repetitivas.
-
----
-
-sidebar_position: 7 authors:
-
-- name: Daniel Bazo Correa description: Crea y almacena tus artefactos en repositorios.
-  title: Gestión y publicación de repositorios
-
----
 
 ## Publicación de un paquete de Python en PyPI
 

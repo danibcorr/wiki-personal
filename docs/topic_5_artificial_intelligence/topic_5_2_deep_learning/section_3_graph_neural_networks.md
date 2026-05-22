@@ -1,14 +1,12 @@
 ---
-
-authors:
-Daniel Bazo Correa
-description: Fundamentos del Deep Learning.
+authors: Daniel Bazo Correa
+description: Fundamentos de las Redes Neuronales de Grafos.
 title: Redes Neuronales de Grafos
 ---
 
 # Redes Neuronales de Grafos
 
-## Introducción al aprendizaje automático con grafos
+## Introducción
 
 En numerosos dominios del mundo real, como las redes sociales, la economía o los
 sistemas de comunicaciones, los datos no se organizan de forma tabular, sino que adoptan
@@ -29,7 +27,7 @@ tipos de datos, debido a su tamaño arbitrario, su compleja topología, la ausen
 orden fijo en los nodos, la posible dinámica temporal y la coexistencia de múltiples
 tipos de información o modalidades.
 
-## Graph Learning y Redes Neuronales de Grafos
+## Arquitectura
 
 El aprendizaje automático sobre grafos puede entenderse como un proceso en el que un
 grafo se introduce como entrada a un modelo, típicamente una Red Neuronal de Grafos
@@ -79,7 +77,7 @@ conectados. En los grafos dirigidos, en cambio, cada enlace tiene una dirección
 definida, lo que introduce una asimetría en las relaciones y permite modelar flujos,
 jerarquías o dependencias causales.
 
-## Grado y propiedades básicas
+## Propiedades de los nodos
 
 En grafos no dirigidos, el grado de un nodo $i$, denotado como $K_i$, corresponde al
 número de enlaces adyacentes a dicho nodo. El grado medio del grafo se obtiene como

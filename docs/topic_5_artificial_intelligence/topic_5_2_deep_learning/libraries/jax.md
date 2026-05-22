@@ -1,11 +1,10 @@
 ---
-
-authors:
-Daniel Bazo Correa
-title: Jax
+authors: Daniel Bazo Correa
+description: Vectorización, paralelización y reproducibilidad con JAX.
+title: JAX
 ---
 
-# Bibliografía
+## Referencias
 
 - https://huggingface.co/blog/afmck/flax-tutorial
 

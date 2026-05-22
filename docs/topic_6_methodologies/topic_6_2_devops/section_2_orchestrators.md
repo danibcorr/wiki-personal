@@ -1,6 +1,6 @@
 ---
 authors: Daniel Bazo Correa
-description: Herramientas necesarias para DevOps.
+description: Kubernetes, componentes, pods, servicios y despliegues.
 title: Orquestadores
 ---
 
@@ -338,3 +338,22 @@ de resiliencia ampliamente contrastados:
 | **Circuit Breaker** | Evita que un servicio continúe llamando a dependencias que están fallando, previniendo efectos en cascada                    |
 | **Bulkhead**        | Aísla recursos para que los fallos de un componente no afecten a otros                                                       |
 | **Monkey Testing**  | Introduce fallos deliberados en el sistema para evaluar su capacidad de recuperación ante situaciones imprevistas            |
+
+## Tipos de orquestación
+
+Las herramientas de orquestación se agrupan en cuatro categorías según el nivel de
+abstracción sobre el que operan:
+
+| Categoría                        | Descripción                                                                                                                                                                                                                                                                     | Ejemplos                                            |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------- |
+| **Orquestación de servidores**   | Gestiona la ejecución de aplicaciones directamente sobre servidores físicos o virtuales. Se encarga de distribuir procesos, reiniciarlos ante fallos y balancear la carga entre múltiples máquinas. Es el enfoque más tradicional y ofrece control total sobre el hardware.     | Nomad, scripts personalizados                       |
+| **Orquestación de VMs**          | Gestiona máquinas virtuales completas, cada una con su propio sistema operativo. Permite escalar creando o destruyendo VMs según la demanda. Ofrece aislamiento fuerte pero con mayor consumo de recursos y tiempos de arranque más lentos.                                     | Amazon EC2 Auto Scaling, Azure VM Scale Sets        |
+| **Orquestación de contenedores** | Gestiona el ciclo de vida de contenedores: programación (_scheduling_), escalado automático, auto-recuperación ante fallos, descubrimiento de servicios y balanceo de carga. Es el estándar actual para arquitecturas de microservicios.                                        | Kubernetes, Amazon ECS, Docker Swarm, OpenShift     |
+| **Orquestación _serverless_**    | Abstrae completamente la infraestructura subyacente. El desarrollador proporciona únicamente el código (funciones) y la plataforma se encarga de ejecutarlo, escalarlo y facturar solo por el tiempo de ejecución. No hay servidores que gestionar ni capacidad que planificar. | AWS Lambda, Google Cloud Functions, Azure Functions |
+
+!!! note "Elección de la categoría adecuada"
+
+    La elección depende de los requisitos del proyecto. Las soluciones _serverless_ minimizan
+    la carga operativa pero limitan el control y pueden resultar costosas a gran escala. La
+    orquestación de contenedores ofrece un equilibrio entre flexibilidad y automatización.
+    Las VMs y servidores proporcionan máximo control a costa de mayor complejidad operativa.

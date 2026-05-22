@@ -1,10 +1,10 @@
 ---
 authors: Daniel Bazo Correa
 description: Cloud computing y diseño de sistemas distribuidos.
-title: Cloud computing
+title: Modelos de servicio
 ---
 
-## Cloud computing
+## Introducción
 
 La computación en la nube proporciona recursos bajo demanda (redes, almacenamiento,
 cómputo) a través de Internet. Sus características principales son:

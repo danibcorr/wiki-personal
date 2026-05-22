@@ -3,10 +3,10 @@ authors: Daniel Bazo Correa
 description:
     Conceptos fundamentales de Amazon Web Services, desde la infraestructura global
     hasta los principales servicios de cómputo, almacenamiento y redes.
-title: Fundamentos
+title: AWS
 ---
 
-## Bibliografía
+## Referencias
 
 - [AWS Cloud Practitioner Essentials](https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7)
 

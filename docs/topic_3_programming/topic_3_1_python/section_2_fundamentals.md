@@ -1,10 +1,10 @@
 ---
 authors: Daniel Bazo Correa
-description: Aprende todo lo necesario sobre el lenguaje de programación Python.
+description: Sintaxis, tipos de datos, estructuras y funciones en Python.
 title: Fundamentos
 ---
 
-## Bibliografía
+## Referencias
 
 - [Python Docs](https://docs.python.org/3/)
 - [Python Bootcamps Udemy](https://www.udemy.com/course/complete-python-bootcamp/)
@@ -75,7 +75,7 @@ organizar los proyectos y del enfoque de exploración y desarrollo que se adopte
 influye la forma de trabajo del equipo. En cualquier caso, conviene explorar ambas
 opciones sin descartar ninguna, ya que cada una tiene su momento y su utilidad.
 
-## Conceptos básicos
+## Sintaxis
 
 Para dominar Python, es fundamental comprender primero los pilares que sostienen
 cualquier programa: cómo se almacena la información, cómo se manipula y cómo se controla

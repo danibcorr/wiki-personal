@@ -1,18 +1,16 @@
 ---
-sidebar_position: 8
-authors:
-Daniel Bazo Correa
-description: Crea y almacena tus artefactos en repositorios.
-title: DVC
+authors: Daniel Bazo Correa
+description: Versionamiento de datos y gestión de experimentos con DVC.
+title: Gestión de experimentos
 ---
 
-# Guía Completa de DVC para Proyectos de Machine Learning
+## Introducción
 
-Esta guía presenta una introducción exhaustiva a DVC (Data Version Control), una
-herramienta especializada en el versionamiento de datos, la gestión de pipelines de
-Machine Learning, el seguimiento de experimentos y el intercambio de artefactos. El
-contenido se estructura en cuatro módulos progresivos que abarcan desde la configuración
-básica hasta técnicas avanzadas de colaboración y despliegue.
+DVC (Data Version Control) es una herramienta especializada en el versionamiento de
+datos, la gestión de pipelines de Machine Learning, el seguimiento de experimentos y el
+intercambio de artefactos. El contenido se estructura en cuatro módulos progresivos que
+abarcan desde la configuración básica hasta técnicas avanzadas de colaboración y
+despliegue.
 
 ## Módulo I: Versionamiento de Datos y Almacenamiento Remoto
 

@@ -4,7 +4,7 @@ description: Procesamiento de arrays en Python.
 title: Arrays
 ---
 
-## Bibliografía
+## Referencias
 
 - [NumPy](https://numpy.org)
 - [Dask](https://docs.dask.org).

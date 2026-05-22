@@ -1,8 +1,6 @@
 ---
-
-authors:
-Daniel Bazo Correa
-description: Fundamentos del Deep Learning.
+authors: Daniel Bazo Correa
+description: Fundamentos del Aprendizaje por Refuerzo.
 title: Aprendizaje por Refuerzo
 ---
 
@@ -22,7 +20,7 @@ una misma acción puede producir resultados distintos. La ausencia de una respue
 correcta inmediata obliga al agente a descubrir progresivamente qué decisiones son más
 efectivas, evaluando las consecuencias futuras de sus acciones.
 
-## Elementos fundamentales del aprendizaje por refuerzo
+## Elementos fundamentales
 
 El marco conceptual de RL se estructura en torno a varios componentes esenciales que
 interactúan de manera sistemática. El **agente** es la entidad que toma decisiones y

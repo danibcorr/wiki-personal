@@ -1,10 +1,10 @@
 ---
 authors: Daniel Bazo Correa
-description: Herramientas necesarias para DevOps.
+description: Pipelines de CI/CD con GitHub Actions y GitLab CI.
 title: CI/CD
 ---
 
-## Bibliografía
+## Referencias
 
 - [ML in Production: From Data Scientist to ML Engineer](https://www.udemy.com/course/ml-in-production/?couponCode=SKILLS4SALEA)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)

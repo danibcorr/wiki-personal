@@ -1,12 +1,10 @@
 ---
-
-authors:
-Daniel Bazo Correa
+authors: Daniel Bazo Correa
 description: Conoce las claves esenciales para crear código sostenible.
 title: Código sostenible
 ---
 
-## Código sostenible
+## Principios
 
 El desarrollo de un proyecto debe realizarse bajo una estructura de código clara y
 sostenible, utilizando herramientas y metodologías para garantizar su organización y

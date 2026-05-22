@@ -1,18 +1,14 @@
 ---
-authors:
-Daniel Bazo Correa
+authors: Daniel Bazo Correa
+description: Utilidades y bucle de entrenamiento en PyTorch.
 title: PyTorch
 ---
 
-<div align="justify">
-
-# PyTorch
-
-### Bibliografía
+## Referencias
 
 - [Aladdin Persson - YouTube](https://www.youtube.com/c/AladdinPersson)
 
-## Anexo A: Terminología útil
+## Terminología
 
 Aquí se reúnen las palabras, términos, conceptos etc. claves a tener en cuenta a modo de
 recordatorio. No tiene ningún tipo de orden.
@@ -50,7 +46,7 @@ recordatorio. No tiene ningún tipo de orden.
 - Es importante saber que **una clasificación** pretende predecir una clase o categoría
   mientras que un modelo de **regresión** intenta predecir 1 o más cantidades numéricas.
 
-## Capítulo 0: Útiles
+## Utilidades
 
 ### Guardar y cargar un modelo
 

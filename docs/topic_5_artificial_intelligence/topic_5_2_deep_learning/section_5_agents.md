@@ -4,7 +4,7 @@ description: Fundamentos y arquitecturas de agentes basados en LLMs.
 title: Agentes
 ---
 
-## Bibliografía
+## Referencias
 
 - [Hugging Face Agents Course](https://huggingface.co/learn/agents-course)
 

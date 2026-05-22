@@ -1,16 +1,16 @@
 ---
 authors: Daniel Bazo Correa
-description: Fundamentos del Deep Learning.
-title: Deep Learning
+description: Redes neuronales, convoluciones, modelos secuenciales y flujo de trabajo.
+title: Fundamentos
 ---
 
-## Bibliografía
+## Referencias
 
 - [Alice's Adventures in a differentiable wonderland: A primer on designing neural networks (Volume I)](https://amzn.eu/d/3oYyuHg)
 - [Deep Learning for Coders with Fastai and PyTorch: AI Applications Without a PhD](https://course.fast.ai/Resources/book.html)
 - [Stanford](https://youtube.com/playlist?list=PLoROMvodv4rNjRoawgt72BBNwL2V7doGI&si=TXQ-EA7J7sAwfKEQ).
 
-## Introducción al aprendizaje profundo
+## Introducción
 
 Antes de abordar el estudio del **aprendizaje profundo (_Deep Learning_)**, resulta
 esencial comprender el concepto de inteligencia, una noción que, aunque aparentemente
@@ -375,7 +375,7 @@ Las imágenes se codifican como tensores de rango 4 con forma
 $(muestras, alto, ancho, canales)$. Finalmente, los vídeos se representan como tensores
 de rango 5 con forma $(muestras, fotogramas, alto, ancho, canales)$.
 
-## Conceptos básicos de matemáticas
+## Fundamentos matemáticos
 
 ### Tensores como estructura fundamental
 

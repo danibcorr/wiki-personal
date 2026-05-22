@@ -1,12 +1,10 @@
 ---
-
-authors:
-Daniel Bazo Correa
-description: Fundamentos del Deep Learning.
+authors: Daniel Bazo Correa
+description: Fundamentos de la IA Generativa.
 title: IA Generativa
 ---
 
-## Bibliografía
+## Referencias
 
 - [AI Coffee Break with Letitia](https://youtu.be/BprirYymXrg?si=mGDHKjVny1aM-oBN)
 

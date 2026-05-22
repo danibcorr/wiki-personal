@@ -9,10 +9,22 @@ copyright = "Copyright &copy; 2026 Daniel Bazo Correa"
 nav = [
     {"Inicio" = "index.md"},
     {"Sistemas Operativos" = [
-        "topic_1_operative_systems/section_1_linux.md"
+        {"Linux" = [
+            "topic_1_operative_systems/topic_1_1_linux/section_1_fundamentals.md",
+            "topic_1_operative_systems/topic_1_1_linux/section_2_administration.md",
+            "topic_1_operative_systems/topic_1_1_linux/section_3_networking.md"
+        ]}
     ]},
     {"Herramientas" = [
-        "topic_2_tools/section_1_git.md"
+        {"Git" = [
+            "topic_2_tools/topic_2_1_git/section_1_fundamentals.md",
+            "topic_2_tools/topic_2_1_git/section_2_workflows.md",
+            "topic_2_tools/topic_2_1_git/section_3_practical_cases.md"
+        ]},
+        {"Scripting" = [
+            "topic_2_tools/topic_2_2_scripting/section_1_bash.md",
+            "topic_2_tools/topic_2_2_scripting/section_2_makefile.md"
+        ]}
     ]},
     {"Programación" = [
         {"Python" = [
@@ -22,23 +34,17 @@ nav = [
             "topic_3_programming/topic_3_1_python/section_4_leetcode.md",
             "topic_3_programming/topic_3_1_python/section_5_libraries.md",
         ]},
-        {"Scripting" = [
-            "topic_3_programming/topic_3_2_scripting/section_1_bash.md",
-            "topic_3_programming/topic_3_2_scripting/section_2_makefile.md"
-        ]},
-        {"Bases de Datos" = [
-            "topic_3_programming/topic_3_3_databases/section_1_sql.md",
-            "topic_3_programming/topic_3_3_databases/section_2_exercises.md"
+        {"Rust" = [
+            "topic_3_programming/topic_3_2_rust/section_1_fundamentals.md"
         ]},
         {"CUDA" = [
-            "topic_3_programming/topic_3_4_cuda/section_1_fundamentals.md",
-            "topic_3_programming/topic_3_4_cuda/section_2_exercises.md"
+            "topic_3_programming/topic_3_3_cuda/section_1_fundamentals.md",
+            "topic_3_programming/topic_3_3_cuda/section_2_cuda_c.md",
+            "topic_3_programming/topic_3_3_cuda/section_3_cuda_python.md",
+            "topic_3_programming/topic_3_3_cuda/section_4_exercises.md"
         ]},
-        {"Front End" = [
-            "topic_3_programming/topic_3_5_front_end/section_1_fundamentals.md"
-        ]},
-        {"Rust" = [
-            "topic_3_programming/topic_3_6_rust/section_1_fundamentals.md"
+        {"Desarrollo web" = [
+            "topic_3_programming/topic_3_4_front_end/section_1_fundamentals.md"
         ]}
     ]},
     {"Inteligencia Artificial" = [
@@ -62,13 +68,13 @@ nav = [
         {"Ingeniería de Software" = [
             "topic_6_methodologies/topic_6_1_software/section_1_design_patterns.md",
             "topic_6_methodologies/topic_6_1_software/section_2_sustainable_code.md",
-            "topic_6_methodologies/topic_6_1_software/section_3_data_structure.md",
-            "topic_6_methodologies/topic_6_1_software/section_4_cloud_computing.md"
+            "topic_6_methodologies/topic_6_1_software/section_3_data_structure.md"
         ]},
         {"DevOps" = [
             "topic_6_methodologies/topic_6_2_devops/section_1_containers.md",
             "topic_6_methodologies/topic_6_2_devops/section_2_orchestrators.md",
-            "topic_6_methodologies/topic_6_2_devops/section_3_ci_cd.md"
+            "topic_6_methodologies/topic_6_2_devops/section_3_iac.md",
+            "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
         ]},
         {"MLOps" = [
             "topic_6_methodologies/topic_6_3_mlops/section_1_fundamentals.md",
@@ -77,9 +83,14 @@ nav = [
             "topic_6_methodologies/topic_6_3_mlops/section_4_deployment.md"
         ]}
     ]},
-    {"Cloud" = [
-        {"AWS" = [
-            "topic_7_cloud/topic_7_1_aws/section_1_fundamentals.md"
+    {"Infraestructura" = [
+        {"Bases de Datos" = [
+            "topic_7_cloud/topic_7_1_databases/section_1_sql.md",
+            "topic_7_cloud/topic_7_1_databases/section_2_exercises.md"
+        ]},
+        {"Cloud" = [
+            "topic_7_cloud/topic_7_2_cloud/section_1_fundamentals.md",
+            "topic_7_cloud/topic_7_2_cloud/section_2_aws.md"
         ]}
     ]},
     {"Otros" = [
@@ -104,6 +115,7 @@ features = [
     "content.footnote.tooltips",
     "content.tabs.link",
     "content.tooltips",
+    "navigation.tabs",
     "navigation.footer",
     "navigation.indexes",
     "navigation.instant",
@@ -142,10 +154,10 @@ link = "https://www.linkedin.com/in/danibcorr/"
 [project.markdown_extensions.md_in_html]
 
 [project.markdown_extensions.toc]
+permalink = true
 toc_depth = 3
 
 [project.markdown_extensions.pymdownx.details]
-[project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.snippets]
 
@@ -163,3 +175,8 @@ alternate_style = true
 anchor_linenums = true
 line_spans = "__span"
 pygments_lang_class = true
+
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]

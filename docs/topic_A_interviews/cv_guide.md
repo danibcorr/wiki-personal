@@ -4,7 +4,7 @@ description: Construcción de CV y guía de entrevistas de trabajo.
 title: Estrategias de empleo
 ---
 
-## Bibliografía
+## Referencias
 
 - [JeffSu](https://www.youtube.com/@JeffSu)
 

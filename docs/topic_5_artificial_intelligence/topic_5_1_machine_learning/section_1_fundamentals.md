@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Fundamentos del Machine Learning.
-title: Machine Learning
+title: Fundamentos
 ---
 
 ## Introducción
@@ -103,7 +103,7 @@ pueden existir valores intermedios con una precisión arbitraria. En contraste, 
 valores discretos solo pueden asumir ciertos valores específicos, como la cantidad de
 páginas de un libro, donde no existen valores intermedios entre un número entero y otro.
 
-## Estrategias para la selección y validación de datos
+## Selección y validación de datos
 
 Los datos son un elemento esencial en los algoritmos de aprendizaje automático. Sin una
 selección adecuada, es posible obtener relaciones no significativas o incluso
@@ -196,7 +196,7 @@ leakage_**, que ocurre cuando características utilizadas en el entrenamiento ta
 están presentes en la fase de prueba, generando una evaluación artificialmente optimista
 del modelo.
 
-## Conceptos de estadística
+## Estadística
 
 ### Distribuciones
 
@@ -765,7 +765,7 @@ correlación positiva perfecta, -1 una correlación negativa perfecta y 0 la aus
 correlación lineal. Este coeficiente permite evaluar la intensidad y dirección de la
 relación lineal entre las variables sin depender de su escala.
 
-## Modelos clásicos
+## Modelos supervisados
 
 Una vez comprendido el concepto de modelo de aprendizaje automático, donde se utilizan
 datos para modelar su distribución, analizar relaciones y extraer conocimiento, es
@@ -1474,7 +1474,7 @@ plt.ylabel('Puntuación normalizada')
 plt.show()
 ```
 
-## Métodos de comparación de modelos
+## Evaluación de modelos
 
 ### Clasificación
 
@@ -1605,7 +1605,7 @@ correctamente clasificados respecto al total de predicciones positivas. La curva
 resultante, denominada **curva Precision-Recall**, ofrece una evaluación más equilibrada
 del rendimiento del modelo en estos escenarios.
 
-## Métodos para la reducción de la dimensionalidad
+## Reducción de dimensionalidad
 
 ### PCA
 
@@ -1676,7 +1676,7 @@ $$
 J_f(x) = \sum_{i,j} \left( \frac{\partial h_j(x)}{\partial x_i} \right)^2.
 $$
 
-## Métodos para la imputación de datos
+## Imputación de datos
 
 La imputación de datos es una técnica fundamental en la preparación de datos,
 especialmente cuando se enfrentan valores faltantes en un conjunto. Dependiendo del tipo
@@ -1726,7 +1726,7 @@ complejas y no lineales, ofreciendo un balance entre precisión y robustez. La s
 del método de imputación más adecuado depende de la naturaleza de los datos, del patrón
 de ausencia y del nivel de precisión requerido en el análisis posterior.
 
-## Sistemas de detección de anomalías
+## Detección de anomalías
 
 Los sistemas de detección de anomalías se basan en la premisa de que el modelo se
 entrena exclusivamente con datos no anómalos, de manera que pueda identificar

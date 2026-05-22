@@ -4,7 +4,7 @@ description: Ejercicios típicos de entrevistas de trabajo.
 title: Ejercicios Leetcode
 ---
 
-## Bibliografía
+## Referencias
 
 - [Leetcode BLIND-75 Solutions](https://www.youtube.com/playlist?list=PLot-Xpze53ldVwtstag2TL4HQhAnC8ATf)
 

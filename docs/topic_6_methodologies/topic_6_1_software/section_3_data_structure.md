@@ -1,22 +1,20 @@
 ---
-
-authors:
-Daniel Bazo Correa
-description: Estructuras de datos y algoritmos de programación.
+authors: Daniel Bazo Correa
+description: Notación Big O, algoritmos de ordenación, búsqueda y estructuras de datos.
 title: Estructuras de datos y algoritmos
 ---
 
-## Bibliografía
+## Referencias
 
 - [YouTube Cesar Ramos](https://www.youtube.com/@cesarramos2592)
 
 ## Notación Big O
 
-La notación Big O se utiliza para evaluar la eficiencia de los algoritmos en términos de
-complejidad temporal y espacial. La **complejidad temporal** se refiere a cómo varía el
-tiempo requerido por un algoritmo en función del número de elementos de entrada,
-mientras que la **complejidad espacial** se refiere al uso de memoria en función del
-número de variables utilizadas por el algoritmo.
+Hay La notación Big O se utiliza para evaluar la eficiencia de los algoritmos en
+términos de complejidad temporal y espacial. La **complejidad temporal** se refiere a
+cómo varía el tiempo requerido por un algoritmo en función del número de elementos de
+entrada, mientras que la **complejidad espacial** se refiere al uso de memoria en
+función del número de variables utilizadas por el algoritmo.
 
 ### Ejemplos de notación Big O
 
@@ -54,13 +52,15 @@ depender de más de un parámetro.
 
 ???+ example "Ejemplo"
 
-```py linenums="1"
-def funcion():
-    for i in arrayA:
-        ...
-    for i in arrayB:
-        ...
-```
+    ```py linenums="1"
+    def funcion():
+
+        for i in arrayA:
+            ...
+
+        for i in arrayB:
+            ...
+    ```
 
 En este ejemplo, cada bucle tiene una complejidad de $O\left(N\right)$, pero como los
 bucles operan en arrays diferentes, la complejidad total es $O\left(A + B\right)$, donde
@@ -68,12 +68,13 @@ $A$ y $B$ son los tamaños de los arrays `arrayA` y `arrayB`, respectivamente.
 
 ???+ example "Ejemplo"
 
-```py linenums="1"
-def funcion():
-    for i in arrayA:
-        for j in arrayB:
-            ...
-```
+    ```py linenums="1"
+    def funcion():
+
+        for i in arrayA:
+            for j in arrayB:
+                ...
+    ```
 
 En este caso, la complejidad es $O\left(A \times B\right)$, ya que los bucles anidados
 operan sobre arrays diferentes. Es un error asumir $O\left(N^2\right)$ sin considerar
@@ -95,35 +96,30 @@ adyacentes de elementos en una lista e intercambia sus posiciones si están en o
 incorrecto. Este proceso se repite hasta que no se requieren más intercambios, lo que
 indica que la lista está ordenada.
 
-- **Complejidad temporal**: $$O\left(N^2\right)$$ en el peor caso, ya que cada elemento
-  se compara con todos los demás.
-- **Complejidad espacial**: $$O\left(1\right)$$, porque solo utiliza un número constante
+- **Complejidad temporal**: $O\left(N^2\right)$ en el peor caso, ya que cada elemento se
+  compara con todos los demás.
+- **Complejidad espacial**: $O\left(1\right)$, porque solo utiliza un número constante
   de variables temporales.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-def ordenacion_burbuja(lista: list[int]) -> list[int]:
+    ```py linenums="1"
+    def ordenacion_burbuja(lista: list[int]) -> list[int]:
+        # Bucle externo que recorre toda la lista
+        for i in range(len(lista)):
+            # Bucle interno que compara elementos adyacentes
+            for j in range(len(lista) - 1):
+                # Compara si el elemento actual es mayor que el siguiente
+                if lista[j] > lista[j + 1]:
+                    # Almacena temporalmente el valor del elemento actual
+                    temp = lista[j]
+                    # Intercambia los elementos
+                    lista[j] = lista[j + 1]
+                    lista[j + 1] = temp
+        # Devuelve la lista ordenada
 
-    # Bucle externo que recorre toda la lista
-    for i in range(len(lista)):
-
-        # Bucle interno que compara elementos adyacentes
-        for j in range(len(lista) - 1):
-
-            # Compara si el elemento actual es mayor que el siguiente
-            if lista[j] > lista[j + 1]:
-
-                # Almacena temporalmente el valor del elemento actual
-                temp = lista[j]
-
-                # Intercambia los elementos
-                lista[j] = lista[j + 1]
-                lista[j + 1] = temp
-
-    # Devuelve la lista ordenada
-    return lista
-```
+        return lista
+    ```
 
 ### Ordenación por Selección (_Selection Sort_)
 
@@ -131,37 +127,32 @@ La ordenación por selección selecciona el elemento más pequeño de la lista y
 al principio. Este proceso se repite para el resto de la lista hasta que está
 completamente ordenada.
 
-- **Complejidad temporal**: $$O\left(N^2\right)$$ en el peor caso, porque cada elemento
-  se compara con todos los demás restantes.
-- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo utiliza un espacio
-  constante adicional.
+- **Complejidad temporal**: $O\left(N^2\right)$ en el peor caso, porque cada elemento se
+  compara con todos los demás restantes.
+- **Complejidad espacial**: $O\left(1\right)$, ya que solo utiliza un espacio constante
+  adicional.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-def ordenacion_seleccion(lista: list[int]) -> list[int]:
+    ```py linenums="1"
+    def ordenacion_seleccion(lista: list[int]) -> list[int]:
+        # Bucle externo que recorre toda la lista
+        for i in range(len(lista)):
+            # Inicializa el índice del valor mínimo como el índice actual
+            idx_min_value = i
+            # Bucle interno que busca el elemento más pequeño en la sublista no ordenada
+            for j in range(i + 1, len(lista)):
+                # Compara si el elemento actual es menor que el mínimo encontrado hasta ahora
+                if lista[idx_min_value] > lista[j]:
+                    idx_min_value = j
+            # Intercambia el elemento mínimo encontrado con el primer elemento de la sublista no ordenada
+            temp = lista[i]
+            lista[i] = lista[idx_min_value]
+            lista[idx_min_value] = temp
+        # Devuelve la lista ordenada
 
-    # Bucle externo que recorre toda la lista
-    for i in range(len(lista)):
-
-        # Inicializa el índice del valor mínimo como el índice actual
-        idx_min_value = i
-
-        # Bucle interno que busca el elemento más pequeño en la sublista no ordenada
-        for j in range(i + 1, len(lista)):
-
-            # Compara si el elemento actual es menor que el mínimo encontrado hasta ahora
-            if lista[idx_min_value] > lista[j]:
-                idx_min_value = j
-
-        # Intercambia el elemento mínimo encontrado con el primer elemento de la sublista no ordenada
-        temp = lista[i]
-        lista[i] = lista[idx_min_value]
-        lista[idx_min_value] = temp
-
-    # Devuelve la lista ordenada
-    return lista
-```
+        return lista
+    ```
 
 ### Ordenación por Inserción (_Insertion Sort_)
 
@@ -170,37 +161,32 @@ desordenada. Se toma un elemento de la parte desordenada y se inserta en la posi
 correcta dentro de la parte ordenada. Este proceso continúa hasta que no quedan
 elementos desordenados.
 
-- **Complejidad temporal**: $$O\left(N^2\right)$$ en el peor caso, cuando los elementos
+- **Complejidad temporal**: $O\left(N^2\right)$ en el peor caso, cuando los elementos
   están en orden inverso. En el mejor caso, con una lista ya ordenada, es
-  $$O\left(N\right)$$.
-- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo requiere un espacio
-  constante adicional.
+  $O\left(N\right)$.
+- **Complejidad espacial**: $O\left(1\right)$, ya que solo requiere un espacio constante
+  adicional.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-def ordenacion_insercion(lista: list[int]) -> list[int]:
+    ```py linenums="1"
+    def ordenacion_insercion(lista: list[int]) -> list[int]:
+        # Bucle que recorre la lista desde el segundo elemento hasta el final
+        for i in range(1, len(lista)):
+            # Inicializa j como el índice del elemento actual
+            j = i
+            # Compara y desplaza elementos mientras sea necesario
+            while j > 0 and lista[j - 1] > lista[j]:
+                # Intercambia elementos adyacentes
+                temp = lista[j - 1]
+                lista[j - 1] = lista[j]
+                lista[j] = temp
+                # Decrementa j para continuar comparando con elementos anteriores
+                j -= 1
+        # Devuelve la lista ordenada
 
-    # Bucle que recorre la lista desde el segundo elemento hasta el final
-    for i in range(1, len(lista)):
-
-        # Inicializa j como el índice del elemento actual
-        j = i
-
-        # Compara y desplaza elementos mientras sea necesario
-        while j > 0 and lista[j - 1] > lista[j]:
-
-            # Intercambia elementos adyacentes
-            temp = lista[j - 1]
-            lista[j - 1] = lista[j]
-            lista[j] = temp
-
-            # Decrementa j para continuar comparando con elementos anteriores
-            j -= 1
-
-    # Devuelve la lista ordenada
-    return lista
-```
+        return lista
+    ```
 
 Estos métodos de ordenación, aunque menos eficientes para grandes conjuntos de datos,
 proporcionan una buena base para entender algoritmos más avanzados y eficientes.
@@ -216,28 +202,25 @@ La búsqueda lineal es un método de búsqueda sencillo que recorre cada element
 lista uno por uno hasta encontrar el elemento buscado o hasta recorrer todos los
 elementos.
 
-- **Complejidad temporal**: $$O\left(N\right)$$ en el peor caso, donde $$n$$ es el
-  número de elementos en la lista, ya que puede ser necesario recorrer todos los
-  elementos.
-- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo requiere un espacio
-  constante adicional.
+- **Complejidad temporal**: $O\left(N\right)$ en el peor caso, donde $n$ es el número de
+  elementos en la lista, ya que puede ser necesario recorrer todos los elementos.
+- **Complejidad espacial**: $O\left(1\right)$, ya que solo requiere un espacio constante
+  adicional.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-def busqueda_lineal(lista: list[int], valor_buscar: int) -> int:
+    ```py linenums="1"
+    def busqueda_lineal(lista: list[int], valor_buscar: int) -> int:
+        # Recorre la lista utilizando enumerate para obtener índice y valor
+        for idx, valor in enumerate(lista):
+            # Compara el valor actual con el valor buscado
+            if valor_buscar == valor:
+                # Si encuentra el valor, devuelve su índice
+                return idx
+        # Si no encuentra el valor, devuelve None
 
-    # Recorre la lista utilizando enumerate para obtener índice y valor
-    for idx, valor in enumerate(lista):
-
-        # Compara el valor actual con el valor buscado
-        if valor_buscar == valor:
-            # Si encuentra el valor, devuelve su índice
-            return idx
-
-    # Si no encuentra el valor, devuelve None
-    return None
-```
+        return None
+    ```
 
 ### Búsqueda Binaria (_Binary Search_)
 
@@ -245,43 +228,38 @@ La búsqueda binaria es un método de búsqueda eficiente que divide repetidamen
 mitad la parte de la lista que podría contener el elemento buscado, hasta reducir las
 posibles ubicaciones a una sola. Este método requiere que la lista esté ordenada.
 
-- **Complejidad temporal**: $$O\left(\log N\right)$$ en el peor caso, ya que con cada
+- **Complejidad temporal**: $O\left(\log N\right)$ en el peor caso, ya que con cada
   comparación, el algoritmo reduce a la mitad el número de elementos a examinar.
-- **Complejidad espacial**: $$O\left(1\right)$$, ya que solo requiere un espacio
-  constante adicional.
+- **Complejidad espacial**: $O\left(1\right)$, ya que solo requiere un espacio constante
+  adicional.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-def busqueda_binaria(lista: list[int], valor_buscar: int) -> int:
+    ```py linenums="1"
+    def busqueda_binaria(lista: list[int], valor_buscar: int) -> int:
+        # Ordena la lista de manera ascendente
+        lista.sort()
+        # Inicializa los índices de los extremos de la lista
+        izquierda = 0
+        derecha = len(lista) - 1
+        # Bucle principal de la búsqueda binaria
+        while izquierda <= derecha:
+            # Calcula el índice del punto medio
+            punto_medio = (izquierda + derecha) // 2
+            # Compara el valor buscado con el elemento del punto medio
+            if valor_buscar == lista[punto_medio]:
+                # Si encuentra el valor, devuelve su índice
+                return punto_medio
+            elif valor_buscar > lista[punto_medio]:
+                # Si el valor es mayor, ajusta el límite izquierdo
+                izquierda = punto_medio + 1
+            else:
+                # Si el valor es menor, ajusta el límite derecho
+                derecha = punto_medio - 1
+        # Si no encuentra el valor, devuelve None
 
-    # Ordena la lista de manera ascendente
-    lista.sort()
-
-    # Inicializa los índices de los extremos de la lista
-    izquierda = 0
-    derecha = len(lista) - 1
-
-    # Bucle principal de la búsqueda binaria
-    while izquierda <= derecha:
-
-        # Calcula el índice del punto medio
-        punto_medio = (izquierda + derecha) // 2
-
-        # Compara el valor buscado con el elemento del punto medio
-        if valor_buscar == lista[punto_medio]:
-            # Si encuentra el valor, devuelve su índice
-            return punto_medio
-        elif valor_buscar > lista[punto_medio]:
-            # Si el valor es mayor, ajusta el límite izquierdo
-            izquierda = punto_medio + 1
-        else:
-            # Si el valor es menor, ajusta el límite derecho
-            derecha = punto_medio - 1
-
-    # Si no encuentra el valor, devuelve None
-    return None
-```
+        return None
+    ```
 
 ## Estructuras de Datos
 
@@ -296,65 +274,41 @@ añadido es el primero en ser retirado. Las operaciones principales en una pila 
 
 Las pilas pueden tener un tamaño estático o dinámico.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Pila:
-
-    def __init__(self, tam: int = None):
-
-        self.lista = []
-        self.tope = 0
-        self.tam = tam
-        self.dinamico = False if self.tam is not None else True
-
-    def empty(self):
-
-        return len(self.lista) == 0
-
-    def push(self, elem: int):
-
-        if self.dinamico or self.tope < self.tam:
-
-            self.lista.append(elem)
-            self.tope += 1
-
-            if self.dinamico:
-
-                self.tam = self.tope
-        else:
-
-            raise Exception("Error, pila llena.")
-
-    def pop(self):
-
-        if not self.empty():
-
-            self.tope -= 1
-            return self.lista.pop()
-
-        else:
-
-            raise Exception("Error, pila vacía.")
-
-    def show(self):
-
-        print(self.lista)
-
-    def top(self):
-
-        if not self.empty():
-
-            return self.lista[self.tope - 1]
-
-        else:
-
-            raise Exception("Error, pila vacía.")
-
-    def size(self):
-
-        return len(self.lista)
-```
+    ```py linenums="1"
+    class Pila:
+        def __init__(self, tam: int = None):
+            self.lista = []
+            self.tope = 0
+            self.tam = tam
+            self.dinamico = False if self.tam is not None else True
+        def empty(self):
+            return len(self.lista) == 0
+        def push(self, elem: int):
+            if self.dinamico or self.tope < self.tam:
+                self.lista.append(elem)
+                self.tope += 1
+                if self.dinamico:
+                    self.tam = self.tope
+            else:
+                raise Exception("Error, pila llena.")
+        def pop(self):
+            if not self.empty():
+                self.tope -= 1
+                return self.lista.pop()
+            else:
+                raise Exception("Error, pila vacía.")
+        def show(self):
+            print(self.lista)
+        def top(self):
+            if not self.empty():
+                return self.lista[self.tope - 1]
+            else:
+                raise Exception("Error, pila vacía.")
+        def size(self):
+            return len(self.lista)
+    ```
 
 ### Colas
 
@@ -362,81 +316,49 @@ Una cola es una estructura de datos que organiza elementos de manera secuencial 
 principio FIFO (_First In, First Out_). Las operaciones de inserción se realizan en un
 extremo y las de extracción en el otro.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Cola():
-
-    def __init__(self, tam: int = None):
-
-        self.lista = []
-        self.tope = 0
-        self.tam = tam
-        self.dinamico = False if self.tam is not None else True
-
-    def size(self):
-
-        return len(self.lista)
-
-    def empty(self):
-
-        return self.size() == 0
-
-    def insertar(self, elem: int):
-
-        if self.dinamico or self.tope < self.tam:
-
-            self.lista.append(elem)
-            self.tope += 1
-
-            if self.dinamico:
-
-                self.tam = self.tope
-        else:
-
-            raise Exception("Error, cola llena.")
-
-    def eliminar(self):
-
-        if not self.empty():
-
-            self.lista.pop(0)
-            self.tope -= 1
-
-        else:
-
-            raise Exception("Error, cola vacía.")
-
-    def buscar(self, elem: int):
-
-        if not self.empty():
-
-            for idx, value in enumerate(self.lista):
-
-                if elem == value:
-
-                    return idx
-
-            raise Exception("Error, valor no encontrado.")
-
-        else:
-
-            raise Exception("Error, cola vacía.")
-
-    def top(self):
-
-        if not self.empty():
-
-            return self.lista[0]
-
-        else:
-
-            raise Exception("Error, cola vacía.")
-
-    def show(self):
-
-        print(self.lista)
-```
+    ```py linenums="1"
+    class Cola():
+        def __init__(self, tam: int = None):
+            self.lista = []
+            self.tope = 0
+            self.tam = tam
+            self.dinamico = False if self.tam is not None else True
+        def size(self):
+            return len(self.lista)
+        def empty(self):
+            return self.size() == 0
+        def insertar(self, elem: int):
+            if self.dinamico or self.tope < self.tam:
+                self.lista.append(elem)
+                self.tope += 1
+                if self.dinamico:
+                    self.tam = self.tope
+            else:
+                raise Exception("Error, cola llena.")
+        def eliminar(self):
+            if not self.empty():
+                self.lista.pop(0)
+                self.tope -= 1
+            else:
+                raise Exception("Error, cola vacía.")
+        def buscar(self, elem: int):
+            if not self.empty():
+                for idx, value in enumerate(self.lista):
+                    if elem == value:
+                        return idx
+                raise Exception("Error, valor no encontrado.")
+            else:
+                raise Exception("Error, cola vacía.")
+        def top(self):
+            if not self.empty():
+                return self.lista[0]
+            else:
+                raise Exception("Error, cola vacía.")
+        def show(self):
+            print(self.lista)
+    ```
 
 ### Nodos
 
@@ -452,98 +374,60 @@ mediante un puntero. A diferencia de los arrays, el acceso a elementos se realiz
 través de estos enlaces. Una lista enlazada simple tiene un enlace por nodo, que apunta
 al siguiente nodo o a `None` si es el último nodo.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Nodo():
-
-    def __init__(self, dato: int):
-
-        self.dato = dato
-        self.ptr = None
-
-class ListaEnlazada():
-
-    def __init__(self):
-
-        self.nodo_inicial = None
-        self.nodo_final = None
-
-    def vacia(self) -> bool:
-
-        return self.nodo_inicial is None
-
-    def insertar_final(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            self.nodo_final.ptr = nuevo_nodo
-            self.nodo_final = nuevo_nodo
-
-    def insertar_principio(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            nuevo_nodo.ptr = self.nodo_inicial
-            self.nodo_inicial = nuevo_nodo
-
-    def recorrido(self):
-
-        puntero = self.nodo_inicial
-
-        while puntero is not None:
-
-            print(puntero.dato)
-            puntero = puntero.ptr
-
-    def eliminar_ultimo(self):
-
-        if not self.vacia():
-
-            if self.nodo_inicial.ptr is None:
-
-                self.nodo_inicial = self.nodo_final = None
-
+    ```py linenums="1"
+    class Nodo():
+        def __init__(self, dato: int):
+            self.dato = dato
+            self.ptr = None
+    class ListaEnlazada():
+        def __init__(self):
+            self.nodo_inicial = None
+            self.nodo_final = None
+        def vacia(self) -> bool:
+            return self.nodo_inicial is None
+        def insertar_final(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                anterior = self.nodo_inicial
-                actual = anterior.ptr
-
-                while actual.ptr is not None:
-
-                    anterior = actual
-                    actual = actual.ptr
-
-                del actual
-                anterior.ptr = None
-                self.nodo_final = anterior
-
-    def eliminar_primero(self):
-
-        if not self.vacia():
-
-            if self.nodo_inicial.ptr is None:
-
-                self.nodo_inicial = self.nodo_final = None
-
+                self.nodo_final.ptr = nuevo_nodo
+                self.nodo_final = nuevo_nodo
+        def insertar_principio(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                nuevo_nodo_inicial = self.nodo_inicial.ptr
-                del self.nodo_inicial
-                self.nodo_inicial = nuevo_nodo_inicial
-```
+                nuevo_nodo.ptr = self.nodo_inicial
+                self.nodo_inicial = nuevo_nodo
+        def recorrido(self):
+            puntero = self.nodo_inicial
+            while puntero is not None:
+                print(puntero.dato)
+                puntero = puntero.ptr
+        def eliminar_ultimo(self):
+            if not self.vacia():
+                if self.nodo_inicial.ptr is None:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    anterior = self.nodo_inicial
+                    actual = anterior.ptr
+                    while actual.ptr is not None:
+                        anterior = actual
+                        actual = actual.ptr
+                    del actual
+                    anterior.ptr = None
+                    self.nodo_final = anterior
+        def eliminar_primero(self):
+            if not self.vacia():
+                if self.nodo_inicial.ptr is None:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    nuevo_nodo_inicial = self.nodo_inicial.ptr
+                    del self.nodo_inicial
+                    self.nodo_inicial = nuevo_nodo_inicial
+    ```
 
 ### Listas Doblemente Enlazadas
 
@@ -551,106 +435,67 @@ Una lista doblemente enlazada consta de una secuencia de nodos donde cada nodo t
 enlaces: uno al siguiente nodo y otro al anterior. Esta estructura permite recorrer la
 lista en ambos sentidos y facilita la eliminación de elementos.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Nodo():
-
-    def __init__(self, dato: int):
-
-        self.dato = dato
-        self.ptr_sig = None
-        self.ptr_ant = None
-
-class ListaDobleEnlazada:
-
-    def __init__(self):
-
-        self.nodo_inicial = None
-        self.nodo_final = None
-
-    def vacia(self):
-
-        return self.nodo_inicial is None
-
-    def insertar_final(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            self.nodo_final.ptr_sig = nuevo_nodo
-            nuevo_nodo.ptr_ant = self.nodo_final
-            self.nodo_final = nuevo_nodo
-
-    def insertar_principio(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            self.nodo_inicial.ptr_ant = nuevo_nodo
-            nuevo_nodo.ptr_sig = self.nodo_inicial
-            self.nodo_inicial = nuevo_nodo
-
-    def recorrido_hacia_adelante(self):
-
-        nodo = self.nodo_inicial
-
-        while nodo is not None:
-
-            print(nodo.dato)
-            nodo = nodo.ptr_sig
-
-    def recorrido_hacia_atras(self):
-
-        nodo = self.nodo_final
-
-        while nodo is not None:
-
-            print(nodo.dato)
-            nodo = nodo.ptr_ant
-
-    def eliminar_ultimo(self):
-
-        if not self.vacia():
-
-            if self.nodo_inicial.ptr is None:
-
-                self.nodo_inicial = self.nodo_final = None
-
+    ```py linenums="1"
+    class Nodo():
+        def __init__(self, dato: int):
+            self.dato = dato
+            self.ptr_sig = None
+            self.ptr_ant = None
+    class ListaDobleEnlazada:
+        def __init__(self):
+            self.nodo_inicial = None
+            self.nodo_final = None
+        def vacia(self):
+            return self.nodo_inicial is None
+        def insertar_final(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                ultimo = self.nodo_final
-                penultimo = ultimo.ptr_ant
-                penultimo.ptr_sig = None
-                del ultimo
-                self.nodo_final = penultimo
-
-    def eliminar_primero(self):
-
-        if not self.vacia():
-
-            if self.nodo_inicial.ptr is None:
-
-                self.nodo_inicial = self.nodo_final = None
-
+                self.nodo_final.ptr_sig = nuevo_nodo
+                nuevo_nodo.ptr_ant = self.nodo_final
+                self.nodo_final = nuevo_nodo
+        def insertar_principio(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                primero = self.nodo_inicial
-                segundo = primero.ptr_sig
-                segundo.ptr_ant = None
-                del primero
-                self.nodo_inicial = segundo
-```
+                self.nodo_inicial.ptr_ant = nuevo_nodo
+                nuevo_nodo.ptr_sig = self.nodo_inicial
+                self.nodo_inicial = nuevo_nodo
+        def recorrido_hacia_adelante(self):
+            nodo = self.nodo_inicial
+            while nodo is not None:
+                print(nodo.dato)
+                nodo = nodo.ptr_sig
+        def recorrido_hacia_atras(self):
+            nodo = self.nodo_final
+            while nodo is not None:
+                print(nodo.dato)
+                nodo = nodo.ptr_ant
+        def eliminar_ultimo(self):
+            if not self.vacia():
+                if self.nodo_inicial.ptr is None:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    ultimo = self.nodo_final
+                    penultimo = ultimo.ptr_ant
+                    penultimo.ptr_sig = None
+                    del ultimo
+                    self.nodo_final = penultimo
+        def eliminar_primero(self):
+            if not self.vacia():
+                if self.nodo_inicial.ptr is None:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    primero = self.nodo_inicial
+                    segundo = primero.ptr_sig
+                    segundo.ptr_ant = None
+                    del primero
+                    self.nodo_inicial = segundo
+    ```
 
 ### Lista Circular Simple
 
@@ -658,105 +503,65 @@ Una lista circular simple es una lista enlazada donde el enlace del último nodo
 al primero, formando un ciclo. Este tipo de lista permite operaciones eficientes de
 inserción y eliminación cuando se conoce el nodo previo.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Nodo():
-
-    def __init__(self, dato: int):
-
-        self.dato = dato
-        self.ptr = None
-
-class ListaCircular():
-
-    def __init__(self):
-
-        self.nodo_inicial = None
-        self.nodo_final = None
-
-    def vacia(self):
-
-        return self.nodo_inicial is None
-
-    def insertar_final(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            self.nodo_final.ptr = nuevo_nodo
-            nuevo_nodo.ptr = self.nodo_inicial
-            self.nodo_final = nuevo_nodo
-
-    def insertar_principio(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            nuevo_nodo.ptr = self.nodo_inicial
-            self.nodo_final.ptr = nuevo_nodo
-            self.nodo_inicial = nuevo_nodo
-
-    def recorrido(self):
-
-        nodo = self.nodo_inicial
-
-        while (nodo != None):
-
-            print(nodo.dato)
-            nodo = nodo.ptr
-
-            if nodo == self.nodo_inicial:
-
-                break
-
-    def eliminar_ultimo(self):
-
-        if self.vacia():
-
-            if self.nodo_inicial == self.nodo_final:
-
-                self.nodo_inicial = self.nodo_final = None
-
+    ```py linenums="1"
+    class Nodo():
+        def __init__(self, dato: int):
+            self.dato = dato
+            self.ptr = None
+    class ListaCircular():
+        def __init__(self):
+            self.nodo_inicial = None
+            self.nodo_final = None
+        def vacia(self):
+            return self.nodo_inicial is None
+        def insertar_final(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                ant = self.nodo_inicial
-                act = ant.ptr
-
-                while (act.ptr != self.nodo_inicial):
-
-                    ant = act
-                    act = act.ptr
-
-                del act
-                ant.ptr = self.nodo_inicial
-                self.nodo_final = ant
-
-    def eliminar_primero(self):
-
-        if self.vacia():
-
-            if self.nodo_inicial == self.nodo_final:
-
-                self.nodo_inicial = self.nodo_final = None
-
+                self.nodo_final.ptr = nuevo_nodo
+                nuevo_nodo.ptr = self.nodo_inicial
+                self.nodo_final = nuevo_nodo
+        def insertar_principio(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                siguiente_nodo = self.nodo_inicial.ptr
-                self.nodo_final.ptr = siguiente_nodo
-                del self.nodo_inicial
-                self.nodo_inicial = siguiente_nodo
-```
+                nuevo_nodo.ptr = self.nodo_inicial
+                self.nodo_final.ptr = nuevo_nodo
+                self.nodo_inicial = nuevo_nodo
+        def recorrido(self):
+            nodo = self.nodo_inicial
+            while (nodo != None):
+                print(nodo.dato)
+                nodo = nodo.ptr
+                if nodo == self.nodo_inicial:
+                    break
+        def eliminar_ultimo(self):
+            if self.vacia():
+                if self.nodo_inicial == self.nodo_final:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    ant = self.nodo_inicial
+                    act = ant.ptr
+                    while (act.ptr != self.nodo_inicial):
+                        ant = act
+                        act = act.ptr
+                    del act
+                    ant.ptr = self.nodo_inicial
+                    self.nodo_final = ant
+        def eliminar_primero(self):
+            if self.vacia():
+                if self.nodo_inicial == self.nodo_final:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    siguiente_nodo = self.nodo_inicial.ptr
+                    self.nodo_final.ptr = siguiente_nodo
+                    del self.nodo_inicial
+                    self.nodo_inicial = siguiente_nodo
+    ```
 
 ### Lista Circular Doble
 
@@ -764,133 +569,76 @@ Una lista circular doble es una lista doblemente enlazada donde el último nodo 
 primero y el primero apunta al último, permitiendo un recorrido en ambas direcciones en
 forma circular.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Nodo():
-
-    def __init__(self, dato: int):
-
-        self.dato = dato
-        self.ptr_siguiente = None
-        self.ptr_anterior = None
-
-class ListaDobleCircular():
-
-    def __init__(self):
-
-        self.nodo_inicial = None
-        self.nodo_final = None
-
-    def vacia(self):
-
-        return self.nodo_inicial == self.nodo_final == None
-
-    def insertar_final(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            self.nodo_final.ptr_siguiente = nuevo_nodo
-
-            nuevo_nodo.ptr_anterior = self.nodo_final
-            nuevo_nodo.ptr_siguiente = self.nodo_inicial
-
-            self.nodo_inicial.ptr_anterior = nuevo_nodo
-
-            self.nodo_final = nuevo_nodo
-
-    def insertar_principio(self, dato: int):
-
-        nuevo_nodo = Nodo(dato)
-
-        if self.vacia():
-
-            self.nodo_inicial = self.nodo_final = nuevo_nodo
-
-        else:
-
-            nuevo_nodo.ptr_siguiente = self.nodo_inicial
-            nuevo_nodo.ptr_anterior = self.nodo_final
-
-            self.nodo_inicial.ptr_anterior = nuevo_nodo
-
-            self.nodo_final.ptr_siguiente = nuevo_nodo
-
-            self.nodo_inicial = nuevo_nodo
-
-    def recorrido_hacia_adelante(self):
-
-        nodo = self.nodo_inicial
-
-        while (nodo != None):
-
-            print(nodo.dato)
-            nodo = nodo.ptr_siguiente
-
-            if nodo == self.nodo_inicial:
-
-                break
-
-    def recorrido_hacia_atras(self):
-
-        nodo = self.nodo_final
-
-        while (nodo != None):
-
-            print(nodo.dato)
-            nodo = nodo.ptr_anterior
-
-            if nodo == self.nodo_final:
-
-                break
-
-    def eliminar_ultimo(self):
-
-        if self.vacia():
-
-            if self.nodo_inicial == self.nodo_final:
-
-                self.nodo_inicial = self.nodo_final = None
-
+    ```py linenums="1"
+    class Nodo():
+        def __init__(self, dato: int):
+            self.dato = dato
+            self.ptr_siguiente = None
+            self.ptr_anterior = None
+    class ListaDobleCircular():
+        def __init__(self):
+            self.nodo_inicial = None
+            self.nodo_final = None
+        def vacia(self):
+            return self.nodo_inicial == self.nodo_final == None
+        def insertar_final(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                ultimo = self.nodo_final
-                penultimo = ultimo.ptr_anterior
-
-                penultimo.ptr_siguiente = self.nodo_inicial
-
-                self.nodo_inicial.ptr_anterior = penultimo
-
-                del self.nodo_final
-
-                self.nodo_final = penultimo
-
-    def eliminar_primero(self):
-
-        if self.vacia():
-
-            if self.nodo_inicial == self.nodo_final:
-
-                self.nodo_inicial = self.nodo_final = None
-
+                self.nodo_final.ptr_siguiente = nuevo_nodo
+                nuevo_nodo.ptr_anterior = self.nodo_final
+                nuevo_nodo.ptr_siguiente = self.nodo_inicial
+                self.nodo_inicial.ptr_anterior = nuevo_nodo
+                self.nodo_final = nuevo_nodo
+        def insertar_principio(self, dato: int):
+            nuevo_nodo = Nodo(dato)
+            if self.vacia():
+                self.nodo_inicial = self.nodo_final = nuevo_nodo
             else:
-
-                segundo = self.nodo_inicial.ptr_siguiente
-
-                segundo.ptr_anterior = self.nodo_final
-
-                self.nodo_final.ptr_siguiente = segundo
-
-                del self.nodo_inicial
-
-                self.nodo_inicial = segundo
-```
+                nuevo_nodo.ptr_siguiente = self.nodo_inicial
+                nuevo_nodo.ptr_anterior = self.nodo_final
+                self.nodo_inicial.ptr_anterior = nuevo_nodo
+                self.nodo_final.ptr_siguiente = nuevo_nodo
+                self.nodo_inicial = nuevo_nodo
+        def recorrido_hacia_adelante(self):
+            nodo = self.nodo_inicial
+            while (nodo != None):
+                print(nodo.dato)
+                nodo = nodo.ptr_siguiente
+                if nodo == self.nodo_inicial:
+                    break
+        def recorrido_hacia_atras(self):
+            nodo = self.nodo_final
+            while (nodo != None):
+                print(nodo.dato)
+                nodo = nodo.ptr_anterior
+                if nodo == self.nodo_final:
+                    break
+        def eliminar_ultimo(self):
+            if self.vacia():
+                if self.nodo_inicial == self.nodo_final:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    ultimo = self.nodo_final
+                    penultimo = ultimo.ptr_anterior
+                    penultimo.ptr_siguiente = self.nodo_inicial
+                    self.nodo_inicial.ptr_anterior = penultimo
+                    del self.nodo_final
+                    self.nodo_final = penultimo
+        def eliminar_primero(self):
+            if self.vacia():
+                if self.nodo_inicial == self.nodo_final:
+                    self.nodo_inicial = self.nodo_final = None
+                else:
+                    segundo = self.nodo_inicial.ptr_siguiente
+                    segundo.ptr_anterior = self.nodo_final
+                    self.nodo_final.ptr_siguiente = segundo
+                    del self.nodo_inicial
+                    self.nodo_inicial = segundo
+    ```
 
 ### Árboles binarios
 
@@ -916,119 +664,75 @@ eficiente para organizar y buscar datos.
 - **Recorrido en postorden**: Visita primero el hijo izquierdo, luego el hijo derecho y,
   finalmente, la raíz.
 
-tip Implementación
+???+ tip "Implementación"
 
-```py linenums="1"
-class Nodo():
-
-    def __init__(self, valor: int = None, padre: int = None, es_raiz: bool = False, es_izquierdo: bool = False, es_derecho: bool = False):
-
-        # Valor del nodo
-        self.valor = valor
-        # Nodo hijo izquierdo
-        self.izquierdo = None
-        # Nodo hijo derecho
-        self.derecho = None
-        # Nodo padre
-        self.padre = padre
-        # Indica si el nodo es la raíz
-        self.es_raiz = es_raiz
-        # Indica si el nodo es un hijo derecho
-        self.es_derecho = es_derecho
-        # Indica si el nodo es un hijo izquierdo
-        self.es_izquierdo = es_izquierdo
-
-class ArbolBinario():
-
-    def __init__(self):
-
-        # Nodo raíz del árbol
-        self.nodo_raiz = None
-
-    def esta_vacio(self):
-
-        return self.nodo_raiz is None
-
-    def agregar_nodo(self, dato: int):
-
-        if self.esta_vacio():
-
-            self.nodo_raiz = Nodo(valor = dato, es_raiz = True)
-
-        else:
-
-            nodo = self._obtener_sitio(dato)
-
-            if dato <= nodo.valor:
-
-                nodo.izquierdo = Nodo(valor = dato, padre = nodo, es_izquierdo = True)
-
+    ```py linenums="1"
+    class Nodo():
+        def __init__(self, valor: int = None, padre: int = None, es_raiz: bool = False, es_izquierdo: bool = False, es_derecho: bool = False):
+            # Valor del nodo
+            self.valor = valor
+            # Nodo hijo izquierdo
+            self.izquierdo = None
+            # Nodo hijo derecho
+            self.derecho = None
+            # Nodo padre
+            self.padre = padre
+            # Indica si el nodo es la raíz
+            self.es_raiz = es_raiz
+            # Indica si el nodo es un hijo derecho
+            self.es_derecho = es_derecho
+            # Indica si el nodo es un hijo izquierdo
+            self.es_izquierdo = es_izquierdo
+    class ArbolBinario():
+        def __init__(self):
+            # Nodo raíz del árbol
+            self.nodo_raiz = None
+        def esta_vacio(self):
+            return self.nodo_raiz is None
+        def agregar_nodo(self, dato: int):
+            if self.esta_vacio():
+                self.nodo_raiz = Nodo(valor = dato, es_raiz = True)
             else:
-
-                nodo.derecho = Nodo(valor = dato, padre = nodo, es_derecho = True)
-
-    def _obtener_sitio(self, valor):
-
-        nodo = self.nodo_raiz
-
-        while nodo is not None:
-
-            temp = nodo
-
-            if valor <= nodo.valor:
-
-                nodo = nodo.izquierdo
-
+                nodo = self._obtener_sitio(dato)
+                if dato <= nodo.valor:
+                    nodo.izquierdo = Nodo(valor = dato, padre = nodo, es_izquierdo = True)
+                else:
+                    nodo.derecho = Nodo(valor = dato, padre = nodo, es_derecho = True)
+        def _obtener_sitio(self, valor):
+            nodo = self.nodo_raiz
+            while nodo is not None:
+                temp = nodo
+                if valor <= nodo.valor:
+                    nodo = nodo.izquierdo
+                else:
+                    nodo = nodo.derecho
+            return temp
+        # Método para mostrar el árbol en orden (izquierda, raíz, derecha)
+        def mostrar_en_orden(self, nodo):
+            if nodo:
+                self.mostrar_en_orden(nodo.izquierdo)
+                print(nodo.valor)
+                self.mostrar_en_orden(nodo.derecho)
+        # Método para mostrar el árbol en postorden (izquierda, derecha, raíz)
+        def mostrar_en_postorden(self, nodo):
+            if nodo:
+                self.mostrar_en_postorden(nodo.izquierdo)
+                self.mostrar_en_postorden(nodo.derecho)
+                print(nodo.valor)
+        # Método para mostrar el árbol en preorden (raíz, izquierda, derecha)
+        def mostrar_en_preorden(self, nodo):
+            if nodo:
+                print(nodo.valor)
+                self.mostrar_en_preorden(nodo.izquierdo)
+                self.mostrar_en_preorden(nodo.derecho)
+        def buscar(self, nodo, valor):
+            if nodo == None:
+                return None
             else:
-
-                nodo = nodo.derecho
-
-        return temp
-
-    # Método para mostrar el árbol en orden (izquierda, raíz, derecha)
-    def mostrar_en_orden(self, nodo):
-
-        if nodo:
-
-            self.mostrar_en_orden(nodo.izquierdo)
-            print(nodo.valor)
-            self.mostrar_en_orden(nodo.derecho)
-
-    # Método para mostrar el árbol en postorden (izquierda, derecha, raíz)
-    def mostrar_en_postorden(self, nodo):
-
-        if nodo:
-
-            self.mostrar_en_postorden(nodo.izquierdo)
-            self.mostrar_en_postorden(nodo.derecho)
-            print(nodo.valor)
-
-    # Método para mostrar el árbol en preorden (raíz, izquierda, derecha)
-    def mostrar_en_preorden(self, nodo):
-
-        if nodo:
-
-            print(nodo.valor)
-            self.mostrar_en_preorden(nodo.izquierdo)
-            self.mostrar_en_preorden(nodo.derecho)
-
-    def buscar(self, nodo, valor):
-
-        if nodo == None:
-
-            return None
-
-        else:
-
-            if valor == nodo.valor:
-
-                return nodo
-
-            elif valor <= nodo.valor:
-
-                return self.buscar(nodo.izquierdo, valor)
-
-            else:
-
-                return self.buscar(nodo.derecho, valor)
-```
+                if valor == nodo.valor:
+                    return nodo
+                elif valor <= nodo.valor:
+                    return self.buscar(nodo.izquierdo, valor)
+                else:
+                    return self.buscar(nodo.derecho, valor)
+    ```

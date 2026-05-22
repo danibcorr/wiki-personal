@@ -1,10 +1,10 @@
 ---
 authors: Daniel Bazo Correa
-description: Herramientas necesarias para DevOps.
+description: Docker y arquitectura de microservicios.
 title: Contenedores
 ---
 
-## Bibliografía
+## Referencias
 
 - [Aprende Docker ahora! Curso completo gratis desde cero](https://youtu.be/4Dko5W96WHg?si=pOAHHRxpPkqpQ2go)
 - [Docker Docs](https://docs.docker.com/)
@@ -715,16 +715,3 @@ Mecanismos complementarios:
 | :----------- | :------------------------------------------------------------------------------------ |
 | **Monorepo** | Todos los microservicios en un único repositorio. Facilita la visibilidad global.     |
 | **Polirepo** | Cada microservicio en su propio repositorio. Favorece la independencia entre equipos. |
-
-## Infraestructura como Código (IaC)
-
-La Infraestructura como Código (_Infrastructure as Code_) consiste en definir y
-gestionar la infraestructura mediante código versionado. Este enfoque garantiza
-reproducibilidad, trazabilidad y coherencia entre entornos, permitiendo crear y destruir
-infraestructuras de forma automatizada y predecible.
-
-Docker y plataformas de orquestación como Kubernetes desempeñan un papel central en IaC,
-al facilitar la gestión de contenedores, la automatización de despliegues y la
-alineación entre los entornos de desarrollo, pruebas y producción. Tratar la
-infraestructura como un artefacto más del software refuerza la eficiencia operativa y
-reduce la dependencia de configuraciones manuales.

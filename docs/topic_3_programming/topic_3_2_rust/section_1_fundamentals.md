@@ -1,10 +1,10 @@
 ---
 authors: Daniel Bazo Correa
-description: Fundamentos del lenguaje de programación Rust.
+description: Variables, tipos, ownership, borrowing y control de flujo en Rust.
 title: Fundamentos
 ---
 
-## Bibliografía
+## Referencias
 
 - [The Rust Programming Language](https://doc.rust-lang.org/book/)
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/)

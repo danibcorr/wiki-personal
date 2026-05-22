@@ -1,6 +1,6 @@
 ---
 title: Introducción
-description: Explicación de los contenidos.
+description: Wiki personal sobre IA, ciencia de datos y programación.
 hide_table_of_contents: true
 slug: /
 ---
@@ -25,31 +25,13 @@ En cualquier caso, aquí te acompañaré paso a paso desde lo que considero que 
 los pilares de la ingeniería de software hasta los algoritmos más avanzados de
 inteligencia artificial.
 
-# ¿Qué encontrarás aquí?
-
-Mi objetivo es compartir la experiencia adquirida a lo largo de mi carrera, resaltando
-lo más útil y relevante para tu aprendizaje y práctica diaria. Así encontrarás temas que
-yo mismo he tenido que aprender, o he querido aprender, así como ejemplos prácticos o
-problemas que me han surgido.
+Gracias por interesarte y ser parte de este proyecto. Espero que disfrutes del
+aprendizaje y que este contenido sea un apoyo real para alcanzar tus objetivos.
 
 # Consideraciones
 
 La mayoría de los ejemplos y configuraciones están basados en Linux, específicamente en
 distribuciones basadas en Debian. Algunos comandos pueden variar según tu sistema
 operativo o distribución, y mantener toda la información actualizada puede ser
-complicado.
-
-Por ello, te animo a investigar por tu cuenta si surge alguna dificultad para seguir
-algún paso.
-
-También puedes contribuir al proyecto abriendo una nueva _pull request_ al repositorio
-y, si quieres, compartir tus hallazgos para enriquecer este espacio.
-
-# Contribuye al proyecto
-
-Este espacio está en constante evolución. Si encuentras errores, referencias faltantes,
-tienes sugerencias o quieres aportar tu experiencia, toda ayuda es bienvenida. Puedes
-colaborar enviando una _pull request_ en el repositorio de GitHub de esta Wiki.
-
-Gracias por interesarte y ser parte de este proyecto. Espero que disfrutes del
-aprendizaje y que este contenido sea un apoyo real para alcanzar tus objetivos.
+complicado. Por ello, te animo a investigar por tu cuenta si surge alguna dificultad
+para seguir algún paso.
