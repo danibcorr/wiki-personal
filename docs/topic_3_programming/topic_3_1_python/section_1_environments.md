@@ -22,11 +22,6 @@ Un entorno con pocas dependencias es más fácil de llevar a producción (por ej
 dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener a
 lo largo del tiempo.
 
-En la actualidad, las herramientas más recomendables son **Poetry** y **uv**. Ambas
-agilizan la creación y gestión de entornos, permiten organizar las configuraciones del
-proyecto mediante un archivo `pyproject.toml` y, sobre todo, favorecen la
-**reproducibilidad** de los proyectos.
-
 ### Anaconda
 
 <figure markdown="span">
@@ -95,78 +90,40 @@ milisegundos.
 sistema `cargo` de _Rust_, donde se definen los metadatos del proyecto, las dependencias
 con sus versiones, la versión de Python requerida y las configuraciones de herramientas
 auxiliares como _linters_ o _test runners_. Además, permite la **gestión automática de
-entornos**: no requiere que Python esté previamente instalado en el sistema, ya que `uv`
+entornos**, no requiere que Python esté previamente instalado en el sistema, ya que `uv`
 se encarga de descargarlo y configurarlo de forma transparente.
+
+Por todo ello, en la actualidad, es la herramienta que personalmente más recomendaría,
+ya que agiliza la creación y gestión de entornos, permiten organizar las configuraciones
+del proyecto mediante un archivo `pyproject.toml` y, sobre todo, favorece la
+**reproducibilidad** de los proyectos, además de contar con un gran ecosistema de
+paquetes adicionales, todo de manera rápida, clara y relativamente simple,y va a ser el
+foco principal de este documento, ya que considero que otras opciones como (Anaconda) no
+son una opción vable, o por su complejidad, recursos necesarios o licencias, o por la
+poca flexibilidad y agilidad que ofrecen.
 
 ## Creación y activación de entornos
 
-En el desarrollo de software con Python, la creación de un entorno virtual es una
-práctica fundamental. Un entorno virtual genera una instancia aislada del intérprete de
-Python, de modo que las dependencias de un proyecto específico no interfieran con las
-bibliotecas globales del sistema ni con otros desarrollos simultáneos. Esta segmentación
-garantiza la reproducibilidad del código y evita conflictos de versiones.
+Un entorno virtual genera una instancia aislada del intérprete de Python, de modo que
+las dependencias de un proyecto específico no interfieran con las bibliotecas globales
+del sistema ni con otros desarrollos simultáneos. Esta segmentación garantiza la
+reproducibilidad del código y evita conflictos de versiones.
 
-A continuación se describen los procedimientos para la creación y activación de entornos
-según la herramienta seleccionada:
+En el caso de `uv` los pasos a seguir son:
 
-=== "VENV"
-
-      1.  **Preparación del repositorio**: Para acceder a versiones específicas de Python que pueden no estar presentes en los repositorios oficiales de la distribución, se añade el repositorio especializado:
-         ```bash  linenums="1"
-         sudo add-apt-repository ppa:deadsnakes/ppa
-         sudo apt update
-         ```
-      2.  **Instalación del entorno de ejecución**: Se instala la versión deseada de Python (por ejemplo, la 3.10) junto con los binarios de desarrollo y el gestor de paquetes `pip`:
-         ```bash  linenums="1"
-         sudo apt install python3.10 python3.10-venv python3.10-dev python3-pip
-         ```
-      3.  **Despliegue y activación**: Se genera la estructura del entorno dentro del directorio del proyecto y se activa para que el intérprete apunte a dicha ubicación:
-         ```bash  linenums="1"
-         python3.10 -m venv nombre_del_entorno
-         source nombre_del_entorno/bin/activate
-         ```
-
-=== "Anaconda"
-
-      1.  **Instalación inicial**: El proceso comienza con la descarga e instalación de la suite desde su portal oficial. En sistemas Windows, se recomienda el uso del *Anaconda Prompt* para garantizar que las variables de entorno estén correctamente configuradas.
-      2.  **Creación del entorno**: A diferencia de otras herramientas, *Conda* permite definir la versión de Python de forma explícita durante la creación:
-         ```bash  linenums="1"
-         conda create --name nombre_del_entorno python=3.10
-         ```
-      3.  **Activación e interoperabilidad**: Una vez activado el entorno, es posible integrar `pip` si una biblioteca no se encuentra en los canales de *Conda*, aunque se debe proceder con cautela para evitar inconsistencias:
-         ```bash  linenums="1"
-         conda activate nombre_del_entorno
-         conda install pip
-         pip install --upgrade pip
-         ```
-
-=== "Poetry"
-
-      1.  **Configuración del entorno local**: Es recomendable configurar Poetry de modo que aloje los entornos virtuales dentro de la carpeta raíz del proyecto, lo que facilita su visibilidad y mantenimiento:
-         ```bash  linenums="1"
-         pip install poetry
-         poetry config virtualenvs.in-project true
-         ```
-      2.  **Inicialización y despliegue**: Al crear un nuevo proyecto, la herramienta genera automáticamente la estructura de archivos necesaria y, tras la instalación de dependencias, gestiona la creación del entorno virtual de forma transparente:
-         ```bash  linenums="1"
-         poetry new nombre_del_proyecto
-         cd nombre_del_proyecto
-         poetry install
-         ```
-
-=== "uv"
-
-      1.  **Instalación y configuración inicial**: Se instala mediante un *script* de ejecución rápida que configura el binario en el sistema:
-         ```bash  linenums="1"
-         curl -LsSf https://astral.sh/uv/install.sh | sh
-         ```
-      2.  **Ciclo de vida del proyecto**: El flujo de trabajo con `uv` permite inicializar un proyecto y crear su entorno virtual correspondiente con una latencia mínima:
-         ```bash  linenums="1"
-         uv init nombre_del_proyecto
-         cd nombre_del_proyecto
-         uv venv
-         uv pip install nombre_del_paquete
-         ```
+1.  **Instalación y configuración inicial**: Se instala mediante un _script_ de
+    ejecución rápida que configura el binario en el sistema:
+    ```bash linenums="1"
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+2.  **Ciclo de vida del proyecto**: El flujo de trabajo con `uv` permite inicializar un
+    proyecto y crear su entorno virtual correspondiente con una latencia mínima:
+    ```bash linenums="1"
+    uv init nombre_del_proyecto
+    cd nombre_del_proyecto
+    uv venv
+    uv pip install nombre_del_paquete
+    ```
 
 ## Estructura de un `pyproject.toml` con uv
 
@@ -260,7 +217,9 @@ addopts = ["--strict-markers", "--tb=short"]
 
 La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
 especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
-instalable.
+instalable, lo que permite encapsularlo como una librería, y utilizarlo como tal (como
+si fuese una librería de terceros que hemos instalado como puede ser Polars, NumPy o
+similares).
 
 La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
 descripción, versión de Python requerida y autores. Este formato sigue el estándar
@@ -274,7 +233,8 @@ _commit_ de _git_.
 
 La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
 específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
-paquetes alojados en índices privados.
+paquetes alojados en índices privados (por ejemplo podemos realizar gestiones de
+nuestras librerías en repositorios/instancias privadas de GitLab o similares).
 
 La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
 posible definir múltiples índices simultáneamente, estableciendo PyPI como índice por
@@ -316,29 +276,9 @@ Con el tiempo, esta caché puede ocupar una cantidad significativa de espacio en
 generar conflictos cuando existen paquetes corruptos. Para liberar espacio o solucionar
 problemas con dependencias, es posible purgar la caché con los siguientes comandos:
 
-=== "PIP"
-
-      ```bash linenums="1"
-      pip cache purge
-      ```
-
-=== "Anaconda"
-
-      ```bash linenums="1"
-      conda clean --all
-      ```
-
-=== "Poetry"
-
-      ```bash linenums="1"
-      poetry cache clear --all
-      ```
-
-=== "uv"
-
-      ```bash linenums="1"
-      uv cache clean
-      ```
+```bash linenums="1"
+uv cache clean
+```
 
 ### Actualización de paquetes
 
@@ -347,65 +287,17 @@ funcionalidades, corrigen errores y resuelven vulnerabilidades de seguridad en v
 posteriores. Mantener las dependencias actualizadas es esencial para el correcto
 funcionamiento y la seguridad del proyecto.
 
-=== "PIP"
+1. Actualizar todos los paquetes:
 
-      1. Actualizar todos los paquetes:
+    ```bash linenums="1"
+    uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
+    ```
 
-         ```bash linenums="1"
-         pip freeze | grep -v "^\-e" | cut -d = -f 1 | xargs -n1 pip install -U
-         ```
+2. Actualizar un paquete específico:
 
-         Este comando encadena varias operaciones: `pip freeze` genera la lista de paquetes instalados, `grep -v "^\-e"` excluye las instalaciones en modo editable, `cut -d = -f 1` extrae únicamente los nombres de los paquetes y `xargs -n1 pip install -U` actualiza cada uno de ellos.
-
-      2. Actualizar un paquete específico:
-
-         ```bash linenums="1"
-         pip install --upgrade nombre_del_paquete
-         ```
-
-=== "Anaconda"
-
-      1. Actualizar todos los paquetes:
-
-         Se recomienda evitar mezclar paquetes del repositorio de Anaconda con los de PIP, ya que esto puede causar conflictos en la resolución de dependencias.
-
-         ```bash linenums="1"
-         conda update --all
-         ```
-
-      2. Actualizar un paquete específico:
-
-         ```bash linenums="1"
-         conda update nombre_del_paquete
-         ```
-
-=== "Poetry"
-
-      1. Actualizar todos los paquetes:
-
-         ```bash linenums="1"
-         poetry update
-         ```
-
-      2. Actualizar un paquete específico:
-
-         ```bash linenums="1"
-         poetry update nombre_del_paquete
-         ```
-
-=== "uv"
-
-      1. Actualizar todos los paquetes:
-
-         ```bash linenums="1"
-         uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
-         ```
-
-      2. Actualizar un paquete específico:
-
-         ```bash linenums="1"
-         uv pip install --upgrade nombre_del_paquete
-         ```
+    ```bash linenums="1"
+    uv pip install --upgrade nombre_del_paquete
+    ```
 
 ### Instalación de paquetes desde un archivo de requisitos
 
@@ -424,99 +316,41 @@ requests
 
 Instalación según la herramienta:
 
-=== "PIP"
-
-      ```bash  linenums="1"
-      pip install -r requirements.txt
-      ```
-
-=== "Poetry"
-
-      ```bash  linenums="1"
-      poetry install
-      ```
-
-=== "uv"
-
-      ```bash  linenums="1"
-      uv pip install -r requirements.txt
-      ```
+```bash linenums="1"
+uv pip install -r requirements.txt
+```
 
 ### Eliminación de un entorno
 
-=== "VENV, Poetry, uv"
+En la mayoría de los casos, los entornos creados con `VENV`, `Poetry` y `uv` se alojan
+dentro del propio directorio del proyecto. Para eliminarlos, basta con borrar la carpeta
+correspondiente:
 
-      En la mayoría de los casos, los entornos creados con `VENV`, `Poetry` y `uv` se alojan dentro del propio directorio del proyecto. Para eliminarlos, basta con borrar la carpeta correspondiente:
-
-      ```bash  linenums="1"
-      rm -rf nombre_del_entorno
-      ```
-
-=== "Anaconda"
-
-      1.  Listar los entornos disponibles:
-
-         ```bash  linenums="1"
-         conda env list
-         ```
-
-      2.  Eliminar un entorno:
-
-         ```bash  linenums="1"
-         conda env remove --name nombre_del_entorno
-         ```
+```bash linenums="1"
+rm -rf nombre_del_entorno
+```
 
 ### Eliminación de paquetes instalados
 
-=== "PIP"
+Con uv directamente podemos eliminar las dependencias borrandolas del toml, así al
+sincronizar las depdencias el fichero .lock que se genera quedará actualizado, pero para
+ello deberíamos haber creado el fichero toml. En el caso de utilizar pip podemos
+utilizar el siguiente comando:
 
-      Eliminar todos los paquetes:
-
-      ```bash  linenums="1"
-      pip list --format=freeze > installed.txt
-      pip uninstall -r installed.txt -y
-      ```
-
-      Eliminar un paquete específico:
-
-      ```bash  linenums="1"
-      pip uninstall nombre_del_paquete
-      ```
-
-=== "Anaconda"
-
-      ```bash  linenums="1"
-      conda remove nombre_del_paquete
-      ```
-
-=== "Poetry"
-
-      ```bash  linenums="1"
-      poetry remove nombre_del_paquete
-      ```
-
-=== "uv"
-
-      ```bash  linenums="1"
-      uv pip uninstall nombre_del_paquete
-      ```
+```bash linenums="1"
+uv pip uninstall nombre_del_paquete
+```
 
 ## Integración con _Jupyter_
 
 Para utilizar un entorno virtual dentro de _Jupyter_, es necesario instalar el paquete
-`ipykernel` como dependencia del entorno mediante el gestor correspondiente (`pip`,
-`poetry`, `uv` o `conda`).
+`ipykernel` como dependencia del entorno.
 
 El registro manual del entorno como _kernel_ de _Jupyter_ solo es necesario cuando el
 entorno virtual se encuentra en un directorio diferente al del proyecto. En la mayoría
 de los entornos de desarrollo modernos, como VSCode, si el entorno reside dentro del
 directorio del proyecto, se detecta automáticamente y es posible seleccionar el _kernel_
-asociado sin pasos adicionales. En caso de que sea necesario registrarlo manualmente, se
-ejecuta el siguiente comando:
-
-```bash linenums="1"
-python -m ipykernel install --user --name=nombre_del_entorno
-```
+asociado sin pasos adicionales.
 
 En el caso particular de `uv`, cuando se emplea el comando `uv venv`, el entorno se crea
 por defecto en la raíz del proyecto con la versión de Python especificada en el
