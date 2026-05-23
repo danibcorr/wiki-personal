@@ -80,7 +80,7 @@ pequeña sobrecarga en la compilación inicial.
 
 El proceso interno de compilación se puede visualizar de la siguiente manera:
 
-![image.png](Numba/image.png)
+![image.png](../../assets/img/docs/cuda/cuda-python-numba-compilation.png)
 
 Para inspeccionar el resultado de la inferencia de tipos, se puede utilizar el método
 `.inspect_types()`, que imprime el código fuente anotado con los tipos inferidos:
@@ -292,11 +292,11 @@ hebras se dividen en _warps_ de 32 hebras, y el subsistema de memoria intenta mi
 el número de líneas de caché requeridas. Cuanto más contiguos sean los datos asignados a
 cada hebra del _warp_, mayor es la eficiencia.
 
-![image.png](Numba/image%201.png)
+![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-1.png)
 
-![image.png](Numba/image%202.png)
+![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-2.png)
 
-![image.png](Numba/image%203.png)
+![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-3.png)
 
 ### Trabajo con matrices en 2D
 

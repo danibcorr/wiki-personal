@@ -19,8 +19,8 @@ entornos virtuales. La elección de una u otra depende del contexto de trabajo, 
 necesidades del equipo y la infraestructura disponible. No obstante, como principio
 general, resulta conveniente optar por la alternativa más simple y minimalista posible.
 Un entorno con pocas dependencias es más fácil de llevar a producción (por ejemplo,
-dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener a
-lo largo del tiempo.
+dentro de una imagen de _Docker_), de compartir con otros desarrolladores y de mantener
+a lo largo del tiempo.
 
 ### Anaconda
 
@@ -29,7 +29,7 @@ lo largo del tiempo.
   <figcaption>Logo de Anaconda</figcaption>
 </figure>
 
-**Anaconda** es una plataforma de código abierto diseñada para la creación y gestión de
+_Anaconda_ es una plataforma de código abierto diseñada para la creación y gestión de
 entornos virtuales en Python, orientada a proyectos de ciencia de datos y aprendizaje
 automático. Proporciona una distribución de Python con numerosas bibliotecas
 preinstaladas, un gestor de paquetes propio denominado
@@ -40,21 +40,23 @@ La gestión de paquetes se realiza principalmente a través de _Conda_, aunque t
 posible utilizar [_PIP_](https://pypi.org/). Sin embargo, mezclar ambos gestores no es
 recomendable, ya que pueden surgir conflictos en la resolución de dependencias.
 
-Durante años, Anaconda fue la plataforma dominante en ciencia de datos gracias a su
-ecosistema completo (_Jupyter_, _Spyder_, _RStudio_, entre otros) y su facilidad de uso.
-Con el tiempo, sin embargo, ha presentado limitaciones relevantes, como una **licencia
-más restrictiva** para entornos empresariales y un **exceso de dependencias por
-defecto** que incrementan innecesariamente el tamaño del entorno.
+Durante años, _Anaconda_ fue la plataforma dominante en ciencia de datos gracias a su
+ecosistema completo y su facilidad de uso. Con el tiempo, sin embargo, ha presentado
+limitaciones relevantes, como una licencia más restrictiva para entornos empresariales y
+un exceso de dependencias por defecto que incrementan innecesariamente el tamaño del
+entorno.
 
 ### VENV
 
 [`VENV`](https://docs.python.org/3/library/venv.html) es el módulo estándar de Python
-para la creación de entornos virtuales. A diferencia de Anaconda, no incluye
+para la creación de entornos virtuales. A diferencia de _Anaconda_, no incluye
 dependencias adicionales y viene integrado en la instalación base de Python. La gestión
 de paquetes se realiza mediante [_PIP_](https://pypi.org/), el gestor de paquetes por
-defecto del lenguaje. Su principal ventaja es la simplicidad y la ausencia de
-herramientas externas, aunque carece de funcionalidades avanzadas como la gestión de
-grupos de dependencias o la resolución determinista de versiones.
+defecto del lenguaje.
+
+Su principal ventaja es la simplicidad y la ausencia de herramientas externas, aunque
+carece de funcionalidades avanzadas como la gestión de grupos de dependencias o la
+resolución determinista de versiones.
 
 ### Poetry
 
@@ -63,22 +65,17 @@ grupos de dependencias o la resolución determinista de versiones.
   <figcaption>Logo de Poetry</figcaption>
 </figure>
 
-[`Poetry`](https://python-poetry.org/) es una herramienta de gestión de dependencias y
+[_Poetry_](https://python-poetry.org/) es una herramienta de gestión de dependencias y
 empaquetado para proyectos de Python. Permite administrar dependencias organizadas por
-grupos (_producción_, _pruebas_, _documentación_, entre otros), lo que elimina la
-necesidad de mantener múltiples archivos `requirements.txt` o de concentrar todas las
-dependencias en un único fichero.
-
-Además, Poetry crea y gestiona entornos virtuales de forma automática y facilita la
-generación de _wheels_ para empaquetar proyectos y publicarlos en
-[_PyPI_](https://pypi.org/) o en repositorios de paquetes privados.
+grupos (producción, pruebas, documentación, entre otros), lo que elimina la necesidad de
+mantener múltiples archivos `requirements.txt` o de concentrar todas las dependencias en
+un único fichero.
 
 ### uv
 
 [`uv`](https://docs.astral.sh/uv/) es una de las herramientas más recientes y eficientes
 para la gestión de entornos virtuales y dependencias en Python. Su objetivo principal es
-simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas,
-como `pip`, `poetry` o `venv`, unificándolas en un único binario.
+simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas.
 
 Una de sus principales ventajas es la creación de un entorno virtual aislado por
 proyecto, lo que constituye una buena práctica para evitar conflictos entre versiones de
@@ -89,18 +86,13 @@ milisegundos.
 `uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, similar al
 sistema `cargo` de _Rust_, donde se definen los metadatos del proyecto, las dependencias
 con sus versiones, la versión de Python requerida y las configuraciones de herramientas
-auxiliares como _linters_ o _test runners_. Además, permite la **gestión automática de
-entornos**, no requiere que Python esté previamente instalado en el sistema, ya que `uv`
-se encarga de descargarlo y configurarlo de forma transparente.
+auxiliaress. Además, permite la gestión automática de entornos y no requiere que Python
+esté previamente instalado en el sistema, ya que `uv` se encarga de descargarlo y
+configurarlo de forma transparente.
 
-Por todo ello, en la actualidad, es la herramienta que personalmente más recomendaría,
-ya que agiliza la creación y gestión de entornos, permiten organizar las configuraciones
-del proyecto mediante un archivo `pyproject.toml` y, sobre todo, favorece la
-**reproducibilidad** de los proyectos, además de contar con un gran ecosistema de
-paquetes adicionales, todo de manera rápida, clara y relativamente simple,y va a ser el
-foco principal de este documento, ya que considero que otras opciones como (Anaconda) no
-son una opción vable, o por su complejidad, recursos necesarios o licencias, o por la
-poca flexibilidad y agilidad que ofrecen.
+Por todo ello, en la actualidad `uv` representa la opción más recomendable para la
+mayoría de proyectos. Por esta razón, el presente documento se centra en `uv` como
+herramienta principal.
 
 ## Creación y activación de entornos
 
@@ -109,21 +101,22 @@ las dependencias de un proyecto específico no interfieran con las bibliotecas g
 del sistema ni con otros desarrollos simultáneos. Esta segmentación garantiza la
 reproducibilidad del código y evita conflictos de versiones.
 
-En el caso de `uv` los pasos a seguir son:
+En el caso de `uv`, el flujo de trabajo se compone de dos fases. En primer lugar, se
+instala la herramienta mediante un _script_ de ejecución rápida que configura el binario
+en el sistema:
 
-1.  **Instalación y configuración inicial**: Se instala mediante un _script_ de
-    ejecución rápida que configura el binario en el sistema:
-    ```bash linenums="1"
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    ```
-2.  **Ciclo de vida del proyecto**: El flujo de trabajo con `uv` permite inicializar un
-    proyecto y crear su entorno virtual correspondiente con una latencia mínima:
-    ```bash linenums="1"
-    uv init nombre_del_proyecto
-    cd nombre_del_proyecto
-    uv venv
-    uv pip install nombre_del_paquete
-    ```
+```bash linenums="1"
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+A continuación, se inicializa el proyecto y se crea su entorno virtual correspondiente:
+
+```bash linenums="1"
+uv init nombre_del_proyecto
+cd nombre_del_proyecto
+uv venv
+uv pip install nombre_del_paquete
+```
 
 ## Estructura de un `pyproject.toml` con uv
 
@@ -215,41 +208,42 @@ python_functions = ["test_*"]
 addopts = ["--strict-markers", "--tb=short"]
 ```
 
-La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
-especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
-instalable, lo que permite encapsularlo como una librería, y utilizarlo como tal (como
-si fuese una librería de terceros que hemos instalado como puede ser Polars, NumPy o
-similares).
+- La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
+  especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
+  instalable, lo que permite encapsularlo como una librería y utilizarlo como tal, de la
+  misma forma que se emplea cualquier librería de terceros como _Polars_, _NumPy_ o
+  similares.
 
-La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
-descripción, versión de Python requerida y autores. Este formato sigue el estándar
-definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración de
-metadatos en el ecosistema Python.
+* La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
+  descripción, versión de Python requerida y autores. Este formato sigue el estándar
+  definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración
+  de metadatos en el ecosistema Python.
 
-La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
-`default-groups` indica qué grupos de dependencias se instalan por defecto, mientras que
-`cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
-_commit_ de _git_.
+* La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
+  `default-groups` indica qué grupos de dependencias se instalan por defecto, mientras
+  que `cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
+  _commit_ de _Git_.
 
-La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
-específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
-paquetes alojados en índices privados (por ejemplo podemos realizar gestiones de
-nuestras librerías en repositorios/instancias privadas de GitLab o similares).
+* La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
+  específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
+  paquetes alojados en índices privados. Esto resulta especialmente práctico cuando se
+  gestionan librerías propias en repositorios o instancias privadas de _GitLab_ o
+  plataformas similares.
 
-La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
-posible definir múltiples índices simultáneamente, estableciendo PyPI como índice por
-defecto y añadiendo repositorios privados con autenticación obligatoria.
+* La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
+  posible definir múltiples índices simultáneamente, estableciendo _PyPI_ como índice
+  por defecto y añadiendo repositorios privados con autenticación obligatoria.
 
-La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
-(_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
-instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
-integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en un
-entorno de desarrollo local podrían instalarse todos los grupos.
+* La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
+  (_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
+  instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
+  integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en
+  un entorno de desarrollo local podrían instalarse todos los grupos.
 
-Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
-centralizan la configuración de herramientas del proyecto dentro del propio
-`pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
-`.flake8`, `mypy.ini` o `pytest.ini`.
+* Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
+  centralizan la configuración de herramientas del proyecto dentro del propio
+  `pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
+  `.flake8`, `mypy.ini` o `pytest.ini`.
 
 ### Instalación de dependencias por grupos
 
@@ -274,7 +268,7 @@ uv sync --all-groups
 Los gestores de entorno almacenan en caché la información de los paquetes que instalan.
 Con el tiempo, esta caché puede ocupar una cantidad significativa de espacio en disco o
 generar conflictos cuando existen paquetes corruptos. Para liberar espacio o solucionar
-problemas con dependencias, es posible purgar la caché con los siguientes comandos:
+problemas con dependencias, es posible purgar la caché con el siguiente comando:
 
 ```bash linenums="1"
 uv cache clean
@@ -287,24 +281,24 @@ funcionalidades, corrigen errores y resuelven vulnerabilidades de seguridad en v
 posteriores. Mantener las dependencias actualizadas es esencial para el correcto
 funcionamiento y la seguridad del proyecto.
 
-1. Actualizar todos los paquetes:
+Para actualizar todos los paquetes del entorno:
 
-    ```bash linenums="1"
-    uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
-    ```
+```bash linenums="1"
+uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
+```
 
-2. Actualizar un paquete específico:
+Para actualizar un paquete específico:
 
-    ```bash linenums="1"
-    uv pip install --upgrade nombre_del_paquete
-    ```
+```bash linenums="1"
+uv pip install --upgrade nombre_del_paquete
+```
 
 ### Instalación de paquetes desde un archivo de requisitos
 
-Aunque los sistemas basados en `pyproject.toml` (como `uv` o Poetry) hacen cada vez
-menos necesario el uso de archivos `requirements.txt`, en determinados contextos puede
-seguir siendo útil. El procedimiento consiste en crear un archivo con los paquetes y
-versiones deseadas e instalarlo mediante el gestor correspondiente.
+Aunque los sistemas basados en `pyproject.toml` hacen cada vez menos necesario el uso de
+archivos `requirements.txt`, en determinados contextos puede seguir siendo útil. El
+procedimiento consiste en crear un archivo con los paquetes y versiones deseadas e
+instalarlo mediante el gestor correspondiente.
 
 Ejemplo de archivo `requirements.txt`:
 
@@ -314,7 +308,7 @@ pandas>=1.3.0
 requests
 ```
 
-Instalación según la herramienta:
+Instalación con `uv`:
 
 ```bash linenums="1"
 uv pip install -r requirements.txt
@@ -322,20 +316,20 @@ uv pip install -r requirements.txt
 
 ### Eliminación de un entorno
 
-En la mayoría de los casos, los entornos creados con `VENV`, `Poetry` y `uv` se alojan
-dentro del propio directorio del proyecto. Para eliminarlos, basta con borrar la carpeta
-correspondiente:
+En la mayoría de los casos, los entornos creados se alojan dentro del propio directorio
+del proyecto. Para eliminarlos, basta con borrar la carpeta correspondiente:
 
 ```bash linenums="1"
 rm -rf nombre_del_entorno
 ```
 
-### Eliminación de paquetes instalados
+### Eliminación de paquetes
 
-Con uv directamente podemos eliminar las dependencias borrandolas del toml, así al
-sincronizar las depdencias el fichero .lock que se genera quedará actualizado, pero para
-ello deberíamos haber creado el fichero toml. En el caso de utilizar pip podemos
-utilizar el siguiente comando:
+Cuando se gestiona un proyecto con `uv` y `pyproject.toml`, la forma recomendada de
+eliminar una dependencia consiste en borrarla directamente del archivo `pyproject.toml`
+y ejecutar `uv sync` a continuación. De este modo, el fichero `.lock` se regenera de
+forma coherente con el estado actual de las dependencias. En el caso de utilizar `pip`
+de forma directa, se emplea el siguiente comando:
 
 ```bash linenums="1"
 uv pip uninstall nombre_del_paquete
@@ -355,4 +349,4 @@ asociado sin pasos adicionales.
 En el caso particular de `uv`, cuando se emplea el comando `uv venv`, el entorno se crea
 por defecto en la raíz del proyecto con la versión de Python especificada en el
 `pyproject.toml`. De este modo, al utilizar _Jupyter Notebooks_ en VSCode, el entorno se
-detecta directamente sin necesidad de ejecutar el comando de registro anterior.
+detecta directamente sin necesidad de ejecutar ningún comando de registro adicional.

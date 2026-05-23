@@ -35,7 +35,7 @@ bibliotecas y aplicaciones de CUDA en Python.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/B0FF9827-9E32-46F2-8365-FA0E686C649D.png)
+![](../../assets/img/docs/cuda/cuda-fundamentals-ecosystem.png)
 
 </figure>
 
@@ -84,7 +84,7 @@ obtener el máximo rendimiento.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/EEA7EE5C-1D79-4B88-8DF7-37E17BF0D2FF.jpeg)
+![](../../assets/img/docs/cuda/cuda-fundamentals-cpu-vs-gpu.jpeg)
 
 </figure>
 
@@ -99,7 +99,7 @@ NVIDIA.
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%20(1).png>)
+![](../../assets/img/docs/cuda/cuda-fundamentals-gpu-families.png)
 
 </figure>
 
@@ -113,7 +113,7 @@ una GPU.
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%201%20(1).png>)
+![](../../assets/img/docs/cuda/cuda-fundamentals-gpu-architecture.png)
 
 </figure>
 
@@ -124,7 +124,7 @@ núcleos para float32, 32 núcleos para float64 y 8 unidades tensoriales.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/Untitled%202.png)
+![](../../assets/img/docs/cuda/cuda-fundamentals-volta-sm.png)
 
 </figure>
 
@@ -133,7 +133,7 @@ crear diseños más complejos al replicarlo.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/Untitled%203.png)
+![](../../assets/img/docs/cuda/cuda-fundamentals-sm-replication.png)
 
 </figure>
 
@@ -147,7 +147,7 @@ diagrama ilustra el proceso de operación de cada núcleo tensorial por ciclo de
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%204%20(2).png>)
+![](../../assets/img/docs/cuda/cuda-fundamentals-tensor-core-operation.png)
 
 </figure>
 
@@ -163,6 +163,6 @@ modernas.
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%205%20(2).png>)
+![](../../assets/img/docs/cuda/cuda-fundamentals-precision-throughput.png)
 
 </figure>

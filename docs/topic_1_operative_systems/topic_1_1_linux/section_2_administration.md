@@ -40,7 +40,7 @@ correspondientes. Si no lo es, verifica si pertenece al grupo, y solo si no cump
 ninguna de estas condiciones, se aplican los permisos definidos para otros.
 
 <figure markdown="span">
-  ![Registro de permisos de Linux](../../assets/img/docs/linux_file_permissions.jpg)
+  ![Registro de permisos de Linux](../../assets/img/docs/linux/linux-file-permissions.jpg)
   <figcaption>Registro de permisos de Linux </figcaption>
 </figure>
 

@@ -19,7 +19,7 @@ ambos componentes.
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%206%20(2).png>)
+![](../../assets/img/docs/cuda/cuda-c-cpu-gpu-interaction.png)
 
 </figure>
 
@@ -154,7 +154,7 @@ $$
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%207%20(1).png>)
+![](../../assets/img/docs/cuda/cuda-c-thread-indexing.png)
 
 </figure>
 
@@ -164,7 +164,7 @@ casos donde el número de hilos excede el número de tareas, se debe asegurar qu
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%208%20(1).png>)
+![](../../assets/img/docs/cuda/cuda-c-bounds-checking.png)
 
 </figure>
 
@@ -197,7 +197,7 @@ unificada**, que facilita el intercambio de datos entre ambos componentes.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/Untitled%209.png)
+![](../../assets/img/docs/cuda/cuda-c-unified-memory.png)
 
 </figure>
 
@@ -211,7 +211,7 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
 
 <figure markdown="span">
 
-![](<../../assets/img/docs/Untitled%2010%20(1).png>)
+![](../../assets/img/docs/cuda/cuda-c-memory-types.png)
 
 </figure>
 
@@ -225,7 +225,7 @@ directamente.
 
 <figure markdown="span">
 
-![](../../assets/img/docs/AB407146-6A59-4476-A97F-B0D7BF2AA8CC.png)
+![](../../assets/img/docs/cuda/cuda-c-memory-hierarchy.png)
 
 </figure>
 
@@ -355,7 +355,7 @@ int main()
 
 <figure markdown="span">
 
-![](../../assets/img/docs/Untitled%2012.png)
+![](../../assets/img/docs/cuda/cuda-c-kernel-patterns.png)
 
 </figure>
 

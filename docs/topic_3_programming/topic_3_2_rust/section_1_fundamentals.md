@@ -12,18 +12,32 @@ title: Fundamentos
 
 ## Introducción
 
-**Rust** es un lenguaje de programación de sistemas desarrollado originalmente por
-Mozilla Research cuyo diseño persigue tres objetivos fundamentales: seguridad de
-memoria, concurrencia libre de _data races_ y rendimiento comparable al de C y C++. A
-diferencia de otros lenguajes que dependen de un _garbage collector_ para gestionar la
-memoria en tiempo de ejecución, Rust introduce un sistema de _ownership_ (propiedad) que
-verifica la corrección del uso de la memoria en tiempo de compilación. Este enfoque
-elimina categorías enteras de errores comunes, como los accesos a memoria liberada o las
-condiciones de carrera, sin incurrir en penalizaciones de rendimiento.
+**Rust** es un lenguaje de programación de sistemas cuyo diseño persigue tres objetivos
+fundamentales: seguridad de memoria, concurrencia libre de _data races_ y rendimiento
+comparable al de C y C++. A diferencia de otros lenguajes que dependen de un _garbage
+collector_ para gestionar la memoria en tiempo de ejecución, Rust introduce un sistema
+de _ownership_ (propiedad) que verifica la corrección del uso de la memoria en tiempo de
+compilación. Este enfoque elimina categorías enteras de errores comunes, como los
+accesos a memoria liberada o las condiciones de carrera, sin incurrir en penalizaciones
+de rendimiento.
 
 El lenguaje resulta especialmente adecuado para el desarrollo de _software_ de sistemas,
 herramientas de línea de comandos, servicios web de alto rendimiento y cualquier
 contexto en el que el control preciso sobre los recursos sea un requisito.
+
+### Primer programa
+
+Todo programa en Rust comienza su ejecución en la función `main`, que actúa como punto
+de entrada obligatorio. La macro `println!` permite imprimir texto en la salida
+estándar. El signo de exclamación indica que se trata de una macro y no de una función
+convencional, lo que significa que genera código adicional en tiempo de compilación para
+extender la sintaxis del lenguaje:
+
+```rust linenums="1"
+fn main() {
+    println!("Hola mundo");
+}
+```
 
 ### Compilación directa con `rustc`
 
@@ -40,31 +54,18 @@ rustc main.rs
 ./main
 ```
 
-### Primer programa
-
-Todo programa en Rust comienza su ejecución en la función `main`, que actúa como punto
-de entrada obligatorio. La macro `println!` permite imprimir texto en la salida
-estándar. El signo de exclamación indica que se trata de una macro y no de una función
-convencional, lo que significa que genera código adicional en tiempo de compilación para
-extender la sintaxis del lenguaje:
-
-```rust linenums="1"
-fn main() {
-    println!("Hola mundo");
-}
-```
-
 ### Cargo
 
-**Cargo** es la herramienta oficial de Rust que integra la gestión de paquetes, la
+_Cargo_ es la herramienta oficial de Rust que integra la gestión de paquetes, la
 compilación del código y la ejecución de pruebas en un único flujo de trabajo. Viene
 preinstalado con Rust y se puede verificar su versión con `cargo --version`. Cuando se
-crea un proyecto con Cargo, este genera automáticamente la estructura de directorios
+crea un proyecto con _Cargo_, este genera automáticamente la estructura de directorios
 necesaria junto con un archivo `Cargo.toml` que describe las dependencias y la
-configuración del proyecto. Cargo espera que los archivos de código fuente se encuentren
-en el directorio `src/`. Es importante que el analizador de Rust (_rust-analyzer_)
-detecte el fichero `Cargo.toml` en el directorio raíz del proyecto para ofrecer
-funcionalidades de autocompletado y diagnóstico en el entorno de desarrollo.
+configuración del proyecto. _Cargo_ espera que los archivos de código fuente se
+encuentren en el directorio `src/`. Es importante que el analizador de Rust
+(_rust-analyzer_) detecte el fichero `Cargo.toml` en el directorio raíz del proyecto
+para ofrecer funcionalidades de autocompletado y diagnóstico en el entorno de
+desarrollo.
 
 ```bash linenums="1"
 # Verificar la versión instalada
@@ -96,7 +97,7 @@ La diferencia entre ambos modos de compilación es relevante. El modo _debug_ in
 comprobaciones adicionales (como la detección de _overflow_ aritmético) y genera código
 sin optimizar para facilitar la depuración. El modo _release_ produce un binario
 optimizado destinado a producción. Además, si el código fuente no ha cambiado desde la
-última compilación, Cargo no lo recompila, lo que acelera el ciclo de desarrollo.
+última compilación, _Cargo_ no lo recompila, lo que acelera el ciclo de desarrollo.
 
 !!!tip "Flujo de trabajo recomendado"
 
@@ -249,7 +250,7 @@ El tipo `bool` representa valores lógicos y admite únicamente dos estados: `tr
 `false`. Se utiliza de forma habitual en expresiones condicionales y bucles.
 
 El tipo `char` representa un único carácter Unicode y ocupa 4 bytes en memoria, lo que
-permite almacenar cualquier carácter del estándar Unicode, incluyendo emojis y
+permite almacenar cualquier carácter del estándar Unicode, incluyendo _emojis_ y
 caracteres de escrituras no latinas.
 
 ```rust linenums="1"
@@ -388,7 +389,7 @@ facilitando la depuración sin necesidad de configurar un depurador completo.
 
 !!!warning "_Ownership_ en `dbg!`"
 
-    La macro `dbg!` toma el _ownership_ del valor que recibe, por lo que la variable no podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe pasar una referencia: `dbg!(&variable)`.
+    La macro `dbg!` toma el *ownership* del valor que recibe, por lo que la variable no podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe pasar una referencia: `dbg!(&variable)`.
 
 ```rust linenums="1"
 fn imprimir_nombre(nombre: &str) {
@@ -527,13 +528,11 @@ fn main() {
 
 El sistema de _ownership_ constituye el mecanismo central mediante el cual Rust gestiona
 la memoria sin recurrir a un _garbage collector_. Este sistema se rige por tres reglas
-fundamentales que el compilador verifica de forma estática:
-
-1. Cada valor en Rust tiene exactamente una variable que actúa como su **propietario**
-   (_owner_).
-2. Solo puede existir **un propietario** en cada momento.
-3. Cuando el propietario sale del ámbito (_scope_) en el que fue declarado, el valor se
-   libera automáticamente mediante la operación _drop_.
+fundamentales que el compilador verifica de forma estática. En primer lugar, cada valor
+en Rust tiene exactamente una variable que actúa como su **propietario** (_owner_). En
+segundo lugar, solo puede existir **un propietario** en cada momento. Por último, cuando
+el propietario sale del ámbito (_scope_) en el que fue declarado, el valor se libera
+automáticamente mediante la operación _drop_.
 
 Este comportamiento es análogo al de un _garbage collector_ en otros lenguajes, con la
 diferencia fundamental de que la liberación de recursos se determina en tiempo de
@@ -625,12 +624,11 @@ fn main() {
 Las **referencias** permiten acceder al valor de una variable sin adquirir su
 _ownership_. Este mecanismo se denomina _borrowing_ (préstamo) y constituye la forma
 idiomática de pasar datos a funciones sin transferir la propiedad. Rust distingue dos
-tipos de referencias:
-
-- `&T`: Referencia inmutable que permite únicamente la lectura del valor. Se pueden
-  mantener múltiples referencias inmutables activas de forma simultánea.
-- `&mut T`: Referencia mutable que permite tanto la lectura como la escritura. Solo
-  puede existir una referencia mutable activa a la vez para un mismo valor.
+tipos de referencias. Por un lado, `&T` representa una referencia inmutable que permite
+únicamente la lectura del valor y de la cual se pueden mantener múltiples instancias
+activas de forma simultánea. Por otro lado, `&mut T` representa una referencia mutable
+que permite tanto la lectura como la escritura, con la restricción de que solo puede
+existir una referencia mutable activa a la vez para un mismo valor.
 
 El compilador garantiza en tiempo de compilación que nunca coexistan referencias
 mutables e inmutables sobre el mismo dato, eliminando así la posibilidad de _data
@@ -666,12 +664,7 @@ fn main() {
 
 !!!warning "Reglas de _borrowing_"
 
-    El compilador aplica las siguientes restricciones sobre las referencias para garantizar la seguridad de memoria:
-
-    - Se pueden mantener **múltiples referencias inmutables** (`&T`) de forma simultánea.
-    - Solo se permite **una referencia mutable** (`&mut T`) activa a la vez.
-    - No pueden coexistir referencias mutables e inmutables activas sobre el mismo valor.
-    - **No se puede modificar la variable original** mientras exista una referencia mutable activa a ella. La referencia mutable debe salir del _scope_ antes de poder usar la variable original de nuevo.
+    El compilador aplica las siguientes restricciones sobre las referencias para garantizar la seguridad de memoria. Se pueden mantener **múltiples referencias inmutables** (`&T`) de forma simultánea. Solo se permite **una referencia mutable** (`&mut T`) activa a la vez. No pueden coexistir referencias mutables e inmutables activas sobre el mismo valor. Además, **no se puede modificar la variable original** mientras exista una referencia mutable activa a ella, ya que la referencia mutable debe salir del *scope* antes de poder usar la variable original de nuevo.
 
     Estas restricciones existen porque Rust no dispone de un mecanismo de sincronización implícito. Si dos variables pudiesen mantener referencias mutables al mismo dato, se producirían condiciones de carrera que corromperían la memoria.
 
@@ -781,7 +774,7 @@ fn main() {
 
 !!!note "Dependencia externa"
 
-    Este ejemplo requiere añadir el _crate_ `rand` como dependencia en el archivo `Cargo.toml` del proyecto:
+    Este ejemplo requiere añadir el *crate* `rand` como dependencia en el archivo `Cargo.toml` del proyecto:
 
     ```toml
     [dependencies]

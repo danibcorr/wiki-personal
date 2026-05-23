@@ -85,7 +85,7 @@ src
 ```
 
 <figure markdown="span">
-  ![Esquema de un workflow en GitHub Actions](../../assets/img/docs/workflow-github-actions.png){ width="100%" }
+  ![Esquema de un workflow en GitHub Actions](../../assets/img/docs/cloud/cloud-github-actions-workflow.png){ width="100%" }
   <figcaption>Esquema de un workflow en GitHub Actions</figcaption>
 </figure>
 

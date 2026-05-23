@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Ciclo de vida, desafíos y estrategias de despliegue en MLOps.
-title: MLOps
+title: Fundamentos
 ---
 
 ## Referencias

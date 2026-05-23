@@ -19,7 +19,7 @@ extendidas.
 ### _Trunk-Based Development_
 
 <figure markdown="span">
-  ![Esquema de desarrollo Trunk-Based](../../assets/img/docs/trunk-based-git.png)
+  ![Esquema de desarrollo Trunk-Based](../../assets/img/docs/git/git-trunk-based.png)
   <figcaption>Esquema de desarrollo Trunk-Based. <a href="https://statusneo.com/wp-content/uploads/2022/12/Beginners%20Guide%20to%20Trunk-Based%20Development.png">Fuente</a></figcaption>
 </figure>
 
@@ -43,7 +43,7 @@ Sin embargo, presenta las siguientes desventajas:
 ### Git Flow
 
 <figure markdown="span">
-  ![Esquema de desarrollo Git Flow](../../assets/img/docs/git-flow-git.png)
+  ![Esquema de desarrollo Git Flow](../../assets/img/docs/git/git-flow.png)
   <figcaption>Esquema de desarrollo Git Flow. <a href="https://images.edrawmax.com/what-is/gitflow-diagram/2-git-flow-model.png">Fuente</a></figcaption>
 </figure>
 

@@ -69,7 +69,7 @@ consultar, comparar o restaurar versiones anteriores de manera segura y organiza
 ### Áreas de trabajo
 
 <figure markdown="span">
-  ![Áreas de trabajo en Git](../../assets/img/docs/git-stages.png)
+  ![Áreas de trabajo en Git](../../assets/img/docs/git/git-stages.png)
   <figcaption>Áreas de trabajo en Git. <a href="https://ihcantabria.github.io/ApuntesGit/_images/comandos-workflow.png">Fuente</a></figcaption>
 </figure>
 

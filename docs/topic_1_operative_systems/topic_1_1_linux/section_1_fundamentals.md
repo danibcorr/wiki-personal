@@ -49,7 +49,7 @@ ejecutables por el sistema. Aunque existen alternativas modernas, **Bash** se ma
 como la _shell_ más extendida y estandarizada.
 
 <figure markdown="span">
-  ![Ejemplo de una ventana de una shell o terminal en PopOS](../../assets/img/docs/shell-example.png)
+  ![Ejemplo de una ventana de una shell o terminal en PopOS](../../assets/img/docs/linux/linux-shell-example.png)
   <figcaption>Ejemplo de una ventana de una shell o terminal en PopOS</figcaption>
 </figure>
 
