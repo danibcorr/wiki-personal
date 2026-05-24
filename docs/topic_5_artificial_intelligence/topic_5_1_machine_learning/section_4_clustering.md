@@ -470,4 +470,3 @@ plt.xlabel('Número de clusters')
 plt.ylabel('Puntuación normalizada')
 plt.show()
 ```
-

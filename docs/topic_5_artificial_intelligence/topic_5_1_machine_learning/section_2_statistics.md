@@ -665,4 +665,3 @@ coeficiente de correlación de Pearson, que toma valores entre -1 y 1, donde 1 i
 correlación positiva perfecta, -1 una correlación negativa perfecta y 0 la ausencia de
 correlación lineal. Este coeficiente permite evaluar la intensidad y dirección de la
 relación lineal entre las variables sin depender de su escala.
-

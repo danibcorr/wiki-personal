@@ -169,4 +169,3 @@ $$
 
 donde $q$ es el cuantil deseado. Esta función de pérdida permite obtener intervalos de
 predicción y estimar la incertidumbre asociada a las predicciones del modelo.
-

@@ -102,4 +102,3 @@ pueden tomar cualquier número dentro de un rango, como la altura de una persona
 pueden existir valores intermedios con una precisión arbitraria. En contraste, los
 valores discretos solo pueden asumir ciertos valores específicos, como la cantidad de
 páginas de un libro, donde no existen valores intermedios entre un número entero y otro.
-

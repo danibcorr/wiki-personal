@@ -1091,7 +1091,6 @@ La operación `UNION` combina los resultados de varias consultas `SELECT`.
     WHERE job_title = 'Machine Learning Engineer';
     ```
 
-
 ## Ejercicios básicos
 
 A continuación se presenta un conjunto de tablas de ejemplo que pueden ser utilizadas

@@ -1,6 +1,8 @@
 ---
 authors: Daniel Bazo Correa
-description: Imputación de datos, detección de anomalías, sistemas de recomendación, redes neuronales bayesianas y modelos de mezcla de densidades.
+description:
+    Imputación de datos, detección de anomalías, sistemas de recomendación, redes
+    neuronales bayesianas y modelos de mezcla de densidades.
 title: Temas avanzados
 ---
 

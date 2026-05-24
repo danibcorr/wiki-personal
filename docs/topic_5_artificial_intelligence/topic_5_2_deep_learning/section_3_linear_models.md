@@ -895,4 +895,3 @@ plt.ylabel("Coste")
 plt.title("Reducción del coste durante el entrenamiento")
 plt.show()
 ```
-

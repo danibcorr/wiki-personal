@@ -71,7 +71,6 @@ aprendizaje contrastivo, _pseudo-labelling_ (entrenar un modelo supervisado con 
 etiquetados, predecir datos no etiquetados y reentrenar con las pseudoetiquetas
 generadas) y aprendizaje de puntos clave de objetos.
 
-
 ## Autoencoders
 
 Los **Autoencoders** son redes neuronales diseñadas para aprender representaciones

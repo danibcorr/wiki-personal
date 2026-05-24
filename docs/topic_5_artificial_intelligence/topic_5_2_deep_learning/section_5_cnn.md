@@ -398,4 +398,3 @@ de imágenes (como gatos), es posible utilizar sistemas de búsqueda por similit
 _embeddings_ para ampliar el conjunto de datos, eliminar duplicados o filtrar imágenes
 no apropiadas, reduciendo así el coste de almacenamiento y refinando la calidad del
 conjunto de datos.
-

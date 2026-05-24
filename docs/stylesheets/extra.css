@@ -37,11 +37,11 @@ table {
 }
 
 [data-md-color-scheme="slate"] .md-header__button.md-logo img {
-    content: url("../assets/img/logo\ motivo\ dark.svg");
+    content: url("../assets/img/white_logo.svg");
 }
 
 [data-md-color-scheme="default"] .md-header__button.md-logo img {
-    content: url("../assets/img/logo motivo.png");
+    content: url("../assets/img/dark_logo.svg");
 }
 
 [data-md-color-scheme="default"] .md-typeset pre > code {

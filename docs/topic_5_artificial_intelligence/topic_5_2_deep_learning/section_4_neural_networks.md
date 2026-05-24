@@ -577,4 +577,3 @@ proporcional al número de variables; en modo inverso, utilizado en aprendizaje
 automático para implementar _backpropagation_, el coste es comparable al de evaluar la
 propia función. Esta eficiencia explica su papel central en la optimización de modelos
 contemporáneos.
-

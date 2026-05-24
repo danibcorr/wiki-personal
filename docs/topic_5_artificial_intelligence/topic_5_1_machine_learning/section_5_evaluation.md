@@ -134,4 +134,3 @@ En conjuntos de datos no balanceados, es habitual sustituir la tasa de falsos po
 correctamente clasificados respecto al total de predicciones positivas. La curva
 resultante, denominada **curva Precision-Recall**, ofrece una evaluación más equilibrada
 del rendimiento del modelo en estos escenarios.
-

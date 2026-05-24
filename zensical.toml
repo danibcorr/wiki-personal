@@ -113,7 +113,7 @@ extra_javascript = [
 
 [project.theme]
 language = "es"
-logo = "assets/img/logo motivo dark.svg"
+logo = "assets/img/white_logo.svg"
 favicon = "assets/img/logo.ico"
 features = [
     "announce.dismiss",

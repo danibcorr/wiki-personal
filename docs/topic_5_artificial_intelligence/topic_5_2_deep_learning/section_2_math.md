@@ -460,4 +460,3 @@ PyTorch en la manipulación de tensores, mostrando su versatilidad, eficiencia y
 facilidad de integración con otros entornos de análisis. En capítulos posteriores, se
 emplearán estos fundamentos para la construcción de modelos de aprendizaje profundo
 basados en esta biblioteca.
-

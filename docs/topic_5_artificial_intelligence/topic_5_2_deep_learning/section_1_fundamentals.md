@@ -374,4 +374,3 @@ adoptan tensores de rango 3 con forma $(muestras, pasos\_temporales, caracterís
 Las imágenes se codifican como tensores de rango 4 con forma
 $(muestras, alto, ancho, canales)$. Finalmente, los vídeos se representan como tensores
 de rango 5 con forma $(muestras, fotogramas, alto, ancho, canales)$.
-
