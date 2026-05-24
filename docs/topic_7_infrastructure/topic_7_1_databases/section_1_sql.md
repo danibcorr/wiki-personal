@@ -6,8 +6,8 @@ title: SQL
 
 ## Referencias
 
-- [SQL for Data Analytics - Learn SQL in 4 Hours](https://youtu.be/7mz73uXD9DA?si=hGvaEhnRn0z7ExQI)
-- [Escalabilidad vertical vs. horizontal: diferencias, ventajas, Kubernetes y cuál elegir](https://ausum.cloud/escalabilidad-vertical-vs-horizontal-diferencias-ventajas-kubernetes-y-cual-elegir/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [SQL Tutorial - W3Schools](https://www.w3schools.com/sql/)
 
 ## Introducción
 
@@ -18,8 +18,6 @@ modificar estructuras de bases de datos. Su sintaxis es simple e intuitiva, faci
 su aprendizaje y uso.
 
 ## Fundamentos
-
-### Introducción
 
 A diferencia de herramientas como Excel, que están limitadas a gestionar un número
 reducido de filas, las bases de datos SQL son capaces de manejar grandes volúmenes de
@@ -40,7 +38,7 @@ La siguiente tabla resume las ventajas y desventajas de cada tipo:
 | **Pros**    | Esquema estandarizado<br/>Gran comunidad de usuarios<br/>Lenguaje de consulta estandarizado<br/>ACID          | Disponibilidad continua<br/>Velocidad de consulta<br/>Agilidad<br/>Costo                                                                                                        |
 | **Contras** | Dificultad de agrupación<br/>Normalización de datos<br/>Primero el esquema<br/>Escalado intensivo en recursos | No hay un lenguaje de consulta estandarizado<br/>Comunidad de usuarios más pequeña<br/>Se requieren habilidades de desarrollador<br/>Inconsistencia en la recuperación de datos |
 
-#### Propiedades ACID en bases de datos relacionales
+### Propiedades ACID
 
 Las bases de datos relacionales destacan por garantizar la integridad y confiabilidad de
 los datos a través de las propiedades **ACID**, esenciales en entornos transaccionales
@@ -55,7 +53,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
 4. **Durabilidad** (_Durability_): Una vez confirmada, la transacción persiste incluso
    ante fallos del sistema.
 
-#### Escalabilidad en bases de datos
+### Escalabilidad
 
 - **Bases de datos relacionales**: Su escalabilidad es principalmente **vertical**, es
   decir, aumentar la capacidad de hardware de una sola máquina. Las bases _NewSQL_
@@ -74,7 +72,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   ![](https://ausum.cloud/wp-content/uploads/2024/07/unnamed-1.jpg)
 </figure>
 
-#### Interacción con bases de datos
+### Operaciones CRUD
 
 Para interactuar con bases de datos relacionales, se utilizan consultas SQL o
 **_queries_**, agrupadas bajo las operaciones **CRUD**:
@@ -84,7 +82,7 @@ Para interactuar con bases de datos relacionales, se utilizan consultas SQL o
 - **Update** (Actualizar)
 - **Delete** (Eliminar)
 
-#### Almacenamiento
+### Almacenamiento
 
 Las bases de datos pueden almacenarse en:
 
@@ -93,7 +91,7 @@ Las bases de datos pueden almacenarse en:
 - **Servidores en la nube (_Serverless_)**: Servicios administrados por terceros, como
   AWS o Azure.
 
-#### Diagramas y estructuras
+### Diagramas y estructuras
 
 El **ERD** (_Entity Relationship Diagram_) es una herramienta visual para mapear las
 relaciones entre tablas dentro de una base de datos.
@@ -106,7 +104,7 @@ Las tablas se clasifican en dos tipos principales:
   los datos en las tablas de hechos, describiendo atributos como ubicaciones, segmentos
   de mercado o perfiles de clientes.
 
-### Palabras clave y estructura de las consultas SQL
+## Consultas básicas
 
 Las consultas en SQL utilizan un conjunto de palabras clave que permiten seleccionar,
 filtrar, ordenar y limitar los datos en una base de datos. A continuación, se detallan
@@ -241,7 +239,7 @@ en mayúsculas por convención. Se pueden añadir comentarios a las consultas SQ
     */
     ```
 
-### Operadores y comparadores en SQL
+## Operadores y comparadores
 
 En SQL, los operadores y comparadores se utilizan para realizar operaciones lógicas y
 comparaciones entre valores. A continuación se presentan algunos de los más comunes:
@@ -358,7 +356,27 @@ Compara si un valor es mayor o igual, o menor o igual al especificado.
       salary_year_avg BETWEEN 50000 AND 100000;
     ```
 
-### Comodines (_Wildcards_) en SQL
+???+ example "Ejemplo: Filtrado combinado con múltiples condiciones"
+
+    Obtener trabajos de 'Data Analyst' con salario > $100k y de 'Business Analyst' con
+    salario > $70k, solo en 'Boston, MA' o 'Anywhere':
+
+    ```sql linenums="1"
+    SELECT
+        job_posting_fact.job_title_short,
+        job_posting_fact.salary_year_avg,
+        job_posting_fact.job_location
+    FROM
+        job_posting_fact
+    WHERE
+        job_location IN ('Boston, MA', 'Anywhere') AND
+        (
+            (job_title_short = 'Data Analyst' AND salary_year_avg > 100000) OR
+            (job_title_short = 'Business Analyst' AND salary_year_avg > 70000)
+        );
+    ```
+
+## Comodines (_wildcards_)
 
 Los comodines son caracteres especiales que se utilizan en SQL para buscar patrones en
 cadenas de texto. Se utilizan en combinación con el operador `LIKE` en una cláusula
@@ -401,7 +419,24 @@ en ese caso SQL tiene que buscar el patrón en todas las posiciones de cada valo
 columna. Por lo tanto, se recomienda utilizar los comodines con cuidado y solo cuando
 sean necesarios.
 
-### Alias
+???+ example "Ejemplo: Buscar roles no senior con comodines"
+
+    Buscar roles de analista que no sean senior, combinando `NOT LIKE` con `LIKE`:
+
+    ```sql linenums="1"
+    SELECT
+        job_posting_fact.job_title,
+        job_posting_fact.job_location,
+        job_posting_fact.salary_year_avg
+    FROM
+        job_posting_fact
+    WHERE
+        job_title NOT LIKE '%Senior%' AND
+        (job_title LIKE '%Data%' OR job_title LIKE '%Business%') AND
+        job_title LIKE '%Analyst%';
+    ```
+
+## Alias y operaciones
 
 Los alias asignan nombres temporales a columnas o tablas, facilitando la lectura de
 consultas.
@@ -415,10 +450,8 @@ consultas.
       job_posting_fact
     ```
 
-### Operaciones
-
-SQL permite realizar operaciones aritméticas como suma, resta, multiplicación, división
-y módulo.
+SQL también permite realizar operaciones aritméticas como suma, resta, multiplicación,
+división y módulo.
 
 ???+ example "Ejemplo"
 
@@ -436,7 +469,7 @@ En este caso, se está calculando un nuevo salario por hora (`rate_hike`) al sum
 salario por hora actual (`hours_rate`). Luego, se filtran los resultados para mostrar
 solo aquellos donde el producto de `rate_hike` y `hours_spent` sea mayor a 1000.
 
-### Agregación en SQL
+## Funciones de agregación
 
 Las funciones de agregación calculan un resultado único a partir de un conjunto de
 valores. Algunas funciones comunes son:
@@ -513,7 +546,25 @@ Estas funciones se pueden usar con las cláusulas `GROUP BY` y `HAVING`:
       AVG_SAL_YER
     ```
 
-### Valores NULL en SQL
+???+ example "Ejemplo: Ganancias por proyecto con operaciones aritméticas"
+
+    Calcular las ganancias totales por proyecto y un escenario con tarifa incrementada
+    en $5:
+
+    ```sql linenums="1"
+    SELECT
+        invoices_fact.project_id AS Proyecto,
+        SUM(invoices_fact.hours_spent * invoices_fact.hours_rate) AS Coste_original,
+        SUM(invoices_fact.hours_spent * (invoices_fact.hours_rate + 5)) AS Coste_incremento
+    FROM
+        invoices_fact
+    GROUP BY
+        Proyecto
+    ORDER BY
+        project_id;
+    ```
+
+## Valores NULL
 
 Los valores `NULL` en SQL representan la ausencia de información. Podemos filtrar estos
 valores utilizando la cláusula `IS NOT NULL` en una consulta `WHERE`.
@@ -551,7 +602,7 @@ salarios de la misma categoría de trabajo.
     modificar la tabla original, podrías crear una nueva tabla o vista con los valores
     `NULL` reemplazados.
 
-### Joins en SQL
+## _Joins_
 
 Existen cuatro tipos de `JOIN`:
 
@@ -584,11 +635,29 @@ Existen cuatro tipos de `JOIN`:
     `job_id` en `job_postings_fact` no tiene una coincidencia en `company_dim`, el valor de
     `Empresa` será `NULL` para ese registro.
 
+???+ example "Ejemplo: Salario promedio y ofertas por habilidad con JOIN"
+
+    Combinar varias tablas mediante `LEFT JOIN` para obtener el salario promedio y el
+    número de ofertas asociadas a cada habilidad:
+
+    ```sql linenums="1"
+    SELECT
+        skills_dim.skills AS skill_name,
+        COUNT(job_postings_fact.job_title) AS number_of_job_posting,
+        AVG(job_postings_fact.salary_year_avg) AS average_salary_for_skill
+    FROM
+        skills_dim
+    LEFT JOIN skills_job_dim ON skills_dim.skill_id = skills_job_dim.skill_id
+    LEFT JOIN job_postings_fact ON skills_job_dim.job_id = job_postings_fact.job_id
+    GROUP BY
+        skill_name
+    ORDER BY
+        average_salary_for_skill DESC;
+    ```
+
 ## Consultas avanzadas
 
 ### Instalación de PostgreSQL en Linux
-
-Para instalar PostgreSQL en Linux (PopOS en este caso), sigue estos pasos:
 
 1. **Instalación de PostgreSQL**: Puedes instalar PostgreSQL desde el repositorio
    oficial de PostgreSQL o desde los repositorios de tu distribución. En PopOS, que está
@@ -1089,148 +1158,4 @@ La operación `UNION` combina los resultados de varias consultas `SELECT`.
     SELECT job_title
     FROM job_posting_fact
     WHERE job_title = 'Machine Learning Engineer';
-    ```
-
-## Ejercicios básicos
-
-A continuación se presenta un conjunto de tablas de ejemplo que pueden ser utilizadas
-para practicar consultas SQL fundamentales, tales como selección, agregación, joins y
-filtrado de datos.
-
-### Tablas de ejemplo
-
-`job_posting_fact`
-
-Esta tabla contiene información sobre ofertas de trabajo, incluyendo el título del
-puesto, salario promedio anual y ubicación.
-
-| job_id | job_title_short  | job_title               | salary_year_avg | job_location |
-| ------ | ---------------- | ----------------------- | --------------- | ------------ |
-| 1      | Data Analyst     | Junior Data Analyst     | 95,000          | Boston, MA   |
-| 2      | Business Analyst | Senior Business Analyst | 120,000         | Anywhere     |
-| 3      | Data Analyst     | Data Analyst            | 105,000         | Boston, MA   |
-| 4      | Business Analyst | Business Analyst        | 75,000          | Anywhere     |
-
-`invoices_fact`
-
-Esta tabla registra facturas asociadas a proyectos, indicando las horas trabajadas y la
-tarifa por hora.
-
-| invoice_id | project_id | hours_spent | hours_rate |
-| ---------- | ---------- | ----------- | ---------- |
-| 101        | 1          | 10          | 50         |
-| 102        | 2          | 20          | 60         |
-| 103        | 1          | 15          | 55         |
-| 104        | 3          | 25          | 65         |
-
-`skills_dim`
-
-Contiene el listado de habilidades disponibles, cada una con un identificador único.
-
-| skill_id | skills            |
-| -------- | ----------------- |
-| 1        | SQL               |
-| 2        | Data Analysis     |
-| 3        | Business Analysis |
-
-`skills_job_dim`
-
-Relaciona las habilidades con los trabajos correspondientes, funcionando como una tabla
-de asociación en un modelo de datos tipo estrella.
-
-| skill_id | job_id |
-| -------- | ------ |
-| 1        | 1      |
-| 2        | 1      |
-| 2        | 3      |
-| 3        | 2      |
-| 3        | 4      |
-
-Estas tablas permiten realizar ejercicios prácticos de SQL, tales como consultar el
-salario promedio de ciertos roles, identificar qué habilidades están asociadas a cada
-trabajo o calcular el costo total de horas facturadas por proyecto.
-
-### Obtener detalles de trabajos para 'Data Analyst' o 'Business Analyst'
-
-Obtener detalles de trabajos para las posiciones de 'Data Analyst' o 'Business Analyst'.
-Para 'Data Analyst', solo quiero trabajos con salario > \$100k, y para 'Business
-Analyst', solo quiero trabajos con salario > \$70k. Incluir solo trabajos ubicados en
-'Boston, MA' o 'Anywhere'.
-
-??? info "Solución"
-
-    ```sql  linenums="1"
-    SELECT
-        job_posting_fact.job_title_short,
-        job_posting_fact.salary_year_avg,
-        job_posting_fact.job_location
-    FROM
-        job_posting_fact
-    WHERE
-        job_location IN ('Boston, MA', 'Anywhere') AND
-        (
-            (job_title_short = 'Data Analyst' AND salary_year_avg > 100000) OR
-            (job_title_short = 'Business Analyst' AND salary_year_avg > 70000)
-        );
-    ```
-
-### Buscar roles de analista no senior
-
-Buscar roles de 'Data Analyst' o 'Business Analyst' que no sean senior. Obtener el
-título del trabajo, la ubicación y el salario promedio anual.
-
-??? info "Solución"
-
-    ```sql  linenums="1"
-    SELECT
-        job_posting_fact.job_title,
-        job_posting_fact.job_location,
-        job_posting_fact.salary_year_avg
-    FROM
-        job_posting_fact
-    WHERE
-        job_title NOT LIKE '%Senior%' AND
-        (job_title LIKE '%Data%' OR job_title LIKE '%Business%') AND
-        job_title LIKE '%Analyst%';
-    ```
-
-### Calcular ganancias totales del mes actual por proyecto
-
-Calcular las ganancias totales del mes actual por proyecto. Calcular un escenario donde
-la tarifa por hora aumenta en \$5.
-
-??? info "Solución"
-
-    ```sql  linenums="1"
-    SELECT
-        invoices_fact.project_id AS Proyecto,
-        SUM(invoices_fact.hours_spent * invoices_fact.hours_rate) AS Coste_original,
-        SUM(invoices_fact.hours_spent * (invoices_fact.hours_rate + 5)) AS Coste_incremento
-    FROM
-        invoices_fact
-    GROUP BY
-        Proyecto
-    ORDER BY
-        project_id;
-    ```
-
-### Encontrar el salario promedio y el número de ofertas de trabajo por habilidad
-
-Encontrar el salario promedio y el número de ofertas de trabajo para cada habilidad.
-
-??? info "Solución"
-
-    ```sql  linenums="1"
-    SELECT
-        skills_dim.skills AS skill_name,
-        COUNT(job_postings_fact.job_title) AS number_of_job_posting,
-        AVG(job_postings_fact.salary_year_avg) AS average_salary_for_skill
-    FROM
-        skills_dim
-    LEFT JOIN skills_job_dim ON skills_dim.skill_id = skills_job_dim.skill_id
-    LEFT JOIN job_postings_fact ON skills_job_dim.job_id = job_postings_fact.job_id
-    GROUP BY
-        skill_name
-    ORDER BY
-        average_salary_for_skill DESC;
     ```

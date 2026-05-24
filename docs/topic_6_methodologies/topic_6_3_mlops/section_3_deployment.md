@@ -4,50 +4,27 @@ description: APIs, ONNX Runtime y publicación de paquetes.
 title: Despliegue y distribución
 ---
 
-## API
+## APIs para modelos de ML
 
-Arquitectura monolítica es cuando creamos software combinado todo en un mismo grupo
-incluso cuando su funcionalidad es variada. El problema es la escalabilidad, la
-flexibilidad y el mantenimiento. Una solución es utilizar micro servicios que consiste
-en crear un código específico para cada cosa está modularidad, pues permite resolver los
-fallos y los problemas anteriores aquí por ejemplo tendríamos una aplicación que podría
-tener por ejemplo un modelo para la inferencia y luego un modelo que se crearía durante
-el proceso de entrenamiento, pues la idea es separar la lógica de ambos. Créame un
-código específico que puede ser puesto en producción, de manera independiente.
+En el contexto de MLOps, los modelos entrenados se exponen habitualmente como servicios
+independientes a través de APIs. Este enfoque sigue la arquitectura de microservicios,
+donde cada componente (entrenamiento, inferencia, procesamiento de datos) se desarrolla
+y despliega de forma independiente, lo que mejora la escalabilidad, la flexibilidad y el
+mantenimiento.
 
-También utilizar arquitecturas basadas en micro servicios, pues permite utilizar
-tecnologías diferentes para cada tipo de micro servicios, por ejemplo para la creación
-de un modelo de Machine Lerning. Podríamos utilizar Python para inferencia y crear una
-API. Podríamos utilizar Go o para Pipeline de datos. Podríamos utilizar escala con los
-micros de servicios, pues al final podemos escalar componentes de manera independiente,
-reduce el impacto de fallo, ya que un código no afecta otro para la comunicación entre
-servicios, pues se usan las apps que definen reglas y protocolos para dicha
-comunicación, sin importar el lenguaje de programación utilizado para ello utilizan
-protocolos de comunicación como puede ser GRPC, Rest o HTTP.
+Las APIs pueden operar de forma **síncrona** (el cliente espera la respuesta antes de
+continuar) o **asíncrona** (el cliente envía la petición y recibe la respuesta
+posteriormente). Las APIs asíncronas resultan especialmente útiles cuando el tiempo de
+inferencia es elevado o cuando se necesita gestionar múltiples peticiones concurrentes.
 
-Las Apis pueden ser de dos maneras de manera síncrona o asíncrona, y sin embargo, existe
-una serie de limitaciones las Apis síncronas, pues es cuando los usuarios tienen que
-esperar peticiones de los usuarios de adelante entonces si yo tengo hasta acá usuarios,
-el usuario que tiene que esperar en el segundo es de latencia donde K sería el usuario
-carísimo. Esa latencia es el tiempo de respuesta desde que el usuario mando una petición
-hasta que he resuelto. Al final esto supone un problema de escalabilidad, y para ello
-están las Apis asíncronas que permiten ejecutar ciertas acciones de la aplicación de
-manera concurrente. En vez de secuencial una API puede tener dos procesos en general
-tareas de transferencia de datos, lo que se conoce como el I/O que son operaciones de
-entrada y salida o operaciones de escritura y tenemos tareas de procesado que están
-relacionadas con la CPU al final las limitaciones en la entrada y salida, pues depende
-de lo rápido que seas para transferir datos acceder a espacio de memoria de la capacidad
-de Internet, y luego tenemos la limitaciones en la CPU que son a nivel de hardware. Por
-tanto, la programación asíncrona no depende de la velocidad de la CPU y se utiliza
-sobretodo para optimizar procesos. Una API tiene normalmente la funcionalidad cruz que
-es crear leer actualizar y borrar donde crear es un Post leer es un Goethe actualizar es
-un puto y borrar es un delito como hemos dicho existen diferentes tipos de protocolos de
-comunicaciones, como puede ser HTTP web, so Kets o similares y luego tenemos el
-protocolo de datos utilizados que podría ser XML Jason.
+Las operaciones fundamentales de una API REST siguen el patrón CRUD:
 
-Existen diferentes paradigmas de Apis que puede ser API resto Graco el Ojer PC. Luego
-tenemos limitadores de radio en lápiz o tenemos cor setting con para el control de
-dominios.
+| Operación  | Método HTTP | Descripción           |
+| :--------- | :---------- | :-------------------- |
+| Crear      | `POST`      | Crea un nuevo recurso |
+| Leer       | `GET`       | Obtiene un recurso    |
+| Actualizar | `PUT`       | Modifica un recurso   |
+| Eliminar   | `DELETE`    | Elimina un recurso    |
 
 ---
 

@@ -38,8 +38,7 @@ nav = [
         {"CUDA" = [
             "topic_3_programming/topic_3_3_cuda/section_1_fundamentals.md",
             "topic_3_programming/topic_3_3_cuda/section_2_cuda_c.md",
-            "topic_3_programming/topic_3_3_cuda/section_3_cuda_python.md",
-            "topic_3_programming/topic_3_3_cuda/section_4_exercises.md"
+            "topic_3_programming/topic_3_3_cuda/section_3_cuda_python.md"
         ]},
         {"Desarrollo web" = [
             "topic_3_programming/topic_3_4_front_end/section_1_fundamentals.md"
@@ -76,15 +75,13 @@ nav = [
     ]},
     {"Metodologías" = [
         {"Ingeniería de Software" = [
-            "topic_6_methodologies/topic_6_1_software/section_1_design_patterns.md",
-            "topic_6_methodologies/topic_6_1_software/section_2_sustainable_code.md",
-            "topic_6_methodologies/topic_6_1_software/section_3_data_structure.md"
+            "topic_6_methodologies/topic_6_1_software/section_1_data_structure.md",
+            "topic_6_methodologies/topic_6_1_software/section_2_sustainable_code.md"
         ]},
         {"DevOps" = [
             "topic_6_methodologies/topic_6_2_devops/section_1_containers.md",
             "topic_6_methodologies/topic_6_2_devops/section_2_orchestrators.md",
-            "topic_6_methodologies/topic_6_2_devops/section_3_iac.md",
-            "topic_6_methodologies/topic_6_2_devops/section_4_ci_cd.md"
+            "topic_6_methodologies/topic_6_2_devops/section_3_ci_cd.md"
         ]},
         {"MLOps" = [
             "topic_6_methodologies/topic_6_3_mlops/section_1_fundamentals.md",
@@ -94,11 +91,11 @@ nav = [
     ]},
     {"Infraestructura" = [
         {"Bases de Datos" = [
-            "topic_7_cloud/topic_7_1_databases/section_1_sql.md"
+            "topic_7_infrastructure/topic_7_1_databases/section_1_sql.md"
         ]},
         {"Cloud" = [
-            "topic_7_cloud/topic_7_2_cloud/section_1_fundamentals.md",
-            "topic_7_cloud/topic_7_2_cloud/section_2_aws.md"
+            "topic_7_infrastructure/topic_7_2_cloud/section_1_fundamentals.md",
+            "topic_7_infrastructure/topic_7_2_cloud/section_2_aws.md"
         ]}
     ]},
     {"Otros" = [

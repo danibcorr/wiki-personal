@@ -16,21 +16,21 @@ Python.
 
 ### Fundamentos
 
-Numba es un compilador JIT (_Just-In-Time_) y de especialización de tipos para acelerar
-cálculo numérico en Python tanto en CPU como en GPU. A diferencia de otros enfoques,
-Numba compila funciones individuales de Python, no la aplicación al completo, por lo que
-no sustituye al intérprete de Python. La aceleración se consigue generando
-implementaciones específicas para el tipo de dato que se utiliza, en lugar de emplear el
-_dynamic typing_ que es el comportamiento por defecto de Python. Al ser _just-in-time_,
-la compilación se produce cuando la función se invoca por primera vez, lo que permite al
-compilador conocer los argumentos que se van a utilizar y facilita la ejecución
-interactiva en cuadernos Jupyter. Numba se centra principalmente en tipos de datos
-numéricos (enteros, flotantes, números complejos) y ofrece el mejor soporte cuando se
-trabaja con arrays de NumPy.
+Numba es un compilador JIT (_Just-In-Time_) utilizado para acelerar cálculo numérico en
+Python tanto en CPU como en GPU. A diferencia de otros enfoques, Numba compila funciones
+individuales de Python, no la aplicación al completo, por lo que no sustituye al
+intérprete de Python.
 
-Sin embargo, Numba presenta ciertas limitaciones: no es compatible con Pandas, por lo
-que se recomienda convertir los DataFrames a matrices de NumPy o CuPy antes de
-utilizarlo. Para más información, se puede consultar la
+La aceleración se consigue generando implementaciones específicas para el tipo de dato
+que se utiliza, en lugar de emplear el _dynamic typing_ que es el comportamiento por
+defecto de Python. Al ser _just-in-time_, la compilación se produce cuando la función se
+invoca por primera vez, lo que permite al compilador conocer los argumentos que se van a
+utilizar. Numba se centra principalmente en tipos de datos numéricos (enteros,
+flotantes, números complejos) y ofrece el mejor soporte cuando se trabaja con _arrays_
+de NumPy.
+
+Sin embargo, Numba presenta ciertas limitaciones, entre ellas no es compatible con
+Pandas. Para más información, se puede consultar la
 [página oficial de Numba](https://numba.pydata.org/).
 
 ### Alternativas
@@ -41,7 +41,7 @@ acelera aplicaciones escritas en C/C++. **pyCUDA** expone la totalidad de la API
 C/C++ y es la opción más eficiente disponible para Python, aunque requiere escribir
 código C dentro de Python y, en general, modificaciones sustanciales del código.
 **Numba**, por su parte, ofrece el mejor equilibrio entre tiempo de desarrollo y
-beneficio: aunque potencialmente menos eficiente que pyCUDA y sin exponer aún la
+beneficio, aunque potencialmente menos eficiente que pyCUDA y sin exponer aún la
 totalidad de la API de CUDA C/C++, permite aceleraciones masivas con muy pocas
 modificaciones del código, escribiendo directamente en Python, y también optimiza código
 para la CPU.
@@ -59,7 +59,7 @@ from numba import jit
 import math
 
 @jit
-def hypot(x, y):
+def hypot(x: float, y: float) -> float:
     x = abs(x)
     y = abs(y)
     t = min(x, y)
@@ -93,12 +93,12 @@ hypot.inspect_types()
 
 Numba ofrece varios decoradores para la compilación y optimización de funciones:
 
-| Decorador                       | Definición                                                                                                                                                                                                                     |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `@jit`                          | Compila en modo objeto. Numba compila los bucles optimizables a código máquina y el resto de la función se ejecuta con el intérprete de Python.                                                                                |
-| `@njit` = `@jit(nopython=True)` | Compila sin el intérprete de Python, obteniendo el mejor rendimiento. Puede fallar si los parámetros no son compatibles; si falla, se recomienda utilizar `@jit`. Este es el decorador preferido para la mayoría de los casos. |
-| `@njit(parallel=True)`          | Compila el código para ejecutarse en múltiples hilos, aprovechando la paralelización cuando las operaciones lo permiten.                                                                                                       |
-| `@njit(fastmath=True)`          | Habilita cálculos matemáticos rápidos a costa de reducir la precisión numérica, acelerando aún más el rendimiento.                                                                                                             |
+| Decorador                       | Definición                                                                                                                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@jit`                          | Compila en modo objeto. Numba compila los bucles optimizables a código máquina y el resto de la función se ejecuta con el intérprete de Python.                                       |
+| `@njit` = `@jit(nopython=True)` | Compila sin el intérprete de Python, obteniendo el mejor rendimiento. Puede fallar si los parámetros no son compatibles. Este es el decorador preferido para la mayoría de los casos. |
+| `@njit(parallel=True)`          | Compila el código para ejecutarse en múltiples hilos, aprovechando la paralelización cuando las operaciones lo permiten.                                                              |
+| `@njit(fastmath=True)`          | Habilita cálculos matemáticos rápidos a costa de reducir la precisión numérica, acelerando aún más el rendimiento.                                                                    |
 
 Los decoradores pueden combinarse para optimizar el rendimiento. Por ejemplo,
 `@njit(parallel=True, fastmath=True)` evita el intérprete de Python, paraleliza el
@@ -116,7 +116,7 @@ variable original de Python sin especializar el tipo en Numba).
     import numpy as np
 
     @njit()
-    def bucle(lista1, lista2, num_filas):
+    def bucle(lista1: np.ndarray, lista2: np.ndarray, num_filas: int) -> list:
         lista3 = []
 
         for fila in range(num_filas):
@@ -127,16 +127,16 @@ variable original de Python sin especializar el tipo en Numba).
 
     lista1 = np.array([1, 2, 3])
     lista2 = np.array([4, 5, 6])
-    result = bucle(lista1, lista2, len(lista1))
-    print(result)
+    resultado = bucle(lista1, lista2, len(lista1))
+    print(resultado)
     ```
 
 ### Vectorización para GPU
 
-El hardware de la GPU está diseñado para la paralelización de datos, por lo que se
+El _hardware_ de la GPU está diseñado para la paralelización de datos, por lo que se
 obtiene el máximo _throughput_ cuando la GPU calcula la misma operación para diferentes
 elementos al mismo tiempo. Las funciones universales de NumPy (_ufuncs_) realizan la
-misma operación en cada elemento de un array, lo que las hace naturalmente
+misma operación en cada elemento de un _array_, lo que las hace naturalmente
 paralelizables y las ajusta muy bien a la naturaleza de la GPU.
 
 ???+ example "Ejemplo para CPU"
@@ -146,37 +146,44 @@ paralelizables y las ajusta muy bien a la naturaleza de la GPU.
     import numpy as np
 
     @vectorize
-    def add_ten(num):
+    def add_ten(num: int) -> int:
         return num + 10
 
-    nums = np.arange(10)
-    add_ten(nums)
+    nums: np.ndarray = np.arange(10)
+    resultado: np.ndarray = add_ten(nums)
+    print(resultado)
     ```
 
 ???+ example "Ejemplo para GPU"
 
     ```python linenums="1"
+    import numpy as np
+    from numba import vectorize
+
     @vectorize(['int64(int64, int64)'], target='cuda')
-    def add_ufunc(x, y):
+    def add_ufunc(x: int, y: int) -> int:
         return x + y
 
-    add_ufunc(a, b)
+    a: np.ndarray = np.array([1, 2, 3, 4, 5])
+    b: np.ndarray = np.array([10, 20, 30, 40, 50])
+    resultado: np.ndarray = add_ufunc(a, b)
+    print(resultado)
     ```
 
 En el caso de la GPU se especifica el _target_ como `'cuda'`, así como el _typing_
 específico de las variables (lo que aparece dentro de los paréntesis) y el tipo de
 retorno de la función (lo que aparece fuera del paréntesis).
 
-Internamente, Numba compila un kernel CUDA para ejecutar la operación _ufunc_ en
+Internamente, Numba compila un _kernel_ CUDA para ejecutar la operación _ufunc_ en
 paralelo sobre todos los elementos de entrada, reserva memoria en la GPU para las
-entradas y la salida, copia los datos de entrada a la GPU, ejecuta el kernel CUDA con
+entradas y la salida, copia los datos de entrada a la GPU, ejecuta el _kernel_ CUDA con
 las dimensiones adecuadas según el tamaño de las entradas, copia el resultado de vuelta
-a la CPU y lo devuelve como un array de NumPy en el _host_.
+a la CPU y lo devuelve como un _array_ de NumPy en el _host_.
 
 Consideraciones para rendimiento óptimo en GPU: las entradas deben ser suficientemente
-grandes (miles de elementos como mínimo); el cálculo debe tener suficiente intensidad
-aritmética para compensar la sobrecarga de enviar datos a la GPU; conviene ejecutar
-varias operaciones en secuencia en la GPU para amortizar el coste de la copia de datos;
+grandes (miles de elementos como mínimo), el cálculo debe tener suficiente intensidad
+aritmética para compensar la sobrecarga de enviar datos a la GPU, conviene ejecutar
+varias operaciones en secuencia en la GPU para amortizar el coste de la copia de datos,
 y los tipos de datos deben ser los más pequeños posibles (NumPy usa 64 bits por defecto,
 usar `dtype` o `ndarray.astype()` para 32 bits cuando sea apropiado).
 
@@ -191,24 +198,24 @@ from numba import cuda, vectorize
 import math
 
 @cuda.jit(device=True)
-def polar_to_cartesian(rho, theta):
+def polar_to_cartesian(rho: float, theta: float) -> tuple[float, float]:
     x = rho * math.cos(theta)
     y = rho * math.sin(theta)
     return x, y
 
 @vectorize(['float32(float32, float32, float32, float32)'], target='cuda')
-def polar_distance(rho1, theta1, rho2, theta2):
+def polar_distance(rho1: float, theta1: float, rho2: float, theta2: float) -> float:
     x1, y1 = polar_to_cartesian(rho1, theta1)
     x2, y2 = polar_to_cartesian(rho2, theta2)
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 ```
 
-## Kernels personalizados
+## _Kernels_ personalizados
 
 La jerarquía de ejecución en CUDA se organiza de la siguiente manera: las hebras se
 agrupan en bloques de hebras, y los bloques de hebras conforman una malla (_grid_). Para
-escribir kernels personalizados se utiliza el decorador `@cuda.jit`, que a diferencia de
-`@vectorize` no devuelve valores, sino que utiliza un argumento de salida:
+escribir _kernels_ personalizados se utiliza el decorador `@cuda.jit`, que a diferencia
+de `@vectorize` no devuelve valores, sino que utiliza un argumento de salida:
 
 ```python linenums="1"
 from numba import cuda
@@ -216,27 +223,27 @@ import numpy as np
 
 @cuda.jit
 def add_kernel(x, y, out):
-    idx = cuda.grid(1)
+    idx: int = cuda.grid(1)
     out[idx] = x[idx] + y[idx]
 
-n = 4096
-x = np.arange(n).astype(np.int32)
-y = np.ones_like(x)
+n: int = 4096
+x: np.ndarray = np.arange(n).astype(np.int32)
+y: np.ndarray = np.ones_like(x)
 
 d_x = cuda.to_device(x)
 d_y = cuda.to_device(y)
 d_out = cuda.device_array_like(d_x)
 
-threads_per_block = 128
-blocks_per_grid = 32
+hilos_por_bloque: int = 128
+bloques_por_malla: int = 32
 
-add_kernel[blocks_per_grid, threads_per_block](d_x, d_y, d_out)
+add_kernel[bloques_por_malla, hilos_por_bloque](d_x, d_y, d_out)
 cuda.synchronize()
 print(d_out.copy_to_host())
 ```
 
-A la hora de elegir el tamaño óptimo de la malla: el tamaño de un bloque debe ser
-múltiplo de 32 hilos (el tamaño de un _warp_), con tamaños típicos entre 128 y 512; el
+A la hora de elegir el tamaño óptimo de la malla, el tamaño de un bloque debe ser
+múltiplo de 32 hilos (el tamaño de un _warp_), con tamaños típicos entre 128 y 512. El
 tamaño de la malla debe asegurar la utilización completa de la GPU, siendo un buen punto
 de partida lanzar entre 2x y 4x el número de SMs.
 
@@ -251,8 +258,8 @@ from numba import cuda
 
 @cuda.jit
 def add_kernel(x, y, out):
-    start = cuda.grid(1)
-    stride = cuda.gridsize(1)
+    start: int = cuda.grid(1)
+    stride: int = cuda.gridsize(1)
 
     for i in range(start, x.shape[0], stride):
         out[i] = x[i] + y[i]
@@ -261,8 +268,8 @@ def add_kernel(x, y, out):
 ## Operaciones atómicas y condiciones de carrera
 
 Una **condición de carrera** ocurre cuando múltiples hilos acceden a la misma ubicación
-de memoria sin sincronización. Para evitarlas: cada hilo debe escribir en una ubicación
-única, no usar el mismo array como entrada y salida, y utilizar operaciones atómicas
+de memoria sin sincronización. Para evitarlas, cada hilo debe escribir en una ubicación
+única, no usar el mismo _array_ como entrada y salida, y utilizar operaciones atómicas
 cuando sea necesario.
 
 ???+ example "Ejemplo con operación atómica"
@@ -273,15 +280,15 @@ cuando sea necesario.
 
     @cuda.jit
     def contador_global_atomic(counter):
-        idx = cuda.grid(1)
+        idx: int = cuda.grid(1)
         cuda.atomic.add(counter, 0, 1)
 
-    contador = np.zeros(1, dtype=np.int32)
+    contador: np.ndarray = np.zeros(1, dtype=np.int32)
     d_contador = cuda.to_device(contador)
 
     contador_global_atomic[4, 128](d_contador)
 
-    resultado = d_contador.copy_to_host()
+    resultado: np.ndarray = d_contador.copy_to_host()
     print("Valor final del contador:", resultado[0])  # Esperado: 512
     ```
 
@@ -311,10 +318,11 @@ def get_2D_indices(A):
     x, y = cuda.grid(2)
     A[x][y] = x + y / 10
 
-A = np.zeros((4, 4))
+A: np.ndarray = np.zeros((4, 4))
 d_A = cuda.to_device(A)
 get_2D_indices[(2, 2), (2, 2)](d_A)
-result = d_A.copy_to_host()
+resultado: np.ndarray = d_A.copy_to_host()
+print(resultado)
 ```
 
 ## Memoria compartida
@@ -322,11 +330,11 @@ result = d_A.copy_to_host()
 La **memoria compartida** reside en un área _on-chip_ del dispositivo. Su tamaño es
 limitado pero ofrece un ancho de banda significativamente mayor que la memoria global.
 Es compartida entre todos los hilos de un mismo bloque y no persiste una vez que el
-kernel termina.
+_kernel_ termina.
 
-Casos de uso habituales: almacenar en caché datos leídos múltiples veces, acumular
-salidas para escritura coalescente, y preparar datos para operaciones de
-dispersión/recopilación.
+Los casos de uso habituales incluyen almacenar en caché datos leídos múltiples veces,
+acumular salidas para escritura coalescente, y preparar datos para operaciones de
+dispersión o recopilación.
 
 En Numba, se reserva mediante `cuda.shared.array` y la sincronización se realiza con
 `cuda.syncthreads()`:
@@ -340,19 +348,20 @@ En Numba, se reserva mediante `cuda.shared.array` y la sincronización se realiz
     @cuda.jit
     def swap_with_shared(vector, swapped):
         temp = cuda.shared.array(4, dtype=types.int32)
-        idx = cuda.grid(1)
+        idx: int = cuda.grid(1)
         temp[idx] = vector[idx]
         cuda.syncthreads()
         swapped[idx] = temp[3 - cuda.threadIdx.x]
 
-    vector = np.arange(4).astype(np.int32)
-    swapped = np.zeros_like(vector)
+    vector: np.ndarray = np.arange(4).astype(np.int32)
+    swapped: np.ndarray = np.zeros_like(vector)
     d_vector = cuda.to_device(vector)
     d_swapped = cuda.to_device(swapped)
     swap_with_shared[1, 4](d_vector, d_swapped)
+    print(d_swapped.copy_to_host())
     ```
 
-???+ example "Ejemplo: transposición con tiling"
+???+ example "Ejemplo: transposición con _tiling_"
 
     ```python linenums="1"
     from numba import cuda, types as numba_types
@@ -383,23 +392,18 @@ consultar la [página oficial de CuPy](https://cupy.dev/).
 
 ```python linenums="1"
 import cupy as cp
+import numpy as np
 
-a = cp.array([1, 2, 3, 4, 5])
-b = cp.array([6, 7, 8, 9, 10])
+a: cp.ndarray = cp.array([1, 2, 3, 4, 5])
+b: cp.ndarray = cp.array([6, 7, 8, 9, 10])
 
-c = a + b
-c_numpy = cp.asnumpy(c)
+c: cp.ndarray = a + b
+c_numpy: np.ndarray = cp.asnumpy(c)
 print(c_numpy)  # Resultado: [ 7  9 11 13 15]
 ```
 
-## Comparación entre Numba y CuPy
-
-**Numba** resulta ideal para acelerar funciones específicas y bucles en Python. Permite
-compilación JIT para CPU y GPU, y se integra bien con código existente de NumPy. Se
-recomienda para optimizar algoritmos matemáticos complejos y simulaciones con
-estructuras de bucles que pueden beneficiarse de la compilación JIT. **CuPy**, por su
-parte, es más adecuado para trabajar con matrices y realizar operaciones a gran escala
-en GPUs. Ofrece una API similar a NumPy, facilitando la migración de código y
-aprovechando el hardware de CUDA. Resulta especialmente apropiado para tareas que
-involucren cálculos matriciales intensivos, como el entrenamiento de modelos de _machine
-learning_, procesamiento de imágenes y simulaciones con alta densidad de datos.
+En comparación con Numba, CuPy es más adecuado para trabajar con matrices y realizar
+operaciones a gran escala en GPUs, ya que ofrece una API similar a NumPy que facilita la
+migración de código. Numba, por su parte, resulta ideal para acelerar funciones
+específicas y bucles mediante compilación JIT, tanto en CPU como en GPU, y se integra
+bien con código existente de NumPy.

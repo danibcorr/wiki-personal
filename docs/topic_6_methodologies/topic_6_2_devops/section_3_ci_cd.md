@@ -52,16 +52,6 @@ acciones desarrolladas tanto por GitHub como por terceros.
 
 ## GitHub Actions
 
-La implementación de CI/CD permite automatizar procesos de desarrollo, mejorando la
-eficiencia y reduciendo errores en la integración y despliegue de software. La
-integración continua (CI) se refiere a la automatización de la integración de código en
-un repositorio compartido, asegurando que los cambios sean validados continuamente
-mediante pruebas y compilaciones. El despliegue continuo (CD) automatiza el proceso de
-despliegue de código en entornos de producción, facilitando la entrega continua de
-nuevas versiones del software.
-
-### GitHub Actions y su funcionamiento
-
 GitHub Actions es una plataforma que permite la automatización de flujos de trabajo a
 través de archivos de configuración en formato YAML. Cada _workflow_ está compuesto por
 una serie de pasos organizados en _jobs_, que pueden ejecutarse en paralelo o en
@@ -93,12 +83,12 @@ Un _pipeline_ típico en un _workflow_ podría incluir pasos como fusionar (_mer
 cambios en la rama principal, ejecutar pruebas, realizar un análisis de código
 (_linting_), generar una compilación (_build_) y desplegar en producción o _staging_.
 
-### Estructura de un Workflow en GitHub Actions
+### Estructura de un _workflow_
 
 Un _workflow_ en GitHub Actions está definido en un archivo de configuración YAML que
 contiene las instrucciones necesarias para automatizar tareas dentro de un repositorio.
 
-#### Elementos clave de un workflow
+#### Elementos clave
 
 El campo `name` define un nombre descriptivo para el _workflow_. Aunque es opcional, se
 recomienda utilizarlo para mejorar la identificación y reutilización de _workflows_
@@ -178,7 +168,7 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
 [GitHub Actions](https://github.com/actions) y el
 [GitHub Marketplace](https://github.com/marketplace).
 
-#### Ejemplos de configuración de workflows
+#### Ejemplos de configuración
 
 ???+ example "Ejemplo básico"
 
@@ -302,7 +292,7 @@ GitHub Actions permite integrar acciones predefinidas disponibles en
         caché reduce significativamente el tiempo de ejecución del workflow, pero es importante
         monitorearlo para evitar el uso de dependencias obsoletas.
 
-#### Modularización de workflows y acciones
+#### Modularización de _workflows_
 
 Para mejorar la reutilización y el mantenimiento del código, se recomienda modularizar
 los _workflows_ mediante acciones personalizadas. Un ejemplo de la estructura del
@@ -360,7 +350,7 @@ modificar los _workflows_ principales. Este enfoque modular permite dividir la
 complejidad, mejorar la eficiencia y permitir la reutilización de configuraciones a lo
 largo del proyecto.
 
-#### Uso de estrategias con matrices
+#### Matrices de estrategia
 
 Las matrices de estrategia en GitHub Actions permiten ejecutar un mismo _workflow_ en
 múltiples combinaciones de entornos, lo que resulta útil para probar software en

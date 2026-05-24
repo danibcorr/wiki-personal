@@ -15,7 +15,7 @@ title: Fundamentos
 <p align="center">
   <img src="../../../assets/img/docs/logos/mlops-logo.png" width="500"/>
   <br />
-  <em>Ciclo de vide de un proyecto MLOps</em>
+  <em>Ciclo de vida de un proyecto MLOps</em>
 </p>
 
 MLOps, o _Machine Learning Operations_, es el conjunto de prácticas, herramientas y
@@ -58,11 +58,11 @@ que no encajan con los patrones aprendidos durante el entrenamiento. Además, la
 actualización y el mantenimiento de los modelos para adaptarlos a nuevos datos o
 requerimientos constituyen un esfuerzo continuo.
 
-!!!note "Nota"
+!!! note "Nota"
 
-El mantenimiento de modelos basados en inteligencia artificial suele implicar su
-reentrenamiento con nuevos datos para evitar la degradación de las métricas establecidas
-y asegurar un rendimiento óptimo.
+    El mantenimiento de modelos basados en inteligencia artificial suele implicar su
+    reentrenamiento con nuevos datos para evitar la degradación de las métricas
+    establecidas y asegurar un rendimiento óptimo.
 
 ### Ciclo de vida de MLOps
 

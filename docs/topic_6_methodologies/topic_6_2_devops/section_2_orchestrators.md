@@ -4,6 +4,11 @@ description: Kubernetes, componentes, pods, servicios y despliegues.
 title: Orquestadores
 ---
 
+## Referencias
+
+- [Kubernetes Docs](https://kubernetes.io/docs/)
+- [Minikube Docs](https://minikube.sigs.k8s.io/docs/)
+
 ## Kubernetes
 
 <figure markdown="span">

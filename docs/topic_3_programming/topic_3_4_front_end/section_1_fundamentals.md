@@ -4,7 +4,7 @@ description: Introducción al desarrollo web.
 title: Fundamentos
 ---
 
-# Introducción al desarrollo web
+## Introducción al desarrollo web
 
 El desarrollo web se articula en torno a tres tecnologías fundamentales que operan de
 forma conjunta. HTML (_HyperText Markup Language_) define la estructura y disposición de
@@ -166,11 +166,8 @@ etiquetas pueden ser de apertura y cierre (como `<p>...</p>`) o autocontenidas (
     <input type="text" placeholder="Escribe aquí" />
     ```
 
-### Ejemplo práctico: sitio web multipágina
-
 El siguiente ejemplo ilustra un sitio web sencillo con navegación entre páginas, uso de
-imágenes y listas. La página principal actúa como punto de entrada y enlaza con páginas
-secundarias:
+imágenes y listas:
 
 ???+ example "Ejemplo: Página principal con enlaces y listas"
 
@@ -348,11 +345,8 @@ y pseudo-clases que permiten aplicar estilos según el estado del elemento:
     <a href="#">Pseudo-clase hover</a>
     ```
 
-### Ejemplo práctico: tabla con estilos CSS
-
 El siguiente ejemplo muestra una página con una tabla estilizada mediante una hoja de
-estilos externa. Se observa cómo la etiqueta `<link>` conecta el documento HTML con el
-archivo CSS que define las propiedades visuales de la tabla:
+estilos externa:
 
 ???+ example "Ejemplo: Página con tabla"
 
@@ -393,7 +387,7 @@ archivo CSS que define las propiedades visuales de la tabla:
     }
     ```
 
-## El modelo de caja
+### El modelo de caja
 
 <figure markdown="span">
   ![CSS Padding](https://media.geeksforgeeks.org/wp-content/uploads/20251028152632603398/css_padding.webp)
@@ -450,11 +444,8 @@ sobreescribir el diseño para pantallas mayores. Las herramientas de desarrollo 
 navegador permiten simular distintos dispositivos para verificar el comportamiento
 _responsive_.
 
-### Ejemplo práctico: navegación con Bootstrap
-
 El siguiente ejemplo muestra dos páginas con navegación entre ellas utilizando
-componentes de Bootstrap. Se observa cómo se incluyen tanto la hoja de estilos como el
-_bundle_ de JavaScript de Bootstrap a través de un CDN:
+componentes de Bootstrap:
 
 ???+ example "Ejemplo: Página principal con Bootstrap"
 

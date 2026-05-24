@@ -19,19 +19,13 @@ title: Fundamentos
 </figure>
 
 **CUDA** (_Compute Unified Device Architecture_) es una plataforma de computación
-paralela y una interfaz de programación de aplicaciones (API) desarrollada por NVIDIA.
-Permite el uso de unidades de procesamiento gráfico (GPU) para realizar cálculos
-complejos con mayor eficiencia en comparación con las unidades de procesamiento central
-(CPU). Su aplicación abarca áreas como la inteligencia artificial, las simulaciones
-científicas y la renderización de gráficos, donde la capacidad de procesamiento masivo
-en paralelo resulta determinante.
+paralela y una interfaz de programación de aplicaciones desarrollada por NVIDIA. Permite
+el uso de unidades de procesamiento gráfico (GPU) para realizar cálculos complejos con
+mayor eficiencia. Su aplicación abarca áreas como la inteligencia artificial, las
+simulaciones científicas y la renderización de gráficos, donde la capacidad de
+procesamiento masivo en paralelo resulta determinante.
 
 ## Conceptos fundamentales
-
-La plataforma de computación CUDA ofrece un amplio ecosistema de herramientas y
-bibliotecas. En las primeras secciones se aborda el uso de CUDA en combinación con el
-lenguaje de programación C, mientras que en secciones posteriores se exploran otras
-bibliotecas y aplicaciones de CUDA en Python.
 
 <figure markdown="span">
 
@@ -55,21 +49,21 @@ para el procesamiento paralelo:
 
 ### Los _warps_
 
-El concepto clave en CUDA es el **_warp_**. En el nivel de hardware, un bloque de hilos
-se divide en _warps_, que son grupos de 32 hilos que ejecutan instrucciones en paralelo.
+El concepto clave en CUDA es el _warp_. En el nivel de _hardware_, un bloque de hilos se
+divide en _warps_, que son grupos de 32 hilos que ejecutan instrucciones en paralelo.
 Estos _warps_ permanecen en el multiprocesador hasta completar su ejecución. Un nuevo
 bloque de hilos no se lanza hasta que se liberan suficientes registros y memoria
 compartida para los _warps_ del nuevo bloque. La conmutación inmediata entre los hilos
 dentro de un _warp_ contribuye a una ejecución eficiente.
 
-CUDA combina software, firmware y hardware para ofrecer una plataforma de computación
-paralela robusta:
+CUDA combina _software_, _firmware_ y _hardware_ para ofrecer una plataforma de
+computación paralela robusta:
 
-- **Software**: Proporciona extensiones SIMD que permiten la programación eficiente de
+- **_Software_**: Proporciona extensiones SIMD que permiten la programación eficiente de
   la GPU, facilitando la ejecución paralela y escalable.
-- **Firmware**: Incluye drivers para la programación GPU, que soportan tareas como
+- **_Firmware_**: Incluye _drivers_ para la programación GPU, que soportan tareas como
   renderizado, manejo de APIs y gestión de memoria.
-- **Hardware**: Habilita el paralelismo general de la GPU, optimizando la capacidad de
+- **_Hardware_**: Habilita el paralelismo general de la GPU, optimizando la capacidad de
   procesamiento paralelo.
 
 ### Computación heterogénea
@@ -80,7 +74,8 @@ se orienta al procesamiento intensivo en datos y paralelismo fino, mientras que 
 resulta más adecuada para operaciones con saltos y bifurcaciones, así como para
 paralelismo grueso. Identificar qué partes del código se benefician de la paralelización
 en la GPU y cuáles deben procesarse secuencialmente en la CPU es fundamental para
-obtener el máximo rendimiento.
+obtener el máximo rendimiento. Se observa, por tanto, que el paralelismo en el que CUDA
+destaca es el **paralelismo de datos** (_data parallelism_).
 
 <figure markdown="span">
 
@@ -88,10 +83,7 @@ obtener el máximo rendimiento.
 
 </figure>
 
-Se observa, por tanto, que el paralelismo en el que CUDA destaca es el **paralelismo de
-datos** (_data parallelism_).
-
-### Hardware
+### _Hardware_
 
 Una GPU se compone de $N$ multiprocesadores, cada uno de los cuales contiene $M$
 núcleos. La siguiente imagen muestra algunas de las familias de GPU de la serie Tesla de
@@ -119,8 +111,8 @@ una GPU.
 
 A modo de ejemplo, la generación Volta, concretamente la GPU GV100, cuenta con 84
 multiprocesadores (SMs) y 8 controladores de memoria de 512 bits. En la arquitectura
-Volta, cada multiprocesador dispone de 64 núcleos para operaciones de tipo int32, 64
-núcleos para float32, 32 núcleos para float64 y 8 unidades tensoriales.
+Volta, cada multiprocesador dispone de 64 núcleos para operaciones de tipo _int32_, 64
+núcleos para _float32_, 32 núcleos para _float64_ y 8 unidades tensoriales.
 
 <figure markdown="span">
 
@@ -139,11 +131,13 @@ crear diseños más complejos al replicarlo.
 
 ### Núcleos tensoriales
 
-En la última década, los núcleos tensoriales han adquirido un protagonismo notable.
-Estos componentes están diseñados para realizar operaciones matriciales a alta
-velocidad, lo que resulta crucial en el entrenamiento de modelos de inteligencia
-artificial y en procesos que implican operaciones matriciales extensivas. El siguiente
-diagrama ilustra el proceso de operación de cada núcleo tensorial por ciclo de reloj.
+En la última década, los núcleos tensoriales han adquirido un protagonismo notable. Son
+la principal unidad de cómputo utilizada por bibliotecas de aprendizaje profundo (_deep
+learning_) como PyTorch y TensorFlow. Estos componentes están diseñados para realizar
+operaciones matriciales a alta velocidad, lo que resulta crucial en el entrenamiento de
+modelos de inteligencia artificial y en procesos que implican operaciones matriciales
+extensivas. El siguiente diagrama ilustra el proceso de operación de cada núcleo
+tensorial por ciclo de reloj.
 
 <figure markdown="span">
 

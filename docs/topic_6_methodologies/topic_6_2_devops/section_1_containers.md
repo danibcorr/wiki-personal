@@ -6,12 +6,8 @@ title: Contenedores
 
 ## Referencias
 
-- [Aprende Docker ahora! Curso completo gratis desde cero](https://youtu.be/4Dko5W96WHg?si=pOAHHRxpPkqpQ2go)
 - [Docker Docs](https://docs.docker.com/)
 - [DevOps con Docker, Jenkins, Kubernetes, Git, GitFlow CI y CD](https://www.udemy.com/course/devops-con-dockers-kubernetes-jenkins-y-gitflow-cicd/)
-- [Minikube Docs](https://minikube.sigs.k8s.io/docs/)
-- [Kubernetes Tutorials](https://youtube.com/playlist?list=PLiMWaCMwGJXnHmccp2xlBENZ1xr4FpjXF&si=mxLcHpXxnZUhSGu3)
-- [Kubernetes: De novato a pro! (Curso completo en español)](https://youtu.be/DCoBcpOA7W4?si=KioSNJrOkZp-Dx5K)
 
 ## Docker
 
@@ -118,9 +114,9 @@ _daemon_. El tercero es el **Docker Daemon**, que gestiona imágenes, contenedor
 y volúmenes. El CLI puede comunicarse con un _daemon_ remoto a través de la REST API, lo
 que permite gestionar contenedores en servidores remotos de forma transparente.
 
-!!! info
+!!! info "¿Qué es un _daemon_?"
 
-    Un ***daemon*** es un tipo de programa que se ejecuta en segundo plano, en lugar de bajo
+    Un *daemon* es un tipo de programa que se ejecuta en segundo plano, en lugar de bajo
     el control directo de un usuario. Son procesos autónomos que inician durante el
     arranque del sistema y gestionan tareas recurrentes como servicios de red, impresión
     o sincronización.
@@ -448,7 +444,7 @@ Para montar un volumen directamente desde la línea de comandos se utiliza la op
     docker run -v ./Disco:/home/disco -it ghcr.io/astral-sh/uv:debian bash
     ```
 
-!!!warning
+!!! warning "Volúmenes en contenedores existentes"
 
     Para añadir un volumen a un contenedor existente, es necesario **recrear el contenedor**
     con el comando del volumen.
@@ -698,8 +694,8 @@ demanda).
 
 ### Comunicación entre microservicios
 
-La comunicación se realiza habitualmente mediante **APIs REST** a través de HTTP.
-Mecanismos complementarios:
+La comunicación se realiza habitualmente mediante **APIs REST** a través de HTTP. Los
+mecanismos complementarios más relevantes son:
 
 - **_Message Broker_**: Intermediario que gestiona el envío y recepción de mensajes
   entre servicios. Permite desacoplar emisor y receptor, procesar mensajes en cola de

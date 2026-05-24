@@ -4,6 +4,10 @@ description: Cloud computing y diseño de sistemas distribuidos.
 title: Modelos de servicio
 ---
 
+## Referencias
+
+- [System Design Primer](https://github.com/donnemartin/system-design-primer)
+
 ## Introducción
 
 La computación en la nube proporciona recursos bajo demanda (redes, almacenamiento,
