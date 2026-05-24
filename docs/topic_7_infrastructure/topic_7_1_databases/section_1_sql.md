@@ -61,7 +61,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   _NoSQL_.
 
 <figure markdown="span">
-  ![](https://ausum.cloud/wp-content/uploads/2024/07/unnamed-768x513.jpg)
+  ![](../../assets/img/docs/external/sql-relational-model-1.jpg)
 </figure>
 
 - **Bases de datos NoSQL**: Destacan por su escalabilidad **horizontal**, mediante la
@@ -69,7 +69,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   rendimiento.
 
 <figure markdown="span">
-  ![](https://ausum.cloud/wp-content/uploads/2024/07/unnamed-1.jpg)
+  ![](../../assets/img/docs/external/sql-relational-model-2.jpg)
 </figure>
 
 ### Operaciones CRUD

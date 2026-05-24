@@ -61,7 +61,7 @@ resolución determinista de versiones.
 ### Poetry
 
 <figure markdown="span">
-  ![Logo de Poetry](https://python-poetry.org/images/logo-origami.svg){ width="100" }
+  ![Logo de Poetry](../../assets/img/docs/logos/poetry-logo.png){ width="100" }
   <figcaption>Logo de Poetry</figcaption>
 </figure>
 

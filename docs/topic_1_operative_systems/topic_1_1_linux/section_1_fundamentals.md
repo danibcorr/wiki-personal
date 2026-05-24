@@ -184,7 +184,7 @@ todos los dispositivos de almacenamiento se incorporan a esta jerarquía mediant
 proceso de montaje.
 
 <figure markdown="span">
-  ![Jerarquía de los directorios de Linux](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.tecmint.com%2Fwp-content%2Fuploads%2F2012%2F07%2FLinux-File-System.jpg&f=1&nofb=1&ipt=b56b5b1d3ede73ff5f4eeeba1bd0c56bc7573349258800f0aca2cf57fa506845)
+  ![Jerarquía de los directorios de Linux](../../assets/img/docs/external/linux-file-system.jpg)
   <figcaption>Jerarquía de los directorios de Linux</figcaption>
 </figure>
 

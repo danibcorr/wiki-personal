@@ -390,7 +390,7 @@ estilos externa:
 ### El modelo de caja
 
 <figure markdown="span">
-  ![CSS Padding](https://media.geeksforgeeks.org/wp-content/uploads/20251028152632603398/css_padding.webp)
+  ![CSS Padding](../../assets/img/docs/external/css-padding.png)
   <figcaption>CSS Padding</figcaption>
 </figure>
 

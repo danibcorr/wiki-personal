@@ -1,0 +1,115 @@
+% === IMÁGENES: limitar al ancho de página sin agrandar ===
+\usepackage[export]{adjustbox}
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{\oldincludegraphics[max width=\linewidth,max height=0.4\textheight,keepaspectratio,#1]{#2}}
+
+% === CÓDIGO: word-wrap, números de línea DENTRO del recuadro ===
+\usepackage{fvextra}
+\usepackage{xcolor}
+\definecolor{codebg}{HTML}{f5f5f5}
+\definecolor{codeframe}{HTML}{e0e0e0}
+\definecolor{linenumcolor}{HTML}{999999}
+
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  breaklines=true,
+  breakanywhere=true,
+  fontsize=\footnotesize,
+  numbers=left,
+  numbersep=10pt,
+  xleftmargin=15pt,
+  commandchars=\\\{\}
+}
+
+% Redefinir Shaded para un recuadro que incluya los números
+\usepackage{framed}
+\renewenvironment{Shaded}{%
+  \definecolor{shadecolor}{HTML}{f5f5f5}%
+  \setlength{\OuterFrameSep}{0pt}%
+  \begin{snugshade*}%
+}{%
+  \end{snugshade*}%
+}
+
+% Color de números de línea
+\renewcommand{\theFancyVerbLine}{\textcolor{linenumcolor}{\scriptsize\arabic{FancyVerbLine}}}
+
+% === TABLAS: ajustar al ancho de página ===
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{calc}
+\let\oldlongtable\longtable
+\renewcommand{\longtable}{\footnotesize\oldlongtable}
+\renewcommand{\arraystretch}{1.4}
+
+% === Evitar cortes en bloques de código ===
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% === BLOCKQUOTES y ADMONITIONS con colores por tipo ===
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+\definecolor{adm-note}{HTML}{1a73e8}
+\definecolor{adm-tip}{HTML}{0d904f}
+\definecolor{adm-warning}{HTML}{e65100}
+\definecolor{adm-danger}{HTML}{d32f2f}
+\definecolor{adm-info}{HTML}{0288d1}
+\definecolor{adm-example}{HTML}{7b1fa2}
+
+% Estilo por defecto (se redefine antes de cada admonition)
+\global\mdfdefinestyle{admonitionstyle}{
+  linewidth=2pt,
+  linecolor=adm-note,
+  backgroundcolor=adm-note!5,
+  leftmargin=0pt, rightmargin=0pt,
+  innerleftmargin=10pt, innerrightmargin=10pt,
+  innertopmargin=8pt, innerbottommargin=8pt,
+  skipabove=10pt, skipbelow=10pt,
+  topline=false, rightline=false, bottomline=false,
+  nobreak=true
+}
+\renewenvironment{quote}{\begin{mdframed}[style=admonitionstyle]}{\end{mdframed}}
+
+% === TÍTULOS: numerados y con más peso visual ===
+\usepackage{titlesec}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-30pt}{30pt}
+
+\titleformat{\section}
+  {\normalfont\LARGE\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{20pt}{10pt}
+
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{15pt}{8pt}
+
+\titleformat{\subsubsection}
+  {\normalfont\large\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
+
+\titleformat{\paragraph}[hang]
+  {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{8pt}{4pt}
+
+\titleformat{\subparagraph}[hang]
+  {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{0pt}{6pt}{3pt}
+
+% === PÁRRAFOS ===
+\usepackage{parskip}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+% === LINKS ===
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black}
+
+% === CENTRAR figcaptions ===
+\usepackage{caption}
+\captionsetup{justification=centering}
