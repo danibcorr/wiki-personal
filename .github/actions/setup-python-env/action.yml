@@ -4,7 +4,8 @@ description: Setup Python, uv, and dependencies for the project
 inputs:
   src-python-version:
     description: "Python version to set up for the project"
-    required: true
+    required: false
+    default: "3.12"
 
   uv-group:
     description: "Dependency group to install"
