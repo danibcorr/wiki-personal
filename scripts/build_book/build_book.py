@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Genera un libro PDF y EPUB a partir de la documentación de la wiki.
+"""Build PDF and EPUB books from MkDocs wiki documentation.
 
-Preprocesa la sintaxis Zensical/MkDocs (admonitions, code blocks con atributos,
-figuras HTML, imágenes con atributos, diagramas mermaid) y ensambla el contenido
-en un único documento que pandoc + xelatex convierte a PDF/EPUB.
+Preprocesses MkDocs-flavored markdown (admonitions, code blocks, mermaid diagrams,
+images) and assembles chapters into a single document that pandoc + xelatex converts
+to PDF/EPUB.
 
-Uso:
+Usage:
     python build_book.py            # Genera el libro completo
     python build_book.py --preview  # Genera solo 2 secciones para iterar rápido
 """
 
 from __future__ import annotations
 
+import argparse
 import base64
+import logging
 import re
 import shutil
 import subprocess
@@ -24,7 +26,18 @@ from pathlib import Path
 from typing import TypeAlias
 
 # ---------------------------------------------------------------------------
-# Tipos
+# Logging
+# ---------------------------------------------------------------------------
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(message)s",
+    stream=sys.stderr,
+)
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Type aliases
 # ---------------------------------------------------------------------------
 
 Section: TypeAlias = tuple[str, list[str]]
@@ -32,7 +45,7 @@ Chapter: TypeAlias = tuple[str, list[Section]]
 BookStructure: TypeAlias = list[Chapter]
 
 # ---------------------------------------------------------------------------
-# Configuración
+# Constants
 # ---------------------------------------------------------------------------
 
 PROJECT_NAME = "wiki-personal"
@@ -41,6 +54,33 @@ DOCS_DIR = PROJECT_ROOT / "docs"
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = SCRIPT_DIR / "output"
 MERMAID_CACHE = OUTPUT_DIR / ".mermaid"
+
+KROKI_BASE_URL = "https://kroki.io/mermaid"
+HTTP_TIMEOUT_SECONDS = 15
+MERMAID_PNG_SCALE = 2.0
+HTTP_USER_AGENT = "Mozilla/5.0"
+
+PANDOC_METADATA: dict[str, str] = {
+    "title": "La Wiki de un Ingeniero",
+    "author": "Daniel Bazo Correa",
+    "date": "2026",
+    "lang": "es",
+}
+
+PDF_ENGINE = "xelatex"
+PDF_VARIABLES: dict[str, str] = {
+    "documentclass": "report",
+    "geometry:margin": "2.5cm",
+    "fontsize": "11pt",
+    "mainfont": "Latin Modern Roman",
+    "sansfont": "Latin Modern Sans",
+    "monofont": "Latin Modern Mono",
+    "monofontoptions": "Scale=0.85",
+}
+
+# ---------------------------------------------------------------------------
+# Book structure
+# ---------------------------------------------------------------------------
 
 BOOK_STRUCTURE: BookStructure = [
     ("Sistemas operativos", [
@@ -210,26 +250,58 @@ ADMONITION_COLORS: dict[str, str] = {
     "quote": "adm-note",
 }
 
+# Regex patterns compiled once for reuse
+_ADMONITION_RE = re.compile(
+    r"^( *)(!!!|(?:\?\?\?\+?))\s*(\w+)\s*(?:\"([^\"]*)\")?", re.MULTILINE
+)
+_BLOCKQUOTE_ADMONITION_RE = re.compile(
+    r"^(>+ *)(!!!|\?\?\?\+?)\s*(\w+)\s*(?:\"([^\"]*)\")?", re.MULTILINE
+)
+_CODE_BLOCK_ATTRS_RE = re.compile(
+    r"```(\w+)\s+(?:linenums=\"?\d+\"?\s*(?:hl_lines=\"[^\"]*\")?)\s*\n"
+)
+_IMAGE_WITH_ATTRS_RE = re.compile(r"!\[([^\]]*)\]\(([^)]+)\)\{[^}]*\}")
+_IMAGE_RELATIVE_RE = re.compile(r"!\[([^\]]*)\]\((\.\.?/[^)]+)\)")
+_HEADING_NEEDS_BLANK_LINE_RE = re.compile(r"([^\n])\n(#{1,6} )")
+_HEADING_SHIFT_RE = re.compile(r"^(#{1,5}) ", re.MULTILINE)
+_FRONTMATTER_TITLE_RE = re.compile(r"^title:\s*(.+)$", re.MULTILINE)
+_MERMAID_BLOCK_RE = re.compile(r"```mermaid\n(.*?)```", re.DOTALL)
+
+
 # ---------------------------------------------------------------------------
-# Preprocesado de markdown
+# Markdown preprocessing
 # ---------------------------------------------------------------------------
 
 
-def strip_frontmatter(content: str) -> str:
-    """Elimina el bloque YAML frontmatter (---...---)."""
+def _strip_frontmatter(content: str) -> str:
+    """Remove YAML frontmatter block (---...---) from the beginning of content."""
     if content.startswith("---"):
         end = content.find("---", 3)
         if end != -1:
-            return content[end + 3 :].lstrip("\n")
+            return content[end + 3:].lstrip("\n")
     return content
 
 
-def convert_admonitions(content: str) -> str:
-    """Convierte admonitions MkDocs a blockquotes con estilo LaTeX por color.
+def _build_admonition_style_latex(color: str) -> str:
+    """Generate the LaTeX raw inline that sets the admonition border style."""
+    return (
+        f"`\\global\\mdfdefinestyle{{admonitionstyle}}"
+        f"{{linewidth=2pt,linecolor={color},backgroundcolor={color}!5,"
+        f"leftmargin=0pt,rightmargin=0pt,"
+        f"innerleftmargin=10pt,innerrightmargin=10pt,"
+        f"innertopmargin=8pt,innerbottommargin=8pt,"
+        f"skipabove=10pt,skipbelow=10pt,"
+        f"topline=false,rightline=false,bottomline=false,"
+        f"nobreak=true}}`{{=latex}}"
+    )
 
-    Soporta ``!!! type "title"``, ``!!!type "title"`` y ``???+ type "title"``.
-    Inyecta un comando LaTeX raw antes de cada blockquote para cambiar el color
-    del borde según el tipo de admonition.
+
+def _convert_admonitions_single_pass(content: str) -> str:
+    """Convert MkDocs admonitions to LaTeX-styled blockquotes.
+
+    Handles ``!!! type "title"``, ``!!!type "title"``, and ``???+ type "title"``
+    syntax. Injects a raw LaTeX command before each blockquote to set the border
+    color based on admonition type.
     """
     lines = content.split("\n")
     result: list[str] = []
@@ -247,19 +319,8 @@ def convert_admonitions(content: str) -> str:
             content_indent = indent + "    "
             color = ADMONITION_COLORS.get(adm_type, "adm-note")
 
-            # Inyectar estilo LaTeX para este admonition
-            style_def = (
-                f"`\\global\\mdfdefinestyle{{admonitionstyle}}"
-                f"{{linewidth=2pt,linecolor={color},backgroundcolor={color}!5,"
-                f"leftmargin=0pt,rightmargin=0pt,"
-                f"innerleftmargin=10pt,innerrightmargin=10pt,"
-                f"innertopmargin=8pt,innerbottommargin=8pt,"
-                f"skipabove=10pt,skipbelow=10pt,"
-                f"topline=false,rightline=false,bottomline=false,"
-                f"nobreak=true}}`{{=latex}}"
-            )
             result.append("")
-            result.append(style_def)
+            result.append(_build_admonition_style_latex(color))
             result.append("")
             result.append(f"{indent}> **{label}**")
             result.append(f"{indent}>")
@@ -281,8 +342,20 @@ def convert_admonitions(content: str) -> str:
     return "\n".join(result)
 
 
-def convert_blockquote_admonitions(content: str) -> str:
-    """Convierte admonitions residuales dentro de blockquotes (anidados)."""
+def _convert_admonitions(content: str) -> str:
+    """Convert admonitions with two passes to handle nested admonitions.
+
+    The first pass converts top-level admonitions. The second pass catches any
+    admonitions that were nested inside the content of a top-level admonition
+    (now exposed after the first pass flattened the outer one).
+    """
+    content = _convert_admonitions_single_pass(content)
+    content = _convert_admonitions_single_pass(content)
+    return content
+
+
+def _convert_blockquote_admonitions(content: str) -> str:
+    """Convert residual admonitions nested inside blockquotes."""
     lines = content.split("\n")
     result: list[str] = []
     i = 0
@@ -319,49 +392,80 @@ def convert_blockquote_admonitions(content: str) -> str:
     return "\n".join(result)
 
 
-def fix_code_blocks(content: str) -> str:
-    """Elimina atributos de code blocks (linenums, hl_lines)."""
-    return re.sub(
-        r"```(\w+)\s+(?:linenums=\"?\d+\"?\s*(?:hl_lines=\"[^\"]*\")?)\s*\n",
-        r"```\1\n",
+def _fix_code_blocks(content: str) -> str:
+    """Remove MkDocs code block attributes (linenums, hl_lines)."""
+    return _CODE_BLOCK_ATTRS_RE.sub(r"```\1\n", content)
+
+
+def _resolve_image_path(alt: str, src: str, md_file: Path) -> str:
+    """Resolve a relative image path to its absolute filesystem path."""
+    if not src.startswith(("http://", "https://")):
+        resolved = (md_file.parent / src).resolve()
+        if resolved.exists():
+            src = str(resolved)
+    return f"![{alt}]({src})"
+
+
+def _fix_images(content: str, md_file: Path) -> str:
+    """Resolve relative image paths and strip ``{ width=... }`` attributes."""
+    content = _IMAGE_WITH_ATTRS_RE.sub(
+        lambda m: _resolve_image_path(m.group(1), m.group(2), md_file),
         content,
     )
-
-
-def fix_images(content: str, md_file: Path) -> str:
-    """Resuelve rutas relativas de imágenes y elimina atributos ``{ width=... }``."""
-
-    def resolve_local(alt: str, src: str) -> str:
-        if not src.startswith(("http://", "https://")):
-            resolved = (md_file.parent / src).resolve()
-            if resolved.exists():
-                src = str(resolved)
-        return f"![{alt}]({src})"
-
-    content = re.sub(
-        r"!\[([^\]]*)\]\(([^)]+)\)\{[^}]*\}",
-        lambda m: resolve_local(m.group(1), m.group(2)),
-        content,
-    )
-    content = re.sub(
-        r"!\[([^\]]*)\]\((\.\.?/[^)]+)\)",
-        lambda m: resolve_local(m.group(1), m.group(2)),
+    content = _IMAGE_RELATIVE_RE.sub(
+        lambda m: _resolve_image_path(m.group(1), m.group(2), md_file),
         content,
     )
     return content
 
 
-def fix_figures(content: str) -> str:
-    """Elimina tags ``<figure>`` y ``<figcaption>`` (pandoc usa el alt como caption)."""
+def _fix_figures(content: str) -> str:
+    """Remove ``<figure>`` and ``<figcaption>`` HTML tags (pandoc uses alt as caption)."""
     content = re.sub(r"<figure[^>]*>\s*", "", content)
     content = re.sub(r"\s*</figure>", "", content)
     content = re.sub(r"\s*<figcaption>.*?</figcaption>", "", content)
     return content
 
 
-def render_mermaid_blocks(content: str) -> str:
-    """Renderiza bloques mermaid a PNG usando kroki.io (con caché local)."""
-    blocks = list(re.finditer(r"```mermaid\n(.*?)```", content, re.DOTALL))
+def _fetch_url(url: str, timeout: int = HTTP_TIMEOUT_SECONDS) -> bytes:
+    """Fetch content from a URL with a standard User-Agent header."""
+    req = urllib.request.Request(url, headers={"User-Agent": HTTP_USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read()
+
+
+def _render_mermaid_to_png(mmd_code: str, png_file: Path) -> bool:
+    """Render a mermaid diagram to PNG via kroki.io. Returns True on success."""
+    themed_code = mmd_code
+    if not themed_code.startswith("%%{"):
+        themed_code = "%%{init: {'theme': 'default'}}%%\n" + themed_code
+
+    compressed = zlib.compress(themed_code.encode(), 9)
+    encoded = base64.urlsafe_b64encode(compressed).decode()
+
+    try:
+        svg_data = _fetch_url(f"{KROKI_BASE_URL}/svg/{encoded}")
+        import cairosvg
+        cairosvg.svg2png(
+            bytestring=svg_data, write_to=str(png_file), scale=MERMAID_PNG_SCALE
+        )
+        return True
+    except ImportError:
+        try:
+            png_data = _fetch_url(f"{KROKI_BASE_URL}/png/{encoded}")
+            png_file.write_bytes(png_data)
+            return True
+        except Exception as exc:
+            logger.debug("Mermaid PNG fallback failed: %s", exc)
+            return False
+    except Exception as exc:
+        logger.debug("Mermaid SVG render failed: %s", exc)
+        return False
+
+
+def _render_mermaid_blocks(content: str) -> str:
+    """Replace mermaid code blocks with rendered PNG images (cached locally)."""
+    blocks = list(_MERMAID_BLOCK_RE.finditer(content))
     if not blocks:
         return content
 
@@ -372,81 +476,84 @@ def render_mermaid_blocks(content: str) -> str:
         png_file = MERMAID_CACHE / f"diagram_{i}.png"
 
         if not png_file.exists():
-            themed_code = mmd_code
-            if not themed_code.startswith("%%{"):
-                themed_code = "%%{init: {'theme': 'default'}}%%\n" + themed_code
-
-            compressed = zlib.compress(themed_code.encode(), 9)
-            encoded = base64.urlsafe_b64encode(compressed).decode()
-            svg_url = f"https://kroki.io/mermaid/svg/{encoded}"
-            req = urllib.request.Request(svg_url, headers={"User-Agent": "Mozilla/5.0"})
-
-            try:
-                with urllib.request.urlopen(req, timeout=15) as resp:
-                    svg_data = resp.read()
-                import cairosvg
-
-                cairosvg.svg2png(
-                    bytestring=svg_data, write_to=str(png_file), scale=2.0
-                )
-            except ImportError:
-                png_url = f"https://kroki.io/mermaid/png/{encoded}"
-                req = urllib.request.Request(
-                    png_url, headers={"User-Agent": "Mozilla/5.0"}
-                )
-                try:
-                    with urllib.request.urlopen(req, timeout=15) as resp:
-                        png_file.write_bytes(resp.read())
-                except Exception:
-                    content = (
-                        content[: match.start()]
-                        + f"```\n{mmd_code}\n```"
-                        + content[match.end() :]
-                    )
-                    continue
-            except Exception:
+            if not _render_mermaid_to_png(mmd_code, png_file):
                 content = (
-                    content[: match.start()]
+                    content[:match.start()]
                     + f"```\n{mmd_code}\n```"
-                    + content[match.end() :]
+                    + content[match.end():]
                 )
                 continue
 
         content = (
-            content[: match.start()]
+            content[:match.start()]
             + f"![Diagrama]({png_file})"
-            + content[match.end() :]
+            + content[match.end():]
         )
 
     return content
 
 
+def _ensure_blank_line_before_headings(content: str) -> str:
+    """Ensure there is a blank line before markdown headings."""
+    return _HEADING_NEEDS_BLANK_LINE_RE.sub(r"\1\n\n\2", content)
+
+
 # ---------------------------------------------------------------------------
-# Ensamblado del libro
+# File preprocessing pipeline
 # ---------------------------------------------------------------------------
 
 
 def preprocess_file(md_file: Path) -> str:
-    """Aplica todas las transformaciones de preprocesado a un archivo markdown."""
+    """Apply all preprocessing transformations to a markdown file.
+
+    Pipeline order:
+        1. Strip YAML frontmatter
+        2. Convert admonitions (two passes for nested)
+        3. Convert blockquote-nested admonitions
+        4. Remove code block attributes
+        5. Render mermaid diagrams to PNG
+        6. Resolve image paths
+        7. Remove figure HTML tags
+        8. Ensure blank lines before headings
+    """
     content = md_file.read_text(encoding="utf-8")
-    content = strip_frontmatter(content)
-    content = convert_admonitions(content)
-    content = convert_admonitions(content)  # Segunda pasada para anidados
-    content = convert_blockquote_admonitions(content)
-    content = fix_code_blocks(content)
-    content = render_mermaid_blocks(content)
-    content = fix_images(content, md_file)
-    content = fix_figures(content)
-    # Asegurar línea vacía antes de headings
-    content = re.sub(r"([^\n])\n(#{1,6} )", r"\1\n\n\2", content)
+    content = _strip_frontmatter(content)
+    content = _convert_admonitions(content)
+    content = _convert_blockquote_admonitions(content)
+    content = _fix_code_blocks(content)
+    content = _render_mermaid_blocks(content)
+    content = _fix_images(content, md_file)
+    content = _fix_figures(content)
+    content = _ensure_blank_line_before_headings(content)
     return content
 
 
-def build_book_markdown(structure: BookStructure | None = None) -> str:
-    """Ensambla el markdown completo del libro con la estructura de capítulos."""
-    if structure is None:
-        structure = BOOK_STRUCTURE
+# ---------------------------------------------------------------------------
+# Book assembly
+# ---------------------------------------------------------------------------
 
+
+def _extract_frontmatter_title(raw_content: str) -> str | None:
+    """Extract the title field from YAML frontmatter, if present."""
+    match = _FRONTMATTER_TITLE_RE.search(raw_content)
+    return match.group(1).strip() if match else None
+
+
+def _shift_headings(content: str, levels: int) -> str:
+    """Shift all markdown headings down by the specified number of levels."""
+    return _HEADING_SHIFT_RE.sub(
+        lambda m: "#" * (len(m.group(1)) + levels) + " ",
+        content,
+    )
+
+
+def build_book_markdown(structure: BookStructure) -> str:
+    """Assemble the complete book markdown from the chapter/section structure.
+
+    Each chapter becomes an H1, each section an H2, and document headings are
+    shifted accordingly. If a section has multiple files and the document has a
+    title distinct from the section name, it is inserted as an H3.
+    """
     parts: list[str] = []
 
     for chapter_name, sections in structure:
@@ -458,34 +565,24 @@ def build_book_markdown(structure: BookStructure | None = None) -> str:
             for file_path in files:
                 full_path = DOCS_DIR / file_path
                 if not full_path.exists():
-                    print(f"⚠️  No encontrado: {full_path}", file=sys.stderr)
+                    logger.warning("⚠️  No encontrado: %s", full_path)
                     continue
 
-                # Extraer título del frontmatter antes de preprocesar
                 raw_content = full_path.read_text(encoding="utf-8")
-                title_match = re.search(
-                    r"^title:\s*(.+)$", raw_content, re.MULTILINE
-                )
-                doc_title = title_match.group(1).strip() if title_match else None
+                doc_title = _extract_frontmatter_title(raw_content)
 
                 content = preprocess_file(full_path)
 
-                # Insertar título del documento como ### si hay más de un archivo
-                # en la sección y el título no coincide con el nombre de sección
+                # Insert document title as H3 when section has multiple files
+                # and the title differs from the section name
                 insert_title = (
-                    doc_title
+                    doc_title is not None
                     and len(files) > 1
                     and doc_title.lower() != section_name.lower()
                 )
 
-                # Bajar headings: 2 niveles si se inserta título, 1 si no
                 shift = 2 if insert_title else 1
-                content = re.sub(
-                    r"^(#{1,5}) ",
-                    lambda m: "#" * (len(m.group(1)) + shift) + " ",
-                    content,
-                    flags=re.MULTILINE,
-                )
+                content = _shift_headings(content, shift)
 
                 if insert_title:
                     parts.append(f"### {doc_title}\n")
@@ -497,93 +594,109 @@ def build_book_markdown(structure: BookStructure | None = None) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Generación con pandoc
+# Pandoc generation
 # ---------------------------------------------------------------------------
 
 
-def check_dependencies() -> None:
-    """Verifica que pandoc y xelatex están disponibles."""
-    missing = [cmd for cmd in ("pandoc", "xelatex") if not shutil.which(cmd)]
+def _check_dependencies() -> None:
+    """Verify that pandoc and xelatex are available on PATH."""
+    required_commands = ("pandoc", "xelatex")
+    missing = [cmd for cmd in required_commands if not shutil.which(cmd)]
     if missing:
-        print(f"❌ Falta: {', '.join(missing)}", file=sys.stderr)
-        print(
-            "   sudo apt install pandoc texlive-xetex texlive-lang-spanish",
-            file=sys.stderr,
-        )
+        logger.error("❌ Falta: %s", ", ".join(missing))
+        logger.error("   sudo apt install pandoc texlive-xetex texlive-lang-spanish")
         sys.exit(1)
 
 
-def run_pandoc(input_path: str, output_path: str, fmt: str) -> None:
-    """Ejecuta pandoc para generar el archivo de salida."""
+def _build_pandoc_command(
+    input_path: Path, output_path: Path, fmt: str
+) -> list[str]:
+    """Construct the pandoc command with all necessary arguments."""
     cmd = [
         "pandoc",
-        input_path,
-        "-o",
-        output_path,
+        str(input_path),
+        "-o", str(output_path),
         "--toc",
-        "--toc-depth=4",
+        "--toc-depth=3",
         "--highlight-style=tango",
         "--columns=50",
-        "-V", "title=La Wiki de un Ingeniero",
-        "-V", "author=Daniel Bazo Correa",
-        "-V", "date=2026",
-        "-V", "lang=es",
     ]
 
-    if fmt == "pdf":
-        cmd += [
-            "--pdf-engine=xelatex",
-            "--number-sections",
-            "-V", "documentclass=report",
-            "-V", "geometry:margin=2.5cm",
-            "-V", "fontsize=11pt",
-            "-V", "mainfont=Latin Modern Roman",
-            "-V", "sansfont=Latin Modern Sans",
-            "-V", "monofont=Latin Modern Mono",
-            "-V", "monofontoptions=Scale=0.85",
-            "-H", str(SCRIPT_DIR / "preamble.tex"),
-        ]
+    for key, value in PANDOC_METADATA.items():
+        cmd += ["-V", f"{key}={value}"]
 
+    if fmt == "pdf":
+        cmd += ["--pdf-engine", PDF_ENGINE, "--number-sections"]
+        for key, value in PDF_VARIABLES.items():
+            cmd += ["-V", f"{key}={value}"]
+        cmd += ["-H", str(SCRIPT_DIR / "preamble.tex")]
+
+    return cmd
+
+
+def _run_pandoc(input_path: Path, output_path: Path, fmt: str) -> None:
+    """Execute pandoc to generate the output file.
+
+    Raises:
+        SystemExit: If pandoc returns a non-zero exit code.
+    """
+    cmd = _build_pandoc_command(input_path, output_path, fmt)
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        print(f"❌ Error generando {fmt}:\n{result.stderr}", file=sys.stderr)
+        logger.error("❌ Error generando %s:\n%s", fmt, result.stderr)
         sys.exit(1)
 
 
 # ---------------------------------------------------------------------------
-# Punto de entrada
+# CLI and entry point
 # ---------------------------------------------------------------------------
+
+
+def _parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Genera un libro PDF y EPUB a partir de la wiki.",
+    )
+    parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="Genera solo 2 secciones para iterar rápido",
+    )
+    return parser.parse_args()
 
 
 def main() -> None:
-    """Punto de entrada principal del script."""
-    check_dependencies()
+    """Entry point: assemble markdown, generate PDF and EPUB."""
+    args = _parse_args()
+    _check_dependencies()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    structure = PREVIEW_STRUCTURE if "--preview" in sys.argv else BOOK_STRUCTURE
+    structure = PREVIEW_STRUCTURE if args.preview else BOOK_STRUCTURE
 
-    print("📖 Ensamblando el libro...")
+    logger.info("📖 Ensamblando el libro...")
     book_content = build_book_markdown(structure)
 
     with tempfile.NamedTemporaryFile(
         mode="w", suffix=".md", delete=False, encoding="utf-8"
     ) as f:
         f.write(book_content)
-        tmp_path = f.name
+        tmp_path = Path(f.name)
 
-    pdf_output = str(OUTPUT_DIR / f"{PROJECT_NAME}.pdf")
-    epub_output = str(OUTPUT_DIR / f"{PROJECT_NAME}.epub")
+    try:
+        pdf_output = OUTPUT_DIR / f"{PROJECT_NAME}.pdf"
+        epub_output = OUTPUT_DIR / f"{PROJECT_NAME}.epub"
 
-    print("🔧 Generando PDF...")
-    run_pandoc(tmp_path, pdf_output, "pdf")
-    print(f"✅ PDF: {pdf_output}")
+        logger.info("🔧 Generando PDF...")
+        _run_pandoc(tmp_path, pdf_output, "pdf")
+        logger.info("✅ PDF: %s", pdf_output)
 
-    print("🔧 Generando EPUB...")
-    run_pandoc(tmp_path, epub_output, "epub")
-    print(f"✅ EPUB: {epub_output}")
+        logger.info("🔧 Generando EPUB...")
+        _run_pandoc(tmp_path, epub_output, "epub")
+        logger.info("✅ EPUB: %s", epub_output)
+    finally:
+        tmp_path.unlink(missing_ok=True)
 
-    Path(tmp_path).unlink()
-    print("🎉 Libro generado correctamente.")
+    logger.info("🎉 Libro generado correctamente.")
 
 
 if __name__ == "__main__":

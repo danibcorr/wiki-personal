@@ -1,7 +1,11 @@
-% === IMÁGENES: limitar al ancho de página sin agrandar ===
+% === IMÁGENES: limitar al ancho de página sin agrandar, centradas ===
 \usepackage[export]{adjustbox}
+\setcounter{secnumdepth}{3}
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][]{\oldincludegraphics[max width=\linewidth,max height=0.4\textheight,keepaspectratio,#1]{#2}}
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
 
 % === CÓDIGO: word-wrap, números de línea DENTRO del recuadro ===
 \usepackage{fvextra}
