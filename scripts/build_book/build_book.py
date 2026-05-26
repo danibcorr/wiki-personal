@@ -43,109 +43,140 @@ OUTPUT_DIR = SCRIPT_DIR / "output"
 MERMAID_CACHE = OUTPUT_DIR / ".mermaid"
 
 BOOK_STRUCTURE: BookStructure = [
-    ("Sistemas Operativos", [
+    ("Sistemas operativos", [
         ("Linux", [
-            "topic_1_operative_systems/topic_1_1_linux/section_1_fundamentals.md",
-            "topic_1_operative_systems/topic_1_1_linux/section_2_administration.md",
-            "topic_1_operative_systems/topic_1_1_linux/section_3_networking.md",
+            "01_operative_systems/01_linux/section_1_fundamentals.md",
+            "01_operative_systems/01_linux/section_2_administration.md",
+            "01_operative_systems/01_linux/section_3_networking.md",
         ]),
     ]),
-    ("Herramientas", [
+    ("Herramientas de desarrollo", [
         ("Git", [
-            "topic_2_tools/topic_2_1_git/section_1_fundamentals.md",
-            "topic_2_tools/topic_2_1_git/section_2_workflows.md",
-            "topic_2_tools/topic_2_1_git/section_3_practical_cases.md",
+            "02_dev_tools/01_git/section_1_fundamentals.md",
+            "02_dev_tools/01_git/section_2_workflows.md",
+            "02_dev_tools/01_git/section_3_practical_cases.md",
         ]),
         ("Scripting", [
-            "topic_2_tools/topic_2_2_scripting/section_1_bash.md",
-            "topic_2_tools/topic_2_2_scripting/section_2_makefile.md",
+            "02_dev_tools/02_scripting/section_1_bash.md",
+            "02_dev_tools/02_scripting/section_2_makefile.md",
         ]),
     ]),
-    ("Programación", [
+    ("Lenguajes de programación", [
         ("Python", [
-            "topic_3_programming/topic_3_1_python/section_1_environments.md",
-            "topic_3_programming/topic_3_1_python/section_2_fundamentals.md",
-            "topic_3_programming/topic_3_1_python/section_3_libraries.md",
+            "03_programming/01_python/section_1_environments.md",
+            "03_programming/01_python/section_2_fundamentals.md",
+            "03_programming/01_python/section_3_libraries.md",
         ]),
         ("Rust", [
-            "topic_3_programming/topic_3_2_rust/section_1_fundamentals.md",
+            "03_programming/02_rust/section_1_fundamentals.md",
         ]),
         ("CUDA", [
-            "topic_3_programming/topic_3_3_cuda/section_1_fundamentals.md",
-            "topic_3_programming/topic_3_3_cuda/section_2_cuda_c.md",
-            "topic_3_programming/topic_3_3_cuda/section_3_cuda_python.md",
+            "03_programming/03_cuda/section_1_fundamentals.md",
+            "03_programming/03_cuda/section_2_cuda_c.md",
+            "03_programming/03_cuda/section_3_cuda_python.md",
         ]),
         ("Desarrollo web", [
-            "topic_3_programming/topic_3_4_front_end/section_1_fundamentals.md",
+            "03_programming/04_web/section_1_fundamentals.md",
         ]),
     ]),
-    ("Inteligencia Artificial", [
-        ("Machine Learning", [
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_1_fundamentals.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_2_statistics.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_3_supervised_models.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_4_clustering.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_5_evaluation.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_6_dimensionality_reduction.md",
-            "topic_5_artificial_intelligence/topic_5_1_machine_learning/section_7_advanced.md",
+    ("Ingeniería de software", [
+        ("Estructuras de datos y algoritmos", [
+            "04_software_engineering/section_1_data_structure.md",
         ]),
-        ("Deep Learning", [
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_1_fundamentals.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_2_math.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_3_linear_models.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_4_neural_networks.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_5_cnn.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_6_sequential_models.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_7_other_paradigms.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_8_generative_ai.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_9_graph_neural_networks.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_10_reinforcement_learning.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/section_11_agents.md",
-        ]),
-        ("Librerías de Deep Learning", [
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/jax.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/pytorch.md",
-            "topic_5_artificial_intelligence/topic_5_2_deep_learning/libraries/tensorflow.md",
+        ("Diseño y código sostenible", [
+            "04_software_engineering/section_2_sustainable_code.md",
         ]),
     ]),
-    ("Metodologías", [
-        ("Ingeniería de Software", [
-            "topic_6_methodologies/topic_6_1_software/section_1_data_structure.md",
-            "topic_6_methodologies/topic_6_1_software/section_2_sustainable_code.md",
-        ]),
-        ("DevOps", [
-            "topic_6_methodologies/topic_6_2_devops/section_1_containers.md",
-            "topic_6_methodologies/topic_6_2_devops/section_2_orchestrators.md",
-            "topic_6_methodologies/topic_6_2_devops/section_3_ci_cd.md",
-        ]),
-        ("MLOps", [
-            "topic_6_methodologies/topic_6_3_mlops/section_1_fundamentals.md",
-            "topic_6_methodologies/topic_6_3_mlops/section_2_experiment_management.md",
-            "topic_6_methodologies/topic_6_3_mlops/section_3_deployment.md",
-        ]),
-    ]),
-    ("Infraestructura", [
-        ("Bases de Datos", [
-            "topic_7_infrastructure/topic_7_1_databases/section_1_sql.md",
+    ("Infraestructura y servicios", [
+        ("Bases de datos", [
+            "05_infrastructure/01_databases/section_1_sql.md",
         ]),
         ("Cloud", [
-            "topic_7_infrastructure/topic_7_2_cloud/section_1_fundamentals.md",
-            "topic_7_infrastructure/topic_7_2_cloud/section_2_aws.md",
+            "05_infrastructure/02_cloud/section_1_fundamentals.md",
+            "05_infrastructure/02_cloud/section_2_aws.md",
         ]),
     ]),
-    ("Otros", [
-        ("Guía CV", [
-            "topic_A_interviews/cv_guide.md",
+    ("DevOps", [
+        ("Contenedores", [
+            "06_devops/section_1_containers.md",
+        ]),
+        ("Orquestadores", [
+            "06_devops/section_2_orchestrators.md",
+        ]),
+        ("CI/CD", [
+            "06_devops/section_3_ci_cd.md",
+        ]),
+    ]),
+    ("Machine learning", [
+        ("Fundamentos y estadística", [
+            "07_machine_learning/section_1_fundamentals.md",
+            "07_machine_learning/section_2_statistics.md",
+        ]),
+        ("Modelos supervisados", [
+            "07_machine_learning/section_3_supervised_models.md",
+        ]),
+        ("Agrupación y evaluación", [
+            "07_machine_learning/section_4_clustering.md",
+            "07_machine_learning/section_5_evaluation.md",
+            "07_machine_learning/section_6_dimensionality_reduction.md",
+        ]),
+        ("Técnicas avanzadas", [
+            "07_machine_learning/section_7_advanced.md",
+        ]),
+    ]),
+    ("Deep learning", [
+        ("Fundamentos", [
+            "08_deep_learning/section_1_fundamentals.md",
+            "08_deep_learning/section_2_math.md",
+            "08_deep_learning/section_3_linear_models.md",
+            "08_deep_learning/section_4_neural_networks.md",
+        ]),
+        ("Arquitecturas", [
+            "08_deep_learning/section_5_cnn.md",
+            "08_deep_learning/section_6_sequential_models.md",
+            "08_deep_learning/section_7_other_paradigms.md",
+        ]),
+        ("Aplicaciones", [
+            "08_deep_learning/section_8_generative_ai.md",
+            "08_deep_learning/section_9_graph_neural_networks.md",
+            "08_deep_learning/section_10_reinforcement_learning.md",
+            "08_deep_learning/section_11_agents.md",
+        ]),
+        ("Librerías", [
+            "08_deep_learning/libraries/jax.md",
+            "08_deep_learning/libraries/pytorch.md",
+            "08_deep_learning/libraries/tensorflow.md",
+        ]),
+    ]),
+    ("MLOps", [
+        ("Fundamentos", [
+            "09_mlops/section_1_fundamentals.md",
+        ]),
+        ("Gestión de experimentos", [
+            "09_mlops/section_2_experiment_management.md",
+        ]),
+        ("Despliegue y distribución", [
+            "09_mlops/section_3_deployment.md",
+        ]),
+    ]),
+    ("Desarrollo profesional", [
+        ("Guía de empleo", [
+            "10_career/cv_guide.md",
+        ]),
+    ]),
+    ("Bibliografía", [
+        ("Referencias", [
+            "bibliography.md",
         ]),
     ]),
 ]
 
 PREVIEW_STRUCTURE: BookStructure = [
-    ("Herramientas", [
-        ("Git", ["topic_2_tools/topic_2_1_git/section_1_fundamentals.md"]),
+    ("Herramientas de desarrollo", [
+        ("Git", ["02_dev_tools/01_git/section_1_fundamentals.md"]),
     ]),
-    ("Metodologías", [
-        ("DevOps", ["topic_6_methodologies/topic_6_2_devops/section_1_containers.md"]),
+    ("DevOps", [
+        ("Contenedores", ["06_devops/section_1_containers.md"]),
     ]),
 ]
 
@@ -430,14 +461,35 @@ def build_book_markdown(structure: BookStructure | None = None) -> str:
                     print(f"⚠️  No encontrado: {full_path}", file=sys.stderr)
                     continue
 
+                # Extraer título del frontmatter antes de preprocesar
+                raw_content = full_path.read_text(encoding="utf-8")
+                title_match = re.search(
+                    r"^title:\s*(.+)$", raw_content, re.MULTILINE
+                )
+                doc_title = title_match.group(1).strip() if title_match else None
+
                 content = preprocess_file(full_path)
-                # Bajar headings 1 nivel (## -> ###) para encajar en la jerarquía
+
+                # Insertar título del documento como ### si hay más de un archivo
+                # en la sección y el título no coincide con el nombre de sección
+                insert_title = (
+                    doc_title
+                    and len(files) > 1
+                    and doc_title.lower() != section_name.lower()
+                )
+
+                # Bajar headings: 2 niveles si se inserta título, 1 si no
+                shift = 2 if insert_title else 1
                 content = re.sub(
                     r"^(#{1,5}) ",
-                    lambda m: "#" * (len(m.group(1)) + 1) + " ",
+                    lambda m: "#" * (len(m.group(1)) + shift) + " ",
                     content,
                     flags=re.MULTILINE,
                 )
+
+                if insert_title:
+                    parts.append(f"### {doc_title}\n")
+
                 parts.append(content)
                 parts.append("")
 

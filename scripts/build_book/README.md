@@ -17,8 +17,8 @@ python3 scripts/build_book/build_book.py
 
 Los archivos generados se guardan en `scripts/build_book/output/`:
 
--   `wiki-personal.pdf`
--   `wiki-personal.epub`
+- `wiki-personal.pdf`
+- `wiki-personal.epub`
 
 ## Estructura del libro
 
@@ -37,10 +37,10 @@ Cada _topic_ del proyecto se convierte en un **capítulo** y cada subtema en una
 
 El script maneja automáticamente las peculiaridades de la sintaxis Zensical/MkDocs:
 
-| Elemento                  | Transformación                                  |
-| ------------------------- | ----------------------------------------------- |
-| Admonitions (`!!!`)       | Blockquotes con etiqueta y emoji                |
-| Frontmatter YAML          | Eliminado                                       |
-| Code blocks con atributos | Limpiados (`linenums`, `hl_lines`)              |
-| Imágenes con `{ width= }` | Atributos eliminados, rutas resueltas           |
+| Elemento                   | Transformación                                 |
+| -------------------------- | ---------------------------------------------- |
+| Admonitions (`!!!`)        | Blockquotes con etiqueta y emoji               |
+| Frontmatter YAML           | Eliminado                                      |
+| Code blocks con atributos  | Limpiados (`linenums`, `hl_lines`)             |
+| Imágenes con `{ width= }`  | Atributos eliminados, rutas resueltas          |
 | `<figure markdown="span">` | Convertido a markdown estándar con `*caption*` |
