@@ -21,7 +21,7 @@ a lo largo del tiempo.
 ### Anaconda
 
 <figure markdown="span">
-  ![Logo de Anaconda](../../assets/img/docs/logos/anaconda-logo.png){ width="500" }
+  ![Logo de Anaconda](../../assets/img/docs/logos/anaconda-logo.png)
   <figcaption>Logo de Anaconda</figcaption>
 </figure>
 
@@ -57,7 +57,7 @@ resolución determinista de versiones.
 ### Poetry
 
 <figure markdown="span">
-  ![Logo de Poetry](../../assets/img/docs/logos/poetry-logo.png){ width="100" }
+  ![Logo de Poetry](../../assets/img/docs/logos/poetry-logo.png)
   <figcaption>Logo de Poetry</figcaption>
 </figure>
 

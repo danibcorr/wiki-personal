@@ -10,7 +10,7 @@ componentes, la gestión de pods, despliegues, servicios y patrones de resilienc
 ## Kubernetes
 
 <figure markdown="span">
-  ![Logo de Kubernetes](../assets/img/docs/logos/kubernetes-logo.png){ width="500" }
+  ![Logo de Kubernetes](../assets/img/docs/logos/kubernetes-logo.png)
   <figcaption>Logo de Kubernetes</figcaption>
 </figure>
 

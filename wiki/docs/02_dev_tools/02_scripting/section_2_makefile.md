@@ -10,7 +10,7 @@ sintaxis de reglas, variables, funciones avanzadas y buenas prácticas de organi
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Makefile](../../assets/img/docs/logos/makefile-logo.png){ width="300" }
+  ![Logo de Makefile](../../assets/img/docs/logos/makefile-logo.png)
   <figcaption>Logo de Makefile</figcaption>
 </figure>
 

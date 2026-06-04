@@ -10,11 +10,12 @@ runs:
     - name: Build Documentation
       run: uv run zensical build --clean
       shell: bash
+      working-directory: wiki
 
     - name: Upload Pages Artifact
       uses: actions/upload-pages-artifact@v5
       with:
-        path: site
+        path: wiki/site
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v5

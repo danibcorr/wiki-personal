@@ -5,7 +5,7 @@ title: Fundamentos
 ---
 
 <figure markdown="span">
-  ![Logo de Nvidia CUDA](../../assets/img/docs/logos/cuda-logo.png){ width="200" }
+  ![Logo de Nvidia CUDA](../../assets/img/docs/logos/cuda-logo.png)
   <figcaption>Logo de Nvidia CUDA</figcaption>
 </figure>
 

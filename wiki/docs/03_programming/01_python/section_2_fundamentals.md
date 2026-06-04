@@ -11,7 +11,7 @@ expresiones regulares.
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Python](../../assets/img/docs/logos/python-logo.png){ width="250" }
+  ![Logo de Python](../../assets/img/docs/logos/python-logo.png)
   <figcaption>Logo de Python</figcaption>
 </figure>
 

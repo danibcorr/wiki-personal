@@ -10,7 +10,7 @@ arquitectura, comandos esenciales, Docker Compose y la arquitectura de microserv
 ## Docker
 
 <figure markdown="span">
-  ![Logo de Docker](../assets/img/docs/logos/docker-logo.png){ width="500" }
+  ![Logo de Docker](../assets/img/docs/logos/docker-logo.png)
   <figcaption>Logo de Docker</figcaption>
 </figure>
 

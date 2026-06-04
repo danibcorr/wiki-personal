@@ -10,7 +10,7 @@ cubriendo su sintaxis básica, estructuras de control y técnicas de automatizac
 ## Introducción
 
 <figure markdown="span">
-  ![Logo de Bash](../../assets/img/docs/logos/bash-logo.png){ width="500" }
+  ![Logo de Bash](../../assets/img/docs/logos/bash-logo.png)
   <figcaption>Logo de Bash</figcaption>
 </figure>
 

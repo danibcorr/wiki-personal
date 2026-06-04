@@ -11,7 +11,7 @@ la navegación y manipulación del sistema de archivos.
 ## Introducción
 
 <figure markdown="span">
-  ![Mascota de Linux](../../assets/img/docs/logos/linux-logo.png){ width="300" }
+  ![Mascota de Linux](../../assets/img/docs/logos/linux-logo.png)
   <figcaption>Mascota de Linux</figcaption>
 </figure>
 

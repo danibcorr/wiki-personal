@@ -12,6 +12,7 @@ runs:
     - name: Get Package Version
       id: get_version
       shell: bash
+      working-directory: wiki
       run: |
         VERSION=$(uv version --short)
         echo "version=v$VERSION" >> $GITHUB_OUTPUT
