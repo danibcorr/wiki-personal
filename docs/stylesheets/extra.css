@@ -1,0 +1,53 @@
+:root {
+    --md-code-font: "Figtree", monospace;
+    --md-primary-fg-color: #171717;
+    --md-primary-bg-color: #ffffff;
+    --md-accent-fg-color: #af8f6f;
+    --md-default-bg-color: #f0f5ef;
+    --md-typeset-a-color: #af8f6f;
+}
+
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color: #e0e0e0;
+    --md-accent-fg-color: #8492a6;
+    --md-default-bg-color: #15191d;
+    --md-typeset-a-color: #8492a6;
+}
+
+.mermaid {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    min-width: 100%;
+}
+
+.md-typeset__table {
+    min-width: 100%;
+}
+
+.md-typeset img {
+    display: block;
+    margin: 0 auto;
+}
+
+.md-typeset table:not([class]) {
+    display: table;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+    content: url("../assets/img/white_logo.svg");
+}
+
+[data-md-color-scheme="default"] .md-header__button.md-logo img {
+    content: url("../assets/img/dark_logo.svg");
+}
+
+[data-md-color-scheme="default"] .md-typeset pre > code {
+    background-color: #f8f9fb;
+}
+
+[data-md-color-scheme="slate"] .md-typeset pre > code {
+    background-color: #30353b;
+}

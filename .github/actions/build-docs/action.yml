@@ -1,0 +1,21 @@
+name: Build and Deploy Docs
+description: Build Zensical documentation and deploy to GitHub Pages
+
+runs:
+  using: composite
+  steps:
+    - name: Configure GitHub Pages
+      uses: actions/configure-pages@v6
+
+    - name: Build Documentation
+      run: uv run zensical build --clean
+      shell: bash
+
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: site
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v5
+      id: deployment
