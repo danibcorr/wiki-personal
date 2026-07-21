@@ -11,17 +11,16 @@ title: Fundamentos
 
 **CUDA** (_Compute Unified Device Architecture_) es una plataforma de computación
 paralela y una interfaz de programación de aplicaciones desarrollada por NVIDIA. Permite
-el uso de unidades de procesamiento gráfico (GPU) para realizar cálculos complejos con
-mayor eficiencia. Su aplicación abarca áreas como la inteligencia artificial, las
-simulaciones científicas y la renderización de gráficos, donde la capacidad de
-procesamiento masivo en paralelo resulta determinante.
+el uso de unidades de procesamiento gráfico (_Graphics Processing Unit_, GPU) para
+realizar cálculos complejos con mayor eficiencia. Su aplicación abarca áreas como la
+inteligencia artificial, las simulaciones científicas y la renderización de gráficos,
+donde la capacidad de procesamiento masivo en paralelo resulta determinante.
 
 ## Arquitectura de la GPU
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-ecosystem.png)
-
+  ![Ecosistema de CUDA](../../assets/img/docs/cuda/cuda-fundamentals-ecosystem.png)
+  <figcaption>Ecosistema de la plataforma CUDA.</figcaption>
 </figure>
 
 CUDA se sustenta en tres cualidades fundamentales que destacan la capacidad de la GPU
@@ -60,18 +59,18 @@ computación paralela robusta:
 ### Modelo CPU-GPU
 
 Aunque CUDA ofrece ventajas significativas, resulta crucial equilibrar la carga de
-trabajo entre la GPU y la CPU, un enfoque conocido como computación heterogénea. La GPU
-se orienta al procesamiento intensivo en datos y paralelismo fino, mientras que la CPU
-resulta más adecuada para operaciones con saltos y bifurcaciones, así como para
+trabajo entre la GPU y la CPU, un enfoque conocido como computación heterogénea.
+
+La GPU se orienta al procesamiento intensivo en datos y paralelismo fino, mientras que
+la CPU resulta más adecuada para operaciones con saltos y bifurcaciones, así como para
 paralelismo grueso. Identificar qué partes del código se benefician de la paralelización
 en la GPU y cuáles deben procesarse secuencialmente en la CPU es fundamental para
 obtener el máximo rendimiento. Se observa, por tanto, que el paralelismo en el que CUDA
 destaca es el **paralelismo de datos** (_data parallelism_).
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-cpu-vs-gpu.jpeg)
-
+  ![Comparación entre CPU y GPU](../../assets/img/docs/cuda/cuda-fundamentals-cpu-vs-gpu.jpeg)
+  <figcaption>Comparación entre la arquitectura de una CPU y la de una GPU.</figcaption>
 </figure>
 
 ### Jerarquía de memoria
@@ -81,9 +80,8 @@ núcleos. La siguiente imagen muestra algunas de las familias de GPU de la serie
 NVIDIA.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-gpu-families.png)
-
+  ![Familias de GPU de la serie Tesla de NVIDIA](../../assets/img/docs/cuda/cuda-fundamentals-gpu-families.png)
+  <figcaption>Familias de GPU de la serie Tesla de NVIDIA.</figcaption>
 </figure>
 
 Cada multiprocesador dispone de su propio banco de registros, memoria compartida, una
@@ -95,9 +93,8 @@ multiprocesador para su ejecución. La siguiente imagen ilustra la estructura in
 una GPU.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-gpu-architecture.png)
-
+  ![Estructura interna de una GPU](../../assets/img/docs/cuda/cuda-fundamentals-gpu-architecture.png)
+  <figcaption>Estructura interna de una GPU.</figcaption>
 </figure>
 
 A modo de ejemplo, la generación Volta, concretamente la GPU GV100, cuenta con 84
@@ -106,18 +103,16 @@ Volta, cada multiprocesador dispone de 64 núcleos para operaciones de tipo _int
 núcleos para _float32_, 32 núcleos para _float64_ y 8 unidades tensoriales.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-volta-sm.png)
-
+  ![Multiprocesador de la arquitectura Volta](../../assets/img/docs/cuda/cuda-fundamentals-volta-sm.png)
+  <figcaption>Multiprocesador (SM) de la arquitectura Volta (GPU GV100).</figcaption>
 </figure>
 
 De la imagen anterior se observa que el diseño de un bloque se utiliza como base para
 crear diseños más complejos al replicarlo.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-sm-replication.png)
-
+  ![Replicación de multiprocesadores en una GPU](../../assets/img/docs/cuda/cuda-fundamentals-sm-replication.png)
+  <figcaption>Replicación de multiprocesadores a partir de un diseño de bloque base.</figcaption>
 </figure>
 
 ### Núcleos tensoriales
@@ -131,9 +126,8 @@ extensivas. El siguiente diagrama ilustra el proceso de operación de cada núcl
 tensorial por ciclo de reloj.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-tensor-core-operation.png)
-
+  ![Operación de un núcleo tensorial](../../assets/img/docs/cuda/cuda-fundamentals-tensor-core-operation.png)
+  <figcaption>Operación de un núcleo tensorial por ciclo de reloj.</figcaption>
 </figure>
 
 ### Precisión numérica
@@ -147,7 +141,6 @@ muestra el _throughput_ para diferentes precisiones de datos en arquitecturas de
 modernas.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-fundamentals-precision-throughput.png)
-
+  ![Throughput según la precisión numérica](../../assets/img/docs/cuda/cuda-fundamentals-precision-throughput.png)
+  <figcaption>_Throughput_ para diferentes precisiones numéricas en arquitecturas de GPU modernas.</figcaption>
 </figure>

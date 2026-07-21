@@ -96,7 +96,7 @@ sin optimizar para facilitar la depuración. El modo _release_ produce un binari
 optimizado destinado a producción. Además, si el código fuente no ha cambiado desde la
 última compilación, _Cargo_ no lo recompila, lo que acelera el ciclo de desarrollo.
 
-!!!tip "Flujo de trabajo recomendado"
+!!! tip "Flujo de trabajo recomendado"
 
     Durante el desarrollo, es preferible usar `cargo check` para verificar rápidamente que el código compila (ya que no genera un ejecutable) y reservar `cargo build` o `cargo run` para cuando se necesite ejecutar el programa.
 
@@ -384,7 +384,7 @@ La macro `dbg!` resulta especialmente útil durante el desarrollo, ya que imprim
 archivo, la línea y el valor de una expresión en la salida de error estándar,
 facilitando la depuración sin necesidad de configurar un depurador completo.
 
-!!!warning "_Ownership_ en `dbg!`"
+!!! warning "_Ownership_ en `dbg!`"
 
     La macro `dbg!` toma el *ownership* del valor que recibe, por lo que la variable no podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe pasar una referencia: `dbg!(&variable)`.
 
@@ -714,7 +714,7 @@ fn main() {
 }
 ```
 
-!!!warning "Reglas de _borrowing_"
+!!! warning "Reglas de _borrowing_"
 
     El compilador aplica las siguientes restricciones sobre las referencias para garantizar la seguridad de memoria. Se pueden mantener **múltiples referencias inmutables** (`&T`) de forma simultánea. Solo se permite **una referencia mutable** (`&mut T`) activa a la vez. No pueden coexistir referencias mutables e inmutables activas sobre el mismo valor. Además, **no se puede modificar la variable original** mientras exista una referencia mutable activa a ella, ya que la referencia mutable debe salir del *scope* antes de poder usar la variable original de nuevo.
 

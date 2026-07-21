@@ -222,7 +222,7 @@ opcional, una serie de opciones y argumentos que ajustan su comportamiento.
 
 ???+ example "Commit con mensaje"
 
-    ```
+    ```bash linenums="1"
     git commit -m "Esto es un commit"
     ```
 

@@ -50,12 +50,12 @@ de tabulación, no con espacios.
     	@echo "✅ Dependencies installed."
     ```
 
-    En este ejemplo, `setup` es el *target* que representa la tarea a realizar.
+    En este ejemplo, `setup` es el _target_ que representa la tarea a realizar.
     Al no tener prerrequisitos, se ejecuta siempre que se invoque. Los comandos
     precedidos por `@` se ejecutan sin mostrar la línea del comando en la salida,
     mostrando únicamente su resultado. Al ejecutar `make setup`, Make ejecuta los
     comandos de forma secuencial: sincroniza las dependencias con `uv` e instala
-    los *hooks* de *pre-commit*.
+    los _hooks_ de _pre-commit_.
 
 ???+ example "Con prerrequisitos"
 
@@ -64,8 +64,8 @@ de tabulación, no con espacios.
     	@echo "✅ Pipeline complete."
     ```
 
-    En este caso, `pipeline` depende de varios *targets* previos. Make ejecuta cada
-    prerrequisito en orden antes de ejecutar el comando propio del *target*.
+    En este caso, `pipeline` depende de varios _targets_ previos. Make ejecuta cada
+    prerrequisito en orden antes de ejecutar el comando propio del _target_.
 
 ### Comentarios
 
@@ -136,7 +136,7 @@ _targets_ y prerrequisitos sin necesidad de escribirlos explícitamente en cada 
     	zip $@ $^
     ```
 
-    En este caso, `$@` representa el *target* actual (`output.zip`) y `$^` contiene
+    En este caso, `$@` representa el _target_ actual (`output.zip`) y `$^` contiene
     todos los prerrequisitos (`processed_data/input1.csv processed_data/input2.csv`).
 
 #### Variables específicas de objetivo y patrones
@@ -174,7 +174,7 @@ archivos y gestionar dependencias de forma dinámica.
 La función `subst` reemplaza todas las ocurrencias de un texto por otro dentro de una
 cadena.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     $(subst from,to,text)
@@ -198,7 +198,7 @@ cadena.
 La función `patsubst` realiza sustituciones basadas en patrones, utilizando el comodín
 `%` para mayor flexibilidad.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     $(patsubst pattern,replacement,text)
@@ -220,7 +220,7 @@ Estas funciones permiten filtrar listas de elementos. La función `filter` conse
 únicamente las palabras que coinciden con un patrón determinado, mientras que
 `filter-out` elimina aquellas que coinciden.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     $(filter pattern...,text)
@@ -242,7 +242,7 @@ Estas funciones permiten filtrar listas de elementos. La función `filter` conse
 La función `foreach` permite iterar sobre una lista y aplicar una transformación a cada
 elemento.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     $(foreach var,list,text)
@@ -262,7 +262,7 @@ elemento.
 La función `if` permite evaluar una condición y devolver un valor u otro en función del
 resultado.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     $(if condition,then-part[,else-part])
@@ -327,9 +327,9 @@ nombre que el _target_ y garantiza que la regla se ejecute siempre que se invoqu
     	pipeline all
     ```
 
-    Todos los *targets* se declaran como objetivos ficticios, ya que representan tareas
+    Todos los _targets_ se declaran como objetivos ficticios, ya que representan tareas
     y no archivos reales. Esto resulta especialmente importante en proyectos donde los
-    nombres de los *targets* podrían coincidir con directorios existentes.
+    nombres de los _targets_ podrían coincidir con directorios existentes.
 
 #### `.DEFAULT_GOAL`
 
@@ -351,7 +351,7 @@ La directiva `.DELETE_ON_ERROR` indica que Make debe eliminar el archivo de obje
 algún comando falla durante su ejecución, evitando así la presencia de archivos
 incompletos o corruptos en el sistema.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     .DELETE_ON_ERROR:
@@ -362,7 +362,7 @@ incompletos o corruptos en el sistema.
 Los _Makefiles_ permiten el uso de estructuras condicionales para adaptar las reglas
 según diferentes entornos o configuraciones del proyecto.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     ifeq (condición)
@@ -387,7 +387,7 @@ según diferentes entornos o configuraciones del proyecto.
 Make permite definir macros que agrupan varios comandos bajo un nombre reutilizable, lo
 que mejora la legibilidad y reduce la duplicación de código en _Makefiles_ extensos.
 
-!!!note "Sintaxis"
+!!! note "Sintaxis"
 
     ```makefile linenums="1"
     define nombre_de_macro

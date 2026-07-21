@@ -78,7 +78,10 @@ pequeña sobrecarga en la compilación inicial.
 
 El proceso interno de compilación se puede visualizar de la siguiente manera:
 
-![image.png](../../assets/img/docs/cuda/cuda-python-numba-compilation.png)
+<figure markdown="span">
+  ![Proceso de compilación de Numba](../../assets/img/docs/cuda/cuda-python-numba-compilation.png)
+  <figcaption>Proceso interno de compilación de una función con Numba.</figcaption>
+</figure>
 
 Para inspeccionar el resultado de la inferencia de tipos, se puede utilizar el método
 `.inspect_types()`, que imprime el código fuente anotado con los tipos inferidos:
@@ -297,11 +300,20 @@ hebras se dividen en _warps_ de 32 hebras, y el subsistema de memoria intenta mi
 el número de líneas de caché requeridas. Cuanto más contiguos sean los datos asignados a
 cada hebra del _warp_, mayor es la eficiencia.
 
-![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-1.png)
+<figure markdown="span">
+  ![Acceso coalescente a memoria global](../../assets/img/docs/cuda/cuda-python-numba-coalescing-1.png)
+  <figcaption>Patrón de acceso coalescente a memoria global (I).</figcaption>
+</figure>
 
-![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-2.png)
+<figure markdown="span">
+  ![Acceso coalescente a memoria global](../../assets/img/docs/cuda/cuda-python-numba-coalescing-2.png)
+  <figcaption>Patrón de acceso coalescente a memoria global (II).</figcaption>
+</figure>
 
-![image.png](../../assets/img/docs/cuda/cuda-python-numba-coalescing-3.png)
+<figure markdown="span">
+  ![Acceso coalescente a memoria global](../../assets/img/docs/cuda/cuda-python-numba-coalescing-3.png)
+  <figcaption>Patrón de acceso coalescente a memoria global (III).</figcaption>
+</figure>
 
 ### Trabajo con matrices en 2D
 

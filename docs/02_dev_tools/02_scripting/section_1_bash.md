@@ -27,9 +27,9 @@ directiva indica al sistema operativo qué intérprete debe utilizar para ejecut
 comandos contenidos en el archivo. Los _scripts_ de BASH emplean por convención la
 extensión `.sh`, lo que facilita su identificación dentro del sistema de archivos.
 
-!!!note "Importancia del _shebang_"
+!!! note "Importancia del _shebang_"
 
-    El uso del *shebang* `#!/bin/bash` garantiza que el *script* se ejecute con el
+    El uso del _shebang_ `#!/bin/bash` garantiza que el _script_ se ejecute con el
     intérprete adecuado, independientemente del entorno en el que se invoque.
 
 A continuación del _shebang_ se añaden las instrucciones que definen las acciones a
@@ -38,7 +38,7 @@ tareas específicas del sistema.
 
 ???+ example "Hola mundo"
 
-    Para ilustrar el proceso, se crea un *script* básico denominado `script.sh` que
+    Para ilustrar el proceso, se crea un _script_ básico denominado `script.sh` que
     muestra un mensaje en la terminal:
 
     ```bash linenums="1"
@@ -62,7 +62,7 @@ posteriormente invocarlo desde la terminal.
     chmod +x script.sh
     ```
 
-    Una vez concedido el permiso, es posible ejecutar el *script* directamente:
+    Una vez concedido el permiso, es posible ejecutar el _script_ directamente:
 
     ```bash linenums="1"
     ./script.sh
@@ -85,7 +85,7 @@ que indica su posición.
 
     En este caso, `$1` corresponde al primer argumento proporcionado, `$2` al segundo,
     y así sucesivamente. Cabe destacar que `$0` siempre contiene el nombre del propio
-    *script*.
+    _script_.
 
 ### Variables
 
@@ -184,7 +184,7 @@ Los operadores lógicos permiten combinar múltiples condiciones:
 - `-o` o `||`: Disyunción lógica (OR).
 - `!`: Negación lógica (NOT).
 
-!!!note "Operadores lógicos"
+!!! note "Operadores lógicos"
 
     Los operadores `-a` y `-o` se utilizan dentro de los corchetes de una expresión
     condicional, mientras que `&&` y `||` se emplean fuera de ellos para encadenar
@@ -282,7 +282,7 @@ trabajo.
     echo "✅ Python dependencies installed."
     ```
 
-    Este *script* ejecuta de manera secuencial varias operaciones clave para configurar
+    Este _script_ ejecuta de manera secuencial varias operaciones clave para configurar
     un entorno de desarrollo. En primer lugar, verifica si la herramienta `uv` se
     encuentra instalada en el sistema y, en caso contrario, procede a su instalación de
     forma silenciosa.
@@ -290,7 +290,7 @@ trabajo.
     La redirección `> /dev/null 2>&1` descarta tanto la salida estándar como los
     mensajes de error, evitando que aparezcan en la terminal durante la ejecución.
 
-    Posteriormente, el *script* actualiza los repositorios del sistema e instala los
+    Posteriormente, el _script_ actualiza los repositorios del sistema e instala los
     paquetes de compilación esenciales mediante `apt-get`, también de manera
     silenciosa. Finalmente, invoca al gestor de dependencias `uv` para instalar
     las dependencias de Python, asegurando que el entorno de desarrollo quede

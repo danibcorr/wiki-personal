@@ -34,7 +34,9 @@ preinstaladas, un gestor de paquetes propio denominado
 
 La gestión de paquetes se realiza principalmente a través de _Conda_, aunque también es
 posible utilizar [_PIP_](https://pypi.org/). Sin embargo, mezclar ambos gestores no es
-recomendable, ya que pueden surgir conflictos en la resolución de dependencias.
+recomendable, ya que pueden surgir conflictos en la resolución de dependencias. Si
+quieres conocer más al respecto, te recomiendo esta
+[web](https://terminal.space/tech/why-cant-we-pip-and-conda-be-friends/).
 
 Durante años, _Anaconda_ fue la plataforma dominante en ciencia de datos gracias a su
 ecosistema completo y su facilidad de uso. Con el tiempo, sin embargo, ha presentado
@@ -71,18 +73,14 @@ un único fichero.
 
 [`uv`](https://docs.astral.sh/uv/) es una de las herramientas más recientes y eficientes
 para la gestión de entornos virtuales y dependencias en Python. Su objetivo principal es
-simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas.
-
-Una de sus principales ventajas es la creación de un entorno virtual aislado por
-proyecto, lo que constituye una buena práctica para evitar conflictos entre versiones de
-distintos desarrollos. Su velocidad es notablemente superior a la de otras alternativas,
-ya que utiliza _Rust_ internamente para la resolución e instalación de dependencias en
-milisegundos.
+simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas. Su
+velocidad es notablemente superior a la de otras alternativas, ya que utiliza _Rust_
+internamente para la resolución e instalación de dependencias en milisegundos.
 
 `uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, similar al
 sistema `cargo` de _Rust_, donde se definen los metadatos del proyecto, las dependencias
 con sus versiones, la versión de Python requerida y las configuraciones de herramientas
-auxiliaress. Además, permite la gestión automática de entornos y no requiere que Python
+auxiliares. Además, permite la gestión automática de entornos y no requiere que Python
 esté previamente instalado en el sistema, ya que `uv` se encarga de descargarlo y
 configurarlo de forma transparente.
 
@@ -91,6 +89,11 @@ mayoría de proyectos. Por esta razón, el presente documento se centra en `uv` 
 herramienta principal.
 
 ## Creación y activación de entornos
+
+<figure markdown="span">
+  ![Formas de configurar entornos virtuales en Python](../../assets/img/docs/external/python-virtual-environment.png)
+  <figcaption>Formas de configurar entornos virtuales en Python. <a href="https://python.plainenglish.io/3-ways-to-set-up-your-python-projects-a45a3d7e8561">Referencia.</a></figcaption>
+</figure>
 
 Un entorno virtual genera una instancia aislada del intérprete de Python, de modo que
 las dependencias de un proyecto específico no interfieran con las bibliotecas globales
@@ -122,124 +125,126 @@ dependencias organizadas por grupos, los índices de paquetes y la configuració
 herramientas auxiliares. Este enfoque centralizado elimina la necesidad de mantener
 múltiples archivos de configuración dispersos por el proyecto.
 
-A continuación se muestra un ejemplo completo con las secciones más relevantes:
+!!! example "Ejemplo de un fichero `pyproject.toml`"
 
-```toml linenums="1"
-[build-system]
-requires = ["uv_build>=0.10.7,<0.11.0"]
-build-backend = "uv_build"
+    A continuación se muestra un ejemplo completo con las secciones más relevantes:
 
-[project]
-name = "mi-proyecto"
-version = "1.0.0"
-description = "Descripción del proyecto"
-readme = "README.md"
-requires-python = "==3.11.*"
-authors = [
-    {name = "Tu Nombre", email = "tu@email.com"},
-]
+    ```toml linenums="1"
+    [build-system]
+    requires = ["uv_build>=0.10.7,<0.11.0"]
+    build-backend = "uv_build"
 
-[tool.uv]
-default-groups = "all"
-cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
+    [project]
+    name = "mi-proyecto"
+    version = "1.0.0"
+    description = "Descripción del proyecto"
+    readme = "README.md"
+    requires-python = "==3.11.*"
+    authors = [
+        {name = "Tu Nombre", email = "tu@email.com"},
+    ]
 
-[tool.uv.sources]
-mi-paquete-local = { path = "ruta/al/paquete", editable = true }
-paquete-privado = { index = "mi_indice_privado" }
+    [tool.uv]
+    default-groups = "all"
+    cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
 
-[[tool.uv.index]]
-name = "pypi"
-url = "https://pypi.org/simple"
-default = true
+    [tool.uv.sources]
+    mi-paquete-local = { path = "ruta/al/paquete", editable = true }
+    paquete-privado = { index = "mi_indice_privado" }
 
-[[tool.uv.index]]
-name = "mi_indice_privado"
-url = "https://mi-servidor.com/api/packages/pypi/simple/"
-authenticate = "always"
+    [[tool.uv.index]]
+    name = "pypi"
+    url = "https://pypi.org/simple"
+    default = true
 
-[dependency-groups]
-core = [
-    "numpy==1.26.4",
-    "pandas==2.2.0",
-]
-notebooks = [
-    "ipykernel==6.29.0",
-    "matplotlib==3.8.2",
-]
-pipeline = [
-    "pytest==8.0.0",
-    "pytest-cov==4.1.0",
-    "ruff==0.2.0",
-    "mypy==1.8.0",
-    "pre-commit==3.6.0",
-]
-docs = [
-    "mkdocs==1.5.3",
-    "mkdocs-material==9.5.0",
-]
+    [[tool.uv.index]]
+    name = "mi_indice_privado"
+    url = "https://mi-servidor.com/api/packages/pypi/simple/"
+    authenticate = "always"
 
-[tool.ruff]
-line-length = 88
-indent-width = 4
-extend-exclude = [".venv", ".uv-cache", "notebooks"]
+    [dependency-groups]
+    core = [
+        "numpy==1.26.4",
+        "pandas==2.2.0",
+    ]
+    notebooks = [
+        "ipykernel==6.29.0",
+        "matplotlib==3.8.2",
+    ]
+    pipeline = [
+        "pytest==8.0.0",
+        "pytest-cov==4.1.0",
+        "ruff==0.2.0",
+        "mypy==1.8.0",
+        "pre-commit==3.6.0",
+    ]
+    docs = [
+        "mkdocs==1.5.3",
+        "mkdocs-material==9.5.0",
+    ]
 
-[tool.ruff.lint]
-select = ["E", "F", "W", "PL", "UP", "N", "B", "I"]
+    [tool.ruff]
+    line-length = 88
+    indent-width = 4
+    extend-exclude = [".venv", ".uv-cache", "notebooks"]
 
-[tool.ruff.format]
-docstring-code-format = true
-quote-style = "double"
-indent-style = "space"
+    [tool.ruff.lint]
+    select = ["E", "F", "W", "PL", "UP", "N", "B", "I"]
 
-[tool.mypy]
-check_untyped_defs = true
-ignore_missing_imports = true
-exclude = [".venv/", ".uv-cache/", "notebooks/"]
+    [tool.ruff.format]
+    docstring-code-format = true
+    quote-style = "double"
+    indent-style = "space"
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = ["--strict-markers", "--tb=short"]
-```
+    [tool.mypy]
+    check_untyped_defs = true
+    ignore_missing_imports = true
+    exclude = [".venv/", ".uv-cache/", "notebooks/"]
 
-- La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
-  especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
-  instalable, lo que permite encapsularlo como una librería y utilizarlo como tal, de la
-  misma forma que se emplea cualquier librería de terceros como _Polars_, _NumPy_ o
-  similares.
+    [tool.pytest.ini_options]
+    testpaths = ["tests"]
+    python_files = ["test_*.py"]
+    python_classes = ["Test*"]
+    python_functions = ["test_*"]
+    addopts = ["--strict-markers", "--tb=short"]
+    ```
 
-* La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
-  descripción, versión de Python requerida y autores. Este formato sigue el estándar
-  definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración
-  de metadatos en el ecosistema Python.
+    - La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
+      especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
+      instalable, lo que permite encapsularlo como una librería y utilizarlo como tal, de la
+      misma forma que se emplea cualquier librería de terceros como _Polars_, _NumPy_ o
+      similares.
 
-* La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
-  `default-groups` indica qué grupos de dependencias se instalan por defecto, mientras
-  que `cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
-  _commit_ de _Git_.
+    * La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
+      descripción, versión de Python requerida y autores. Este formato sigue el estándar
+      definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración
+      de metadatos en el ecosistema Python.
 
-* La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
-  específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
-  paquetes alojados en índices privados. Esto resulta especialmente práctico cuando se
-  gestionan librerías propias en repositorios o instancias privadas de _GitLab_ o
-  plataformas similares.
+    * La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
+      `default-groups` indica qué grupos de dependencias se instalan por defecto, mientras
+      que `cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
+      _commit_ de _Git_.
 
-* La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
-  posible definir múltiples índices simultáneamente, estableciendo _PyPI_ como índice
-  por defecto y añadiendo repositorios privados con autenticación obligatoria.
+    * La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
+      específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
+      paquetes alojados en índices privados. Esto resulta especialmente práctico cuando se
+      gestionan librerías propias en repositorios o instancias privadas de _GitLab_ o
+      plataformas similares.
 
-* La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
-  (_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
-  instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
-  integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en
-  un entorno de desarrollo local podrían instalarse todos los grupos.
+    * La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
+      posible definir múltiples índices simultáneamente, estableciendo _PyPI_ como índice
+      por defecto y añadiendo repositorios privados con autenticación obligatoria.
 
-* Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
-  centralizan la configuración de herramientas del proyecto dentro del propio
-  `pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
-  `.flake8`, `mypy.ini` o `pytest.ini`.
+    * La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
+      (_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
+      instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
+      integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en
+      un entorno de desarrollo local podrían instalarse todos los grupos.
+
+    * Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
+      centralizan la configuración de herramientas del proyecto dentro del propio
+      `pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
+      `.flake8`, `mypy.ini` o `pytest.ini`.
 
 ### Instalación de dependencias por grupos
 
@@ -334,7 +339,11 @@ uv pip uninstall nombre_del_paquete
 ## Integración con _Jupyter_
 
 Para utilizar un entorno virtual dentro de _Jupyter_, es necesario instalar el paquete
-`ipykernel` como dependencia del entorno.
+`ipykernel` como dependencia del entorno, para ello utilizamos el siguiente comando:
+
+```bash linenums="1"
+uv add ipykernel
+```
 
 El registro manual del entorno como _kernel_ de _Jupyter_ solo es necesario cuando el
 entorno virtual se encuentra en un directorio diferente al del proyecto. En la mayoría

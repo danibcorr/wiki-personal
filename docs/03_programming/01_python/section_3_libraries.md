@@ -10,11 +10,13 @@ de diversas funcionalidades.
 A continuación, destaco algunas consideradas especialmente relevantes para crear
 utilidades, herramientas de línea de comandos (CLI) o similares.
 
-Se recomienda consultar la documentación oficial de cada librería y sus páginas en
-[PyPI](https://pypi.org/) para obtener información detallada sobre la instalación, el
-uso y la compatibilidad de cada uno de los paquetes detallados a continuación, o incluso
-buscar nuevas alternativas, ya que con el tiempo podría ser que algunas de estas
-librerías queden obsoletas.
+!!! info
+
+    Se recomienda consultar la documentación oficial de cada librería y sus páginas en
+    [PyPI](https://pypi.org/) para obtener información detallada sobre la instalación, el
+    uso y la compatibilidad de cada uno de los paquetes detallados a continuación, o incluso
+    buscar nuevas alternativas, ya que con el tiempo podría ser que algunas de estas
+    librerías queden obsoletas.
 
 | Librería          | Descripción                                                                                                                                   | Etiquetas                                          |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |

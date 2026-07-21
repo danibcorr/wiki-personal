@@ -53,9 +53,8 @@ simultáneamente, por lo que resulta necesario sincronizar los tiempos de ejecuc
 ambos componentes.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-cpu-gpu-interaction.png)
-
+  ![Interacción entre la CPU y la GPU](../../assets/img/docs/cuda/cuda-c-cpu-gpu-interaction.png)
+  <figcaption>Interacción y sincronización entre la CPU y la GPU.</figcaption>
 </figure>
 
 !!! warning "Sentencias condicionales en la GPU"
@@ -73,6 +72,13 @@ extensión `.cu`. La compilación del código se lleva a cabo con el siguiente c
 ```
 
 En este comando, `-arch=sm_70` especifica la arquitectura objetivo para la compilación.
+
+!!! note "Prefijo `!` en Jupyter"
+
+    El símbolo `!` al inicio del comando indica a un _notebook_ de Jupyter que la
+    instrucción debe ejecutarse en la _shell_ del sistema en lugar de interpretarse como
+    código Python. Al ejecutar el comando directamente en una terminal, se debe omitir
+    dicho prefijo: `nvcc -arch=sm_70 -o resultado_nombre programa.cu -run`.
 
 ???+ example "Código básico en CUDA"
 
@@ -220,9 +226,8 @@ del bucle es:
 $$i_{x} = (blockIdx.x \cdot blockDim.x) + threadIdx.x$$
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-thread-indexing.png)
-
+  ![Indexación de hilos en CUDA](../../assets/img/docs/cuda/cuda-c-thread-indexing.png)
+  <figcaption>Mapeo de cada hilo a un índice del bucle en CUDA.</figcaption>
 </figure>
 
 !!! tip "Tamaño mínimo de bloque"
@@ -232,9 +237,8 @@ $$i_{x} = (blockIdx.x \cdot blockDim.x) + threadIdx.x$$
     índice obtenido $i_{x}$ sea menor que el número total de datos.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-bounds-checking.png)
-
+  ![Comprobación de límites de índice en CUDA](../../assets/img/docs/cuda/cuda-c-bounds-checking.png)
+  <figcaption>Comprobación de límites cuando el número de hilos supera al de tareas.</figcaption>
 </figure>
 
 ## Asignación de memoria
@@ -265,9 +269,8 @@ entre la CPU y la GPU. Las versiones recientes de CUDA permiten el uso de **memo
 unificada**, que facilita el intercambio de datos entre ambos componentes.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-unified-memory.png)
-
+  ![Memoria unificada en CUDA](../../assets/img/docs/cuda/cuda-c-unified-memory.png)
+  <figcaption>Memoria unificada compartida entre la CPU y la GPU.</figcaption>
 </figure>
 
 La memoria unificada ofrece varias ventajas: proporciona un único puntero a los datos
@@ -279,9 +282,8 @@ manual con `cudaMemcpyAsync()`.
 Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-memory-types.png)
-
+  ![Tipos de memoria en CUDA](../../assets/img/docs/cuda/cuda-c-memory-types.png)
+  <figcaption>Tipos de memoria disponibles en CUDA.</figcaption>
 </figure>
 
 !!! warning "Consideraciones de la memoria unificada"
@@ -294,9 +296,8 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
     _kernel_, incluso si este no la utiliza directamente.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-memory-hierarchy.png)
-
+  ![Jerarquía de memoria en CUDA](../../assets/img/docs/cuda/cuda-c-memory-hierarchy.png)
+  <figcaption>Jerarquía de memoria en CUDA.</figcaption>
 </figure>
 
 ### Ejemplos de uso de memoria unificada
@@ -429,9 +430,8 @@ if (err != cudaSuccess)
 ## Patrones comunes de _kernels_
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-c-kernel-patterns.png)
-
+  ![Patrones comunes de kernels en CUDA](../../assets/img/docs/cuda/cuda-c-kernel-patterns.png)
+  <figcaption>Patrones comunes de _kernels_ en CUDA.</figcaption>
 </figure>
 
 Antes de explorar los distintos patrones, conviene definir el concepto de **bucle
@@ -547,9 +547,8 @@ malla bidimensional de hilos para mapear cada elemento de la matriz resultado a 
 independiente.
 
 <figure markdown="span">
-
-![](../../assets/img/docs/cuda/cuda-matrix.jpg)
-
+  ![Multiplicación de matrices en CUDA](../../assets/img/docs/cuda/cuda-matrix.jpg)
+  <figcaption>Multiplicación de matrices sobre una malla bidimensional de hilos.</figcaption>
 </figure>
 
 La clave consiste en calcular los índices de fila y columna a partir de las coordenadas
