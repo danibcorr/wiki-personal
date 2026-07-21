@@ -16,6 +16,15 @@ realizar cálculos complejos con mayor eficiencia. Su aplicación abarca áreas 
 inteligencia artificial, las simulaciones científicas y la renderización de gráficos,
 donde la capacidad de procesamiento masivo en paralelo resulta determinante.
 
+## Bibliografía
+
+- NVIDIA. (s.f.). _NVIDIA Developer_. <https://www.nvidia.com/>
+- NVIDIA y Universidad de Málaga. (s.f.). _Deep Learning Institute - UMA_.
+  <http://nvidiadli.uma.es/index.php/es/certificaciones-nvidia>
+- CuPy. (s.f.). _CuPy: NumPy & SciPy for GPU_. <https://cupy.dev/>
+- Numba. (s.f.). _Numba: A High Performance Python Compiler_.
+  <https://numba.pydata.org/>
+
 ## Arquitectura de la GPU
 
 <figure markdown="span">

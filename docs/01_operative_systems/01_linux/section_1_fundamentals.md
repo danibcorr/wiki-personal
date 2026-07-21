@@ -13,6 +13,13 @@ usuarios, grupos y permisos, la administración de procesos, servicios y daemons
 sistema, así como la automatización de tareas y las herramientas básicas de gestión de
 red.
 
+## Bibliografía
+
+- NetworkChuck. (2023). _60 comandos de Linux que NECESITAS saber (en 10 minutos)_
+  \[Vídeo\]. YouTube. <https://www.youtube.com/watch?v=gd7BXuUQ91w>
+- DeciLearn. (2023). _Linux Para Principiantes - Curso completo_ \[Vídeo\]. YouTube.
+  <https://youtu.be/jVQKk8IB9pA>
+
 ## Introducción
 
 <figure markdown="span">

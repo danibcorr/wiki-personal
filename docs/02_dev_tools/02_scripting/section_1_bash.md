@@ -7,6 +7,11 @@ title: Bash
 Este capítulo presenta Bash como intérprete de comandos y lenguaje de scripting,
 cubriendo su sintaxis básica, estructuras de control y técnicas de automatización.
 
+## Bibliografía
+
+- Pelado Nerd. (2021). _TODOS deberían aprender BASH - Bash PARTE 1_ \[Vídeo\]. YouTube.
+  <https://www.youtube.com/watch?v=4_ub6614dwY>
+
 ## Introducción
 
 <figure markdown="span">

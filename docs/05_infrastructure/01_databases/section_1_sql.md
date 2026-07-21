@@ -8,6 +8,12 @@ Este capítulo presenta SQL como lenguaje estándar para la gestión de bases de
 relacionales, cubriendo desde consultas básicas hasta operaciones avanzadas con
 subconsultas y CTEs.
 
+## Bibliografía
+
+- PostgreSQL Global Development Group. (s.f.). _PostgreSQL Documentation_.
+  <https://www.postgresql.org/docs/>
+- W3Schools. (s.f.). _SQL Tutorial_. <https://www.w3schools.com/sql/>
+
 ## Introducción
 
 **SQL** (Structured Query Language) es un lenguaje estándar de programación para
@@ -60,7 +66,8 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   _NoSQL_.
 
 <figure markdown="span">
-  ![](../../assets/img/docs/external/sql-relational-model-1.jpg)
+  ![Modelo de datos relacional](../../assets/img/docs/external/sql-relational-model-1.jpg)
+  <figcaption>Representación del modelo de datos relacional (I).</figcaption>
 </figure>
 
 - **Bases de datos NoSQL**: Destacan por su escalabilidad **horizontal**, mediante la
@@ -68,7 +75,8 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   rendimiento.
 
 <figure markdown="span">
-  ![](../../assets/img/docs/external/sql-relational-model-2.jpg)
+  ![Modelo de datos relacional](../../assets/img/docs/external/sql-relational-model-2.jpg)
+  <figcaption>Representación del modelo de datos relacional (II).</figcaption>
 </figure>
 
 ### Operaciones CRUD

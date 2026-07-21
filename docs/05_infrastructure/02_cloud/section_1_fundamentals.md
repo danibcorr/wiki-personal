@@ -7,6 +7,14 @@ title: Modelos de servicio
 Este capítulo introduce los conceptos fundamentales de la computación en la nube, los
 modelos de servicio y los principios de diseño de sistemas distribuidos.
 
+## Bibliografía
+
+- Donnemartin. (s.f.). _System Design Primer_ \[Repositorio\]. GitHub.
+  <https://github.com/donnemartin/system-design-primer>
+- Amazon Web Services. (s.f.). _AWS Cloud Practitioner Essentials_ \[Curso\]. AWS Skill
+  Builder.
+  <https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7>
+
 ## Introducción
 
 La computación en la nube proporciona recursos bajo demanda (redes, almacenamiento,

@@ -8,6 +8,10 @@ Este capítulo reúne estrategias prácticas para la búsqueda de empleo en el s
 tecnológico, cubriendo la elaboración del CV, la preparación de entrevistas y la
 negociación salarial.
 
+## Bibliografía
+
+- Jeff Su. (s.f.). _Jeff Su_ \[Canal\]. YouTube. <https://www.youtube.com/@JeffSu>
+
 ## Introducción
 
 El propósito de esta guía es reunir consejos para la búsqueda de empleo, especialmente

@@ -1,19 +1,22 @@
 ---
 authors: Daniel Bazo Correa
 description: Ciclo de vida, desafíos y estrategias de despliegue en MLOps.
-title: Fundamentos
+title: Fundamentos de MLOps
 ---
 
 Este capítulo presenta los fundamentos de MLOps, el ciclo de vida de los modelos en
 producción, los desafíos operativos y las prácticas de equipos efectivos de ML.
 
-## Introducción
+## Bibliografía
 
-<p align="center">
-  <img src="../assets/img/docs/logos/mlops-logo.png" width="500"/>
-  <br />
-  <em>Ciclo de vida de un proyecto MLOps</em>
-</p>
+- Atwal, H. (s.f.). _ML in Production: From Data Scientist to ML Engineer_ \[Curso\].
+  Udemy. <https://www.udemy.com/course/ml-in-production/>
+- ONNX. (s.f.). _ONNX - Open Neural Network Exchange_. <https://onnx.ai/>
+- ONNX Runtime. (s.f.). _ONNX Runtime_. <https://onnxruntime.ai/>
+- Deeplizard. (2022). _Everything You Want to Know About ONNX_ \[Vídeo\]. YouTube.
+  <https://www.youtube.com/watch?v=cK5AyawZSUI>
+
+## Introducción
 
 MLOps, o _Machine Learning Operations_, es el conjunto de prácticas, herramientas y
 procesos que permiten desarrollar, implementar y mantener modelos de _machine learning_
@@ -21,11 +24,10 @@ en entornos de producción. Este enfoque combina conocimientos de ingeniería de
 computación en la nube y gestión de redes, siendo fundamental para garantizar que los
 modelos sean eficaces, escalables y sostenibles.
 
-<p align="center">
-  <img src="https://ml-ops.org/img/mlops-phasen.jpg" width="500"/>
-  <br />
-  <em>Ejemplo de los pasos seguidos en un proyecto de MLOps</em>
-</p>
+<figure markdown="span">
+  ![Pasos de un proyecto de MLOps](https://ml-ops.org/img/mlops-phasen.jpg)
+  <figcaption>Ejemplo de los pasos seguidos en un proyecto de MLOps. <a href="https://ml-ops.org/">Referencia</a></figcaption>
+</figure>
 
 Un sistema de MLOps se compone de diversos elementos. En su núcleo está el modelo o
 algoritmo, que representa la solución entrenada en datos. Este modelo opera sobre una

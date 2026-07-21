@@ -6,7 +6,13 @@ description:
 title: Diseño y código sostenible
 ---
 
-de John Ousterhout.
+## Bibliografía
+
+- Ousterhout, J. (2021). _A Philosophy of Software Design_ (2.ª ed.). Yaknyam Press.
+- Van Rossum, G. et al. (2001). _PEP 8 — Style Guide for Python Code_.
+  <https://pep8.org/>
+- Tan, D. (2024). _Effective Machine Learning Teams_. O'Reilly Media.
+  <https://www.oreilly.com/library/view/effective-machine-learning/9781098144623/>
 
 ## Principios de código limpio
 

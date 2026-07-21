@@ -7,6 +7,18 @@ title: Contenedores
 Este capítulo presenta Docker como plataforma de contenedores, cubriendo su
 arquitectura, comandos esenciales, Docker Compose y la arquitectura de microservicios.
 
+## Bibliografía
+
+- Docker. (s.f.). _Docker Documentation_. <https://docs.docker.com/>
+- Gutiérrez, R. (s.f.). _DevOps con Docker, Jenkins, Kubernetes, Git, GitFlow CI y CD_
+  \[Curso\]. Udemy.
+  <https://www.udemy.com/course/devops-con-dockers-kubernetes-jenkins-y-gitflow-cicd/>
+- Kubernetes. (s.f.). _Kubernetes Documentation_. <https://kubernetes.io/docs/>
+- Minikube. (s.f.). _Minikube Documentation_. <https://minikube.sigs.k8s.io/docs/>
+- Pradumnasaraf. (s.f.). _DevOps_ \[Repositorio\]. GitHub.
+  <https://github.com/Pradumnasaraf/DevOps>
+- GitHub. (s.f.). _GitHub Actions Documentation_. <https://docs.github.com/en/actions>
+
 ## Docker
 
 <figure markdown="span">
@@ -24,7 +36,7 @@ entornos empresariales.
 
 <figure markdown="span">
   ![Sistema basado en Microservicios](../assets/img/docs/external/docker-microservices.png)
-  <figcaption>Sistema basado en Microservicios</figcaption>
+  <figcaption>Sistema basado en Microservicios. <a href="https://www.geeksforgeeks.org/system-design/how-to-design-a-microservices-architecture-with-docker-containers/">Referencia</a></figcaption>
 </figure>
 
 Este tipo de arquitectura se basa en el concepto de **microservicios**, ya que permite
@@ -52,7 +64,7 @@ subyacente.
 
 <figure markdown="span">
   ![Pasos para la creación de un contenedor en Docker](../assets/img/docs/external/docker-container-steps.png)
-  <figcaption>Pasos para la creación de un contenedor en Docker</figcaption>
+  <figcaption>Pasos para la creación de un contenedor en Docker. <a href="https://medium.com/swlh/understand-dockerfile-dd11746ed183">Referencia</a></figcaption>
 </figure>
 
 Los contenedores constituyen una forma de virtualización a nivel del sistema operativo,

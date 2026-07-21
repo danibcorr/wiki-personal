@@ -6,6 +6,27 @@ title: Fundamentos
 
 .
 
+## Bibliografía
+
+- Persson, A. (s.f.). _Aladdin Persson_ \[Canal\]. YouTube.
+  <https://www.youtube.com/c/AladdinPersson>
+- McKinney, A. (s.f.). _Flax Tutorial_. Hugging Face Blog.
+  <https://huggingface.co/blog/afmck/flax-tutorial>
+- TensorFlow. (s.f.). _TensorFlow API Documentation_.
+  <https://www.tensorflow.org/api_docs>
+- DeepLearning.AI. (s.f.). _Deep Learning Specialization_ \[Curso\]. Coursera.
+  <https://www.coursera.org/specializations/deep-learning>
+- DeepLearning.AI. (s.f.). _TensorFlow Developer Professional Certificate_ \[Curso\].
+  Coursera. <https://www.coursera.org/professional-certificates/tensorflow-in-practice>
+- Hugging Face. (2025). _Agents Course_. <https://huggingface.co/learn/agents-course>
+- Simone, G. (2024). _Alice's Adventures in a Differentiable Wonderland: A Primer on
+  Designing Neural Networks (Volume I)_. Amazon.
+- Howard, J. y Gugger, S. (2020). _Deep Learning for Coders with Fastai and PyTorch: AI
+  Applications Without a PhD_. O'Reilly Media.
+  <https://course.fast.ai/Resources/book.html>
+- AI Coffee Break with Letitia. (2022). _Diffusion Models Explained_ \[Vídeo\]. YouTube.
+  <https://youtu.be/BprirYymXrg>
+
 ## Introducción
 
 Antes de abordar el estudio del **aprendizaje profundo (_Deep Learning_)**, resulta

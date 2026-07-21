@@ -40,62 +40,58 @@ nav = [
         ]}
     ]},
     {"Ingeniería y operaciones" = [
-        {"Estructuras de datos y algoritmos" = [
-            "04_software_engineering/section_1_data_structure.md"
-        ]},
-        {"Diseño y código sostenible" = [
-            "04_software_engineering/section_2_sustainable_code.md"
+        {"Ingeniería del software" = [
+            "04_software_engineering/section_1_data_structures.md",
+            "04_software_engineering/section_2_algorithms.md",
+            "04_software_engineering/section_3_sustainable_code.md"
         ]},
         {"Bases de datos" = [
             "05_infrastructure/01_databases/section_1_sql.md"
         ]},
+        {"Operaciones y despliegue" = [
+            "06_operations/section_1_containers.md",
+            "06_operations/section_2_orchestrators.md",
+            "06_operations/section_3_ci_cd.md",
+            "06_operations/section_4_mlops_fundamentals.md",
+            "06_operations/section_5_experiment_management.md",
+            "06_operations/section_6_deployment.md"
+        ]},
         {"Cloud" = [
             "05_infrastructure/02_cloud/section_1_fundamentals.md",
             "05_infrastructure/02_cloud/section_2_aws.md"
-        ]},
-        {"DevOps" = [
-            "06_devops/section_1_containers.md",
-            "06_devops/section_2_orchestrators.md",
-            "06_devops/section_3_ci_cd.md"
-        ]},
-        {"MLOps" = [
-            "09_mlops/section_1_fundamentals.md",
-            "09_mlops/section_2_experiment_management.md",
-            "09_mlops/section_3_deployment.md"
         ]}
     ]},
     {"Inteligencia artificial" = [
+        {"Matemáticas" = [
+            "07_artificial_intelligence/01_mathematics/section_1_statistics.md",
+            "07_artificial_intelligence/01_mathematics/section_2_deep_learning_math.md"
+        ]},
         {"Machine Learning" = [
-            "07_machine_learning/section_1_fundamentals.md",
-            "07_machine_learning/section_2_statistics.md",
-            "07_machine_learning/section_3_supervised_models.md",
-            "07_machine_learning/section_4_clustering.md",
-            "07_machine_learning/section_5_evaluation.md",
-            "07_machine_learning/section_6_dimensionality_reduction.md",
-            "07_machine_learning/section_7_advanced.md"
+            "07_artificial_intelligence/02_machine_learning/section_1_fundamentals.md",
+            "07_artificial_intelligence/02_machine_learning/section_2_supervised_models.md",
+            "07_artificial_intelligence/02_machine_learning/section_3_clustering.md",
+            "07_artificial_intelligence/02_machine_learning/section_4_evaluation.md",
+            "07_artificial_intelligence/02_machine_learning/section_5_dimensionality_reduction.md",
+            "07_artificial_intelligence/02_machine_learning/section_6_advanced.md"
         ]},
         {"Deep Learning" = [
-            "08_deep_learning/section_1_fundamentals.md",
-            "08_deep_learning/section_2_math.md",
-            "08_deep_learning/section_3_linear_models.md",
-            "08_deep_learning/section_4_neural_networks.md",
-            "08_deep_learning/section_5_cnn.md",
-            "08_deep_learning/section_6_sequential_models.md",
-            "08_deep_learning/section_7_other_paradigms.md",
-            "08_deep_learning/section_8_generative_ai.md",
-            "08_deep_learning/section_9_graph_neural_networks.md",
-            "08_deep_learning/section_10_reinforcement_learning.md",
-            "08_deep_learning/section_11_agents.md",
-            "08_deep_learning/libraries/jax.md",
-            "08_deep_learning/libraries/pytorch.md",
-            "08_deep_learning/libraries/tensorflow.md"
+            "07_artificial_intelligence/03_deep_learning/section_1_fundamentals.md",
+            "07_artificial_intelligence/03_deep_learning/section_2_linear_models.md",
+            "07_artificial_intelligence/03_deep_learning/section_3_neural_networks.md",
+            "07_artificial_intelligence/03_deep_learning/section_4_cnn.md",
+            "07_artificial_intelligence/03_deep_learning/section_5_sequential_models.md",
+            "07_artificial_intelligence/03_deep_learning/section_6_other_paradigms.md",
+            "07_artificial_intelligence/03_deep_learning/section_7_generative_ai.md",
+            "07_artificial_intelligence/03_deep_learning/section_8_graph_neural_networks.md",
+            "07_artificial_intelligence/03_deep_learning/section_9_reinforcement_learning.md",
+            "07_artificial_intelligence/03_deep_learning/section_10_agents.md",
+            "07_artificial_intelligence/03_deep_learning/libraries/jax.md",
+            "07_artificial_intelligence/03_deep_learning/libraries/pytorch.md",
+            "07_artificial_intelligence/03_deep_learning/libraries/tensorflow.md"
         ]}
     ]},
     {"Carrera profesional" = [
-        "10_career/cv_guide.md"
-    ]},
-    {"Bibliografía" = [
-        "bibliography.md"
+        "08_career/cv_guide.md"
     ]},
 ]
 extra_css = ["stylesheets/extra.css"]

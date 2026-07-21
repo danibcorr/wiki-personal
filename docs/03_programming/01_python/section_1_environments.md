@@ -8,6 +8,19 @@ title: Entornos virtuales
 Este capítulo describe las principales herramientas para la gestión de entornos
 virtuales y dependencias en Python, con énfasis en uv como gestor moderno y eficiente.
 
+## Bibliografía
+
+- Python Software Foundation. (s.f.). _Python 3 Documentation_.
+  <https://docs.python.org/3/>
+- Python Software Foundation. (s.f.). _venv — Creation of virtual environments_.
+  <https://docs.python.org/3/library/venv.html>
+- Poetry. (s.f.). _Poetry - Python dependency management_. <https://python-poetry.org/>
+- Anaconda. (s.f.). _Anaconda Documentation_. <https://docs.anaconda.com/>
+- Astral. (s.f.). _uv - An extremely fast Python package installer_.
+  <https://docs.astral.sh/uv/>
+- Portilla, J. (s.f.). _Complete Python Bootcamp_ \[Curso\]. Udemy.
+  <https://www.udemy.com/course/complete-python-bootcamp/>
+
 ## Gestores de entornos y paquetes
 
 En el ecosistema de Python existen diversas herramientas para la gestión de paquetes y
@@ -92,7 +105,7 @@ herramienta principal.
 
 <figure markdown="span">
   ![Formas de configurar entornos virtuales en Python](../../assets/img/docs/external/python-virtual-environment.png)
-  <figcaption>Formas de configurar entornos virtuales en Python. <a href="https://python.plainenglish.io/3-ways-to-set-up-your-python-projects-a45a3d7e8561">Referencia.</a></figcaption>
+  <figcaption>Formas de configurar entornos virtuales en Python. <a href="https://python.plainenglish.io/3-ways-to-set-up-your-python-projects-a45a3d7e8561">Referencia</a></figcaption>
 </figure>
 
 Un entorno virtual genera una instancia aislada del intérprete de Python, de modo que

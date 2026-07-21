@@ -21,11 +21,10 @@ modelos más robustos. Para ello, se emplea la **validación cruzada**.
 
 ### Validación cruzada
 
-<p align="center">
-  <img src="https://www.sharpsightlabs.com/wp-content/uploads/2024/02/cross-validation-explained_FEATURED-IMAGE.png"/>
-  <br />
-  <em>Esquema de funcionamiento de la validación cruzada. [Link](https://www.sharpsightlabs.com/wp-content/uploads/2024/02/cross-validation-explained_FEATURED-IMAGE.png)</em>
-</p>
+<figure markdown="span">
+  ![Funcionamiento de la validación cruzada](https://www.sharpsightlabs.com/wp-content/uploads/2024/02/cross-validation-explained_FEATURED-IMAGE.png)
+  <figcaption>Esquema de funcionamiento de la validación cruzada. <a href="https://www.sharpsightlabs.com/wp-content/uploads/2024/02/cross-validation-explained_FEATURED-IMAGE.png">Referencia</a></figcaption>
+</figure>
 
 La selección de muestras para el entrenamiento y validación de un modelo puede resultar
 compleja, ya que una elección inadecuada puede generar sesgos en el modelo. Por ejemplo,
@@ -576,11 +575,10 @@ modelo, lo cual se realiza mediante métricas estadísticas.
 
 #### Suma de los cuadrados de los residuales (SSR)
 
-<p align="center">
-  <img src="https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1600368657769-5BJU5FK86VZ6UXZGRC1M/Mean+Squared+Error.png"/>
-  <br />
-  <em>Ejemplo de SSR. [Link](https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1600368657769-5BJU5FK86VZ6UXZGRC1M/Mean+Squared+Error.png)</em>
-</p>
+<figure markdown="span">
+  ![Suma de los cuadrados de los residuales](https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1600368657769-5BJU5FK86VZ6UXZGRC1M/Mean+Squared+Error.png)
+  <figcaption>Ejemplo de SSR. <a href="https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1600368657769-5BJU5FK86VZ6UXZGRC1M/Mean+Squared+Error.png">Referencia</a></figcaption>
+</figure>
 
 La **Suma de los Cuadrados de los Residuales** (_Sum of Squared Residuals_, SSR) mide la
 diferencia entre las predicciones del modelo y los valores reales. Se calcula sumando el
@@ -641,11 +639,10 @@ El coeficiente $R^2$ se emplea en problemas de regresión sobre datos continuos.
 
 #### Coeficiente de correlación de Pearson
 
-<p align="center">
-  <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.statisticshowto.com%2Fwp-content%2Fuploads%2F2012%2F10%2Fpearson-2-small.png&f=1&nofb=1&ipt=25bc8844d74e829cb2103b12684b70568fc8a54b572ffa6ac17a40d3e106789d&ipo=images"/>
-  <br />
-  <em>Ejemplo de la correlación para una nube de puntos. [Link](http://www.statisticshowto.com/wp-content/uploads/2012/10/pearson-2-small.png)</em>
-</p>
+<figure markdown="span">
+  ![Correlación para una nube de puntos](http://www.statisticshowto.com/wp-content/uploads/2012/10/pearson-2-small.png)
+  <figcaption>Ejemplo de la correlación para una nube de puntos. <a href="http://www.statisticshowto.com/wp-content/uploads/2012/10/pearson-2-small.png">Referencia</a></figcaption>
+</figure>
 
 El **Coeficiente de Correlación de Pearson** mide la relación lineal entre dos variables
 cuantitativas y continuas. Se define como:

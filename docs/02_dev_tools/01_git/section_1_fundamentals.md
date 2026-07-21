@@ -9,6 +9,15 @@ Este capítulo introduce Git como sistema de control de versiones distribuido, s
 terminología, las áreas de trabajo y los comandos esenciales para gestionar
 repositorios.
 
+## Bibliografía
+
+- Git. (s.f.). _Git - Distributed Version Control System_. <https://git-scm.com/>
+- Umali, A. (2024). _Learning Git: A Hands-On and Visual Guide to the Basics of Git_.
+  O'Reilly Media. <https://www.oreilly.com/library/view/learning-git/9781098133900/>
+- Fowler, M. (s.f.). _Ship / Show / Ask: A modern branching strategy_. Martin Fowler.
+  <https://martinfowler.com/articles/ship-show-ask.html>
+- Git Hooks. (s.f.). _Git Hooks_. <https://githooks.com/>
+
 ## Introducción
 
 <figure markdown="span">

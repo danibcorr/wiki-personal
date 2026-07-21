@@ -7,6 +7,15 @@ title: Fundamentos
 Este capítulo introduce Rust como lenguaje de sistemas, cubriendo su sistema de tipos,
 el modelo de ownership y borrowing, y las estructuras de control fundamentales.
 
+## Bibliografía
+
+- Klabnik, S. y Nichols, C. (2023). _The Rust Programming Language_.
+  <https://doc.rust-lang.org/book/>
+- Rust Community. (s.f.). _Rust by Example_.
+  <https://doc.rust-lang.org/rust-by-example/>
+- Bazo Correa, D. (s.f.). _aprendiendo-rust_ \[Repositorio\]. GitHub.
+  <https://github.com/danibcorr/aprendiendo-rust>
+
 ## Introducción
 
 **Rust** es un lenguaje de programación de sistemas cuyo diseño persigue tres objetivos

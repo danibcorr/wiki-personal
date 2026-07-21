@@ -7,6 +7,10 @@ title: Makefile
 Este capítulo introduce Make como herramienta de automatización de tareas, explicando la
 sintaxis de reglas, variables, funciones avanzadas y buenas prácticas de organización.
 
+## Bibliografía
+
+- Chase, C. (s.f.). _Makefile Tutorial_. <https://makefiletutorial.com/>
+
 ## Introducción
 
 <figure markdown="span">

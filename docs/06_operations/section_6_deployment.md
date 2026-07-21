@@ -33,11 +33,10 @@ Las operaciones fundamentales de una API REST siguen el patrón CRUD:
 
 ## Motivación
 
-<p align="center">
-  <img src="../assets/img/docs/logos/onnx-logo.png" width="500"/>
-  <br />
-  <em>Logo de ONNX.</em>
-</p>
+<figure markdown="span">
+  ![Logo de ONNX](../assets/img/docs/logos/onnx-logo.png)
+  <figcaption>Logo de ONNX</figcaption>
+</figure>
 
 El ecosistema del aprendizaje profundo se caracteriza por una gran fragmentación en los
 frameworks utilizados para el desarrollo de modelos, como TensorFlow, Keras, PyTorch,
