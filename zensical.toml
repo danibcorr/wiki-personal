@@ -94,16 +94,16 @@ nav = [
         "08_career/cv_guide.md"
     ]},
 ]
-extra_css = ["stylesheets/extra.css"]
+extra_css = ["assets/stylesheets/extra.css"]
 extra_javascript = [
-    "javascripts/mathjax.js",
+    "assets/javascripts/mathjax.js",
     "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
 ]
 
 [project.theme]
 language = "es"
-logo = "assets/img/white_logo.svg"
-favicon = "assets/img/logo.ico"
+logo = "assets/img/branding/white_logo.svg"
+favicon = "assets/img/branding/logo.ico"
 features = [
     "announce.dismiss",
     "content.code.annotate",
@@ -124,12 +124,14 @@ features = [
 ]
 
 [[project.theme.palette]]
+accent = "orange"
 media = "(prefers-color-scheme: light)"
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
+accent = "orange"
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
