@@ -78,7 +78,7 @@ ortográficos.
     fi
 
     # Ejecutar Black en el directorio actual
-    black . --check
+    uv run black . --check
 
     # Verificar el estado de la última operación
     if [ $? -ne 0 ]; then
@@ -96,35 +96,25 @@ _pushes_ en ramas protegidas o para ejecutar pruebas antes de subir los cambios.
 
 ???+ example "Tests antes de push"
 
-    Instalación de dependencias y ejecución de pruebas con Poetry.
+    Sincronización de dependencias y ejecución de pruebas con uv.
 
     ```bash linenums="1"
     #!/bin/bash
-    # Hook pre-push para actualizar pip, instalar Poetry, instalar dependencias y ejecutar pruebas
+    # Hook pre-push para sincronizar dependencias y ejecutar pruebas con uv
 
-    # Actualizar pip
-    echo "Actualizando pip..."
-    python -m pip install --upgrade pip
-
-    # Instalar Poetry si no está instalado
-    if ! command -v poetry &> /dev/null; then
-        echo "Instalando Poetry..."
-        pip install poetry
-    fi
-
-    # Verificar si Poetry se instaló correctamente
-    if ! command -v poetry &> /dev/null; then
-        echo "Error: Poetry no se pudo instalar."
+    # Verificar si uv está instalado
+    if ! command -v uv &> /dev/null; then
+        echo "Error: uv no está instalado. Instálalo desde https://docs.astral.sh/uv/."
         exit 1
     fi
 
-    # Instalar dependencias de Poetry
-    echo "Instalando dependencias de Poetry..."
-    poetry install
+    # Sincronizar el entorno con las dependencias declaradas
+    echo "Sincronizando dependencias con uv..."
+    uv sync
 
     # Ejecutar pruebas con Pytest
     echo "Ejecutando pruebas con Pytest..."
-    poetry run pytest -v ./tests
+    uv run pytest -v ./tests
 
     # Verificar el estado de las pruebas
     if [ $? -ne 0 ]; then
@@ -142,17 +132,55 @@ automáticas al equipo.
 
 ???+ example "Notificación post-commit"
 
-    Notificación por correo tras un commit.
+    Notificación por correo tras un commit, implementada como un script de Python.
 
-    ```bash linenums="1"
-    #!/bin/bash
+    ```python linenums="1"
+    #!/usr/bin/env python3
     # Hook post-commit para enviar una notificación por correo
 
-    # Obtener el mensaje del último commit
-    commit_message=$(git log -1 --pretty=%B)
+    import smtplib
+    import subprocess
+    from email.message import EmailMessage
 
-    # Enviar un correo electrónico (usando sendmail como ejemplo)
-    echo "Nuevo commit realizado: $commit_message" | sendmail -v equipo@example.com
+
+    def obtener_ultimo_commit() -> str:
+        """
+        Obtiene el mensaje del último commit del repositorio.
+
+        Returns:
+            El mensaje asociado al commit más reciente.
+        """
+
+        resultado = subprocess.run(
+            ["git", "log", "-1", "--pretty=%B"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        return resultado.stdout.strip()
+
+
+    def enviar_notificacion(mensaje: str) -> None:
+        """
+        Envía una notificación por correo con el mensaje del commit.
+
+        Args:
+            mensaje: Contenido del commit a notificar.
+        """
+
+        correo = EmailMessage()
+        correo["Subject"] = "Nuevo commit realizado"
+        correo["From"] = "ci@example.com"
+        correo["To"] = "equipo@example.com"
+        correo.set_content(f"Nuevo commit realizado: {mensaje}")
+
+        with smtplib.SMTP("localhost") as servidor:
+            servidor.send_message(correo)
+
+
+    if __name__ == "__main__":
+        enviar_notificacion(obtener_ultimo_commit())
     ```
 
 #### post-merge
@@ -162,25 +190,26 @@ regenerar documentación.
 
 ???+ example "Actualizar dependencias post-merge"
 
-    Actualización de dependencias con Poetry.
+    Actualización de dependencias con uv.
 
     ```bash linenums="1"
     #!/bin/bash
-    # Hook post-merge para actualizar dependencias con Poetry
+    # Hook post-merge para actualizar dependencias con uv
 
-    # Verificar si Poetry está instalado
-    if ! command -v poetry &> /dev/null; then
-        echo "Poetry no está instalado. Instalándolo..."
-        pip install poetry
+    # Verificar si uv está instalado
+    if ! command -v uv &> /dev/null; then
+        echo "Error: uv no está instalado. Instálalo desde https://docs.astral.sh/uv/."
+        exit 1
     fi
 
-    # Actualizar las dependencias
-    echo "Actualizando dependencias de Poetry..."
-    poetry update
+    # Actualizar las dependencias al último valor permitido y sincronizar el entorno
+    echo "Actualizando dependencias con uv..."
+    uv lock --upgrade
+    uv sync
 
     # Ejecutar pruebas para verificar que todo funciona correctamente
     echo "Ejecutando pruebas con Pytest..."
-    poetry run pytest -v ./tests
+    uv run pytest -v ./tests
 
     # Verificar el estado de las pruebas
     if [ $? -ne 0 ]; then
@@ -200,21 +229,81 @@ políticas del proyecto antes de aceptarlos.
 
 ???+ example "Validar mensajes de commit"
 
-    Bloquear _pushes_ con mensajes de _commit_ incorrectos.
+    Bloquear _pushes_ con mensajes de _commit_ incorrectos mediante un script de Python.
 
-    ```bash linenums="1"
-    #!/bin/bash
+    ```python linenums="1"
+    #!/usr/bin/env python3
     # Hook pre-receive para validar mensajes de commit
 
-    while read oldrev newrev refname; do
-        for commit in $(git rev-list $oldrev..$newrev); do
-            commit_message=$(git log --format=%B -n 1 $commit)
-            if ! [[ $commit_message =~ ^\[JIRA-[0-9]+\] ]]; then
-                echo "El mensaje de commit '$commit_message' no cumple con el formato requerido."
-                exit 1
-            fi
-        done
-    done
+    import re
+    import subprocess
+    import sys
+
+    # Patrón requerido para los mensajes de commit
+    PATRON = re.compile(r"^\[JIRA-\d+\]")
+
+
+    def obtener_commits(oldrev: str, newrev: str) -> list[str]:
+        """
+        Obtiene la lista de commits entre dos referencias.
+
+        Args:
+            oldrev: Referencia previa al push.
+            newrev: Referencia posterior al push.
+
+        Returns:
+            Lista de identificadores de commit.
+        """
+
+        resultado = subprocess.run(
+            ["git", "rev-list", f"{oldrev}..{newrev}"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        return resultado.stdout.split()
+
+
+    def obtener_mensaje(commit: str) -> str:
+        """
+        Obtiene el mensaje de un commit específico.
+
+        Args:
+            commit: Identificador del commit.
+
+        Returns:
+            Mensaje asociado al commit.
+        """
+
+        resultado = subprocess.run(
+            ["git", "log", "--format=%B", "-n", "1", commit],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        return resultado.stdout.strip()
+
+
+    def main() -> None:
+        """
+        Valida el formato de los mensajes de commit recibidos.
+        """
+
+        for linea in sys.stdin:
+            oldrev, newrev, _ = linea.split()
+            for commit in obtener_commits(oldrev, newrev):
+                mensaje = obtener_mensaje(commit)
+                if not PATRON.match(mensaje):
+                    print(
+                        f"El mensaje de commit '{mensaje}' no cumple con el formato requerido."
+                    )
+                    sys.exit(1)
+
+
+    if __name__ == "__main__":
+        main()
     ```
 
 Mientras que **post-receive**, se emplea para realizar despliegues automáticos en
@@ -222,7 +311,7 @@ producción.
 
 ???+ example "Despliegue automático"
 
-    Despliegue automático tras recibir un _push_.
+    Despliegue automático tras recibir un _push_, sincronizando el entorno con uv.
 
     ```bash linenums="1"
     #!/bin/bash
@@ -235,6 +324,9 @@ producción.
 
     # Obtener la última versión del código
     git pull origin main
+
+    # Sincronizar las dependencias del entorno con uv
+    uv sync
 
     # Reiniciar el servidor web para aplicar cambios
     pm2 restart mi-aplicacion

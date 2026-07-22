@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Cloud computing y diseño de sistemas distribuidos.
-title: Modelos de servicio
+title: Fundamentos
 ---
 
 Este capítulo introduce los conceptos fundamentales de la computación en la nube, los

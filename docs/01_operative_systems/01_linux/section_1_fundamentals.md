@@ -189,6 +189,8 @@ En cualquier caso, aquí tienes una recopilación de los comandos más utilizado
 | `find`    | Busca archivos y directorios según criterios específicos.                              | `find /home -name "*.txt"`              |
 | `grep`    | Busca cadenas de texto dentro de archivos.                                             | `grep "error" log.txt`                  |
 | `tar`     | Comprime o descomprime archivos y directorios.                                         | `tar -czvf backup.tar.gz /home/usuario` |
+| `zip`     | Comprime archivos y directorios en formato ZIP.                                        | `zip -r nombre.zip nombre_carpeta`      |
+| `unzip`   | Descomprime archivos en formato ZIP.                                                   | `unzip nombre.zip`                      |
 | `df`      | Muestra el espacio disponible en sistemas de archivos.                                 | `df -h`                                 |
 | `du`      | Muestra el tamaño de archivos y directorios.                                           | `du -sh /home/usuario`                  |
 | `top`     | Muestra los procesos en ejecución y uso de recursos en tiempo real.                    | `top`                                   |
@@ -224,6 +226,33 @@ Dentro de esta estructura destacan una serie de directorios esenciales, entre el
 - **/dev**, **/proc** y **/sys**: Proporcionan representaciones virtuales del hardware y
   del estado interno del kernel, permitiendo un acceso sistemático y controlado a los
   recursos del sistema.
+
+Uno de los directorios que más visitaremos, de manera directa o indirecta, es la carpeta
+oculta denominada `~/.cache`, que almacena datos temporales generados por diversas
+aplicaciones para acelerar operaciones posteriores. En esta ubicación, herramientas
+modernas de gestión de dependencias para lenguajes de programación mantienen sus propios
+directorios de **_cache_** donde almacenan paquetes descargados, compilaciones
+intermedias y metadatos. Ejemplos representativos incluyen `~/.cache/uv` para el gestor
+de paquetes **`uv`** de Python, `~/.cache/pip` para **`pip`**, entre otros.
+
+Con el tiempo, estos directorios de _cache_ pueden acumular un volumen considerable de
+datos. Para identificar qué directorios consumen más espacio en disco, resulta útil el
+comando `du` con opciones que limitan la profundidad de exploración.
+
+???+ example "Comprobar el espacio ocupado por directorios"
+
+    Para visualizar el tamaño de cada subdirectorio inmediato dentro del directorio
+    personal del usuario:
+
+    ```bash linenums="1"
+    du -h --max-depth=1 ~
+    ```
+
+    Este comando muestra el espacio ocupado por cada carpeta en formato legible
+    (`-h` para _human-readable_) limitando la exploración a un solo nivel de
+    profundidad. Resulta especialmente práctico para detectar directorios de _cache_
+    que han crecido de forma descontrolada y que pueden limpiarse de forma segura sin
+    afectar al funcionamiento del sistema.
 
 ## Usuarios y grupos
 
@@ -497,6 +526,57 @@ Señales comunes generadas desde el teclado incluyen:
 - **Ctrl + Z (SIGTSTP):** Pausa el proceso y lo envía al segundo plano, permitiendo
   reanudarlo con `fg`.
 
+???+ example "Finalizar procesos por PID y por nombre"
+
+    Para terminar un proceso conociendo su PID, se emplea el comando `kill`. La forma
+    estándar envía la señal SIGTERM, que permite al proceso finalizar de forma ordenada:
+
+    ```bash linenums="1"
+    kill PID
+    ```
+
+    Si el proceso no responde a la señal SIGTERM, es posible forzar su terminación
+    inmediata mediante la señal SIGKILL:
+
+    ```bash linenums="1"
+    kill -9 PID
+    ```
+
+    En situaciones donde un proceso de Python se queda bloqueado o sin responder, como
+    ocurre frecuentemente con _notebooks_ de Jupyter o _scripts_ de larga duración,
+    resulta práctico utilizar `pkill` para finalizar todos los procesos asociados a un
+    nombre determinado sin necesidad de conocer sus PID individuales:
+
+    ```bash linenums="1"
+    pkill python
+    ```
+
+### Ejecución persistente de procesos
+
+En entornos de desarrollo y producción, es frecuente la necesidad de mantener procesos
+en ejecución incluso después de cerrar la sesión del terminal. Cuando un usuario cierra
+su sesión, el sistema envía la señal **SIGHUP** (_hangup_) a todos los procesos
+asociados a dicha sesión, lo que provoca su terminación.
+
+El comando **`nohup`** (_no hang up_) permite ignorar esta señal, garantizando que el
+proceso continúe ejecutándose de forma independiente a la sesión del usuario. La salida
+estándar y la salida de error se redirigen automáticamente al archivo `nohup.out` en el
+directorio de trabajo actual.
+
+???+ example "Mantener un proceso activo tras cerrar sesión"
+
+    Para ejecutar un _script_ de Python que debe permanecer activo de forma indefinida,
+    incluso si el usuario cierra la terminal o finaliza la conexión SSH:
+
+    ```bash linenums="1"
+    nohup python script_entrenamiento.py &
+    ```
+
+    El símbolo `&` al final envía el proceso al segundo plano, liberando la terminal
+    para continuar trabajando. La combinación de `nohup` con `&` resulta idónea para
+    tareas de larga duración como entrenamientos de modelos de aprendizaje automático o
+    procesamiento masivo de datos.
+
 ### _Daemons_
 
 Los **_daemons_** son procesos diseñados para ejecutarse en segundo plano de manera
@@ -526,7 +606,7 @@ detener, reiniciar y habilitar servicios de manera uniforme:
 | `sudo systemctl status sshd` | Muestra el estado, PID y consumo de recursos del daemon.                       |
 | `sudo systemctl enable sshd` | Configura el daemon para que se inicie automáticamente al arrancar el sistema. |
 
-## Automatización
+## Alias y atajos de comandos
 
 En Linux, la eficiencia operativa se potencia mediante la **automatización** de tareas
 repetitivas o complejas a través de la shell.
