@@ -25,7 +25,7 @@ número de variables utilizadas por el algoritmo.
 ### Órdenes de complejidad
 
 <figure markdown="span">
-  ![Órdenes de complejidad en notación Big O](../assets/img/docs/external/bigo-complexity-orders.png)
+  ![Órdenes de complejidad en notación Big O](../assets/img/docs/software_engineering/bigo-complexity-orders.png)
   <figcaption>Órdenes de complejidad más habituales en notación Big O. <a href="https://medium.com/@sysglobalsolutionsblog/notaci%C3%B3n-big-o-615bd1e0a227">Referencia</a></figcaption>
 </figure>
 

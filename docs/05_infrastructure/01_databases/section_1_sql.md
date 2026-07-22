@@ -66,7 +66,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   _NoSQL_.
 
 <figure markdown="span">
-  ![Modelo de datos relacional](../../assets/img/docs/external/sql-relational-model-1.jpg)
+  ![Modelo de datos relacional](../../assets/img/docs/databases/sql-relational-model-1.jpg)
   <figcaption>Representación del modelo de datos relacional (I).</figcaption>
 </figure>
 
@@ -75,7 +75,7 @@ como banca, comercio electrónico o cajas registradoras. Estas propiedades son:
   rendimiento.
 
 <figure markdown="span">
-  ![Modelo de datos relacional](../../assets/img/docs/external/sql-relational-model-2.jpg)
+  ![Modelo de datos relacional](../../assets/img/docs/databases/sql-relational-model-2.jpg)
   <figcaption>Representación del modelo de datos relacional (II).</figcaption>
 </figure>
 

@@ -206,7 +206,7 @@ todos los dispositivos de almacenamiento se incorporan a esta jerarquía mediant
 proceso de montaje.
 
 <figure markdown="span">
-  ![Jerarquía de los directorios de Linux](../../assets/img/docs/external/linux-file-system.png)
+  ![Jerarquía de los directorios de Linux](../../assets/img/docs/linux/linux-file-system.png)
   <figcaption>Jerarquía de los directorios de Linux. <a href="https://goldinscrib.hashnode.dev/the-linux-file-system">Referencia</a></figcaption>
 </figure>
 
@@ -345,8 +345,12 @@ representan de izquierda a derecha los permisos del propietario, del grupo y de 
 
 ???+ example "Notación octal"
 
-    Al aplicar `chmod 754 archivo`, el propietario obtiene todos los permisos, el grupo
-    puede leer y ejecutar, y el resto de usuarios solo puede leer.
+    Al aplicar `chmod 754 archivo`, cada dígito resulta de sumar los valores de los
+    permisos concedidos, donde la lectura vale 4, la escritura 2 y la ejecución 1. El
+    propietario obtiene el valor 7 (4 + 2 + 1), lo que equivale a lectura, escritura y
+    ejecución. El grupo recibe el valor 5 (4 + 1), es decir, lectura y ejecución, pero no
+    escritura. El resto de usuarios obtiene el valor 4, que corresponde únicamente a
+    lectura.
 
 Por otra parte, la **notación simbólica** utiliza letras para identificar a los sujetos,
 `u` para el propietario, `g` para el grupo, `o` para otros y `a` para todos, además de

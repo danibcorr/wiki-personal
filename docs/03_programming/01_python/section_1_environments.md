@@ -104,7 +104,7 @@ herramienta principal.
 ## Creación y activación de entornos
 
 <figure markdown="span">
-  ![Formas de configurar entornos virtuales en Python](../../assets/img/docs/external/python-virtual-environment.png)
+  ![Formas de configurar entornos virtuales en Python](../../assets/img/docs/python/python-virtual-environment.png)
   <figcaption>Formas de configurar entornos virtuales en Python. <a href="https://python.plainenglish.io/3-ways-to-set-up-your-python-projects-a45a3d7e8561">Referencia</a></figcaption>
 </figure>
 

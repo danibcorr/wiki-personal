@@ -43,12 +43,14 @@ Una vez ubicados en el directorio correcto y con los permisos necesarios, Git ej
 automáticamente estos scripts cuando ocurra el evento correspondiente.
 
 Al desarrollar y administrar Git Hooks, es esencial seguir ciertas pautas que aseguren
-su eficacia y mantengan un flujo de trabajo ordenado. En primer lugar, los hooks deben
-ser rápidos y confiables, de manera que su ejecución no interfiera con la productividad
-del equipo ni genere demoras en los procesos habituales de desarrollo. Asimismo, se
-recomienda evitar que los hooks realicen cambios automáticos en el código sin la
-aprobación explícita del desarrollador, ya que estas modificaciones pueden provocar
-conflictos, errores inesperados o dificultades en la integración del código.
+su eficacia y mantengan un flujo de trabajo ordenado.
+
+En primer lugar, los hooks deben ser rápidos y confiables, de manera que su ejecución no
+interfiera con la productividad del equipo ni genere demoras en los procesos habituales
+de desarrollo. Asimismo, se recomienda evitar que los hooks realicen cambios automáticos
+en el código sin la aprobación explícita del desarrollador, ya que estas modificaciones
+pueden provocar conflictos, errores inesperados o dificultades en la integración del
+código.
 
 ### Tipos de Git Hooks
 

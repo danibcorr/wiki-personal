@@ -46,6 +46,11 @@ El **control de versiones** es una herramienta que permite gestionar los cambios
 archivos a lo largo del tiempo, facilitando la recuperación de versiones anteriores
 cuando sea necesario.
 
+<figure markdown="span">
+  ![Identificador único (hash) de un commit](../../assets/img/docs/git/git-commit-hash.png)
+  <figcaption>Identificador único (hash) de un commit. <a href="https://codefinity.com/courses/v2/7533d91f-0a23-44a3-afc7-c84d5072e189/b9a4a4e8-3d95-4d5d-bf29-f87c3fd673a4/c3bcd665-926a-44bf-adf1-d1f97167d536">Referencia</a></figcaption>
+</figure>
+
 Puede entenderse como un sistema de **etiquetas de cambios**, cada vez que se guarda un
 cambio mediante un _commit_ en Git, se genera un **identificador único** (llamado
 _hash_) que registra el estado exacto de los archivos en ese momento. Esto permite
@@ -104,6 +109,11 @@ añadirlos al _Staging Area_ mediante `git add`, confirmarlos al _Commit History
 
 ### Estados de un archivo
 
+<figure markdown="span">
+  ![Ejemplo de los estados de los ficheros en un repositorio local](../../assets/img/docs/git/git-file-states-example.png)
+  <figcaption>Ejemplo de los estados de los ficheros en un repositorio local.</figcaption>
+</figure>
+
 Durante el ciclo de vida en Git, un archivo puede pasar por diferentes estados:
 
 1. **Sin seguimiento (_Untracked_)**: El archivo es nuevo y Git aún no lo está
@@ -124,6 +134,18 @@ Durante el ciclo de vida en Git, un archivo puede pasar por diferentes estados:
 5. **Confirmado (_Committed_)**: Cuando se ejecuta `git commit`, los cambios preparados
    se guardan en la base de datos de Git, registrándolos en el historial del repositorio
    de manera permanente.
+
+Al inspeccionar el estado del repositorio, ya sea mediante `git status --short` o a
+través de la interfaz de un editor, cada archivo aparece acompañado de una letra que
+resume su situación respecto al control de versiones:
+
+| Código | Significado                 | Descripción                                             |
+| ------ | --------------------------- | ------------------------------------------------------- |
+| `A`    | Added (añadido)             | Archivo nuevo que se ha añadido al área de preparación. |
+| `M`    | Modified (modificado)       | Archivo ya rastreado que ha sido modificado.            |
+| `D`    | Deleted (eliminado)         | Archivo que ha sido eliminado del control de versiones. |
+| `R`    | Renamed (renombrado)        | Archivo que ha sido renombrado.                         |
+| `U`    | Untracked (sin seguimiento) | Archivo nuevo que Git todavía no rastrea.               |
 
 ## Uso de Git
 
@@ -282,6 +304,11 @@ versiones en un repositorio Git a nivel local.
 | **git clean**           | Elimina archivos no rastreados del directorio de trabajo. Debe usarse con precaución, ya que borra archivos de forma permanente.                                                                                        | `git clean -f` elimina archivos no rastreados.                                                             |
 
 ### Ramas
+
+<figure markdown="span">
+  ![Ejemplo de la visualización de ramas en GitHub](../../assets/img/docs/git/git-github-branches-example.png)
+  <figcaption>Ejemplo de la visualización de ramas en GitHub.</figcaption>
+</figure>
 
 Una rama (**_branch_**) en Git es un puntero móvil que apunta a un _commit_ específico
 dentro del historial del proyecto. Las ramas permiten crear líneas de desarrollo

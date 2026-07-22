@@ -35,7 +35,7 @@ que están ganando relevancia debido a los últimos cambios de licencia y uso de
 entornos empresariales.
 
 <figure markdown="span">
-  ![Sistema basado en Microservicios](../assets/img/docs/external/docker-microservices.png)
+  ![Sistema basado en Microservicios](../assets/img/docs/docker/docker-microservices.png)
   <figcaption>Sistema basado en Microservicios. <a href="https://www.geeksforgeeks.org/system-design/how-to-design-a-microservices-architecture-with-docker-containers/">Referencia</a></figcaption>
 </figure>
 
@@ -63,7 +63,7 @@ asegurar el aislamiento, difieren significativamente en su implementación y arq
 subyacente.
 
 <figure markdown="span">
-  ![Pasos para la creación de un contenedor en Docker](../assets/img/docs/external/docker-container-steps.png)
+  ![Pasos para la creación de un contenedor en Docker](../assets/img/docs/docker/docker-container-steps.png)
   <figcaption>Pasos para la creación de un contenedor en Docker. <a href="https://medium.com/swlh/understand-dockerfile-dd11746ed183">Referencia</a></figcaption>
 </figure>
 
@@ -245,7 +245,7 @@ utilizar el comando `attach` junto con el ID del contenedor.
 ### Acceso a contenedores mediante mapeo de puertos
 
 <figure markdown="span">
-  ![Mapeo de puertos](../assets/img/docs/external/docker-port-mapping.png)
+  ![Mapeo de puertos](../assets/img/docs/docker/docker-port-mapping.png)
   <figcaption>Mapeo de puertos</figcaption>
 </figure>
 

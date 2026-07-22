@@ -393,7 +393,7 @@ estilos externa:
 ### Modelo de caja
 
 <figure markdown="span">
-  ![CSS Padding](../../assets/img/docs/external/css-padding.png)
+  ![CSS Padding](../../assets/img/docs/web/css-padding.png)
   <figcaption>CSS Padding</figcaption>
 </figure>
 
