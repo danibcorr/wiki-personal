@@ -28,8 +28,8 @@ entornos virtuales. La elección de una u otra depende del contexto de trabajo, 
 necesidades del equipo y la infraestructura disponible. No obstante, como principio
 general, resulta conveniente optar por la alternativa más simple y minimalista posible.
 Un entorno con pocas dependencias es más fácil de llevar a producción (por ejemplo,
-dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener
-a lo largo del tiempo.
+dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener a
+lo largo del tiempo.
 
 ### Anaconda
 
@@ -93,11 +93,11 @@ velocidad es notablemente superior a la de otras alternativas, ya que está basa
 Rust, un lenguaje de programación de bajo nivel.
 
 `uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, al igual que
-Poetry, similar al sistema `cargo` de Rust, donde se definen los metadatos del
-proyecto, las dependencias con sus versiones, la versión de Python requerida y las
-configuraciones de herramientas auxiliares. Además, permite la gestión automática de
-entornos y no requiere que Python esté previamente instalado en el sistema, ya que `uv`
-se encarga de descargarlo y configurarlo de forma transparente.
+Poetry, similar al sistema `cargo` de Rust, donde se definen los metadatos del proyecto,
+las dependencias con sus versiones, la versión de Python requerida y las configuraciones
+de herramientas auxiliares. Además, permite la gestión automática de entornos y no
+requiere que Python esté previamente instalado en el sistema, ya que `uv` se encarga de
+descargarlo y configurarlo de forma transparente.
 
 Por todo ello, en la actualidad `uv` representa la opción más recomendable para la
 mayoría de proyectos.
@@ -279,8 +279,8 @@ uv sync --all-groups
 ## Operaciones comunes de mantenimiento
 
 A continuación se muestran algunas de las operaciones más comunes en el uso de `uv`. En
-caso de tener dudas sobre las opciones que ofrecen estos comandos, o para descubrir otros
-que no se mencionan aquí, puede ejecutarse `uv help`, que muestra los comandos
+caso de tener dudas sobre las opciones que ofrecen estos comandos, o para descubrir
+otros que no se mencionan aquí, puede ejecutarse `uv help`, que muestra los comandos
 disponibles junto con una descripción de cada uno.
 
 ### Gestión de la caché
@@ -312,9 +312,9 @@ ya que ciertas librerías pueden arrastrar dependencias de otras que se estén u
 sin saberlo, lo que puede provocar divergencias entre versiones.
 
 En caso de preferir un proceso manual, siempre es posible consultar la página de PyPI o
-el repositorio correspondiente de la dependencia y comprobar si existe una nueva versión.
-Dicha versión puede fijarse en el fichero `pyproject.toml` o instalarse directamente
-mediante el siguiente comando:
+el repositorio correspondiente de la dependencia y comprobar si existe una nueva
+versión. Dicha versión puede fijarse en el fichero `pyproject.toml` o instalarse
+directamente mediante el siguiente comando:
 
 ```bash linenums="1"
 uv pip install --upgrade nombre_del_paquete
