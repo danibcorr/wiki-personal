@@ -6,7 +6,7 @@ title: Entornos virtuales
 ---
 
 Este capítulo describe las principales herramientas para la gestión de entornos
-virtuales y dependencias en Python, con énfasis en uv como gestor moderno y eficiente.
+virtuales y dependencias en Python, con énfasis en uv.
 
 ## Bibliografía
 
@@ -28,7 +28,7 @@ entornos virtuales. La elección de una u otra depende del contexto de trabajo, 
 necesidades del equipo y la infraestructura disponible. No obstante, como principio
 general, resulta conveniente optar por la alternativa más simple y minimalista posible.
 Un entorno con pocas dependencias es más fácil de llevar a producción (por ejemplo,
-dentro de una imagen de _Docker_), de compartir con otros desarrolladores y de mantener
+dentro de una imagen de Docker), de compartir con otros desarrolladores y de mantener
 a lo largo del tiempo.
 
 ### Anaconda
@@ -38,32 +38,34 @@ a lo largo del tiempo.
   <figcaption>Logo de Anaconda</figcaption>
 </figure>
 
-_Anaconda_ es una plataforma de código abierto diseñada para la creación y gestión de
+Anaconda es una plataforma de código abierto diseñada para la creación y gestión de
 entornos virtuales en Python, orientada a proyectos de ciencia de datos y aprendizaje
 automático. Proporciona una distribución de Python con numerosas bibliotecas
 preinstaladas, un gestor de paquetes propio denominado
-[_Conda_](https://anaconda.org/anaconda/repo) y herramientas integradas como
-[_Jupyter_](https://jupyter.org/).
+[Conda](https://anaconda.org/anaconda/repo) y herramientas integradas como
+[Jupyter](https://jupyter.org/).
 
-La gestión de paquetes se realiza principalmente a través de _Conda_, aunque también es
-posible utilizar [_PIP_](https://pypi.org/). Sin embargo, mezclar ambos gestores no es
-recomendable, ya que pueden surgir conflictos en la resolución de dependencias. Si
-quieres conocer más al respecto, te recomiendo esta
-[web](https://terminal.space/tech/why-cant-we-pip-and-conda-be-friends/).
+La gestión de paquetes se realiza principalmente a través de Conda, aunque también es
+posible utilizar [PIP](https://pypi.org/). Sin embargo, mezclar ambos gestores no es
+recomendable, ya que pueden surgir conflictos en la resolución de dependencias. Para
+profundizar en este aspecto, puede consultarse este
+[recurso](https://terminal.space/tech/why-cant-we-pip-and-conda-be-friends/).
 
-Durante años, _Anaconda_ fue la plataforma dominante en ciencia de datos gracias a su
+Durante años, Anaconda fue la plataforma dominante en ciencia de datos gracias a su
 ecosistema completo y su facilidad de uso. Con el tiempo, sin embargo, ha presentado
 limitaciones relevantes, como una licencia más restrictiva para entornos empresariales y
 un exceso de dependencias por defecto que incrementan innecesariamente el tamaño del
-entorno.
+entorno. Además, al ser tan completa, resultaba pesada en cuanto a tamaño, incluso con
+alternativas como Miniconda.
 
 ### VENV
 
 [`VENV`](https://docs.python.org/3/library/venv.html) es el módulo estándar de Python
-para la creación de entornos virtuales. A diferencia de _Anaconda_, no incluye
-dependencias adicionales y viene integrado en la instalación base de Python. La gestión
-de paquetes se realiza mediante [_PIP_](https://pypi.org/), el gestor de paquetes por
-defecto del lenguaje.
+para la creación de entornos virtuales. A diferencia de Anaconda, no incluye
+dependencias adicionales y viene integrado en la instalación base de Python.
+
+La gestión de paquetes se realiza mediante [PIP](https://pypi.org/), el gestor de
+paquetes por defecto del lenguaje.
 
 Su principal ventaja es la simplicidad y la ausencia de herramientas externas, aunque
 carece de funcionalidades avanzadas como la gestión de grupos de dependencias o la
@@ -76,7 +78,7 @@ resolución determinista de versiones.
   <figcaption>Logo de Poetry</figcaption>
 </figure>
 
-[_Poetry_](https://python-poetry.org/) es una herramienta de gestión de dependencias y
+[Poetry](https://python-poetry.org/) es una herramienta de gestión de dependencias y
 empaquetado para proyectos de Python. Permite administrar dependencias organizadas por
 grupos (producción, pruebas, documentación, entre otros), lo que elimina la necesidad de
 mantener múltiples archivos `requirements.txt` o de concentrar todas las dependencias en
@@ -87,19 +89,18 @@ un único fichero.
 [`uv`](https://docs.astral.sh/uv/) es una de las herramientas más recientes y eficientes
 para la gestión de entornos virtuales y dependencias en Python. Su objetivo principal es
 simplificar y acelerar tareas que tradicionalmente requieren múltiples herramientas. Su
-velocidad es notablemente superior a la de otras alternativas, ya que utiliza _Rust_
-internamente para la resolución e instalación de dependencias en milisegundos.
+velocidad es notablemente superior a la de otras alternativas, ya que está basada en
+Rust, un lenguaje de programación de bajo nivel.
 
-`uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, similar al
-sistema `cargo` de _Rust_, donde se definen los metadatos del proyecto, las dependencias
-con sus versiones, la versión de Python requerida y las configuraciones de herramientas
-auxiliares. Además, permite la gestión automática de entornos y no requiere que Python
-esté previamente instalado en el sistema, ya que `uv` se encarga de descargarlo y
-configurarlo de forma transparente.
+`uv` adopta un modelo de configuración basado en archivos `pyproject.toml`, al igual que
+Poetry, similar al sistema `cargo` de Rust, donde se definen los metadatos del
+proyecto, las dependencias con sus versiones, la versión de Python requerida y las
+configuraciones de herramientas auxiliares. Además, permite la gestión automática de
+entornos y no requiere que Python esté previamente instalado en el sistema, ya que `uv`
+se encarga de descargarlo y configurarlo de forma transparente.
 
 Por todo ello, en la actualidad `uv` representa la opción más recomendable para la
-mayoría de proyectos. Por esta razón, el presente documento se centra en `uv` como
-herramienta principal.
+mayoría de proyectos.
 
 ## Creación y activación de entornos
 
@@ -225,36 +226,36 @@ múltiples archivos de configuración dispersos por el proyecto.
     - La sección **`[build-system]`** define el _backend_ de construcción del proyecto. Al
       especificar `uv_build`, se habilita el empaquetado del proyecto como una distribución
       instalable, lo que permite encapsularlo como una librería y utilizarlo como tal, de la
-      misma forma que se emplea cualquier librería de terceros como _Polars_, _NumPy_ o
+      misma forma que se emplea cualquier librería de terceros como Polars, NumPy o
       similares.
 
-    * La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
+    - La sección **`[project]`** contiene los metadatos del proyecto: nombre, versión,
       descripción, versión de Python requerida y autores. Este formato sigue el estándar
       definido por [PEP 621](https://peps.python.org/pep-0621/), que unifica la declaración
       de metadatos en el ecosistema Python.
 
-    * La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
+    - La sección **`[tool.uv]`** alberga la configuración específica de `uv`. El campo
       `default-groups` indica qué grupos de dependencias se instalan por defecto, mientras
       que `cache-keys` permite invalidar la caché cuando cambian determinados archivos o el
-      _commit_ de _Git_.
+      _commit_ de Git.
 
-    * La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
+    - La sección **`[tool.uv.sources]`** permite definir fuentes alternativas para paquetes
       específicos, como paquetes locales en modo editable (útiles durante el desarrollo) o
       paquetes alojados en índices privados. Esto resulta especialmente práctico cuando se
-      gestionan librerías propias en repositorios o instancias privadas de _GitLab_ o
+      gestionan librerías propias en repositorios o instancias privadas de GitLab o
       plataformas similares.
 
-    * La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
+    - La sección **`[[tool.uv.index]]`** configura los índices de paquetes disponibles. Es
       posible definir múltiples índices simultáneamente, estableciendo _PyPI_ como índice
       por defecto y añadiendo repositorios privados con autenticación obligatoria.
 
-    * La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
+    - La sección **`[dependency-groups]`** organiza las dependencias en grupos lógicos
       (_core_, _notebooks_, _pipeline_, _docs_, entre otros). Esta organización permite
       instalar únicamente lo necesario según el contexto. Por ejemplo, en un entorno de
       integración continua (CI/CD) solo se instalaría el grupo `pipeline`, mientras que en
       un entorno de desarrollo local podrían instalarse todos los grupos.
 
-    * Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
+    - Las secciones **`[tool.ruff]`**, **`[tool.mypy]`** y **`[tool.pytest.ini_options]`**
       centralizan la configuración de herramientas del proyecto dentro del propio
       `pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
       `.flake8`, `mypy.ini` o `pytest.ini`.
@@ -277,6 +278,11 @@ uv sync --all-groups
 
 ## Operaciones comunes de mantenimiento
 
+A continuación se muestran algunas de las operaciones más comunes en el uso de `uv`. En
+caso de tener dudas sobre las opciones que ofrecen estos comandos, o para descubrir otros
+que no se mencionan aquí, puede ejecutarse `uv help`, que muestra los comandos
+disponibles junto con una descripción de cada uno.
+
 ### Gestión de la caché
 
 Los gestores de entorno almacenan en caché la información de los paquetes que instalan.
@@ -295,13 +301,20 @@ funcionalidades, corrigen errores y resuelven vulnerabilidades de seguridad en v
 posteriores. Mantener las dependencias actualizadas es esencial para el correcto
 funcionamiento y la seguridad del proyecto.
 
-Para actualizar todos los paquetes del entorno:
+Lo ideal no es actualizar todos los paquetes del entorno de forma simultánea. Una
+estrategia más adecuada consiste en definir una batería de tests en el repositorio donde
+se aloja el código y apoyarse en herramientas como Dependabot en GitHub, o equivalentes
+en otras plataformas, que avisan cuando hay disponible una nueva versión de una
+dependencia. En ese caso, Dependabot crea una nueva rama, ejecuta los tests definidos en
+el repositorio y abre una _merge request_ que puede aprobarse si las pruebas se superan.
+Esta es la forma más práctica y funcional, además de ajustarse a las buenas prácticas,
+ya que ciertas librerías pueden arrastrar dependencias de otras que se estén utilizando
+sin saberlo, lo que puede provocar divergencias entre versiones.
 
-```bash linenums="1"
-uv pip install --upgrade $(uv pip list --format=freeze | cut -d = -f 1 | tr '\n' ' ')
-```
-
-Para actualizar un paquete específico:
+En caso de preferir un proceso manual, siempre es posible consultar la página de PyPI o
+el repositorio correspondiente de la dependencia y comprobar si existe una nueva versión.
+Dicha versión puede fijarse en el fichero `pyproject.toml` o instalarse directamente
+mediante el siguiente comando:
 
 ```bash linenums="1"
 uv pip install --upgrade nombre_del_paquete
@@ -349,16 +362,16 @@ de forma directa, se emplea el siguiente comando:
 uv pip uninstall nombre_del_paquete
 ```
 
-## Integración con _Jupyter_
+## Integración con Jupyter
 
-Para utilizar un entorno virtual dentro de _Jupyter_, es necesario instalar el paquete
-`ipykernel` como dependencia del entorno, para ello utilizamos el siguiente comando:
+Para utilizar un entorno virtual dentro de Jupyter, es necesario instalar el paquete
+`ipykernel` como dependencia del entorno. Para ello se utiliza el siguiente comando:
 
 ```bash linenums="1"
 uv add ipykernel
 ```
 
-El registro manual del entorno como _kernel_ de _Jupyter_ solo es necesario cuando el
+El registro manual del entorno como _kernel_ de Jupyter solo es necesario cuando el
 entorno virtual se encuentra en un directorio diferente al del proyecto. En la mayoría
 de los entornos de desarrollo modernos, como VSCode, si el entorno reside dentro del
 directorio del proyecto, se detecta automáticamente y es posible seleccionar el _kernel_

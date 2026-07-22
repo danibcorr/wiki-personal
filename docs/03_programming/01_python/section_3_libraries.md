@@ -4,11 +4,10 @@ description: Librerías complementarias del ecosistema Python.
 title: Librerías
 ---
 
-En el desarrollo con Python, existen numerosas librerías que facilitan la implementación
-de diversas funcionalidades.
-
-A continuación, destaco algunas consideradas especialmente relevantes para crear
-utilidades, herramientas de línea de comandos (CLI) o similares.
+En el desarrollo con Python existen numerosas librerías que facilitan la implementación
+de diversas funcionalidades. A continuación se destacan las que resultan especialmente
+relevantes para crear utilidades, herramientas de línea de comandos (_Command Line
+Interface_, CLI) o similares.
 
 !!! info
 
@@ -24,5 +23,5 @@ utilidades, herramientas de línea de comandos (CLI) o similares.
 | **argparse**      | Proporciona herramientas para crear interfaces de línea de comandos, con definición de argumentos, opciones y ayuda automática.               | cli, argumentos, terminal, comandos                |
 | **SQLModel**      | Facilita la interacción con bases de datos SQL mediante modelos de datos, combinando SQLAlchemy y Pydantic.                                   | sql, base de datos, orm, pydantic, sqlalchemy      |
 | **Cookiecutter**  | Genera proyectos a partir de plantillas, estandarizando la estructura de directorios y archivos para iniciar proyectos de manera consistente. | plantillas, scaffolding, estructura, proyecto      |
-| **SlowApi**       | Permite asignar un límite en el número de peticiones para APIs en FastAPI                                                                     | fastapi, rate-limit, api, peticiones, throttling   |
+| **SlowApi**       | Permite asignar un límite al número de peticiones para APIs desarrolladas con FastAPI.                                                        | fastapi, rate-limit, api, peticiones, throttling   |
 | **python-dotenv** | Carga variables de entorno desde un archivo `.env` al entorno del proceso, facilitando la gestión de configuración y secretos.                | env, variables de entorno, configuración, secretos |
