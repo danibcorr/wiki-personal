@@ -38,7 +38,7 @@ targets: prerequisites
 ```
 
 El campo _targets_ contiene los nombres de los archivos o tareas que se generarán,
-separados por espacios. Habitualmente se define un único _target_ por regla. Los
+separados por espacios, habitualmente se define un único _target_ por regla. Los
 _prerequisites_ son los archivos o dependencias necesarios para generar el _target_,
 también separados por espacios. Los comandos son las instrucciones que se ejecutan para
 construir el _target_ y cada uno de ellos debe comenzar obligatoriamente con un carácter
@@ -58,8 +58,8 @@ de tabulación, no con espacios.
     Al no tener prerrequisitos, se ejecuta siempre que se invoque. Los comandos
     precedidos por `@` se ejecutan sin mostrar la línea del comando en la salida,
     mostrando únicamente su resultado. Al ejecutar `make setup`, Make ejecuta los
-    comandos de forma secuencial: sincroniza las dependencias con `uv` e instala
-    los _hooks_ de _pre-commit_.
+    comandos de forma secuencial, en este caso, sincroniza las dependencias con `uv`
+    e instala los _hooks_ de _pre-commit_.
 
 ???+ example "Con prerrequisitos"
 
@@ -369,12 +369,16 @@ según diferentes entornos o configuraciones del proyecto.
 !!! note "Sintaxis"
 
     ```makefile linenums="1"
-    ifeq (condición)
+    ifeq (arg1,arg2)
         acción
     else
         acción
     endif
     ```
+
+    La directiva `ifeq` compara dos argumentos y ejecuta la primera rama cuando
+    coinciden. La directiva `ifdef` evalúa en cambio si una variable se encuentra
+    definida, con independencia de su valor.
 
 ???+ example "Condicionales ifdef/ifeq"
 
@@ -384,7 +388,17 @@ según diferentes entornos o configuraciones del proyecto.
     else
         CFLAGS = -O2
     endif
+
+    ifdef VERBOSE
+        OUTPUT = --verbose
+    else
+        OUTPUT =
+    endif
     ```
+
+    En el primer bloque, `ifeq` asigna `-g` cuando la variable `USE_DEBUG` tiene el
+    valor `yes` y `-O2` en caso contrario. En el segundo bloque, `ifdef` añade la
+    opción `--verbose` únicamente cuando la variable `VERBOSE` se encuentra definida.
 
 ### Macros y funciones personalizadas
 
@@ -407,7 +421,7 @@ que mejora la legibilidad y reduce la duplicación de código en _Makefiles_ ext
     endef
 
     %.o: %.c
-        $(call compile_rule)
+    	$(call compile_rule)
     ```
 
 ## Buenas prácticas

@@ -21,7 +21,7 @@ cubriendo su sintaxis básica, estructuras de control y técnicas de automatizac
 
 BASH (_Bourne Again Shell_) es un intérprete de comandos y un lenguaje de programación
 ampliamente utilizado en sistemas basados en Unix. Fue desarrollado por Brian Fox para
-el Proyecto GNU y publicado en 1989 como una evolución del _Bourne Shell_ (`sh`).
+el proyecto GNU y publicado en 1989 como una evolución del _Bourne Shell_ (`sh`).
 
 ## Sintaxis
 
@@ -29,13 +29,9 @@ el Proyecto GNU y publicado en 1989 como una evolución del _Bourne Shell_ (`sh`
 
 Todo programa en BASH comienza con la línea `#!/bin/bash`, conocida como _shebang_. Esta
 directiva indica al sistema operativo qué intérprete debe utilizar para ejecutar los
-comandos contenidos en el archivo. Los _scripts_ de BASH emplean por convención la
-extensión `.sh`, lo que facilita su identificación dentro del sistema de archivos.
-
-!!! note "Importancia del _shebang_"
-
-    El uso del _shebang_ `#!/bin/bash` garantiza que el _script_ se ejecute con el
-    intérprete adecuado, independientemente del entorno en el que se invoque.
+comandos contenidos en el archivo, independientemente del entorno en el que se invoque.
+Los _scripts_ de BASH emplean por convención la extensión `.sh`, lo que facilita su
+identificación dentro del sistema de archivos.
 
 A continuación del _shebang_ se añaden las instrucciones que definen las acciones a
 realizar, como mostrar mensajes en la terminal, invocar otros _scripts_ o ejecutar
@@ -108,8 +104,7 @@ deseado, sin espacios entre ellos.
     ```
 
     También es posible almacenar el resultado de la ejecución de un comando del sistema
-    en una variable mediante la sintaxis `$(comando)`. Esta capacidad resulta
-    especialmente útil para automatizar tareas y procesar información de forma dinámica:
+    en una variable mediante la sintaxis `$(comando)`:
 
     ```bash linenums="1"
     #!/bin/bash
@@ -247,6 +242,48 @@ definida, una función se invoca simplemente escribiendo su nombre.
 
     funcion
     ```
+
+### Control de errores
+
+Por defecto, un _script_ de BASH continúa su ejecución aunque uno de sus comandos falle,
+lo que puede provocar que se realicen operaciones sobre un estado inconsistente. La
+opción `set -e` modifica este comportamiento y hace que el _script_ finalice de forma
+inmediata en cuanto cualquier comando devuelve un código de salida distinto de cero, es
+decir, en cuanto falla. De este modo, la ejecución se detiene en el primer error en
+lugar de propagarlo a las instrucciones posteriores.
+
+???+ example "Detención ante el primer error"
+
+    ```bash linenums="1"
+    #!/bin/bash
+    set -e
+
+    # Este comando falla y detiene el script en este punto
+    cp archivo_inexistente.txt /tmp/
+    echo "Esto nunca se ejecuta"
+    ```
+
+Existen situaciones en las que `set -e` no detiene el _script_ aunque un comando falle.
+Los comandos evaluados dentro de una condición `if` o `while` no interrumpen la
+ejecución, ya que su código de salida forma parte de la propia evaluación de la
+condición. Tampoco lo hacen los comandos encadenados mediante los operadores `||` o
+`&&`, puesto que el fallo se contempla dentro de la lógica de la expresión. Del mismo
+modo, un comando ejecutado en una _subshell_ no detiene el _script_ principal cuando el
+error se gestiona de forma externa.
+
+En la práctica, `set -e` suele combinarse con otras opciones que refuerzan la robustez
+del _script_:
+
+```bash linenums="1"
+#!/bin/bash
+set -euo pipefail
+```
+
+- `-e`: Finaliza el _script_ ante cualquier error.
+- `-u`: Genera un error si se utiliza una variable no definida.
+- `-o pipefail`: Propaga el fallo de cualquier comando de un _pipeline_ al conjunto del
+  mismo. Sin esta opción, únicamente se considera el código de salida del último
+  comando.
 
 ## Automatización
 
