@@ -4,11 +4,10 @@ description: Librerías complementarias del ecosistema Rust.
 title: Librerías
 ---
 
-En el desarrollo con Rust, existen numerosas librerías (denominadas _crates_) que
-facilitan la implementación de diversas funcionalidades.
-
-A continuación, destaco algunas consideradas especialmente relevantes para crear
-utilidades, herramientas de línea de comandos (CLI) o similares.
+En el desarrollo con Rust existen numerosas librerías (denominadas _crates_) que
+facilitan la implementación de diversas funcionalidades. A continuación se destacan las
+que resultan especialmente relevantes para crear utilidades, herramientas de línea de
+comandos (CLI) o similares.
 
 !!! info
 

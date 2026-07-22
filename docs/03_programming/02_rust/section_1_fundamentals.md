@@ -18,14 +18,26 @@ el modelo de ownership y borrowing, y las estructuras de control fundamentales.
 
 ## Introducción
 
+<figure markdown="span">
+  ![Mascota de Rust](../../assets/img/docs/logos/rust-logo.png)
+  <figcaption>Mascota de Rust</figcaption>
+</figure>
+
 **Rust** es un lenguaje de programación de sistemas cuyo diseño persigue tres objetivos
 fundamentales: seguridad de memoria, concurrencia libre de _data races_ y rendimiento
 comparable al de C y C++. A diferencia de otros lenguajes que dependen de un _garbage
 collector_ para gestionar la memoria en tiempo de ejecución, Rust introduce un sistema
 de _ownership_ (propiedad) que verifica la corrección del uso de la memoria en tiempo de
 compilación. Este enfoque elimina categorías enteras de errores comunes, como los
-accesos a memoria liberada o las condiciones de carrera, sin incurrir en penalizaciones
-de rendimiento.
+accesos a memoria liberada o las condiciones de carrera (_race conditions_), sin
+incurrir en penalizaciones de rendimiento.
+
+!!! note "Condiciones de carrera"
+
+    Una condición de carrera (_race condition_) es un error que se produce cuando el
+    comportamiento de un programa depende del orden o la temporización con que se
+    ejecutan múltiples hilos, procesos o tareas concurrentes, sin que dicho orden esté
+    garantizado.
 
 El lenguaje resulta especialmente adecuado para el desarrollo de _software_ de sistemas,
 herramientas de línea de comandos, servicios web de alto rendimiento y cualquier
@@ -34,23 +46,30 @@ contexto en el que el control preciso sobre los recursos sea un requisito.
 ### Primer programa
 
 Todo programa en Rust comienza su ejecución en la función `main`, que actúa como punto
-de entrada obligatorio. La macro `println!` permite imprimir texto en la salida
+de entrada obligatorio.
+
+En este ejemplo se utiliza la macro `println!`, que permite imprimir texto en la salida
 estándar. El signo de exclamación indica que se trata de una macro y no de una función
 convencional, lo que significa que genera código adicional en tiempo de compilación para
 extender la sintaxis del lenguaje:
 
-```rust linenums="1"
-fn main() {
-    println!("Hola mundo");
-}
-```
+???+ example "Hola mundo"
+
+    La función `main` invoca `println!` para escribir una línea en la salida estándar.
+
+    ```rust linenums="1"
+    fn main() {
+        println!("Hola mundo");
+    }
+    ```
 
 ### Compilación directa con `rustc`
 
 El compilador de Rust (`rustc`) permite compilar archivos fuente de forma directa sin
 necesidad de un gestor de proyectos. Los archivos de código fuente utilizan la extensión
 `.rs`. Una vez compilado, se genera un binario ejecutable con el mismo nombre del
-archivo fuente:
+archivo fuente, el cual puede ser ejecutado posteriormente por cualquier equipo aunque
+no tenga instalado Rust:
 
 ```bash linenums="1"
 # Compilar un archivo fuente
@@ -62,16 +81,23 @@ rustc main.rs
 
 ### Cargo
 
-_Cargo_ es la herramienta oficial de Rust que integra la gestión de paquetes, la
+Cargo es la herramienta oficial de Rust que integra la gestión de paquetes, la
 compilación del código y la ejecución de pruebas en un único flujo de trabajo. Viene
-preinstalado con Rust y se puede verificar su versión con `cargo --version`. Cuando se
-crea un proyecto con _Cargo_, este genera automáticamente la estructura de directorios
-necesaria junto con un archivo `Cargo.toml` que describe las dependencias y la
-configuración del proyecto. _Cargo_ espera que los archivos de código fuente se
-encuentren en el directorio `src/`. Es importante que el analizador de Rust
-(_rust-analyzer_) detecte el fichero `Cargo.toml` en el directorio raíz del proyecto
-para ofrecer funcionalidades de autocompletado y diagnóstico en el entorno de
-desarrollo.
+preinstalado con Rust y se puede verificar su versión con `cargo --version`.
+
+Cuando se crea un proyecto con Cargo, este genera automáticamente la estructura de
+directorios necesaria junto con un archivo `Cargo.toml` que describe las dependencias y
+la configuración del proyecto.
+
+Cargo espera que los archivos de código fuente se encuentren en el directorio `src/`. Es
+importante que el analizador de Rust (_rust-analyzer_) detecte el fichero `Cargo.toml`
+en el directorio raíz del proyecto para ofrecer funcionalidades de autocompletado y
+diagnóstico en el entorno de desarrollo, por lo que es necesario situarse en la raíz del
+proyecto mediante `cd`.
+
+A continuación se detallan algunos de los comandos más relevantes de Cargo. Al igual que
+con otras herramientas, siempre es posible recurrir a la opción `help` para consultar
+los argumentos, las opciones y otros comandos no reflejados aquí:
 
 ```bash linenums="1"
 # Verificar la versión instalada
@@ -103,11 +129,13 @@ La diferencia entre ambos modos de compilación es relevante. El modo _debug_ in
 comprobaciones adicionales (como la detección de _overflow_ aritmético) y genera código
 sin optimizar para facilitar la depuración. El modo _release_ produce un binario
 optimizado destinado a producción. Además, si el código fuente no ha cambiado desde la
-última compilación, _Cargo_ no lo recompila, lo que acelera el ciclo de desarrollo.
+última compilación, Cargo no lo recompila, lo que acelera el ciclo de desarrollo.
 
 !!! tip "Flujo de trabajo recomendado"
 
-    Durante el desarrollo, es preferible usar `cargo check` para verificar rápidamente que el código compila (ya que no genera un ejecutable) y reservar `cargo build` o `cargo run` para cuando se necesite ejecutar el programa.
+    Durante el desarrollo, es preferible usar `cargo check` para verificar rápidamente
+    que el código compila (ya que no genera un ejecutable) y reservar `cargo build` o
+    `cargo run` para cuando se necesite ejecutar el programa.
 
 ### Documentación
 
@@ -133,18 +161,23 @@ anotación de tipo explícita. A diferencia de las variables inmutables, las con
 evalúan en tiempo de compilación y no pueden declararse como mutables bajo ninguna
 circunstancia.
 
-```rust linenums="1"
-fn main() {
-    // Variable mutable: permite modificar su valor
-    let mut contador: i32 = 4;
-    contador += 1;
-    println!("{}", contador);
+???+ example "Variables mutables y constantes"
 
-    // Constante: inmutable, tipo obligatorio, evaluada en compilación
-    const CONSTANTE: u8 = 6;
-    println!("{}", CONSTANTE);
-}
-```
+    El siguiente programa modifica una variable mutable y declara una constante con su
+    tipo explícito.
+
+    ```rust linenums="1"
+    fn main() {
+        // Variable mutable: permite modificar su valor
+        let mut contador: i32 = 4;
+        contador += 1;
+        println!("{}", contador);
+
+        // Constante: inmutable, tipo obligatorio, evaluada en compilación
+        const CONSTANTE: u8 = 6;
+        println!("{}", CONSTANTE);
+    }
+    ```
 
 ### _Shadowing_
 
@@ -154,28 +187,41 @@ completamente nueva que puede incluso tener un tipo distinto al de la original. 
 variable anterior deja de ser accesible en el _scope_ actual, aunque conserva su valor
 en _scopes_ superiores si la redeclaración ocurre dentro de un bloque anidado.
 
-```rust linenums="1"
-fn main() {
-    let n = 5;
+!!! note "Shadowing frente a mutabilidad"
 
-    {
-        // Shadowing dentro de un scope diferente
-        let mut n = 6;
-        println!("Valor de n dentro: {}", n); // 6
-        n += 1;
-        println!("Valor de n dentro: {}", n); // 7
+    La mutabilidad (`mut`) modifica el valor de una variable conservando su tipo,
+    mientras que el _shadowing_ crea una variable nueva que puede cambiar de tipo. Por
+    ello, el _shadowing_ no requiere que la variable sea mutable.
+
+???+ example "Shadowing en distintos scopes"
+
+    El valor redeclarado dentro del bloque no altera el valor original en el _scope_
+    superior, y una redeclaración posterior permite cambiar de tipo.
+
+    ```rust linenums="1"
+    fn main() {
+        let n = 5;
+
+        {
+            // Shadowing dentro de un scope diferente
+            let mut n = 6;
+            println!("Valor de n dentro: {}", n); // 6
+
+            n += 1;
+            println!("Valor de n dentro: {}", n); // 7
+        }
+
+        // El valor original permanece inalterado fuera del bloque
+        println!("Valor de n fuera: {}", n); // 5
+
+        // Shadowing con cambio de tipo
+        let numero: i32 = 4;
+        println!("{}", numero);
+
+        let numero: &str = "Hola";
+        println!("{}", numero);
     }
-
-    // El valor original permanece inalterado fuera del bloque
-    println!("Valor de n fuera: {}", n); // 5
-
-    // Shadowing con cambio de tipo
-    let numero: i32 = 4;
-    println!("{}", numero);
-    let numero: &str = "Hola";
-    println!("{}", numero);
-}
-```
+    ```
 
 ## Tipos de datos
 
@@ -185,41 +231,52 @@ Rust proporciona tipos enteros con y sin signo en diversos tamaños: `i8`/`u8`,
 `i16`/`u16`, `i32`/`u32`, `i64`/`u64`, `i128`/`u128`, además de `isize`/`usize`. Los
 tipos `isize` y `usize` tienen un tamaño que depende de la arquitectura del sistema
 donde se ejecuta el programa (64 bits en sistemas de 64 bits, 32 bits en sistemas de 32
-bits). El tipo `usize` se utiliza habitualmente para indexar colecciones, ya que
-representa un valor sin signo del tamaño de un puntero.
+bits).
 
-En cuanto al comportamiento ante desbordamiento aritmético (_overflow_), Rust adopta una
-estrategia diferente según el modo de compilación. En modo _debug_, el compilador
-detecta el _overflow_ y genera un error que detiene la ejecución. En modo _release_, se
-aplica _wrapping_ (el valor desborda de forma silenciosa y vuelve al inicio del rango),
-lo que puede producir resultados inesperados si no se gestiona adecuadamente. El mismo
-principio se aplica al _underflow_, donde un valor desciende por debajo del mínimo
-representable para su tipo.
+!!! note
+
+    El tipo `usize` se utiliza habitualmente para indexar colecciones, ya que
+    representa un valor sin signo del tamaño de un puntero.
+
+!!! warning
+
+    En cuanto al comportamiento ante desbordamiento aritmético (_overflow_), Rust adopta una
+    estrategia diferente según el modo de compilación. En modo _debug_, el compilador
+    detecta el _overflow_ y genera un error que detiene la ejecución. En modo _release_, se
+    aplica _wrapping_ (el valor desborda de forma silenciosa y vuelve al inicio del rango),
+    lo que puede producir resultados inesperados si no se gestiona adecuadamente. El mismo
+    principio se aplica al _underflow_, donde un valor desciende por debajo del mínimo
+    representable para su tipo.
 
 Para mejorar la legibilidad de literales numéricos extensos, Rust permite insertar
 guiones bajos como separadores visuales en cualquier posición dentro del número, tanto
 en enteros como en decimales. Estos separadores no afectan al valor numérico y el
 compilador los ignora por completo.
 
-```rust linenums="1"
-fn main() {
-    let a: usize = 25;
-    println!("Valor máximo usize: {}", usize::MAX);
-    println!("Valor mínimo usize: {}", usize::MIN);
+???+ example "Rangos de valores y separadores visuales"
 
-    let a: isize = 40;
-    println!("Valor máximo isize: {}", isize::MAX);
-    println!("Valor mínimo isize: {}", isize::MIN);
+    Las constantes asociadas `MAX` y `MIN` exponen los límites de cada tipo. La salida
+    corresponde a una arquitectura de 64 bits.
 
-    // Separadores visuales para legibilidad
-    let variable_millon: i32 = 1_000_000;
-    println!("Valor: {}", variable_millon);
+    ```rust linenums="1"
+    fn main() {
+        let a: usize = 25;
+        println!("Valor máximo usize: {}", usize::MAX);
+        println!("Valor mínimo usize: {}", usize::MIN);
 
-    // También aplicable a decimales
-    let pi: f32 = 3.141_592_7;
-    println!("Pi: {}", pi);
-}
-```
+        let a: isize = 40;
+        println!("Valor máximo isize: {}", isize::MAX);
+        println!("Valor mínimo isize: {}", isize::MIN);
+
+        // Separadores visuales para legibilidad
+        let variable_millon: i32 = 1_000_000;
+        println!("Valor: {}", variable_millon);
+
+        // También aplicable a decimales
+        let pi: f32 = 3.141_592_7;
+        println!("Pi: {}", pi);
+    }
+    ```
 
 ### Punto flotante
 
@@ -230,25 +287,32 @@ de forma exacta, lo que introduce pequeños errores de precisión. Este comporta
 es exclusivo de Rust, sino que afecta a cualquier lenguaje que utilice aritmética de
 punto flotante.
 
-Por esta razón, la comparación directa entre valores de punto flotante mediante el
-operador `==` resulta poco fiable. La práctica recomendada consiste en calcular la
-diferencia absoluta entre ambos valores y verificar que sea inferior a un umbral de
-tolerancia, habitualmente representado por la constante `f64::EPSILON`.
+!!! warning "Comparación de valores de punto flotante"
 
-```rust linenums="1"
-fn main() {
-    let a: f64 = 0.1;
-    let b: f64 = 0.2;
-    let c: f64 = a + b;
-    const EXPECTED_VALUE: f64 = 0.3;
+    La comparación directa entre valores de punto flotante mediante el operador `==`
+    resulta poco fiable. La práctica recomendada consiste en calcular la diferencia
+    absoluta entre ambos valores y verificar que sea inferior a un umbral de tolerancia,
+    habitualmente representado por la constante `f64::EPSILON`.
 
-    // El resultado no es exactamente 0.3 (produce 0.30000000000000004)
-    println!("¿c == 0.3?: {}", c == EXPECTED_VALUE); // false
+???+ example "Comparación segura de flotantes"
 
-    // Comparación correcta mediante tolerancia
-    println!("¿c ≈ 0.3?: {}", (c - EXPECTED_VALUE).abs() < f64::EPSILON);
-}
-```
+    La suma `0.1 + 0.2` no produce exactamente `0.3`, por lo que la comparación por
+    tolerancia devuelve el resultado esperado mientras que la comparación directa no.
+
+    ```rust linenums="1"
+    fn main() {
+        let a: f64 = 0.1;
+        let b: f64 = 0.2;
+        let c: f64 = a + b;
+        const EXPECTED_VALUE: f64 = 0.3;
+
+        // El resultado no es exactamente 0.3 (produce 0.30000000000000004)
+        println!("¿c == 0.3?: {}", c == EXPECTED_VALUE); // false
+
+        // Comparación correcta mediante tolerancia
+        println!("¿c ≈ 0.3?: {}", (c - EXPECTED_VALUE).abs() < f64::EPSILON);
+    }
+    ```
 
 ### Booleanos y caracteres
 
@@ -259,15 +323,20 @@ El tipo `char` representa un único carácter Unicode y ocupa 4 bytes en memoria
 permite almacenar cualquier carácter del estándar Unicode, incluyendo _emojis_ y
 caracteres de escrituras no latinas.
 
-```rust linenums="1"
-fn main() {
-    let connected: bool = false;
-    println!("Conectado: {}", connected);
+???+ example "Valores booleanos y caracteres"
 
-    let letter: char = 'z';
-    println!("Letra: {}", letter);
-}
-```
+    Un valor `bool` y un `char` se declaran e imprimen igual que cualquier otro tipo
+    básico.
+
+    ```rust linenums="1"
+    fn main() {
+        let connected: bool = false;
+        println!("Conectado: {}", connected);
+
+        let letter: char = 'z';
+        println!("Letra: {}", letter);
+    }
+    ```
 
 ### Conversión de tipos
 
@@ -279,25 +348,34 @@ correspondientes (código ASCII o Unicode).
 
 Para convertir cadenas de texto a tipos numéricos se utiliza el método `.parse()`, que
 devuelve un `Result` y requiere gestión de errores (habitualmente mediante `.expect()` o
-_pattern matching_). Es recomendable aplicar `.trim()` antes de `.parse()` para eliminar
-posibles espacios en blanco o saltos de línea que puedan interferir con la conversión.
+_pattern matching_).
 
-```rust linenums="1"
-const MULTIPLICADOR: u32 = 2;
+!!! tip "Limpieza previa a la conversión"
 
-fn main() {
-    let user_input = "100";
-    let converted: i32 = user_input
-        .parse()
-        .expect("Error al convertir de str a numero");
+    Es recomendable aplicar `.trim()` antes de `.parse()` para eliminar posibles espacios
+    en blanco o saltos de línea que puedan interferir con la conversión.
 
-    println!("Resultado: {}", converted * MULTIPLICADOR as i32);
+???+ example "Casting con `as` y conversión de cadenas"
 
-    let caracter: char = 'A';
-    let valor_ascii: u32 = caracter as u32;
-    println!("Valor ASCII de 'A': {}", valor_ascii);
-}
-```
+    El programa convierte una cadena a `i32`, opera con una constante y transforma un
+    carácter en su código ASCII.
+
+    ```rust linenums="1"
+    const MULTIPLICADOR: u32 = 2;
+
+    fn main() {
+        let user_input = "100";
+        let converted: i32 = user_input
+            .parse()
+            .expect("Error al convertir de str a numero");
+
+        println!("Resultado: {}", converted * MULTIPLICADOR as i32);
+
+        let caracter: char = 'A';
+        let valor_ascii: u32 = caracter as u32;
+        println!("Valor ASCII de 'A': {}", valor_ascii);
+    }
+    ```
 
 ## Tipos compuestos
 
@@ -312,29 +390,34 @@ Existe un caso especial denominado _unit_ (`()`), que es una tupla vacía. En Ru
 _unit_ representa la ausencia de valor y constituye el tipo de retorno implícito de las
 funciones que no devuelven nada explícitamente.
 
-```rust linenums="1"
-fn calcular_distancia(coord_1: (f32, f32), coord_2: (f32, f32)) -> f32 {
-    return ((coord_2.0.powi(2) - coord_1.0.powi(2))
-        + (coord_2.1.powi(2) - coord_1.1.powi(2)))
-    .sqrt();
-}
+???+ example "Acceso y destructuring de tuplas"
 
-fn main() {
-    let tupla: (i32, i32) = (1, 2);
-    println!("x: {}, y: {}", tupla.0, tupla.1);
+    Se accede a los elementos por índice y por _destructuring_, y se muestra una tupla
+    con tipos mixtos mediante el formato de _debug_ `{:?}`.
 
-    // Destructuring
-    let (a, b) = tupla;
-    println!("x: {}, y: {}", a, b);
+    ```rust linenums="1"
+    fn calcular_distancia(coord_1: (f32, f32), coord_2: (f32, f32)) -> f32 {
+        return ((coord_2.0.powi(2) - coord_1.0.powi(2))
+            + (coord_2.1.powi(2) - coord_1.1.powi(2)))
+        .sqrt();
+    }
 
-    // Tuplas con tipos mixtos
-    let tupla: (&str, u8, i32) = ("Hola", 1, 6);
-    println!("Valores: {:?}", tupla);
+    fn main() {
+        let tupla: (i32, i32) = (1, 2);
+        println!("x: {}, y: {}", tupla.0, tupla.1);
 
-    // Unit: tupla vacía
-    let _empty: () = ();
-}
-```
+        // Destructuring
+        let (a, b) = tupla;
+        println!("x: {}, y: {}", a, b);
+
+        // Tuplas con tipos mixtos
+        let tupla: (&str, u8, i32) = ("Hola", 1, 6);
+        println!("Valores: {:?}", tupla);
+
+        // Unit: tupla vacía
+        let _empty: () = ();
+    }
+    ```
 
 ### _Arrays_
 
@@ -349,20 +432,25 @@ También es posible inicializar un _array_ con un valor repetido mediante la sin
 `[valor; cantidad]`, que resulta útil cuando se necesita una colección de tamaño fijo
 con todos sus elementos idénticos.
 
-```rust linenums="1"
-fn main() {
-    let lista: [i32; 3] = [1, 2, 3];
-    println!("Contenido: {:?}", lista);
+???+ example "Declaración e indexado de arrays"
 
-    let nombres: [&str; 4] = ["hola", "adios", "hello", "bye"];
-    println!("Primer elemento: {}", nombres[0]);
-    println!("Último elemento: {}", nombres[nombres.len() - 1]);
+    El ejemplo accede al primer y último elemento y crea un _array_ inicializado con un
+    valor repetido.
 
-    // Inicialización con valor repetido
-    let repetido = ["Dani"; 5];
-    println!("Repetido: {:?}", repetido);
-}
-```
+    ```rust linenums="1"
+    fn main() {
+        let lista: [i32; 3] = [1, 2, 3];
+        println!("Contenido: {:?}", lista);
+
+        let nombres: [&str; 4] = ["hola", "adios", "hello", "bye"];
+        println!("Primer elemento: {}", nombres[0]);
+        println!("Último elemento: {}", nombres[nombres.len() - 1]);
+
+        // Inicialización con valor repetido
+        let repetido = ["Dani"; 5];
+        println!("Repetido: {:?}", repetido);
+    }
+    ```
 
 ### Vectores
 
@@ -373,13 +461,18 @@ valores predefinidos) y permiten añadir elementos con el método `.push()`. Par
 tipos compuestos como vectores se utiliza el formato de _debug_ `{:?}` dentro de las
 macros de impresión.
 
-```rust linenums="1"
-fn main() {
-    let mut vector: Vec<&str> = vec!["Dani", "Jorge", "Fran"];
-    vector.push("Paco");
-    println!("Vector: {:?}", vector);
-}
-```
+???+ example "Creación y ampliación de un vector"
+
+    Un vector inicializado con `vec![]` crece dinámicamente al añadir un elemento con
+    `.push()`.
+
+    ```rust linenums="1"
+    fn main() {
+        let mut vector: Vec<&str> = vec!["Dani", "Jorge", "Fran"];
+        vector.push("Paco");
+        println!("Vector: {:?}", vector);
+    }
+    ```
 
 ## Funciones
 
@@ -395,51 +488,67 @@ facilitando la depuración sin necesidad de configurar un depurador completo.
 
 !!! warning "_Ownership_ en `dbg!`"
 
-    La macro `dbg!` toma el *ownership* del valor que recibe, por lo que la variable no podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe pasar una referencia: `dbg!(&variable)`.
+    La macro `dbg!` toma el *ownership* del valor que recibe, por lo que la variable no
+    podrá utilizarse después de la llamada. Para evitar este comportamiento, se debe
+    pasar una referencia: `dbg!(&variable)`.
 
-```rust linenums="1"
-fn imprimir_nombre(nombre: &str) {
-    println!("Hola {}!", nombre);
-}
+???+ example "Definición de funciones y depuración con `dbg!`"
 
-fn sumar_valores(valor_1: i32, valor_2: i32) -> isize {
-    return (valor_1 + valor_2) as isize;
-}
+    Se muestran las dos formas de devolver un valor (con y sin `return`) y el uso de
+    `dbg!` sobre una referencia. La salida de `dbg!` se dirige a la salida de error
+    estándar e incluye el archivo y la línea de la llamada.
 
-fn main() {
-    imprimir_nombre("Dani");
+    ```rust linenums="1"
+    fn imprimir_nombre(nombre: &str) {
+        println!("Hola {}!", nombre);
+    }
 
-    let resultado = sumar_valores(1, 2);
-    dbg!(&resultado);
-}
-```
+    fn sumar_valores(valor_1: i32, valor_2: i32) -> isize {
+        return (valor_1 + valor_2) as isize;
+    }
+
+    fn sumar_valores_sin_return(valor_1: i32, valor_2: i32) -> isize {
+        (valor_1 + valor_2) as isize
+    }
+
+    fn main() {
+        imprimir_nombre("Dani");
+
+        let resultado = sumar_valores(1, 2);
+        dbg!(&resultado);
+    }
+    ```
 
 ### Sentencias y expresiones
 
-Rust establece una distinción fundamental entre sentencias y expresiones. Las
-**sentencias** realizan una acción pero no devuelven un valor (por ejemplo, una
-declaración `let`). Las **expresiones**, en cambio, se evalúan y producen un resultado
+Las **sentencias** realizan una acción pero no devuelven un valor (por ejemplo, una
+declaración `let`), mientras que las **expresiones** se evalúan y producen un resultado
 que puede asignarse a una variable o utilizarse en otro contexto.
 
 Los bloques delimitados por llaves `{}` actúan como expresiones cuando su última línea
 no termina en punto y coma. Esta característica permite construir asignaciones complejas
 de forma concisa y legible.
 
-```rust linenums="1"
-fn main() {
-    // dbg! es una expresión que devuelve el valor evaluado
-    let resultado: i32 = dbg!(20 + 30);
-    println!("Resultado: {}", resultado); // 50
+???+ example "Bloques como expresiones"
 
-    // Bloque como expresión (sin punto y coma en la última línea)
-    let suma = {
-        let x = 1;
-        let y = 2;
-        x + y
-    };
-    println!("Suma: {}", suma); // 3
-}
-```
+    La macro `dbg!` devuelve el valor evaluado, y un bloque cuya última línea no termina
+    en punto y coma produce un valor asignable.
+
+    ```rust linenums="1"
+    fn main() {
+        // dbg! es una expresión que devuelve el valor evaluado
+        let resultado: i32 = dbg!(20 + 30);
+        println!("Resultado: {}", resultado); // 50
+
+        // Bloque como expresión (sin punto y coma en la última línea)
+        let suma = {
+            let x = 1;
+            let y = 2;
+            x + y
+        };
+        println!("Suma: {}", suma); // 3
+    }
+    ```
 
 ## Control de flujo
 
@@ -450,27 +559,32 @@ particularidad de que puede utilizarse como expresión para asignar valores dire
 a una variable. Las condiciones no requieren paréntesis, aunque las llaves que delimitan
 cada bloque son obligatorias.
 
-```rust linenums="1"
-use std::io;
+???+ example "`if`/`else` como sentencia y como expresión"
 
-const MIN_LENGTH: u8 = 10;
+    El programa lee una línea de la entrada estándar y utiliza `if` tanto para decidir
+    un mensaje como para asignar un valor booleano.
 
-fn main() {
-    let mut input: String = String::new();
-    println!("Introduce un valor: ");
-    io::stdin().read_line(&mut input).expect("Error de lectura");
+    ```rust linenums="1"
+    use std::io;
 
-    if input.trim().len() >= MIN_LENGTH as usize {
-        println!("Longitud suficiente");
-    } else {
-        println!("Demasiado corto");
+    const MIN_LENGTH: u8 = 10;
+
+    fn main() {
+        let mut input: String = String::new();
+        println!("Introduce un valor: ");
+        io::stdin().read_line(&mut input).expect("Error de lectura");
+
+        if input.trim().len() >= MIN_LENGTH as usize {
+            println!("Longitud suficiente");
+        } else {
+            println!("Demasiado corto");
+        }
+
+        // Uso de if como expresión para asignar un valor
+        let es_par: bool = if input.trim().len() % 2 == 0 { true } else { false };
+        println!("¿Par?: {}", es_par);
     }
-
-    // Uso de if como expresión para asignar un valor
-    let es_par: bool = if input.trim().len() % 2 == 0 { true } else { false };
-    println!("¿Par?: {}", es_par);
-}
-```
+    ```
 
 ### Bucles
 
@@ -485,50 +599,56 @@ bucle mediante la sintaxis `'nombre_etiqueta:`. Estas etiquetas posibilitan el u
 `break` y `continue` dirigidos a un bucle específico, lo que resulta útil para salir de
 múltiples niveles de anidamiento de forma controlada.
 
-```rust linenums="1"
-fn main() {
-    // loop: bucle infinito con break explícito
-    let mut contador: u8 = 0;
-    loop {
-        if contador >= 10 {
-            break;
-        }
-        contador += 1;
-    }
+???+ example "Los tres tipos de bucle y las etiquetas"
 
-    // while: evalúa la condición antes de cada iteración
-    let mut n = 3;
-    while n > 0 {
-        println!("{}", n);
-        n -= 1;
-    }
+    El bucle `while` imprime una cuenta atrás y el bucle `for` recorre un vector con
+    `enumerate`. Los bucles `loop`, incluidos los anidados con etiquetas, no producen
+    salida en este ejemplo.
 
-    // for con enumerate para obtener índice y valor
-    let vector: Vec<i32> = vec![1, 2, 3, 4, 5];
-    for (index, elem) in vector.iter().enumerate() {
-        println!("Índice: {}, Elemento: {}", index, elem);
-    }
-
-    // Labels en bucles anidados
-    let mut contador_principal: u8 = 0;
-
-    'loop_principal: loop {
-        contador_principal += 1;
-        let mut contador_interno: u8 = 0;
-
-        'loop_interno: loop {
-            contador_interno += 1;
-
-            if contador_interno == 10 {
-                break 'loop_interno;
+    ```rust linenums="1"
+    fn main() {
+        // loop: bucle infinito con break explícito
+        let mut contador: u8 = 0;
+        loop {
+            if contador >= 10 {
+                break;
             }
-            if contador_principal == 10 {
-                break 'loop_principal;
+            contador += 1;
+        }
+
+        // while: evalúa la condición antes de cada iteración
+        let mut n = 3;
+        while n > 0 {
+            println!("{}", n);
+            n -= 1;
+        }
+
+        // for con enumerate para obtener índice y valor
+        let vector: Vec<i32> = vec![1, 2, 3, 4, 5];
+        for (index, elem) in vector.iter().enumerate() {
+            println!("Índice: {}, Elemento: {}", index, elem);
+        }
+
+        // Labels en bucles anidados
+        let mut contador_principal: u8 = 0;
+
+        'loop_principal: loop {
+            contador_principal += 1;
+            let mut contador_interno: u8 = 0;
+
+            'loop_interno: loop {
+                contador_interno += 1;
+
+                if contador_interno == 10 {
+                    break 'loop_interno;
+                }
+                if contador_principal == 10 {
+                    break 'loop_principal;
+                }
             }
         }
     }
-}
-```
+    ```
 
 ???+ example "Juego de adivinar"
 
@@ -642,25 +762,30 @@ comportamiento está determinado por el _trait_ `Copy`. Si se necesita una copia
 de un valor en el _heap_, se utiliza el método `.clone()`, que duplica tanto los
 metadatos como el contenido al que apunta.
 
-```rust linenums="1"
-fn main() {
-    // Tipos simples (stack): se copian automáticamente
-    let a = 1;
-    let b = a;
-    println!("a: {}, b: {}", a, b); // Ambos válidos
+???+ example "Move de un valor en el heap y copia con `.clone()`"
 
-    // Tipos complejos (heap): se produce un move
-    let palabra: String = String::from("Hola");
-    let otra = palabra; // Move: `palabra` queda invalidada
-    println!("otra: {}", otra);
-    // println!("{}", palabra); // Error de compilación: valor movido
+    Los tipos del _stack_ se copian automáticamente, mientras que un valor en el _heap_
+    se mueve (invalidando la variable original) salvo que se duplique con `.clone()`.
 
-    // Clone: copia profunda del contenido en el heap
-    let texto: String = String::from("Prueba");
-    let copia: String = texto.clone();
-    println!("texto: {}, copia: {}", texto, copia); // Ambos válidos
-}
-```
+    ```rust linenums="1"
+    fn main() {
+        // Tipos simples (stack): se copian automáticamente
+        let a = 1;
+        let b = a;
+        println!("a: {}, b: {}", a, b); // Ambos válidos
+
+        // Tipos complejos (heap): se produce un move
+        let palabra: String = String::from("Hola");
+        let otra = palabra; // Move: `palabra` queda invalidada
+        println!("otra: {}", otra);
+        // println!("{}", palabra); // Error de compilación: valor movido
+
+        // Clone: copia profunda del contenido en el heap
+        let texto: String = String::from("Prueba");
+        let copia: String = texto.clone();
+        println!("texto: {}, copia: {}", texto, copia); // Ambos válidos
+    }
+    ```
 
 ### _Ownership_ en funciones
 
@@ -668,17 +793,22 @@ Una función puede devolver el _ownership_ de un valor, permitiendo que la varia
 receptora en el ámbito que la invoca se convierta en la nueva propietaria. Cada variable
 que recibe el resultado de una función adquiere su propio _ownership_ independiente.
 
-```rust linenums="1"
-fn crear_saludo() -> String {
-    String::from("Hola")
-}
+???+ example "Devolución de ownership desde una función"
 
-fn main() {
-    let saludo_1 = crear_saludo();
-    let saludo_2 = crear_saludo();
-    println!("{}, {}", saludo_1, saludo_2);
-}
-```
+    Cada llamada a `crear_saludo` transfiere la propiedad de una nueva `String` a la
+    variable que la recibe.
+
+    ```rust linenums="1"
+    fn crear_saludo() -> String {
+        String::from("Hola")
+    }
+
+    fn main() {
+        let saludo_1 = crear_saludo();
+        let saludo_2 = crear_saludo();
+        println!("{}, {}", saludo_1, saludo_2);
+    }
+    ```
 
 ## Referencias y _borrowing_
 
@@ -695,39 +825,53 @@ El compilador garantiza en tiempo de compilación que nunca coexistan referencia
 mutables e inmutables sobre el mismo dato, eliminando así la posibilidad de _data
 races_. Las referencias son inmutables por defecto, al igual que las variables.
 
-```rust linenums="1"
-fn normalize_text(text: &String) -> String {
-    return text.to_lowercase();
-}
+???+ example "Referencias inmutables y mutables"
 
-fn agregar_texto(text: &mut String) {
-    text.push_str("!");
-}
+    La función `normalize_text` toma una referencia inmutable y `agregar_texto` una
+    referencia mutable. Al finalizar, se mantienen varias referencias inmutables de
+    forma simultánea.
 
-fn main() {
-    let text: String = String::from("Hola");
+    ```rust linenums="1"
+    fn normalize_text(text: &String) -> String {
+        return text.to_lowercase();
+    }
 
-    // Referencia inmutable: no adquiere ownership
-    println!("Normalizado: {}", normalize_text(&text));
-    println!("Original: {}", text); // Sigue disponible
+    fn agregar_texto(text: &mut String) {
+        text.push_str("!");
+    }
 
-    // Referencia mutable: permite modificar el valor
-    let mut texto: String = String::from("Bob");
-    agregar_texto(&mut texto);
-    println!("Modificado: {}", texto); // "Bob!"
+    fn main() {
+        let text: String = String::from("Hola");
 
-    // Múltiples referencias inmutables simultáneas: permitido
-    let ref_1 = &texto;
-    let ref_2 = &texto;
-    println!("{}, {}", ref_1, ref_2);
-}
-```
+        // Referencia inmutable: no adquiere ownership
+        println!("Normalizado: {}", normalize_text(&text));
+        println!("Original: {}", text); // Sigue disponible
+
+        // Referencia mutable: permite modificar el valor
+        let mut texto: String = String::from("Bob");
+        agregar_texto(&mut texto);
+        println!("Modificado: {}", texto); // "Bob!"
+
+        // Múltiples referencias inmutables simultáneas: permitido
+        let ref_1 = &texto;
+        let ref_2 = &texto;
+        println!("{}, {}", ref_1, ref_2);
+    }
+    ```
 
 !!! warning "Reglas de _borrowing_"
 
-    El compilador aplica las siguientes restricciones sobre las referencias para garantizar la seguridad de memoria. Se pueden mantener **múltiples referencias inmutables** (`&T`) de forma simultánea. Solo se permite **una referencia mutable** (`&mut T`) activa a la vez. No pueden coexistir referencias mutables e inmutables activas sobre el mismo valor. Además, **no se puede modificar la variable original** mientras exista una referencia mutable activa a ella, ya que la referencia mutable debe salir del *scope* antes de poder usar la variable original de nuevo.
+    El compilador aplica las siguientes restricciones sobre las referencias para
+    garantizar la seguridad de memoria. Se pueden mantener **múltiples referencias
+    inmutables** (`&T`) de forma simultánea. Solo se permite **una referencia mutable**
+    (`&mut T`) activa a la vez. No pueden coexistir referencias mutables e inmutables
+    activas sobre el mismo valor. Además, **no se puede modificar la variable original**
+    mientras exista una referencia mutable activa a ella, ya que la referencia mutable
+    debe salir del *scope* antes de poder usar la variable original de nuevo.
 
-    Estas restricciones existen porque Rust no dispone de un mecanismo de sincronización implícito. Si dos variables pudiesen mantener referencias mutables al mismo dato, se producirían condiciones de carrera que corromperían la memoria.
+    Estas restricciones existen porque Rust no dispone de un mecanismo de sincronización
+    implícito. Si dos variables pudiesen mantener referencias mutables al mismo dato,
+    se producirían condiciones de carrera que corromperían la memoria.
 
 ### _Dangling references_
 
@@ -737,24 +881,30 @@ a memoria liberada. Esto se conoce como _dangling reference_. La solución consi
 devolver el valor directamente (transfiriendo el _ownership_) en lugar de una
 referencia:
 
-```rust linenums="1"
-// ❌ Error de compilación: dangling reference
-// fn crear_texto() -> &String {
-//     let s = String::from("hola");
-//     &s // `s` se libera al salir de la función
-// }
+???+ example "Evitar una dangling reference"
 
-// ✅ Correcto: se devuelve el ownership
-fn crear_texto() -> String {
-    let s = String::from("hola");
-    s
-}
+    La versión comentada no compila porque devolvería una referencia a un valor que se
+    libera al terminar la función. La versión correcta devuelve el valor y transfiere su
+    _ownership_.
 
-fn main() {
-    let texto = crear_texto();
-    println!("{}", texto);
-}
-```
+    ```rust linenums="1"
+    // ❌ Error de compilación: dangling reference
+    // fn crear_texto() -> &String {
+    //     let s = String::from("hola");
+    //     &s // `s` se libera al salir de la función
+    // }
+
+    // ✅ Correcto: se devuelve el ownership
+    fn crear_texto() -> String {
+        let s = String::from("hola");
+        s
+    }
+
+    fn main() {
+        let texto = crear_texto();
+        println!("{}", texto);
+    }
+    ```
 
 ## _Slices_
 
@@ -769,18 +919,23 @@ Los _slices_ resultan especialmente útiles para trabajar con porciones de _arra
 vectores sin necesidad de copiar los datos, lo que los convierte en una herramienta
 eficiente para el procesamiento de secuencias.
 
-```rust linenums="1"
-fn slice_lista(lista: &[i32], init: usize, end: usize) -> &[i32] {
-    return &lista[init..end];
-}
+???+ example "Obtener un slice de un array"
 
-fn main() {
-    let lista: [i32; 5] = [1, 2, 3, 4, 5];
-    let slice = slice_lista(&lista, 1, 3);
-    println!("{:?}", slice); // [2, 3]
+    La función `slice_lista` devuelve una porción del _array_ original delimitada por un
+    rango, sin copiar los datos.
 
-    if slice == [2, 3] {
-        println!("Todo correcto");
+    ```rust linenums="1"
+    fn slice_lista(lista: &[i32], init: usize, end: usize) -> &[i32] {
+        return &lista[init..end];
     }
-}
-```
+
+    fn main() {
+        let lista: [i32; 5] = [1, 2, 3, 4, 5];
+        let slice = slice_lista(&lista, 1, 3);
+        println!("{:?}", slice); // [2, 3]
+
+        if slice == [2, 3] {
+            println!("Todo correcto");
+        }
+    }
+    ```
