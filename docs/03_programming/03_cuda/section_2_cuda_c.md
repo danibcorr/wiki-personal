@@ -8,6 +8,11 @@ Este capítulo detalla la programación de kernels CUDA en C, incluyendo la gest
 hilos y bloques, la asignación de memoria unificada y los patrones comunes de
 paralelización.
 
+## Bibliografía
+
+- NVIDIA y Universidad de Málaga. (s.f.). _Deep Learning Institute - UMA_.
+  <http://nvidiadli.uma.es/index.php/es/certificaciones-nvidia>
+
 ## Conceptos básicos
 
 En CUDA, una función paralelizada se denomina _kernel_. Para conocer la GPU disponible y
@@ -31,7 +36,7 @@ el propio código CUDA:
 ```c linenums="1"
 #include <stdio.h>
 
-int main()
+int main(void)
 {
     int deviceId;
     cudaGetDevice(&deviceId);
@@ -65,37 +70,37 @@ ambos componentes.
     condicionales dentro de un _kernel_.
 
 La programación en CUDA se realiza utilizando C/C++ y los archivos CUDA tienen la
-extensión `.cu`, y la compilación del código se lleva a cabo con el siguiente comando:
+extensión `.cu`. La compilación del código se lleva a cabo con el siguiente comando:
 
 ```bash linenums="1"
-!nvcc -arch=sm_70 -o resultado_nombre programa.cu -run
+nvcc -arch=sm_70 -o resultado_nombre programa.cu -run
 ```
 
-En este comando, `-arch=sm_70` especifica la arquitectura objetivo para la compilación.
+En este comando, `-arch=sm_70` especifica la arquitectura objetivo para la compilación,
+`-o` indica el nombre del ejecutable generado y `-run` ejecuta el binario resultante una
+vez finalizada la compilación.
 
 !!! note "Prefijo `!` en Jupyter"
 
-    El símbolo `!` al inicio del comando indica a un _notebook_ de Jupyter que la
-    instrucción debe ejecutarse en la _shell_ del sistema en lugar de interpretarse como
-    código Python. Al ejecutar el comando directamente en una terminal, se debe omitir
-    dicho prefijo: `nvcc -arch=sm_70 -o resultado_nombre programa.cu -run`.
+    Para compilar desde un _notebook_ de Jupyter se debe añadir el prefijo `!` al inicio
+    del comando, es decir, `!nvcc -arch=sm_70 -o resultado_nombre programa.cu -run`. Dicho
+    símbolo indica al _notebook_ que la instrucción debe ejecutarse en la _shell_ del
+    sistema en lugar de interpretarse como código Python.
 
 ???+ example "Código básico en CUDA"
 
     ```c linenums="1"
-    #include <iostream>
-
-    using namespace std;
+    #include <stdio.h>
 
     void hola_cpu(void)
     {
-        printf("Esto es un saludo desde la CPU");
+        printf("Esto es un saludo desde la CPU\n");
     }
 
     // Define una función de kernel que se ejecuta en la GPU
     __global__ void ejemplo_kernel(void)
     {
-        printf("Hola, esto se está ejecutando de forma paralela en GPU");
+        printf("Hola, esto se está ejecutando de forma paralela en GPU\n");
     }
 
     int main(void)
@@ -137,17 +142,17 @@ de sincronización entre CPU y GPU.
     ```c linenums="1"
     #include <stdio.h>
 
-    void helloCPU()
+    void helloCPU(void)
     {
         printf("Hola desde la CPU.\n");
     }
 
-    __global__ void helloGPU()
+    __global__ void helloGPU(void)
     {
         printf("Hola desde la GPU.\n");
     }
 
-    int main()
+    int main(void)
     {
         helloGPU<<<1, 1>>>();
         cudaDeviceSynchronize();
@@ -162,17 +167,27 @@ CUDA permite agilizar los bucles en la programación. Por ejemplo, para incremen
 valor `b` a los `N` elementos de un vector en la CPU:
 
 ```c linenums="1"
-void incremento_en_cpu(float *a, float b, int N)
+#include <stdlib.h>
+
+#define N (1 << 20)
+
+void incremento_en_cpu(float *a, float b, int n)
 {
-    for (int idx = 0; idx < N; idx++)
+    for (int idx = 0; idx < n; idx++)
     {
         a[idx] = a[idx] + b;
     }
 }
 
-void main()
+int main(void)
 {
+    float *a = (float *)malloc(N * sizeof(float));
+    float b = 2.0f;
+
     incremento_en_cpu(a, b, N);
+    free(a);
+
+    return 0;
 }
 ```
 
@@ -200,29 +215,49 @@ número de bloques como el número de hilos por bloque. A continuación se prese
 código paralelizado del bucle anterior:
 
 ```c linenums="1"
-__global__ void incremento_en_gpu(float *a, float b, int N)
+#include <math.h>
+
+#define N (1 << 20)
+
+__global__ void incremento_en_gpu(float *a, float b, int n)
 {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
-    if (idx < N)
+    if (idx < n)
     {
         a[idx] = a[idx] + b;
     }
 }
 
-void main()
+int main(void)
 {
+    float *a;
+    float b = 2.0f;
+    int blocksize = 256;
+
+    cudaMallocManaged(&a, N * sizeof(float));
+
+    // Configuración de la malla a partir del número de datos y del tamaño de bloque
     dim3 dimBlock(blocksize);
     dim3 dimGrid(ceil(N / (float)blocksize));
 
     incremento_en_gpu<<<dimGrid, dimBlock>>>(a, b, N);
+    cudaDeviceSynchronize();
+    cudaFree(a);
+
+    return 0;
 }
 ```
 
-Cada hilo realiza una iteración del bucle. La fórmula para mapear cada hilo a un índice
-del bucle es:
+Cada hilo realiza una iteración del bucle. La fórmula que asocia cada hilo a un índice
+del bucle es la siguiente:
 
-$$i_{x} = (blockIdx.x \cdot blockDim.x) + threadIdx.x$$
+$$i_{x} = (\text{blockIdx.x} \cdot \text{blockDim.x}) + \text{threadIdx.x}$$
+
+En esta expresión, $i_{x}$ representa el índice global del hilo dentro de la malla,
+`blockIdx.x` identifica el bloque al que pertenece el hilo, `blockDim.x` indica cuántos
+hilos contiene cada bloque y `threadIdx.x` señala la posición del hilo dentro de su
+bloque.
 
 <figure markdown="span">
   ![Indexación de hilos en CUDA](../../assets/img/docs/cuda/cuda-c-thread-indexing.png)
@@ -243,24 +278,36 @@ $$i_{x} = (blockIdx.x \cdot blockDim.x) + threadIdx.x$$
 ## Asignación de memoria
 
 La asignación y liberación de memoria se realiza de forma diferente en la CPU y en la
-GPU. En la CPU se utilizan las funciones `malloc()` y `free()`, mientras que en la GPU
-se emplean `cudaMallocManaged()` y `cudaFree()`. El siguiente ejemplo muestra ambos
-enfoques:
+GPU. En la CPU se utilizan las funciones `malloc()` y `free()`:
 
 ```c linenums="1"
-// Asignación en CPU
-int N = 2 << 20;
-size_t size = N * sizeof(int);
-int *a;
-a = (int *)malloc(size);
-free(a);
+#include <stdlib.h>
 
-// Asignación en GPU con memoria unificada
-int N = 2 << 20;
-size_t size = N * sizeof(int);
-int *a;
-cudaMallocManaged(&a, size);
-cudaFree(a);
+void reserva_en_cpu(void)
+{
+    int N = 2 << 20;
+    size_t size = N * sizeof(int);
+
+    int *a = (int *)malloc(size);
+
+    free(a);
+}
+```
+
+En la GPU se emplean `cudaMallocManaged()` y `cudaFree()`, que reservan y liberan
+memoria unificada accesible desde ambos dispositivos:
+
+```c linenums="1"
+void reserva_en_gpu(void)
+{
+    int N = 2 << 20;
+    size_t size = N * sizeof(int);
+
+    int *a;
+    cudaMallocManaged(&a, size);
+
+    cudaFree(a);
+}
 ```
 
 Gracias a los avances en _hardware_, se ha logrado mejorar la tasa de transferencia
@@ -314,18 +361,19 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
         x = 10;
     }
 
-    int main()
+    int main(void)
     {
         mykernel<<<1, 1>>>();
 
-        // ERROR: Acceso concurrente desde la CPU mientras la GPU puede estar usando la variable 'y'
+        // ERROR: la CPU accede a la variable 'y' mientras la GPU puede estar
+        // utilizando la memoria unificada
         y = 20;
 
         return 0;
     }
     ```
 
-???+ success "Uso correcto de memoria unificada"
+???+ example "Uso correcto de memoria unificada"
 
     La versión correcta incluye la sincronización antes de que la CPU acceda a la
     variable:
@@ -338,7 +386,7 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
         x = 10;
     }
 
-    int main()
+    int main(void)
     {
         mykernel<<<1, 1>>>();
 
@@ -354,9 +402,11 @@ Los tipos de memoria en CUDA se pueden observar en la siguiente imagen:
 ## _Kernels_ con gran volumen de datos
 
 Cuando la cantidad de datos excede el número máximo de hebras disponibles, es necesario
-dividir los datos en bloques más pequeños que se ajusten al número de hebras. Tras
-completar el procesamiento de una división, se pasa a la siguiente utilizando un
-desplazamiento de $blockDim.x \cdot gridDim.x$. El siguiente bucle ilustra esta técnica:
+dividir el trabajo en porciones que se ajusten al número de hebras lanzadas. Tras
+procesar una porción, cada hilo avanza a la siguiente aplicando un desplazamiento igual
+al número total de hilos de la malla, es decir,
+$\text{blockDim.x} \cdot \text{gridDim.x}$. Este patrón se conoce como _grid stride
+loop_:
 
 ```c linenums="1"
 __global__ void kernel(int *a, int N)
@@ -366,7 +416,8 @@ __global__ void kernel(int *a, int N)
 
     for (int i = indexWithinTheGrid; i < N; i += gridStride)
     {
-        // Código para procesar los datos
+        // Código para procesar el elemento situado en la posición i
+        a[i] = a[i] * 2;
     }
 }
 ```
@@ -378,32 +429,43 @@ producido un error. A continuación se muestra cómo gestionar errores al reserv
 memoria:
 
 ```c linenums="1"
-cudaError_t err;
-err = cudaMallocManaged(&a, N);
+#include <stdio.h>
 
-if (err != cudaSuccess)
+void reserva_con_control_de_errores(int *a, size_t size)
 {
-    printf("Error: %s\n", cudaGetErrorString(err));
+    cudaError_t err = cudaMallocManaged(&a, size);
+
+    if (err != cudaSuccess)
+    {
+        printf("Error: %s\n", cudaGetErrorString(err));
+    }
 }
 ```
 
-Para la gestión de errores al lanzar un _kernel_, se utiliza `cudaGetLastError()`:
+Para la gestión de errores al lanzar un _kernel_, se utiliza `cudaGetLastError()`, que
+devuelve el último error registrado por el _runtime_:
 
 ```c linenums="1"
-someKernel<<<1, -1>>>(); // -1 no es un valor válido para el número de hebras por bloque
+#include <stdio.h>
 
-cudaError_t err;
-err = cudaGetLastError();
-
-if (err != cudaSuccess)
+void lanza_kernel_con_control_de_errores(void)
 {
-    printf("Error: %s\n", cudaGetErrorString(err));
+    // El valor -1 no es válido para el número de hebras por bloque
+    someKernel<<<1, -1>>>();
+
+    cudaError_t err = cudaGetLastError();
+
+    if (err != cudaSuccess)
+    {
+        printf("Error: %s\n", cudaGetErrorString(err));
+    }
 }
 ```
 
 ???+ tip "Función auxiliar para verificar errores"
 
-    Se puede emplear una función auxiliar para verificar errores de forma centralizada:
+    Se puede emplear una función auxiliar para verificar errores de forma centralizada,
+    envolviendo con ella cada llamada a la API de CUDA:
 
     ```c linenums="1"
     #include <stdio.h>
@@ -420,9 +482,16 @@ if (err != cudaSuccess)
         return result;
     }
 
-    int main()
+    int main(void)
     {
-        checkCuda(todas_las_funciones_a_gestionar_errores);
+        int *a;
+        size_t size = 1024 * sizeof(int);
+
+        checkCuda(cudaMallocManaged(&a, size));
+        checkCuda(cudaDeviceSynchronize());
+        checkCuda(cudaFree(a));
+
+        return 0;
     }
     ```
 
@@ -434,94 +503,132 @@ if (err != cudaSuccess)
 </figure>
 
 Antes de explorar los distintos patrones, conviene definir el concepto de **bucle
-_forall_**: se trata de un bucle `for` sin dependencias entre iteraciones, lo que
-permite que el resultado no se vea alterado independientemente del índice de inicio. Los
-patrones más comunes son los siguientes:
+_forall_**, que designa un bucle `for` sin dependencias entre iteraciones, de modo que
+el resultado no varía en función del orden ni del índice de inicio. Sobre esta base se
+construyen los patrones descritos a continuación.
 
-- **Operadores _streaming_**: Representan la forma más simple de un bucle _forall_. CUDA
-  puede utilizar todos los hilos necesarios para procesar cada elemento de manera
-  independiente:
+### Operadores _streaming_
 
-    ```c linenums="1"
-    #define N 1920 * 1080
+Representan la forma más simple de un bucle _forall_. CUDA puede utilizar todos los
+hilos necesarios para procesar cada elemento de manera independiente, como ocurre al
+calcular la luminancia de una imagen a partir de sus tres canales de color:
 
-    float r[N], g[N], b[N], luminancia[N];
+```c linenums="1"
+#define N (1920 * 1080)
 
+float r[N], g[N], b[N], luminancia[N];
+
+void calcula_luminancia(void)
+{
     for (int i = 0; i < N; i++)
     {
         luminancia[i] = 255 * (0.2999 * r[i] + 0.587 * g[i] + 0.114 * b[i]);
     }
-    ```
+}
+```
 
-- **Operadores sobre vectores**: Cada iteración del bucle puede asignarse a un hilo CUDA
-  para maximizar el paralelismo y la escalabilidad:
+### Operadores sobre vectores
 
-    ```c linenums="1"
-    #define N (1 << 30)
+Cada iteración del bucle puede asignarse a un hilo CUDA distinto, lo que maximiza el
+paralelismo y la escalabilidad al no existir comunicación entre iteraciones:
 
-    float a[N], b[N], c[N];
+```c linenums="1"
+#define N (1 << 30)
 
+float a[N], b[N], c[N];
+
+void suma_vectores(void)
+{
     for (int i = 0; i < N; i++)
     {
         c[i] = a[i] + b[i];
     }
-    ```
+}
+```
 
-- **Operadores patrón (_stencil operators_)**: Las iteraciones externas deben
-  serializarse debido a dependencias, pero se puede aprovechar el paralelismo en cada
-  partícula. La carga computacional depende del número de iteraciones:
+### Operadores patrón
 
-    ```c linenums="1"
-    int i, j, iter, N, Niters;
-    float in[N][N], out[N][N];
+Los operadores patrón (_stencil operators_) calculan cada elemento a partir de sus
+vecinos. Las iteraciones externas deben serializarse debido a las dependencias entre
+pasos temporales, pero el cálculo de cada elemento dentro de un mismo paso sí puede
+paralelizarse. La carga computacional depende del número de iteraciones:
 
-    for (iter = 0; iter < Niters; iter++)
+```c linenums="1"
+#define N 1024
+#define NITERS 100
+
+float in[N][N], out[N][N];
+
+void aplica_stencil(void)
+{
+    for (int iter = 0; iter < NITERS; iter++)
     {
-        for (i = 1; i < N - 1; i++)
+        for (int i = 1; i < N - 1; i++)
         {
-            for (j = 1; j < N - 1; j++)
+            for (int j = 1; j < N - 1; j++)
             {
-                out[i][j] = 0.2 * (in[i][j] + in[i-1][j] + in[i+1][j] + in[i][j-1] + in[i][j+1]);
+                out[i][j] = 0.2 * (in[i][j] + in[i - 1][j] + in[i + 1][j] +
+                                   in[i][j - 1] + in[i][j + 1]);
             }
         }
 
-        for (i = 1; i < N - 1; i++)
+        for (int i = 1; i < N - 1; i++)
         {
-            for (j = 1; j < N - 1; j++)
+            for (int j = 1; j < N - 1; j++)
             {
                 in[i][j] = out[i][j];
             }
         }
     }
-    ```
+}
+```
 
-    El paralelismo en este caso está determinado por el tamaño de la matriz 2D ($N^2$).
+El grado de paralelismo en este caso está determinado por el tamaño de la matriz
+bidimensional, es decir, $N^2$.
 
-- **Operadores de reducción**: Aunque el código presenta dependencias entre iteraciones,
-  el paralelismo puede desplegarse mediante una estructura en árbol binario, resultando
-  en $\log(N)$ pasos que reducen el grado de paralelismo hasta llegar a un solo hilo. Es
-  fundamental usar un patrón de acceso a memoria que optimice la jerarquía de memoria de
-  la GPU:
+### Operadores de reducción
 
-    ```c linenums="1"
-    float sum, x[N];
-    sum = 0;
+Aunque el código presenta dependencias entre iteraciones, el paralelismo puede
+desplegarse mediante una estructura en árbol binario, lo que da lugar a $\log(N)$ pasos
+en los que el grado de paralelismo se reduce progresivamente hasta llegar a un solo
+hilo. Resulta fundamental emplear un patrón de acceso a memoria que aproveche la
+jerarquía de memoria de la GPU:
+
+```c linenums="1"
+#define N (1 << 20)
+
+float x[N];
+
+float reduce_suma(void)
+{
+    float sum = 0;
 
     for (int i = 0; i < N; i++)
     {
         sum += x[i];
     }
-    ```
 
-- **Histogramas**: Representan un patrón donde los bucles presentan dependencias, pero
-  las lecturas pueden realizarse en paralelo si se asignan a hilos CUDA. CUDA
-  proporciona operaciones atómicas (`atomicInc(histo[image[i][j]])`) para manejar
-  accesos concurrentes y prevenir condiciones de carrera:
+    return sum;
+}
+```
 
-    ```c linenums="1"
-    int histo[Nbins], image[N][N];
+### Histogramas
 
-    for (int i = 0; i < Nbins; i++)
+Los histogramas constituyen un patrón donde los bucles presentan dependencias en la
+escritura, ya que varios hilos pueden incrementar la misma posición del histograma. Las
+lecturas, en cambio, pueden realizarse en paralelo si se asignan a hilos CUDA distintos.
+Para gestionar los accesos concurrentes y prevenir condiciones de carrera, CUDA
+proporciona operaciones atómicas como `atomicInc(histo[image[i][j]])`:
+
+```c linenums="1"
+#define N 1024
+#define NBINS 256
+
+int histo[NBINS], image[N][N];
+
+void calcula_histograma(void)
+{
+    for (int i = 0; i < NBINS; i++)
     {
         histo[i] = 0;
     }
@@ -533,7 +640,8 @@ patrones más comunes son los siguientes:
             histo[image[i][j]]++;
         }
     }
-    ```
+}
+```
 
 Como análisis final, el operador _streaming_ es el más eficiente en GPU, el operador
 patrón aprovecha mejor la memoria compartida, el operador de reducción requiere una
@@ -578,10 +686,10 @@ __global__ void matrixMulGPU(int *a, int *b, int *c)
     }
 }
 
-int main()
+int main(void)
 {
     int *a, *b, *c;
-    int size = N * N * sizeof(int);
+    size_t size = N * N * sizeof(int);
 
     cudaMallocManaged(&a, size);
     cudaMallocManaged(&b, size);
@@ -627,17 +735,20 @@ vuelta a la CPU) de forma anticipada, reduciendo las transferencias bajo demanda
 faults_) y mejorando el rendimiento del _kernel_:
 
 ```c linenums="1"
-int deviceId;
-cudaGetDevice(&deviceId);
+void procesa_con_precarga(float *datos, size_t size, int N, int bloques, int hilos)
+{
+    int deviceId;
+    cudaGetDevice(&deviceId);
 
-// Precarga de datos hacia la GPU antes de lanzar el kernel
-cudaMemPrefetchAsync(datos, size, deviceId);
+    // Precarga de datos hacia la GPU antes de lanzar el kernel
+    cudaMemPrefetchAsync(datos, size, deviceId);
 
-mi_kernel<<<bloques, hilos>>>(datos, N);
-cudaDeviceSynchronize();
+    mi_kernel<<<bloques, hilos>>>(datos, N);
+    cudaDeviceSynchronize();
 
-// Precarga de resultados hacia la CPU antes de acceder desde el host
-cudaMemPrefetchAsync(datos, size, cudaCpuDeviceId);
+    // Precarga de resultados hacia la CPU antes de acceder desde el host
+    cudaMemPrefetchAsync(datos, size, cudaCpuDeviceId);
+}
 ```
 
 Al utilizar precarga de memoria se obtienen menos transferencias pero con mayor volumen
