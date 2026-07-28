@@ -10,16 +10,14 @@ virtuales y dependencias en Python, con énfasis en uv.
 
 ## Bibliografía
 
-- Python Software Foundation. (s.f.). _Python 3 Documentation_.
-  <https://docs.python.org/3/>
 - Python Software Foundation. (s.f.). _venv — Creation of virtual environments_.
   <https://docs.python.org/3/library/venv.html>
 - Poetry. (s.f.). _Poetry - Python dependency management_. <https://python-poetry.org/>
 - Anaconda. (s.f.). _Anaconda Documentation_. <https://docs.anaconda.com/>
 - Astral. (s.f.). _uv - An extremely fast Python package installer_.
   <https://docs.astral.sh/uv/>
-- Portilla, J. (s.f.). _Complete Python Bootcamp_ \[Curso\]. Udemy.
-  <https://www.udemy.com/course/complete-python-bootcamp/>
+- Astral. (s.f.). _Building and publishing a package_.
+  <https://docs.astral.sh/uv/guides/package/#publishing-your-package>
 
 ## Gestores de entornos y paquetes
 
@@ -361,6 +359,36 @@ de forma directa, se emplea el siguiente comando:
 ```bash linenums="1"
 uv pip uninstall nombre_del_paquete
 ```
+
+## Construcción y publicación de paquetes
+
+Además de gestionar entornos y dependencias, `uv` permite empaquetar un proyecto en
+distribuciones instalables y publicarlas en un índice de paquetes como
+[PyPI](https://pypi.org/). De esta forma, una librería propia queda disponible para el
+resto de la comunidad o para otros equipos, que podrán instalarla del mismo modo que
+cualquier dependencia de terceros.
+
+El requisito previo es haber declarado la sección `[build-system]` en el
+`pyproject.toml`, tal como se mostró en el ejemplo anterior, ya que es la que indica el
+_backend_ encargado de generar el paquete.
+
+El flujo se resume en dos comandos. El primero, `uv build`, construye los artefactos de
+distribución (la _source distribution_ y la _wheel_) y los deposita en el subdirectorio
+`dist/`. El segundo, `uv publish`, los sube al índice configurado:
+
+```bash linenums="1"
+uv build
+uv publish
+```
+
+La autenticación en PyPI se realiza mediante un **token**, que se proporciona con la
+opción `--token` o a través de la variable de entorno `UV_PUBLISH_TOKEN`. Al publicar
+desde GitHub Actions u otro _Trusted Publisher_ no es necesario gestionar credenciales,
+sino que basta con registrar un publicador de confianza en el proyecto de PyPI.
+
+Los detalles adicionales, como la actualización de versiones con `uv version`, la
+publicación en índices personalizados o el uso de _Trusted Publishers_, se encuentran
+recogidos en la documentación oficial referenciada en la bibliografía.
 
 ## Integración con Jupyter
 
