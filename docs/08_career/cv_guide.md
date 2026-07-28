@@ -207,6 +207,45 @@ Una estructura efectiva para esta respuesta es la **regla del 50/30/20**:
 - **20%:** El factor diferenciador (un rasgo personal, una experiencia singular o un
   ejemplo memorable).
 
+### Preguntas para plantear a la empresa
+
+Una entrevista es un diálogo bidireccional, por lo que también resulta esencial preparar
+preguntas que ayuden a evaluar si la empresa y el puesto encajan con las expectativas
+del candidato. A continuación se recogen preguntas útiles organizadas por temática.
+
+**Compensación y beneficios:**
+
+- Además del salario base, ¿qué beneficios ofrecen (ticket restaurante, seguro médico,
+  gimnasio, descuentos, plan de pensiones)?
+- ¿Cada cuánto hay revisiones salariales? ¿Están ligadas a objetivos o son automáticas?
+- ¿Cuántos días de vacaciones ofrecen?
+- ¿Hay bonus variable anual? ¿Cómo se calcula?
+
+**Modalidad de trabajo:**
+
+- ¿Cuál es la política de teletrabajo? ¿Qué porcentaje de días es obligatorio acudir a
+  la oficina?
+- ¿Es flexible el horario de entrada y salida?
+
+**Crecimiento profesional:**
+
+- ¿Qué posibilidades de crecimiento hay en el equipo y en la empresa?
+- ¿Ofrecen formación pagada, certificaciones o asistencia a conferencias?
+- ¿Existe un plan de carrera definido o depende de cada caso?
+
+**El día a día y el equipo:**
+
+- ¿Cómo es el equipo en el que se trabajaría? ¿Cuántas personas lo componen y qué roles
+  desempeñan?
+- ¿Qué papel juega la IA generativa en el día a día del equipo? ¿Se emplea como
+  herramienta de apoyo o se espera que reemplace parte del desarrollo? ¿Cómo afecta eso
+  a los tiempos de entrega y a las expectativas sobre el desarrollador?
+
+**Preguntas clave para un cambio de trabajo:**
+
+- ¿Cómo es la rotación en la empresa? ¿Cuál es la antigüedad media del equipo?
+- ¿Cuánto dura el periodo de prueba y en qué condiciones?
+
 ## Negociación salarial
 
 La negociación salarial es un aspecto crucial del proceso de selección que debe

@@ -65,7 +65,7 @@ ambos componentes.
     condicionales dentro de un _kernel_.
 
 La programación en CUDA se realiza utilizando C/C++ y los archivos CUDA tienen la
-extensión `.cu`. La compilación del código se lleva a cabo con el siguiente comando:
+extensión `.cu`, y la compilación del código se lleva a cabo con el siguiente comando:
 
 ```bash linenums="1"
 !nvcc -arch=sm_70 -o resultado_nombre programa.cu -run
@@ -118,11 +118,10 @@ ejecutado en la GPU se denomina _device_.
 
 Las funciones `__global__` deben tener el tipo de retorno `void`. La invocación de una
 función CUDA utiliza la **configuración de ejecución**, que adopta la forma
-`nombre_funcion<<<x, y>>>`, donde `x` es el número de bloques (debe ser menor a 2048) e
-`y` es el número de hilos por bloque (debe ser menor a 1024). El número total de hilos
-se obtiene multiplicando `x` por `y`. Por ejemplo, con 2 bloques y 4 hilos por bloque se
-obtienen 8 hilos en total. El número de bloques y de hilos depende de las capacidades de
-_hardware_ de la GPU.
+`nombre_funcion<<<x, y>>>`, donde `x` es el número de bloques e `y` es el número de
+hilos por bloque. El número total de hilos se obtiene multiplicando `x` por `y`. Por
+ejemplo, con 2 bloques y 4 hilos por bloque se obtienen 8 hilos en total. El número de
+bloques y de hilos depende de las capacidades de _hardware_ de la GPU.
 
 El código del _kernel_ se ejecuta en cada hilo de cada bloque configurado cuando se
 lanza el _kernel_. Un _kernel_ con un solo bloque utilizará únicamente un
@@ -431,7 +430,7 @@ if (err != cudaSuccess)
 
 <figure markdown="span">
   ![Patrones comunes de kernels en CUDA](../../assets/img/docs/cuda/cuda-c-kernel-patterns.png)
-  <figcaption>Patrones comunes de _kernels_ en CUDA.</figcaption>
+  <figcaption>Patrones comunes de kernels en CUDA.</figcaption>
 </figure>
 
 Antes de explorar los distintos patrones, conviene definir el concepto de **bucle

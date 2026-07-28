@@ -48,22 +48,16 @@ para el procesamiento paralelo:
 
 ### Warps
 
+<figure markdown="span">
+  ![Organización de bloques de hilos en warps](../../assets/img/docs/cuda/cuda-fundamentals-warps.png)
+  <figcaption>Organización de los bloques de hilos en <em>warps</em> dentro de la GPU. <a href="https://www.centron.de/en/tutorial/the-role-of-warps-in-parallel-processing-gpu-efficiency-explained/">Referencia</a></figcaption>
+</figure>
+
 El concepto clave en CUDA es el _warp_. En el nivel de _hardware_, un bloque de hilos se
 divide en _warps_, que son grupos de 32 hilos que ejecutan instrucciones en paralelo.
 Estos _warps_ permanecen en el multiprocesador hasta completar su ejecución. Un nuevo
 bloque de hilos no se lanza hasta que se liberan suficientes registros y memoria
-compartida para los _warps_ del nuevo bloque. La conmutación inmediata entre los hilos
-dentro de un _warp_ contribuye a una ejecución eficiente.
-
-CUDA combina _software_, _firmware_ y _hardware_ para ofrecer una plataforma de
-computación paralela robusta:
-
-- **_Software_**: Proporciona extensiones SIMD que permiten la programación eficiente de
-  la GPU, facilitando la ejecución paralela y escalable.
-- **_Firmware_**: Incluye _drivers_ para la programación GPU, que soportan tareas como
-  renderizado, manejo de APIs y gestión de memoria.
-- **_Hardware_**: Habilita el paralelismo general de la GPU, optimizando la capacidad de
-  procesamiento paralelo.
+compartida para los _warps_ del nuevo bloque.
 
 ### Modelo CPU-GPU
 
@@ -98,8 +92,7 @@ caché de constantes y una caché de texturas (ambas de solo lectura). Además, 
 cuenta con una memoria global de tipo GDDR, que es aproximadamente tres veces más rápida
 que la memoria principal de la CPU, aunque considerablemente más lenta que la memoria
 compartida de tipo SRAM. Los bloques de hilos en CUDA pueden asignarse a cualquier
-multiprocesador para su ejecución. La siguiente imagen ilustra la estructura interna de
-una GPU.
+multiprocesador para su ejecución.
 
 <figure markdown="span">
   ![Estructura interna de una GPU](../../assets/img/docs/cuda/cuda-fundamentals-gpu-architecture.png)
@@ -127,12 +120,11 @@ crear diseños más complejos al replicarlo.
 ### Núcleos tensoriales
 
 En la última década, los núcleos tensoriales han adquirido un protagonismo notable. Son
-la principal unidad de cómputo utilizada por bibliotecas de aprendizaje profundo (_deep
-learning_) como PyTorch y TensorFlow. Estos componentes están diseñados para realizar
-operaciones matriciales a alta velocidad, lo que resulta crucial en el entrenamiento de
-modelos de inteligencia artificial y en procesos que implican operaciones matriciales
-extensivas. El siguiente diagrama ilustra el proceso de operación de cada núcleo
-tensorial por ciclo de reloj.
+la principal unidad de cómputo utilizada por bibliotecas de aprendizaje profundo. Estos
+componentes están diseñados para realizar operaciones matriciales a alta velocidad, lo
+que resulta crucial en el entrenamiento de modelos de inteligencia artificial y en
+procesos que implican operaciones matriciales extensivas. El siguiente diagrama ilustra
+el proceso de operación de cada núcleo tensorial por ciclo de reloj.
 
 <figure markdown="span">
   ![Operación de un núcleo tensorial](../../assets/img/docs/cuda/cuda-fundamentals-tensor-core-operation.png)
@@ -145,11 +137,9 @@ La precisión de los datos influye directamente en la tasa de transferencia
 (_throughput_) del sistema. Reducir la precisión, por ejemplo de enteros de 32 bits a
 enteros de 16 bits, permite realizar un mayor número de operaciones por unidad de
 tiempo, aunque con una precisión menor en los resultados. Dependiendo de la aplicación,
-esta reducción de precisión puede ser perfectamente aceptable. La siguiente imagen
-muestra el _throughput_ para diferentes precisiones de datos en arquitecturas de GPU
-modernas.
+esta reducción de precisión puede ser perfectamente aceptable.
 
 <figure markdown="span">
   ![Throughput según la precisión numérica](../../assets/img/docs/cuda/cuda-fundamentals-precision-throughput.png)
-  <figcaption>_Throughput_ para diferentes precisiones numéricas en arquitecturas de GPU modernas.</figcaption>
+  <figcaption>Throughput para diferentes precisiones numéricas en arquitecturas de GPU modernas.</figcaption>
 </figure>
