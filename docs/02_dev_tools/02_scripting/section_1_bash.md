@@ -30,6 +30,7 @@ el proyecto GNU y publicado en 1989 como una evolución del _Bourne Shell_ (`sh`
 Todo programa en BASH comienza con la línea `#!/bin/bash`, conocida como _shebang_. Esta
 directiva indica al sistema operativo qué intérprete debe utilizar para ejecutar los
 comandos contenidos en el archivo, independientemente del entorno en el que se invoque.
+
 Los _scripts_ de BASH emplean por convención la extensión `.sh`, lo que facilita su
 identificación dentro del sistema de archivos.
 
@@ -68,6 +69,11 @@ posteriormente invocarlo desde la terminal.
     ```bash linenums="1"
     ./script.sh
     ```
+
+    !!! note "Conoce Linux"
+
+        Si quieres conocer sobre estos comandos y lo básico sobre Linux, puedes dirigirte a
+        este [apartado](../../01_operative_systems/01_linux/section_1_fundamentals.md).
 
 ### Argumentos
 
@@ -193,7 +199,7 @@ Los operadores lógicos permiten combinar múltiples condiciones:
 ### Bucles
 
 BASH ofrece varias estructuras de repetición. El bucle `for` resulta adecuado cuando se
-conoce de antemano el conjunto de valores sobre los que iterar:
+conoce de antemano el conjunto de valores sobre los que iterar.
 
 ???+ example "Bucle for"
 
@@ -207,7 +213,7 @@ conoce de antemano el conjunto de valores sobre los que iterar:
 
 El bucle `while` se emplea cuando la repetición debe continuar mientras se cumpla una
 condición determinada, lo que lo hace idóneo para situaciones en las que el número de
-iteraciones depende de una variable o del resultado de una operación:
+iteraciones depende de una variable o del resultado de una operación.
 
 ???+ example "Bucle while"
 
@@ -224,6 +230,26 @@ iteraciones depende de una variable o del resultado de una operación:
 Dentro de cualquier bucle, el comando `break` permite finalizar la ejecución del bucle
 de forma inmediata, mientras que `continue` salta directamente a la siguiente iteración
 sin ejecutar el resto del cuerpo del bucle.
+
+???+ example "Uso de break y continue"
+
+    ```bash linenums="1"
+    #!/bin/bash
+
+    i=0
+    max_value=5
+
+    while [ $i -le $max_value ]; do
+        if [ $(( i % 2)) -eq 0 ]; then
+        echo "Valor par $i encontrado, continúo."
+        (( i++ ))
+        continue
+        else
+            echo "Valor impar $i encontrado, termino."
+            break
+        fi
+    done
+    ```
 
 ### Funciones
 
@@ -246,8 +272,9 @@ definida, una función se invoca simplemente escribiendo su nombre.
 ### Control de errores
 
 Por defecto, un _script_ de BASH continúa su ejecución aunque uno de sus comandos falle,
-lo que puede provocar que se realicen operaciones sobre un estado inconsistente. La
-opción `set -e` modifica este comportamiento y hace que el _script_ finalice de forma
+lo que puede provocar que se realicen operaciones sobre un estado inconsistente.
+
+La opción `set -e` modifica este comportamiento y hace que el _script_ finalice de forma
 inmediata en cuanto cualquier comando devuelve un código de salida distinto de cero, es
 decir, en cuanto falla. De este modo, la ejecución se detiene en el primer error en
 lugar de propagarlo a las instrucciones posteriores.
@@ -278,6 +305,8 @@ del _script_:
 #!/bin/bash
 set -euo pipefail
 ```
+
+Donde:
 
 - `-e`: Finaliza el _script_ ante cualquier error.
 - `-u`: Genera un error si se utiliza una variable no definida.

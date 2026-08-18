@@ -258,22 +258,6 @@ múltiples archivos de configuración dispersos por el proyecto.
       `pyproject.toml`, eliminando la necesidad de archivos separados como `setup.cfg`,
       `.flake8`, `mypy.ini` o `pytest.ini`.
 
-### Instalación de dependencias por grupos
-
-Con `uv`, la instalación de dependencias de grupos específicos se realiza mediante el
-comando `uv sync`:
-
-```bash linenums="1"
-# Instalar solo el grupo core
-uv sync --group core
-
-# Instalar varios grupos simultáneamente
-uv sync --group core --group notebooks
-
-# Instalar todos los grupos
-uv sync --all-groups
-```
-
 ## Operaciones comunes de mantenimiento
 
 A continuación se muestran algunas de las operaciones más comunes en el uso de `uv`. En
@@ -337,6 +321,23 @@ Instalación con `uv`:
 
 ```bash linenums="1"
 uv pip install -r requirements.txt
+```
+
+### Instalación de dependencias por grupos
+
+Con `uv`, la instalación de dependencias de grupos (recuerda del ejemplo anterior cómo
+se definian los diferentes grupos en el fichero `pyproject.toml` en el apartado
+`[dependency-groups]`) específicos se realiza mediante el comando `uv sync`:
+
+```bash linenums="1"
+# Instalar solo el grupo core
+uv sync --group core
+
+# Instalar varios grupos simultáneamente
+uv sync --group core --group notebooks
+
+# Instalar todos los grupos
+uv sync --all-groups
 ```
 
 ### Eliminación de un entorno

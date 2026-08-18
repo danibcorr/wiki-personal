@@ -155,8 +155,10 @@ resume su situación respecto al control de versiones:
 _Command-line Interface_) que permite la interacción con Git mediante el uso de comandos
 de Linux.
 
-Si quieres conocer sobre estos comandos y lo básico sobre Linux, puedes dirigirte a este
-[apartado](../../01_operative_systems/01_linux/section_1_fundamentals.md).
+!!! note "Conoce Linux"
+
+    Si quieres conocer sobre estos comandos y lo básico sobre Linux, puedes dirigirte a
+    este [apartado](../../01_operative_systems/01_linux/section_1_fundamentals.md).
 
 ### Configuración de Git
 
@@ -196,9 +198,8 @@ y ejecuta los comandos dentro del directorio del repositorio.
 
 #### Configurar autenticación SSH para GitHub/GitLab
 
-Configurar claves SSH simplifica la autenticación con GitHub/GitLab.
-
-Para ello, genera una clave SSH si no tienes una, utilizando el siguiente comando:
+Configurar claves SSH simplifica la autenticación con GitHub/GitLab. Para ello, genera
+una clave SSH si no tienes una, utilizando el siguiente comando:
 
 ???+ example "Generar clave SSH"
 
@@ -247,9 +248,9 @@ GitHub/GitLab y usarlo como contraseña al clonar o realizar _push_. Para config
 
 ### Comandos para el control de versiones
 
-Un comando de Git se compone de tres elementos fundamentales: el programa principal
-(`git`), el comando que define la acción concreta que se desea realizar y, de forma
-opcional, una serie de opciones y argumentos que ajustan su comportamiento.
+Un comando de Git se compone de tres elementos fundamentales: 1) el programa principal
+(`git`), 2) el comando que define la acción concreta que se desea realizar y, 3) de
+forma opcional, una serie de opciones y argumentos que ajustan su comportamiento.
 
 ???+ example "Commit con mensaje"
 
@@ -314,6 +315,7 @@ Una rama (**_branch_**) en Git es un puntero móvil que apunta a un _commit_ esp
 dentro del historial del proyecto. Las ramas permiten crear líneas de desarrollo
 independientes a partir de un punto común, de modo que es posible trabajar en nuevas
 funcionalidades, correcciones o experimentos sin alterar el código de la rama principal.
+
 Una vez que el trabajo en una rama se considera estable, puede integrarse de nuevo en la
 rama de origen mediante una operación de fusión (**_merge_**). Este mecanismo constituye
 uno de los pilares fundamentales de Git, ya que facilita el desarrollo paralelo y la
@@ -323,8 +325,7 @@ Las estrategias de ramificación en Git están estrechamente vinculadas con la f
 que se crean, desarrollan y combinan las diferentes ramas dentro de un mismo
 repositorio. Estas estrategias definen un conjunto de convenciones que determinan cuándo
 crear una rama, qué propósito debe cumplir y cómo debe integrarse de nuevo en el flujo
-principal. En las siguientes secciones se abordan las formas más habituales de trabajar
-con ramas en Git.
+principal.
 
 Una de las metodologías más básicas de Git consiste en utilizar una rama principal
 denominada `main` (anteriormente `master`, término que ha caído en desuso por convención
@@ -384,10 +385,10 @@ no está siendo apuntado por una rama, situación conocida como **_Detached HEAD
 ### _Merge_ y _pull requests_
 
 Para combinar los cambios de una rama a otra se utilizan los _merges_ o _pull requests_
-en los repositorios. En este proceso intervienen dos ramas: la rama "_source_" y la rama
-"_target_". La rama _source_ contiene los cambios que se desean incorporar, mientras que
-la _target_ es la rama donde se introducirán dichos cambios. Por ejemplo, la rama
-_source_ puede ser la rama `dev` y la _target_ puede ser la rama `main`.
+en los repositorios. En este proceso intervienen dos ramas: 1) la rama "_source_", y 2)
+la rama "_target_". La rama _source_ contiene los cambios que se desean incorporar,
+mientras que la _target_ es la rama donde se introducirán dichos cambios. Por ejemplo,
+la rama _source_ puede ser la rama `dev` y la _target_ puede ser la rama `main`.
 
 ```mermaid
 %%{init: { 'theme': 'base', 'themeVariables': {
@@ -526,18 +527,3 @@ técnicas y construir consenso. Resulta adecuado cuando se plantean dudas sobre 
 viabilidad de una solución, se exploran alternativas, se solicita ayuda para mejorar una
 implementación o simplemente se deja el trabajo pendiente de revisión para una
 integración posterior.
-
-Independientemente de la modalidad elegida, una de las reglas fundamentales que subyacen
-a esta estrategia es que las ramas no deben tener una vida prolongada y deben mantenerse
-alineadas con la rama principal mediante _rebases_ frecuentes. Las ramas que divergen
-durante demasiado tiempo incrementan el riesgo de conflictos al integrarse, dificultan
-la comprensión del estado real del proyecto y suelen generar frustración innecesaria en
-el equipo.
-
-El propio autor destaca que, cuando se entregan funcionalidades siguiendo patrones
-consolidados y existe un alto nivel de confianza y estándares de calidad compartidos, el
-equipo tenderá a utilizar más el enfoque **Ship**. En cambio, cuando los miembros aún se
-están conociendo, el dominio del problema es nuevo o se están explorando soluciones
-desconocidas, surge una mayor necesidad de comunicación, lo que incrementa el uso de
-**Show** y **Ask**. Esto pone de manifiesto que la comunicación efectiva y el trabajo
-colaborativo son pilares fundamentales de la ingeniería de software.

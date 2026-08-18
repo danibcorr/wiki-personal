@@ -57,9 +57,10 @@ de tabulación, no con espacios.
     En este ejemplo, `setup` es el _target_ que representa la tarea a realizar.
     Al no tener prerrequisitos, se ejecuta siempre que se invoque. Los comandos
     precedidos por `@` se ejecutan sin mostrar la línea del comando en la salida,
-    mostrando únicamente su resultado. Al ejecutar `make setup`, Make ejecuta los
-    comandos de forma secuencial, en este caso, sincroniza las dependencias con `uv`
-    e instala los _hooks_ de _pre-commit_.
+    mostrando únicamente su resultado.
+
+    Al ejecutar `make setup`, Make ejecuta los comandos de forma secuencial, en este
+    caso, sincroniza las dependencias con `uv` e instala los _hooks_ de _pre-commit_.
 
 ???+ example "Con prerrequisitos"
 
@@ -111,9 +112,11 @@ personalización de comandos y rutas sin necesidad de repetir información.
     ```
 
     La sintaxis `?=` asigna un valor por defecto a la variable, permitiendo
-    sobreescribirla en el momento de la invocación. En la regla `test`, el comando
-    utiliza `$(PATH_TESTS)` para referenciar el directorio de pruebas. Para ejecutar
-    con un directorio diferente basta con especificarlo en la llamada:
+    sobreescribirla en el momento de la invocación.
+
+    En la regla `test`, el comando utiliza `$(PATH_TESTS)` para referenciar el directorio
+    de pruebas. Para ejecutar con un directorio diferente basta con especificarlo en la
+    llamada:
 
     ```sh linenums="1"
     make test PATH_TESTS=./tests/unit

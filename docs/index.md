@@ -23,13 +23,13 @@ son incluso más relevantes.
 Gracias por interesarte y ser parte de este proyecto. Espero que disfrutes del
 aprendizaje y que este contenido sea un apoyo real para alcanzar tus objetivos.
 
-!!! warning Consideraciones
+Y recuerda, siempre estoy abierto a nuevos proyectos, ideas o colaboraciones, así que no
+dudes en escribirme por LinkedIn 😊.
+
+!!! note Consideraciones
 
     La mayoría de los ejemplos y configuraciones están basados en Linux, específicamente
     en distribuciones basadas en Debian. Algunos comandos pueden variar según tu sistema
     operativo o distribución, y mantener toda la información actualizada me resulta
     complicado por el tiempo requerido. Por ello, te animo a investigar por tu cuenta si
     surge alguna dificultad para seguir algún paso.
-
-Y recuerda, siempre estoy abierto a nuevos proyectos, ideas o colaboraciones, así que no
-dudes en escribirme por LinkedIn :).

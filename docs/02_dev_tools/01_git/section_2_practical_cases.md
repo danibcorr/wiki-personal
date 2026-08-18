@@ -7,9 +7,6 @@ title: Hooks y casos prácticos
 Más allá de las estrategias de ramificación, el uso eficaz de Git requiere conocer los
 mecanismos que permiten automatizar tareas dentro del flujo de trabajo y resolver
 situaciones habituales que surgen durante la gestión del historial de un repositorio.
-Estos aspectos prácticos resultan fundamentales para mantener la calidad del código,
-garantizar la coherencia del proyecto y facilitar la colaboración en equipos de
-cualquier tamaño.
 
 ## Git Hooks
 
@@ -33,28 +30,29 @@ Estos scripts deben ser ejecutables y deben llevar el nombre del evento para el 
 activan, como `pre-commit`, `pre-push` o `post-merge`. Para asegurarse de que tienen los
 permisos adecuados (permisos de ejecución), se puede utilizar el siguiente comando:
 
-???+ example "Dar permisos al hook"
-
-    ```bash linenums="1"
-    chmod +x pre-commit
-    ```
+```bash linenums="1"
+chmod +x pre-commit
+```
 
 Una vez ubicados en el directorio correcto y con los permisos necesarios, Git ejecutará
 automáticamente estos scripts cuando ocurra el evento correspondiente.
 
 Al desarrollar y administrar Git Hooks, es esencial seguir ciertas pautas que aseguren
-su eficacia y mantengan un flujo de trabajo ordenado.
-
-En primer lugar, los hooks deben ser rápidos y confiables, de manera que su ejecución no
-interfiera con la productividad del equipo ni genere demoras en los procesos habituales
-de desarrollo. Asimismo, se recomienda evitar que los hooks realicen cambios automáticos
-en el código sin la aprobación explícita del desarrollador, ya que estas modificaciones
+su eficacia y mantengan un flujo de trabajo ordenado. En primer lugar, **los hooks deben
+ser rápidos y confiables**, de manera que su ejecución no interfiera con la
+productividad del equipo ni genere demoras en los procesos habituales de desarrollo.
+Asimismo, se recomienda **evitar que los hooks realicen cambios automáticos en el
+código** sin la aprobación explícita del desarrollador, ya que estas modificaciones
 pueden provocar conflictos, errores inesperados o dificultades en la integración del
 código.
 
 ### Tipos de Git Hooks
 
-A continuación se describen los tipos de hooks más comunes:
+A continuación, se presentan los _hooks_ de desarrollo más comunes. Si bien existen
+_hooks_ para acciones posteriores al envío de código (notificaciones o despliegues a
+producción), se recomienda gestionar estas tareas a través de herramientas de CI/CD como
+GitHub Actions o GitLab CI/CD. De este modo, los hooks se reservan para validaciones
+locales, optimizando el uso de los _runners_ remotos.
 
 #### pre-commit
 
@@ -127,218 +125,11 @@ _pushes_ en ramas protegidas o para ejecutar pruebas antes de subir los cambios.
     echo "El push se ha completado con éxito."
     ```
 
-#### post-commit
-
-Se ejecuta después de realizar un _commit_. Puede utilizarse para enviar notificaciones
-automáticas al equipo.
-
-???+ example "Notificación post-commit"
-
-    Notificación por correo tras un commit, implementada como un script de Python.
-
-    ```python linenums="1"
-    #!/usr/bin/env python3
-    # Hook post-commit para enviar una notificación por correo
-
-    import smtplib
-    import subprocess
-    from email.message import EmailMessage
-
-
-    def obtener_ultimo_commit() -> str:
-        """
-        Obtiene el mensaje del último commit del repositorio.
-
-        Returns:
-            El mensaje asociado al commit más reciente.
-        """
-
-        resultado = subprocess.run(
-            ["git", "log", "-1", "--pretty=%B"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-
-        return resultado.stdout.strip()
-
-
-    def enviar_notificacion(mensaje: str) -> None:
-        """
-        Envía una notificación por correo con el mensaje del commit.
-
-        Args:
-            mensaje: Contenido del commit a notificar.
-        """
-
-        correo = EmailMessage()
-        correo["Subject"] = "Nuevo commit realizado"
-        correo["From"] = "ci@example.com"
-        correo["To"] = "equipo@example.com"
-        correo.set_content(f"Nuevo commit realizado: {mensaje}")
-
-        with smtplib.SMTP("localhost") as servidor:
-            servidor.send_message(correo)
-
-
-    if __name__ == "__main__":
-        enviar_notificacion(obtener_ultimo_commit())
-    ```
-
-#### post-merge
-
-Se ejecuta después de completar un _merge_. Es útil para actualizar dependencias o
-regenerar documentación.
-
-???+ example "Actualizar dependencias post-merge"
-
-    Actualización de dependencias con uv.
-
-    ```bash linenums="1"
-    #!/bin/bash
-    # Hook post-merge para actualizar dependencias con uv
-
-    # Verificar si uv está instalado
-    if ! command -v uv &> /dev/null; then
-        echo "Error: uv no está instalado. Instálalo desde https://docs.astral.sh/uv/."
-        exit 1
-    fi
-
-    # Actualizar las dependencias al último valor permitido y sincronizar el entorno
-    echo "Actualizando dependencias con uv..."
-    uv lock --upgrade
-    uv sync
-
-    # Ejecutar pruebas para verificar que todo funciona correctamente
-    echo "Ejecutando pruebas con Pytest..."
-    uv run pytest -v ./tests
-
-    # Verificar el estado de las pruebas
-    if [ $? -ne 0 ]; then
-        echo "Error: Las pruebas no han pasado. Verifica los errores."
-        exit 1
-    fi
-
-    echo "El post-merge se ha completado con éxito."
-    ```
-
-#### pre-receive y post-receive
-
-Estos _hooks_ se ejecutan en el servidor remoto al recibir cambios mediante _push_.
-
-En el caso de **pre-receive**, se usa para validar que los _commits_ cumplan con las
-políticas del proyecto antes de aceptarlos.
-
-???+ example "Validar mensajes de commit"
-
-    Bloquear _pushes_ con mensajes de _commit_ incorrectos mediante un script de Python.
-
-    ```python linenums="1"
-    #!/usr/bin/env python3
-    # Hook pre-receive para validar mensajes de commit
-
-    import re
-    import subprocess
-    import sys
-
-    # Patrón requerido para los mensajes de commit
-    PATRON = re.compile(r"^\[JIRA-\d+\]")
-
-
-    def obtener_commits(oldrev: str, newrev: str) -> list[str]:
-        """
-        Obtiene la lista de commits entre dos referencias.
-
-        Args:
-            oldrev: Referencia previa al push.
-            newrev: Referencia posterior al push.
-
-        Returns:
-            Lista de identificadores de commit.
-        """
-
-        resultado = subprocess.run(
-            ["git", "rev-list", f"{oldrev}..{newrev}"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-
-        return resultado.stdout.split()
-
-
-    def obtener_mensaje(commit: str) -> str:
-        """
-        Obtiene el mensaje de un commit específico.
-
-        Args:
-            commit: Identificador del commit.
-
-        Returns:
-            Mensaje asociado al commit.
-        """
-
-        resultado = subprocess.run(
-            ["git", "log", "--format=%B", "-n", "1", commit],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-
-        return resultado.stdout.strip()
-
-
-    def main() -> None:
-        """
-        Valida el formato de los mensajes de commit recibidos.
-        """
-
-        for linea in sys.stdin:
-            oldrev, newrev, _ = linea.split()
-            for commit in obtener_commits(oldrev, newrev):
-                mensaje = obtener_mensaje(commit)
-                if not PATRON.match(mensaje):
-                    print(
-                        f"El mensaje de commit '{mensaje}' no cumple con el formato requerido."
-                    )
-                    sys.exit(1)
-
-
-    if __name__ == "__main__":
-        main()
-    ```
-
-Mientras que **post-receive**, se emplea para realizar despliegues automáticos en
-producción.
-
-???+ example "Despliegue automático"
-
-    Despliegue automático tras recibir un _push_, sincronizando el entorno con uv.
-
-    ```bash linenums="1"
-    #!/bin/bash
-    # Hook post-receive para desplegar automáticamente el código en producción
-
-    echo "Desplegando cambios en producción..."
-
-    # Cambiar al directorio de producción
-    cd /var/www/mi-aplicacion
-
-    # Obtener la última versión del código
-    git pull origin main
-
-    # Sincronizar las dependencias del entorno con uv
-    uv sync
-
-    # Reiniciar el servidor web para aplicar cambios
-    pm2 restart mi-aplicacion
-    ```
-
 ## Escenarios frecuentes
 
-En el desarrollo con Git es habitual necesitar manipular la historia de _commits_ o
-sincronizar el repositorio local con el remoto. A continuación se presentan soluciones
-claras y seguras para los escenarios más frecuentes.
+En el desarrollo con Git, es habitual modificar el historial de commits o sincronizar el
+repositorio local con el remoto, entre otros. A continuación, se presentan los casos de
+uso más frecuentes con sus soluciones correspondientes.
 
 ### Gestionar _commits_ no firmados
 
@@ -381,16 +172,16 @@ Otra alternativa es restablecer la rama a un _commit_ firmado determinado:
 Para sincronizar la rama local exactamente con la remota, descartando cualquier cambio
 local y archivos sin seguimiento, utiliza el siguiente comando.
 
-!!! warning "Operación irreversible"
-
-    Esta operación es irreversible y eliminará cualquier trabajo que no haya sido
-    subido al repositorio.
-
 ???+ example "Sincronizar con reset"
 
     ```bash linenums="1"
     git fetch origin && git reset --hard origin/main && git clean -fd
     ```
+
+    !!! warning "Operación irreversible"
+
+        Esta operación es irreversible y eliminará cualquier trabajo que no haya sido
+        subido al repositorio.
 
 Si prefieres eliminar y recrear la rama local por completo para asegurar una copia
 limpia desde el servidor, puedes seguir estos pasos:
@@ -402,6 +193,11 @@ limpia desde el servidor, puedes seguir estos pasos:
     git branch -D nombre-rama
     git checkout -b nombre-rama origin/nombre-rama
     ```
+
+    !!! warning "Operación irreversible"
+
+        Esta operación es irreversible y eliminará cualquier trabajo que no haya sido
+        subido al repositorio.
 
 ### Eliminar ramas locales que ya no existen en remoto
 
@@ -429,20 +225,7 @@ seguimiento ha dejado de existir:
     - **`awk '{print $1}'`**: Extrae únicamente el nombre de la rama local.
     - **`xargs git branch -D`**: Elimina esas ramas localmente.
 
-Ten en cuenta que `-D` fuerza el borrado aunque la rama no esté mergeada. Si prefieres
-un borrado seguro (solo si está fusionada), usa `-d`:
+    !!! warning "Operación irreversible"
 
-???+ example "Borrado seguro"
-
-    ```bash linenums="1"
-    git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
-    ```
-
-También, como recomendación, conviene revisar primero qué ramas se van a eliminar
-ejecutando únicamente el siguiente comando antes de proceder al borrado:
-
-???+ example "Revisar ramas a eliminar"
-
-    ```bash linenums="1"
-    git branch -vv | grep ': gone]'
-    ```
+        Esta operación es irreversible y eliminará cualquier trabajo que no haya sido
+        subido al repositorio.

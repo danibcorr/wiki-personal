@@ -8,10 +8,7 @@ title: Fundamentos
 
 Este capítulo presenta los conceptos esenciales del sistema GNU/Linux, el funcionamiento
 de la terminal como interfaz principal de interacción y los comandos fundamentales para
-la navegación y manipulación del sistema de archivos. Además, aborda la gestión de
-usuarios, grupos y permisos, la administración de procesos, servicios y daemons del
-sistema, así como la automatización de tareas y las herramientas básicas de gestión de
-red.
+la navegación y manipulación del sistema de archivos, entre otros.
 
 ## Bibliografía
 
@@ -136,7 +133,7 @@ La creación de elementos básicos se realiza con `touch` para archivos y `mkdir
 directorios. La lectura de archivos puede efectuarse mediante `cat`, adecuada para
 contenidos breves, o `less`, que permite una navegación paginada en textos extensos. La
 gestión de archivos y directorios se completa con `cp` para copiar, `mv` para mover o
-renombrar, y `rm` y `rmdir` para eliminar elementos.
+renombrar, y `rm` o `rmdir` para eliminar elementos.
 
 La administración básica también incluye utilidades como `whoami` para identificar al
 usuario activo, `useradd` para crear cuentas, `man` para consultar la documentación
@@ -149,14 +146,15 @@ sesiones seguras desde la línea de comandos, integrando de manera fluida la
 administración de sistemas locales y remotos.
 
 <figure markdown="span">
-  ![Ejemplo del protocolo SSH](../../assets/img/docs/linux/linux-ejemplo-protocolo-ssh.png)
-  <figcaption>Ejemplo del protocolo SSH. <a href="https://www.ssh.com/academy/ssh">Referencia</a></figcaption>
+  ![Funcionamiento del protocolo SSH](../../assets/img/docs/linux/linux-ejemplo-protocolo-ssh.png)
+  <figcaption>Funcionamiento del protocolo SSH. <a href="https://www.ssh.com/academy/ssh">Referencia</a></figcaption>
 </figure>
 
 Estos son algunos de los comandos más utilizados para el día a día. Sin embargo, existen
 aún más comandos cuyo comportamiento puede verse alterado gracias a las opciones que
 ofrecen. Es por ello que resulta impracticable enumerar todos los comandos de Linux
 junto con sus múltiples opciones, debido a la gran cantidad y diversidad que presentan.
+
 Por esta razón, es posible utilizar la opción `--help` en cualquier comando para obtener
 información detallada sobre su uso, incluyendo las opciones disponibles y una breve
 descripción de su funcionalidad. También existen recursos externos como la documentación
@@ -229,11 +227,11 @@ Dentro de esta estructura destacan una serie de directorios esenciales, entre el
 
 Uno de los directorios que más visitaremos, de manera directa o indirecta, es la carpeta
 oculta denominada `~/.cache`, que almacena datos temporales generados por diversas
-aplicaciones para acelerar operaciones posteriores. En esta ubicación, herramientas
-modernas de gestión de dependencias para lenguajes de programación mantienen sus propios
-directorios de **_cache_** donde almacenan paquetes descargados, compilaciones
-intermedias y metadatos. Ejemplos representativos incluyen `~/.cache/uv` para el gestor
-de paquetes **`uv`** de Python, `~/.cache/pip` para **`pip`**, entre otros.
+aplicaciones para acelerar operaciones posteriores. En esta ubicación, herramientas de
+gestión de dependencias para lenguajes de programación mantienen sus propios directorios
+de **_cache_** donde almacenan paquetes descargados, compilaciones intermedias y
+metadatos. Ejemplos representativos incluyen `~/.cache/uv` para el gestor de paquetes
+**`uv`** de Python, `~/.cache/pip` para **`pip`**, entre otros.
 
 Con el tiempo, estos directorios de _cache_ pueden acumular un volumen considerable de
 datos. Para identificar qué directorios consumen más espacio en disco, resulta útil el
@@ -279,12 +277,11 @@ el **grupo** asociado y c) el resto de usuarios denominados **otros**.
 
 Este esquema limita el acceso indebido a los recursos. Por encima de estas restricciones
 se sitúa el **superusuario**, identificado como `root`, que posee control total sobre el
-sistema y puede ignorar el modelo de permisos convencional.
+sistema y puede ignorar el modelo de permisos convencional. La categoría de **otros**
+representa a cualquier usuario que no sea ni el propietario del archivo ni miembro del
+grupo asociado.
 
-La categoría de **otros** representa a cualquier usuario que no sea ni el propietario
-del archivo ni miembro del grupo asociado.
-
-El sistema evalúa los permisos siguiendo un orden de prioridad estricto: primero
+El sistema evalúa los permisos siguiendo un orden de prioridad estricto. Primero
 comprueba si el usuario es el propietario, en cuyo caso aplica los permisos
 correspondientes. Si no lo es, verifica si pertenece al grupo, y solo si no cumple
 ninguna de estas condiciones, se aplican los permisos definidos para otros.
@@ -305,12 +302,12 @@ ejecución (`x`) está concedido o no.
     Supongamos que al ejecutar `ls -l` obtenemos la siguiente salida:
 
     ```bash linenums="1"
-    -rwxr-xr--
+    rwxr-xr--
     ```
 
-    Este conjunto de caracteres puede interpretarse de la siguiente manera, dividiéndolo en
-    bloques de tres caracteres que representan los permisos del propietario, del grupo y de
-    los demás usuarios:
+    Este conjunto de caracteres puede interpretarse de la siguiente manera, dividiéndolo
+    en bloques de tres caracteres (`rwx`, `r-x` y `r--`) que representan los permisos del
+    propietario, del grupo y de los demás usuarios:
 
     | Permiso       | Propietario | Grupo | Otros |
     | ------------- | ----------- | ----- | ----- |
@@ -327,11 +324,9 @@ ejecución (`x`) está concedido o no.
     - **Otros:** Solo cuentan con permiso de lectura, por lo que pueden consultar el
       contenido del archivo, pero no ejecutarlo ni realizar cambios sobre él.
 
-    Es importante destacar que cada bloque de tres caracteres sigue siempre el orden `rwx`.
-
-Cuando un permiso no está habilitado, se reemplaza con un guion (`-`). Por ejemplo,
-`r--` indica que únicamente se permite la lectura, mientras que `rw-` permite lectura y
-escritura, pero no ejecución.
+    Vemos que cuando un permiso no está habilitado, se reemplaza con un guion (`-`). Por
+    ejemplo, `r--` indica que únicamente se permite la lectura, mientras que `rw-` permite
+    lectura y escritura, pero no ejecución.
 
 ### Modificación de permisos
 
@@ -371,11 +366,12 @@ emplear operadores para añadir, quitar o asignar permisos.
 
 El sistema emplea el comando `umask` para definir los permisos **por defecto** de los
 nuevos archivos y directorios. Mientras que `chmod` modifica permisos existentes,
-`umask` actúa como una máscara que restringe los permisos máximos iniciales. Para los
-archivos, el sistema parte de un valor máximo de lectura y escritura para todos, y para
-los directorios, de permisos completos. El valor de `umask` indica qué permisos deben
-eliminarse automáticamente, de modo que cuanto más restrictiva sea la máscara, más
-limitados serán los permisos resultantes.
+`umask` actúa como una máscara que restringe los permisos máximos iniciales.
+
+Para los archivos, el sistema parte de un valor máximo de lectura y escritura para
+todos, y para los directorios, de permisos completos. El valor de `umask` indica qué
+permisos deben eliminarse automáticamente, de modo que cuanto más restrictiva sea la
+máscara, más limitados serán los permisos resultantes.
 
 ???+ example "Máscara umask"
 
@@ -435,34 +431,6 @@ simultáneamente, y puede aplicarse de forma recursiva a directorios completos.
     sudo chown -R ana:desarrolladores proyecto
     ```
 
-### Administración de cuentas
-
-La gestión de usuarios se completa con comandos orientados a la creación y mantenimiento
-de cuentas. Herramientas como `adduser` permiten crear nuevos usuarios de forma
-interactiva, mientras que `passwd` se utiliza para establecer o modificar contraseñas.
-La pertenencia a grupos puede consultarse mediante `groups`, tanto para el usuario
-actual como para cualquier otro usuario del sistema, y modificarse añadiendo usuarios a
-grupos específicos, como `sudo`, para concederles capacidades administrativas
-controladas.
-
-???+ example "Gestión de usuarios"
-
-    - **Creación interactiva de la cuenta:** `sudo adduser pedro`, a diferencia de `useradd`,
-      el comando `adduser` es un script de alto nivel que, de forma asistida, crea el
-      directorio personal en `/home/pedro`, asigna un intérprete de comandos (Shell) y
-      solicita la información básica del usuario.
-    - **Gestión de la seguridad de acceso:** `sudo passwd pedro`, aunque el comando anterior
-      solicita una clave inicial, `passwd` permite al administrador forzar un cambio de
-      contraseña o actualizarla en cualquier momento, garantizando la integridad del acceso.
-    - **Concesión de privilegios administrativos:** `sudo adduser pedro sudo`, para que el
-      usuario pueda ejecutar tareas de mantenimiento que requieren privilegios de raíz
-      (root), se le añade al grupo secundario `sudo`. Esta acción aplica la "plantilla" de
-      permisos necesaria para que el sistema le permita utilizar dicho comando.
-    - **Auditoría y verificación de pertenencia:** `groups pedro`, este comando permite
-      verificar que los cambios se han aplicado correctamente. La salida mostrará una lista
-      similar a `pedro : pedro sudo`, confirmando que el usuario pertenece a su grupo
-      primario y al grupo de administradores.
-
 ## Procesos y servicios
 
 En Linux, un **proceso** se define como un **programa en ejecución**. Cuando un usuario
@@ -517,12 +485,12 @@ recarga de configuraciones de un proceso. Las señales más utilizadas son:
 
 El comando `kill` permite enviar estas señales a procesos específicos mediante su PID.
 Por ejemplo, `kill -15 1234` solicita una terminación ordenada, mientras que
-`kill -9 1234` fuerza su cierre.
+`kill -9 1234` fuerza su cierre. Si se desconoce el PID, se puede usar `pkill` con el
+nombre del proceso, por ejemplo `pkill -9 firefox`.
 
-Si se desconoce el PID, se puede usar `pkill` con el nombre del proceso:
-`pkill -9 firefox`. Los usuarios solo pueden enviar señales a sus propios procesos, para
-interactuar con procesos de otros usuarios o del sistema se requiere privilegio de
-superusuario (`sudo`).
+Los usuarios solo pueden enviar señales a sus propios procesos, para interactuar con
+procesos de otros usuarios o del sistema se requiere privilegio de superusuario
+(`sudo`).
 
 Señales comunes generadas desde el teclado incluyen:
 
@@ -593,15 +561,12 @@ incluso si el usuario que los inició cierra su sesión.
 
 Por convención, muchos _daemons_ tienen nombres terminados en **"d"**, como `sshd`
 (gestión de conexiones SSH), `httpd` o `apache2` (servicio web), `crond` (tareas
-programadas) y `systemd` (control de servicios y procesos del sistema).
+programadas) y `systemd` (control de servicios y procesos del sistema). Por razones de
+seguridad, los _daemons_ no deben ejecutarse como `root` salvo que sea estrictamente
+necesario.
 
-Por razones de seguridad, los _daemons_ no deben ejecutarse como `root` salvo que sea
-estrictamente necesario. En entornos web, por ejemplo, se suele asignar un usuario
-específico como `www-data` para minimizar riesgos en caso de explotación de
-vulnerabilidades.
-
-El control de _daemons_ modernos se realiza mediante `systemctl`, que permite iniciar,
-detener, reiniciar y habilitar servicios de manera uniforme:
+El control de _daemons_ se realiza mediante `systemctl`, que permite iniciar, detener,
+reiniciar y habilitar servicios de manera uniforme:
 
 | Comando                      | Función                                                                        |
 | ---------------------------- | ------------------------------------------------------------------------------ |
@@ -613,11 +578,10 @@ detener, reiniciar y habilitar servicios de manera uniforme:
 ## Alias y atajos de comandos
 
 En Linux, la eficiencia operativa se potencia mediante la **automatización** de tareas
-repetitivas o complejas a través de la shell.
-
-Una herramienta fundamental para este propósito son los **alias**, que funcionan como
-atajos para comandos largos o frecuentemente utilizados. Los alias permiten reducir
-errores, ahorrar tiempo y estandarizar procedimientos dentro del entorno de trabajo.
+repetitivas o complejas a través de la shell. Una herramienta fundamental para este
+propósito son los **alias**, que funcionan como atajos para comandos largos o
+frecuentemente utilizados. Los alias permiten reducir errores, ahorrar tiempo y
+estandarizar procedimientos dentro del entorno de trabajo.
 
 Los alias se configuran generalmente en archivos de inicialización de la shell, como
 `~/.bashrc` o `~/.zshrc`, lo que asegura que estén disponibles de manera automática en
