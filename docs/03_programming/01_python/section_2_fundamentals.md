@@ -43,9 +43,11 @@ ecosistema de herramientas disponible para su gestión. En este documento se uti
 como gestor de entornos, por lo que no es necesario instalar nada adicional para empezar
 a trabajar con Python.
 
-Para obtener instrucciones detalladas sobre la configuración de entornos virtuales y la
-gestión de paquetes en Python, se puede consultar la sección de entornos de esta misma
-wiki, dentro del [apartado de programación en Python](section_1_environments.md).
+!!! note "Nota"
+
+    Para obtener instrucciones detalladas sobre la configuración de entornos virtuales y la
+    gestión de paquetes en Python, se puede consultar la sección de entornos de esta misma
+    wiki, dentro del [apartado de programación en Python](section_1_environments.md).
 
 ### Jupyter Notebooks
 
@@ -98,7 +100,7 @@ características:
 
 Las palabras reservadas (también conocidas como _keywords_) son términos que Python
 utiliza internamente y que no pueden ser empleados como nombres de variables o
-funciones. Son la forma que tiene el lenguaje de interpretar cada tipo de dato como tal.
+funciones.
 
 **Python es un lenguaje de tipificación dinámica**, por lo que no es necesario declarar
 explícitamente el tipo de dato, ya que este se asigna automáticamente según el valor.
@@ -115,7 +117,10 @@ lista_valores: list[int] = [1, 2, 3]
 diccionario_valores: dict[str, list[int]] = {"esto_es_un_string": [1, 2, 3]}
 ```
 
-Para conocer el tipo de una variable, se utiliza la función `type(variable)`.
+!!! note "Nota"
+
+    Si queremos  conocer el tipo de una variable, podemos utilizar la función
+    `type(variable)`.
 
 ### Operaciones aritméticas
 
@@ -134,44 +139,11 @@ tipos. Las principales operaciones matemáticas y funciones disponibles son:
 | `hex(x)`                | Convierte $x$ a hexadecimal.                                           |
 | `bin(x)`                | Convierte $x$ a binario.                                               |
 
-Es posible extender la funcionalidad utilizando librerías, que pueden ser estándar
-(incluidas con la propia instalación de Python) o paquetes de terceros como NumPy,
-Pandas o similares. Por ejemplo, la librería estándar `math` amplía las operaciones
-disponibles:
-
-| Operador/Función | Descripción                                                                        |
-| ---------------- | ---------------------------------------------------------------------------------- |
-| `math.floor(x)`  | Redondea $x$ hacia abajo, es decir, $\lfloor x \rfloor$. Requiere importar `math`. |
-| `math.ceil(x)`   | Redondea $x$ hacia arriba, es decir, $\lceil x \rceil$. Requiere importar `math`.  |
-| `math.sqrt(x)`   | Devuelve la raíz cuadrada de $x$, es decir, $\sqrt{x}$. Requiere importar `math`.  |
-| `math.pi`        | Devuelve el valor de la constante $\pi$. Requiere importar `math`.                 |
-
-Para utilizar estas funciones, basta con importar la librería:
-
-```python linenums="1"
-import math
-
-math.floor(3.1415)
-```
-
-Cuando se trabaja con valores monetarios o cálculos que requieren precisión decimal
-exacta, es recomendable utilizar el módulo `Decimal` en lugar de `float`, ya que este
-último puede introducir errores de redondeo inherentes a la representación en punto
-flotante:
-
-```python linenums="1"
-from decimal import Decimal
-
-RATES: dict[tuple[str, str], Decimal] = {
-    ("USD", "EUR"): Decimal("0.91")
-}
-```
-
 ### Operadores de comparación y lógicos
 
-Existen diferentes tipos de operadores en Python. Los **operadores de comparación**
-permiten evaluar relaciones entre dos valores, devolviendo un resultado booleano (`True`
-o `False`):
+Existen diferentes tipos de operadores en Python, entre ellos, contamos con los
+**operadores de comparación** los cuales permiten evaluar relaciones entre dos valores,
+devolviendo un resultado booleano (`True` o `False`), entre los cuales contamos con:
 
 | Expresión | Descripción               |
 | --------- | ------------------------- |
@@ -183,7 +155,7 @@ o `False`):
 | `A >= B`  | A es mayor o igual que B. |
 
 Por otro lado, los **operadores lógicos** permiten combinar varias condiciones y
-controlar el flujo de ejecución en función de los resultados:
+controlar el flujo de ejecución en función de los resultados, contando con:
 
 | Operador | Descripción                                                  |
 | -------- | ------------------------------------------------------------ |
@@ -208,10 +180,10 @@ crearlas en Python se deben respetar ciertas reglas:
 
 Más allá de estas restricciones, la convención recogida en la guía de estilo PEP 8
 establece el uso de nombres en minúsculas con palabras separadas por guiones bajos
-(_snake case_), como en `numero_de_alumnos`. Las constantes, por su parte, se escriben
-en mayúsculas, como en `TASA_MAXIMA`. Conviene además elegir nombres descriptivos que
-expresen el propósito del valor almacenado, ya que esto reduce la necesidad de
-comentarios explicativos.
+(_snake case_), por ejemplo `numero_de_alumnos`. Las constantes, por su parte, se
+escriben en mayúsculas, como en `TASA_MAXIMA`. Conviene además elegir nombres
+descriptivos que expresen el propósito del valor almacenado, ya que esto reduce la
+necesidad de comentarios explicativos.
 
 ## Entrada y salida de datos
 
@@ -224,7 +196,7 @@ print("Esto es una prueba")
 ```
 
 Es posible concatenar variables que contienen cadenas de texto o métodos que devuelvan
-un valor utilizando el operador `+`:
+un valor utilizando el operador `+`, por ejemplo:
 
 ```python linenums="1"
 char_name: str = "Daniel"
@@ -233,9 +205,9 @@ char_age: int = 19
 print("Yo me llamo " + char_name + " y tengo " + str(char_age) + " años.")
 ```
 
-Este método puede resultar ineficiente. A partir de Python 3, es posible dar formato a
-la función `print()` utilizando cadenas de formato con `f`, que permiten incluir
-variables o expresiones dentro de llaves `{}`:
+Sin embargo, este método puede resultar ineficiente, por lo que a partir de Python 3, es
+posible dar formato a la función `print()` utilizando cadenas de formato con `f`, que
+permiten incluir variables o expresiones dentro de llaves `{}`, por ejemplo:
 
 ```python linenums="1"
 char_name: str = "Daniel"
@@ -259,8 +231,8 @@ print(f"El número pi con 5 decimales es: {pi:.5f}")
 
 Python permite recibir información del usuario mediante la función `input()`. Esta
 función siempre devuelve el valor introducido como una cadena de texto, por lo que es
-necesario realizar una conversión de tipo (_casting_) si se requiere un tipo de dato
-diferente:
+necesario realizar una conversión de tipo (lo que se denomina como _casting_) si se
+requiere un tipo de dato diferente:
 
 ```python linenums="1"
 nombre: str = input("Introduce tu nombre: ")
@@ -624,9 +596,9 @@ print(lista_amigos)
 #### Comprensión de listas
 
 Los bucles `for` permiten iterar sobre los elementos de una lista de manera sencilla.
-Además, Python permite utilizar **comprensión de listas** para crear nuevas listas
-basadas en operaciones sobre una secuencia de elementos. Esta técnica ofrece una
-sintaxis concisa y expresiva:
+Además, Python permite utilizar **comprensión de listas** (denominadas en inglés como
+_list comprehension_)para crear nuevas listas basadas en operaciones sobre una secuencia
+de elementos. Esta técnica ofrece una sintaxis concisa y expresiva:
 
 ```python linenums="1"
 # Crear una lista con los caracteres de un string
@@ -643,7 +615,9 @@ fahrenheit: list[float] = [((9 / 5) * temp + 32) for temp in celsius]
 print(fahrenheit)
 
 # Crear una lista con los cuadrados de los números pares
-mi_lista_pares: list[int] = [numero**2 for numero in range(0, 15) if numero % 2 == 0]
+mi_lista_pares: list[int] = [
+    numero**2 for numero in range(0, 15) if numero % 2 == 0
+]
 print(mi_lista_pares)
 ```
 
@@ -830,9 +804,11 @@ su uso permite escribir programas más organizados, legibles y fáciles de mante
 
 Los métodos son funciones que están asociadas a un objeto específico, como una instancia
 de una clase. Actúan sobre el objeto y pueden modificar su estado o realizar alguna
-operación sobre él. Cada tipo de objeto dispone de un conjunto específico de métodos.
-Por ejemplo, los métodos para objetos de tipo `str` permiten realizar operaciones como
-convertir a mayúsculas, dividir la cadena en palabras o reemplazar subcadenas.
+operación sobre él.
+
+Cada tipo de objeto dispone de un conjunto específico de métodos. Por ejemplo, los
+métodos para objetos de tipo `str` permiten realizar operaciones como convertir a
+mayúsculas, dividir la cadena en palabras o reemplazar subcadenas.
 
 ```python linenums="1"
 texto: str = "hola mundo"
@@ -1173,7 +1149,9 @@ Las **expresiones _lambda_** son una forma rápida de crear funciones anónimas,
 funciones que se definen en una sola línea y se utilizan una única vez. Pueden tomar
 múltiples argumentos, lo que aumenta su flexibilidad. Sin embargo, debido a su
 naturaleza anónima y de un solo uso, son más adecuadas para operaciones simples y
-concisas. Para operaciones más complejas, es recomendable definir una función completa:
+concisas. Para operaciones más complejas, es recomendable definir una función completa.
+
+Ejemplo de lambda:
 
 ```python linenums="1"
 # Imprime: 9
@@ -1726,7 +1704,7 @@ clases. Aunque el método tenga el mismo nombre, cada clase puede implementarlo 
 diferente:
 
 ```python linenums="1"
-class Perro:
+class Perro(Animal):
     """
     Representa un perro capaz de emitir su sonido característico.
     """
@@ -1748,7 +1726,7 @@ class Perro:
 
         print(f"El perro {self.nombre} ladra")
 
-class Gato:
+class Gato(Animal):
     """
     Representa un gato capaz de emitir su sonido característico.
     """
@@ -2129,6 +2107,39 @@ print(fecha1 - fecha2)
 ```
 
 ### Módulo `math`
+
+Es posible extender la funcionalidad utilizando librerías, que pueden ser estándar
+(incluidas con la propia instalación de Python) o paquetes de terceros como NumPy,
+Pandas o similares. Por ejemplo, la librería estándar `math` amplía las operaciones
+disponibles:
+
+| Operador/Función | Descripción                                                                        |
+| ---------------- | ---------------------------------------------------------------------------------- |
+| `math.floor(x)`  | Redondea $x$ hacia abajo, es decir, $\lfloor x \rfloor$. Requiere importar `math`. |
+| `math.ceil(x)`   | Redondea $x$ hacia arriba, es decir, $\lceil x \rceil$. Requiere importar `math`.  |
+| `math.sqrt(x)`   | Devuelve la raíz cuadrada de $x$, es decir, $\sqrt{x}$. Requiere importar `math`.  |
+| `math.pi`        | Devuelve el valor de la constante $\pi$. Requiere importar `math`.                 |
+
+Para utilizar estas funciones, basta con importar la librería:
+
+```python linenums="1"
+import math
+
+math.floor(3.1415)
+```
+
+Cuando se trabaja con valores monetarios o cálculos que requieren precisión decimal
+exacta, es recomendable utilizar el módulo `Decimal` en lugar de `float`, ya que este
+último puede introducir errores de redondeo inherentes a la representación en punto
+flotante:
+
+```python linenums="1"
+from decimal import Decimal
+
+RATES: dict[tuple[str, str], Decimal] = {
+    ("USD", "EUR"): Decimal("0.91")
+}
+```
 
 El módulo `math` proporciona funciones matemáticas comunes, como el valor de $\pi$, los
 logaritmos y las funciones trigonométricas:

@@ -60,10 +60,9 @@ alternativas como Miniconda.
 
 [`VENV`](https://docs.python.org/3/library/venv.html) es el módulo estándar de Python
 para la creación de entornos virtuales. A diferencia de Anaconda, no incluye
-dependencias adicionales y viene integrado en la instalación base de Python.
-
-La gestión de paquetes se realiza mediante [PIP](https://pypi.org/), el gestor de
-paquetes por defecto del lenguaje.
+dependencias adicionales y viene integrado en la instalación base de Python. La gestión
+de paquetes se realiza mediante [PIP](https://pypi.org/), el gestor de paquetes por
+defecto del lenguaje.
 
 Su principal ventaja es la simplicidad y la ausencia de herramientas externas, aunque
 carece de funcionalidades avanzadas como la gestión de grupos de dependencias o la
@@ -98,7 +97,7 @@ requiere que Python esté previamente instalado en el sistema, ya que `uv` se en
 descargarlo y configurarlo de forma transparente.
 
 Por todo ello, en la actualidad `uv` representa la opción más recomendable para la
-mayoría de proyectos.
+mayoría de proyectos y es en la herramienta que nos vamos a centrar.
 
 ## Creación y activación de entornos
 
@@ -109,12 +108,12 @@ mayoría de proyectos.
 
 Un entorno virtual genera una instancia aislada del intérprete de Python, de modo que
 las dependencias de un proyecto específico no interfieran con las bibliotecas globales
-del sistema ni con otros desarrollos simultáneos. Esta segmentación garantiza la
-reproducibilidad del código y evita conflictos de versiones.
+del sistema ni con otros desarrollos simultáneos, lo que garantiza la reproducibilidad
+del código y evita conflictos de versiones.
 
 En el caso de `uv`, el flujo de trabajo se compone de dos fases. En primer lugar, se
 instala la herramienta mediante un _script_ de ejecución rápida que configura el binario
-en el sistema:
+en el sistema, para ello utilizamos el comando siguiente:
 
 ```bash linenums="1"
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -139,7 +138,7 @@ múltiples archivos de configuración dispersos por el proyecto.
 
 !!! example "Ejemplo de un fichero `pyproject.toml`"
 
-    A continuación se muestra un ejemplo completo con las secciones más relevantes:
+    A continuación se muestra un ejemplo completo con las secciones más relevantes.
 
     ```toml linenums="1"
     [build-system]
@@ -309,7 +308,8 @@ archivos `requirements.txt`, en determinados contextos puede seguir siendo útil
 procedimiento consiste en crear un archivo con los paquetes y versiones deseadas e
 instalarlo mediante el gestor correspondiente.
 
-Ejemplo de archivo `requirements.txt`:
+Suponiendo que contamos con un fichero `requirements.txt`que contiene los siguientes
+dependencias con las versiones especificadas:
 
 ```plaintext linenums="1"
 numpy==1.21.0
@@ -317,7 +317,8 @@ pandas>=1.3.0
 requests
 ```
 
-Instalación con `uv`:
+Podemos instalar las versiones de dichas dependencias utilizando `uv` mediante el
+siguiente comando:
 
 ```bash linenums="1"
 uv pip install -r requirements.txt
@@ -327,7 +328,8 @@ uv pip install -r requirements.txt
 
 Con `uv`, la instalación de dependencias de grupos (recuerda del ejemplo anterior cómo
 se definian los diferentes grupos en el fichero `pyproject.toml` en el apartado
-`[dependency-groups]`) específicos se realiza mediante el comando `uv sync`:
+`[dependency-groups]`, la parte de Estructura de un pyproject.toml con uv¶) específicos
+se realiza mediante el comando `uv sync`:
 
 ```bash linenums="1"
 # Instalar solo el grupo core
@@ -343,7 +345,8 @@ uv sync --all-groups
 ### Eliminación de un entorno
 
 En la mayoría de los casos, los entornos creados se alojan dentro del propio directorio
-del proyecto. Para eliminarlos, basta con borrar la carpeta correspondiente:
+del proyecto. Para eliminarlos, basta con borrar la carpeta correspondiente. En el caso
+de utilizar Linux, WSL o similares podemos utilizar el siguiente comando:
 
 ```bash linenums="1"
 rm -rf nombre_del_entorno
@@ -360,36 +363,6 @@ de forma directa, se emplea el siguiente comando:
 ```bash linenums="1"
 uv pip uninstall nombre_del_paquete
 ```
-
-## Construcción y publicación de paquetes
-
-Además de gestionar entornos y dependencias, `uv` permite empaquetar un proyecto en
-distribuciones instalables y publicarlas en un índice de paquetes como
-[PyPI](https://pypi.org/). De esta forma, una librería propia queda disponible para el
-resto de la comunidad o para otros equipos, que podrán instalarla del mismo modo que
-cualquier dependencia de terceros.
-
-El requisito previo es haber declarado la sección `[build-system]` en el
-`pyproject.toml`, tal como se mostró en el ejemplo anterior, ya que es la que indica el
-_backend_ encargado de generar el paquete.
-
-El flujo se resume en dos comandos. El primero, `uv build`, construye los artefactos de
-distribución (la _source distribution_ y la _wheel_) y los deposita en el subdirectorio
-`dist/`. El segundo, `uv publish`, los sube al índice configurado:
-
-```bash linenums="1"
-uv build
-uv publish
-```
-
-La autenticación en PyPI se realiza mediante un **token**, que se proporciona con la
-opción `--token` o a través de la variable de entorno `UV_PUBLISH_TOKEN`. Al publicar
-desde GitHub Actions u otro _Trusted Publisher_ no es necesario gestionar credenciales,
-sino que basta con registrar un publicador de confianza en el proyecto de PyPI.
-
-Los detalles adicionales, como la actualización de versiones con `uv version`, la
-publicación en índices personalizados o el uso de _Trusted Publishers_, se encuentran
-recogidos en la documentación oficial referenciada en la bibliografía.
 
 ## Integración con Jupyter
 
@@ -410,3 +383,28 @@ En el caso particular de `uv`, cuando se emplea el comando `uv venv`, el entorno
 por defecto en la raíz del proyecto con la versión de Python especificada en el
 `pyproject.toml`. De este modo, al utilizar _Jupyter Notebooks_ en VSCode, el entorno se
 detecta directamente sin necesidad de ejecutar ningún comando de registro adicional.
+
+## Construcción y publicación de paquetes
+
+Además de gestionar entornos y dependencias, `uv` permite empaquetar un proyecto en
+distribuciones instalables y publicarlas en un índice de paquetes como
+[PyPI](https://pypi.org/). De esta forma, una librería propia queda disponible para el
+resto de la comunidad o para otros equipos, que podrán instalarla del mismo modo que
+cualquier dependencia de terceros.
+
+El requisito previo es haber declarado la sección `[build-system]` en el
+`pyproject.toml`, tal como se mostró en el ejemplo anterior, ya que es la que indica el
+_backend_ encargado de generar el paquete.
+
+El flujo se resume en dos comandos. El primero, `uv build`, construye los artefactos de
+distribución (la _source distribution_ y la _wheel_) y los deposita en el subdirectorio
+`dist/`. El segundo, `uv publish`, los sube al índice configurado.
+
+La autenticación en PyPI se realiza mediante un **token**, que se proporciona con la
+opción `--token` o a través de la variable de entorno `UV_PUBLISH_TOKEN`. Al publicar
+desde GitHub Actions u otro _Trusted Publisher_ no es necesario gestionar credenciales,
+sino que basta con registrar un publicador de confianza en el proyecto de PyPI.
+
+Los detalles adicionales, como la actualización de versiones con `uv version`, la
+publicación en índices personalizados o el uso de _Trusted Publishers_, se encuentran
+recogidos en la documentación oficial referenciada en la bibliografía.

@@ -24,18 +24,25 @@ el modelo de ownership y borrowing, y las estructuras de control fundamentales.
 </figure>
 
 **Rust** es un lenguaje de programación de sistemas cuyo diseño persigue tres objetivos
-fundamentales: seguridad de memoria, concurrencia libre de _data races_ y rendimiento
-comparable al de C y C++. A diferencia de otros lenguajes que dependen de un _garbage
-collector_ para gestionar la memoria en tiempo de ejecución, Rust introduce un sistema
-de _ownership_ (propiedad) que verifica la corrección del uso de la memoria en tiempo de
-compilación. Este enfoque elimina categorías enteras de errores comunes, como los
-accesos a memoria liberada o las condiciones de carrera (_race conditions_), sin
-incurrir en penalizaciones de rendimiento.
+fundamentales: 1) seguridad de memoria, 2) concurrencia libre de _data races_, y 3)
+rendimiento comparable al de C y C++.
+
+A diferencia de otros lenguajes que dependen de un _garbage collector_ (el recolector de
+basura, que se engarga de eliminar de memoria aquellas variables que quedan fuera del
+scope para deshalojarlas de la memoria) para gestionar la memoria en tiempo de
+ejecución, Rust introduce un sistema de _ownership_ (propiedad) que verifica la
+corrección del uso de la memoria en tiempo de compilación. Este enfoque elimina
+categorías enteras de errores comunes, como los accesos a memoria liberada o las
+condiciones de carrera (_race conditions_), sin incurrir en penalizaciones de
+rendimiento.
 
 !!! note "Condiciones de carrera"
 
-    Una condición de carrera (_race condition_) es un error que se produce cuando el
-    comportamiento de un programa depende del orden o la temporización con que se
+    Un data race en su definición más básica es una condición que ocurre cuando 2 o más
+    hilos acceden una variable compartida/global y al menos uno de los hilos la escribe.
+
+    Por otro lado, una condición de carrera (_race condition_) es un error que se produce
+    cuando el comportamiento de un programa depende del orden o la temporización con que se
     ejecutan múltiples hilos, procesos o tareas concurrentes, sin que dicho orden esté
     garantizado.
 
@@ -48,11 +55,6 @@ contexto en el que el control preciso sobre los recursos sea un requisito.
 Todo programa en Rust comienza su ejecución en la función `main`, que actúa como punto
 de entrada obligatorio.
 
-En este ejemplo se utiliza la macro `println!`, que permite imprimir texto en la salida
-estándar. El signo de exclamación indica que se trata de una macro y no de una función
-convencional, lo que significa que genera código adicional en tiempo de compilación para
-extender la sintaxis del lenguaje:
-
 ???+ example "Hola mundo"
 
     La función `main` invoca `println!` para escribir una línea en la salida estándar.
@@ -62,6 +64,11 @@ extender la sintaxis del lenguaje:
         println!("Hola mundo");
     }
     ```
+
+    En este ejemplo se utiliza la macro `println!`, que permite imprimir texto en la salida
+    estándar. El signo de exclamación indica que **se trata de una macro** y no de una función
+    convencional, lo que significa que genera código adicional en tiempo de compilación para
+    extender la sintaxis del lenguaje.
 
 ### Compilación directa con `rustc`
 
@@ -83,7 +90,7 @@ rustc main.rs
 
 Cargo es la herramienta oficial de Rust que integra la gestión de paquetes, la
 compilación del código y la ejecución de pruebas en un único flujo de trabajo. Viene
-preinstalado con Rust y se puede verificar su versión con `cargo --version`.
+preinstalado con Rust y se puede verificar su versión con el comando `cargo --version`.
 
 Cuando se crea un proyecto con Cargo, este genera automáticamente la estructura de
 directorios necesaria junto con un archivo `Cargo.toml` que describe las dependencias y
@@ -93,7 +100,7 @@ Cargo espera que los archivos de código fuente se encuentren en el directorio `
 importante que el analizador de Rust (_rust-analyzer_) detecte el fichero `Cargo.toml`
 en el directorio raíz del proyecto para ofrecer funcionalidades de autocompletado y
 diagnóstico en el entorno de desarrollo, por lo que es necesario situarse en la raíz del
-proyecto mediante `cd`.
+proyecto.
 
 A continuación se detallan algunos de los comandos más relevantes de Cargo. Al igual que
 con otras herramientas, siempre es posible recurrir a la opción `help` para consultar
@@ -136,6 +143,64 @@ optimizado destinado a producción. Además, si el código fuente no ha cambiado
     Durante el desarrollo, es preferible usar `cargo check` para verificar rápidamente
     que el código compila (ya que no genera un ejecutable) y reservar `cargo build` o
     `cargo run` para cuando se necesite ejecutar el programa.
+
+A continuación se muestra un ejemplo de un fichero `Cargo.toml` para un proyecto.
+
+!!! example
+
+    ```toml
+    [package]
+    name = "knp"
+    version = "0.2.6"
+    edition = "2024"
+    authors = ["Daniel Bazo Correa"]
+    license = "MIT"
+    description = "Kindle Notes Parser (knp) is a CLI tool."
+    readme = "README.md"
+    homepage = "https://github.com/danibcorr/kindle-notes-parser"
+    repository = "https://github.com/danibcorr/kindle-notes-parser"
+    keywords = ["cli", "kindle"]
+    categories = ["command-line-utilities"]
+
+    [profile.dev]
+    opt-level = 0
+
+    [profile.release]
+    opt-level = 3
+    lto = true
+    strip = true
+
+    [dependencies]
+    clap = { version = "4.6.1", features = ["derive", "color", "suggestions"] }
+    console = "0.16.3"
+    ctrlc = "3.5.2"
+    dialoguer = "0.12.0"
+    ```
+
+### Perfiles de compilación
+
+Del ejemplo anterior, podemos observar que se definen diferentes perfiles, uno para el
+perfil de desarrollo y otro para releases, para versiones finales del proyecto. EStos
+perfiles, con sus respectivas configuraciones definen **cómo debe compilar Rust tu
+proyecto** según el perfil que utilices.
+
+En el caso del `[profile.dev]`, se activa por defecto cuando ejecutas `cargo build` o
+`cargo run`, donde el caso de utilizar **`opt-level = 0`** permite desactiva todas las
+optimizaciones del compilador. El código generado no será el más rápido en ejecución,
+pero a cambio la compilación es mucho más rápida y la depuración es perfecta, ya que el
+binario mantiene una correspondencia exacta con las líneas de tu código fuente.
+
+Por otro lado, para el caso de `[profile.release]`, se activa cuando ejecutas
+`cargo build --release` o `cargo run --release`, de ahí tenemos que **`opt-level = 3`**
+aplica el nivel máximo de optimizaciones para exprimir todo el rendimiento posible del
+procesador, **`lto = true`** activa _Link-Time Optimization_ (Optimización en tiempo de
+enlazado) donde en lugar de optimizar cada crate (los diferentes módulos que utilizamos
+como dependencias o los módulos que creamos nosotros en el código) por separado, analiza
+todo el árbol de dependencias completo para aplicar optimizaciones globales (como
+eliminar código muerto entre dependencias), con ello se reduce el tamaño del ejecutable
+y acelera su ejecución, pero aumenta el tiempo de compilación, y **`strip = true`**
+remueve automáticamente la información de depuración y la lista de símbolos del archivo
+ejecutable final, lo que reduce drásticamente el tamaño del archivo binario en disco.
 
 ### Documentación
 
@@ -709,11 +774,12 @@ múltiples niveles de anidamiento de forma controlada.
 
 El sistema de _ownership_ constituye el mecanismo central mediante el cual Rust gestiona
 la memoria sin recurrir a un _garbage collector_. Este sistema se rige por tres reglas
-fundamentales que el compilador verifica de forma estática. En primer lugar, cada valor
-en Rust tiene exactamente una variable que actúa como su **propietario** (_owner_). En
-segundo lugar, solo puede existir **un propietario** en cada momento. Por último, cuando
-el propietario sale del ámbito (_scope_) en el que fue declarado, el valor se libera
-automáticamente mediante la operación _drop_.
+fundamentales que el compilador verifica de forma estática.
+
+En primer lugar, cada valor en Rust tiene exactamente una variable que actúa como su
+**propietario** (_owner_). En segundo lugar, solo puede existir **un propietario** en
+cada momento. Por último, cuando el propietario sale del ámbito (_scope_) en el que fue
+declarado, el valor se libera automáticamente mediante la operación _drop_.
 
 Este comportamiento es análogo al de un _garbage collector_ en otros lenguajes, con la
 diferencia fundamental de que la liberación de recursos se determina en tiempo de
@@ -740,12 +806,14 @@ requiere seguir punteros para localizar los datos. Para realizar copias de tipos
 almacenados en el _heap_ es necesario efectuar una copia profunda mediante `.clone()`,
 lo que puede resultar costoso en términos de rendimiento.
 
-Como ejemplo ilustrativo, un literal de cadena como `"Bob"` declarado con
-`let palabra: &str = "Bob"` reside completamente en el _stack_ porque su tamaño se
-conoce en tiempo de compilación y no puede modificarse. En cambio,
-`let palabra: String = String::from("Bob")` almacena el puntero, la longitud y la
-capacidad en el _stack_, mientras que el contenido real de la cadena reside en el
-_heap_.
+!!! example "Ejemplo"
+
+    Como ejemplo ilustrativo, un literal de cadena como `"Bob"` declarado con
+    `let palabra: &str = "Bob"` reside completamente en el _stack_ porque su tamaño se
+    conoce en tiempo de compilación y no puede modificarse. En cambio,
+    `let palabra: String = String::from("Bob")` almacena el puntero, la longitud y la
+    capacidad en el _stack_, mientras que el contenido real de la cadena reside en el
+    _heap_.
 
 ### _Move_ y _clone_
 
