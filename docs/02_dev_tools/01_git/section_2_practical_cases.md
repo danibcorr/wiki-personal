@@ -4,9 +4,11 @@ description: Automatización con Git Hooks y soluciones a escenarios frecuentes 
 title: Hooks y casos prácticos
 ---
 
-Más allá de las estrategias de ramificación, el uso eficaz de Git requiere conocer los
-mecanismos que permiten automatizar tareas dentro del flujo de trabajo y resolver las
-situaciones habituales que surgen durante la gestión del historial de un repositorio.
+Este capítulo cubre los dos mecanismos que completan el uso eficaz de Git más allá de
+las estrategias de ramificación. Primero los Git Hooks, que permiten automatizar
+comprobaciones dentro del flujo de trabajo, y después un catálogo de soluciones a las
+situaciones que surgen con más frecuencia durante la gestión del historial de un
+repositorio.
 
 ## Bibliografía
 
@@ -52,12 +54,12 @@ segundo lugar, conviene **evitar que realicen cambios automáticos en el código
 aprobación explícita del desarrollador, ya que estas modificaciones pueden provocar
 conflictos, errores inesperados o dificultades en la integración.
 
-!!! note "Compartir hooks entre el equipo"
+!!! note "Compartir _hooks_ entre el equipo"
 
     El directorio `.git/hooks` no se versiona, por lo que los _hooks_ definidos de forma
     manual no se propagan al clonar el repositorio. Para compartirlos existen
     herramientas como [pre-commit](https://pre-commit.com/), que declaran los _hooks_ en
-    un fichero versionado y los instalan con un único comando.
+    un archivo versionado y los instalan con un único comando.
 
 ### Tipos de Git Hooks
 
@@ -67,15 +69,22 @@ a producción, se recomienda gestionar dichas tareas a través de herramientas d
 como GitHub Actions o GitLab CI/CD. De este modo, los _hooks_ se reservan para
 validaciones locales, lo que optimiza el uso de los _runners_ remotos.
 
+!!! note "Herramientas que invocan los ejemplos"
+
+    Los _hooks_ que siguen llaman a uv, el gestor de entornos de Python, y a través de
+    él a `ruff` y `pytest`. El capítulo de [entornos
+    virtuales](../../03_programming/01_python/section_1_environments.md) describe su
+    instalación y su configuración.
+
 #### `pre-commit`
 
 Se ejecuta antes de registrar un _commit_. Resulta útil para verificar el formato del
 código, ejecutar pruebas unitarias, validar los mensajes de _commit_ o evitar errores
 ortográficos.
 
-???+ example "Verificar el estilo del código con Black"
+???+ example "Verificar el estilo del código con Ruff"
 
-    El siguiente _hook_ comprueba el formato del código con Black únicamente cuando la
+    El siguiente _hook_ comprueba el formato del código con Ruff únicamente cuando la
     rama activa es `main`, y bloquea el _commit_ si detecta desviaciones de estilo:
 
     ```bash linenums="1"
@@ -86,12 +95,12 @@ ortográficos.
 
     # Omitir la comprobación fuera de la rama main
     if [ "$branch_name" != "main" ]; then
-        echo "Skipping Black: current branch is not 'main'."
+        echo "Skipping Ruff: current branch is not 'main'."
         exit 0
     fi
 
     # Comprobar el formato sin modificar los archivos
-    uv run black . --check
+    uv run ruff format --check .
 
     # Bloquear el commit si la comprobación ha fallado
     if [ $? -ne 0 ]; then
@@ -110,7 +119,7 @@ cambios.
 
 ???+ example "Ejecutar las pruebas antes de un push"
 
-    El siguiente _hook_ sincroniza las dependencias del entorno con `uv` y ejecuta las
+    El siguiente _hook_ sincroniza las dependencias del entorno con uv y ejecuta las
     pruebas con Pytest, de modo que el _push_ solo se completa si todas ellas se
     superan:
 
@@ -164,7 +173,7 @@ Existen varias estrategias para resolverlo en función del estado del repositori
 !!! note "Requisito previo"
 
     La firma requiere una clave registrada en la plataforma y declarada en la
-    configuración local mediante `git config --global user.signingkey <id_clave>`. La
+    configuración local mediante `git config --global user.signingkey id_clave`. La
     opción `git config --global commit.gpgsign true` activa la firma automática de todos
     los _commits_ posteriores.
 
@@ -203,7 +212,7 @@ con lo que se descartan todos los _commits_ posteriores:
 ???+ example "Restablecer la rama a un _commit_ firmado"
 
     ```bash linenums="1"
-    git reset --hard <commit_firmado>
+    git reset --hard commit_firmado
     git push --force-with-lease
     ```
 
@@ -212,7 +221,7 @@ con lo que se descartan todos los _commits_ posteriores:
 Para alinear la rama local exactamente con la remota, descartando cualquier cambio local
 y los archivos sin seguimiento, se combinan tres operaciones en una sola instrucción:
 
-???+ example "Sincronizar mediante reset"
+???+ example "Sincronizar mediante `reset`"
 
     ```bash linenums="1"
     git fetch origin && git reset --hard origin/main && git clean -fd
@@ -259,3 +268,7 @@ seguimiento ha dejado de existir:
       que aparecen marcadas como `gone`.
     - **`awk '{print $1}'`**: Extrae únicamente el nombre de la rama local.
     - **`xargs git branch -D`**: Elimina dichas ramas del repositorio local.
+
+Los _hooks_ descritos invocan herramientas del ecosistema de Python. Su instalación y su
+configuración en el archivo `pyproject.toml` se desarrollan en el capítulo de
+[entornos virtuales](../../03_programming/01_python/section_1_environments.md).

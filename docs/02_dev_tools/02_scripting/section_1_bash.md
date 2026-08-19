@@ -12,10 +12,12 @@ habituales de automatización de tareas.
 
 ## Bibliografía
 
-- Pelado Nerd. (2021). _TODOS deberían aprender BASH - Bash PARTE 1_ \[Vídeo\]. YouTube.
-  <https://www.youtube.com/watch?v=4_ub6614dwY>
 - GNU Project. (s.f.). _Bash Reference Manual_.
   <https://www.gnu.org/software/bash/manual/bash.html>
+- The Open Group. (2018). _Shell Command Language_.
+  <https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html>
+- Pelado Nerd. (2021). _TODOS deberían aprender BASH - Bash PARTE 1_ \[Vídeo\]. YouTube.
+  <https://www.youtube.com/watch?v=4_ub6614dwY>
 
 ## Introducción
 
@@ -155,7 +157,7 @@ realizar cálculos con números enteros.
 
 Los operadores aritméticos disponibles son los siguientes:
 
-| Operador | Función                        |
+| Operador | Descripción                    |
 | -------- | ------------------------------ |
 | `+`      | Suma.                          |
 | `-`      | Resta.                         |
@@ -170,7 +172,7 @@ expresión y ejecuta un bloque de código en función del resultado. La expresi�
 delimita con corchetes, ya sea `[ ]`, la forma heredada de POSIX, o `[[ ]]`, la
 construcción propia de Bash.
 
-???+ example "Condicional if-else"
+???+ example "Condicional `if`/`else`"
 
     ```bash linenums="1"
     #!/bin/bash
@@ -186,7 +188,7 @@ construcción propia de Bash.
 
 La comparación de cadenas de texto emplea los siguientes operadores:
 
-| Operador | Función                                    |
+| Operador | Descripción                                |
 | -------- | ------------------------------------------ |
 | `=`      | Igual a, en su forma compatible con POSIX. |
 | `==`     | Igual a, en la forma propia de Bash.       |
@@ -197,7 +199,7 @@ La comparación de cadenas de texto emplea los siguientes operadores:
 La comparación de números enteros utiliza operadores específicos, ya que los símbolos
 `<` y `>` se interpretan como redirecciones dentro de `[ ]`:
 
-| Operador | Función            |
+| Operador | Descripción        |
 | -------- | ------------------ |
 | `-eq`    | Igual a.           |
 | `-ne`    | Distinto de.       |
@@ -209,7 +211,7 @@ La comparación de números enteros utiliza operadores específicos, ya que los 
 La comprobación del estado del sistema de archivos se apoya en un tercer grupo de
 operadores, imprescindibles antes de leer o escribir sobre una ruta:
 
-| Operador | Función                             |
+| Operador | Descripción                         |
 | -------- | ----------------------------------- |
 | `-e`     | La ruta existe.                     |
 | `-f`     | La ruta es un archivo regular.      |
@@ -235,7 +237,7 @@ Por último, los operadores lógicos permiten combinar varias condiciones. El op
 Bash ofrece varias estructuras de repetición. El bucle `for` resulta adecuado cuando se
 conoce de antemano el conjunto de valores sobre los que iterar.
 
-???+ example "Bucle for"
+???+ example "Bucle `for`"
 
     ```bash linenums="1"
     #!/bin/bash
@@ -249,7 +251,7 @@ El bucle `while` se emplea cuando la repetición debe continuar mientras se cump
 condición determinada, lo que lo hace idóneo para situaciones en las que el número de
 iteraciones depende de una variable o del resultado de una operación.
 
-???+ example "Bucle while"
+???+ example "Bucle `while`"
 
     ```bash linenums="1"
     #!/bin/bash
@@ -265,7 +267,7 @@ Dentro de cualquier bucle, el comando `break` finaliza la ejecución del bucle d
 inmediata, mientras que `continue` salta directamente a la siguiente iteración sin
 ejecutar el resto del cuerpo.
 
-???+ example "Uso de break y continue"
+???+ example "Uso de `break` y `continue`"
 
     ```bash linenums="1"
     #!/bin/bash
@@ -377,7 +379,15 @@ La combinación de las estructuras anteriores permite automatizar tareas complej
 desarrollo de proyectos, esta automatización resulta fundamental para garantizar la
 reproducibilidad y la eficiencia del entorno de trabajo.
 
-???+ example "Script de configuración de entorno"
+!!! note "Herramientas ajenas a Bash"
+
+    El siguiente ejemplo invoca uv, el gestor de entornos de Python que se describe en
+    el capítulo de [entornos
+    virtuales](../../03_programming/01_python/section_1_environments.md). Aquí solo
+    interesa como orden externa cuya disponibilidad el _script_ comprueba antes de
+    usarla.
+
+???+ example "_Script_ de configuración de entorno"
 
     El siguiente _script_ ilustra cómo preparar un entorno de desarrollo completo,
     verificando e instalando las herramientas necesarias y gestionando las dependencias
@@ -410,18 +420,18 @@ reproducibilidad y la eficiencia del entorno de trabajo.
     ```
 
     El _script_ ejecuta de manera secuencial varias operaciones clave. En primer lugar,
-    verifica si la herramienta `uv` se encuentra instalada en el sistema y, en caso
+    verifica si la herramienta uv se encuentra instalada en el sistema y, en caso
     contrario, procede a su instalación de forma silenciosa. La redirección
     `> /dev/null 2>&1` descarta tanto la salida estándar como los mensajes de error, lo
     que evita que aparezcan en la terminal durante la ejecución.
 
     Posteriormente actualiza los repositorios del sistema e instala los paquetes de
     compilación esenciales mediante `apt-get`, también de manera silenciosa. Por último,
-    invoca al gestor de dependencias `uv` para instalar las dependencias de Python, con
+    invoca al gestor de dependencias uv para instalar las dependencias de Python, con
     lo que el entorno de desarrollo queda completamente operativo.
 
 Cuando el número de tareas automatizadas crece, mantenerlas como _scripts_
 independientes dificulta su descubrimiento y su encadenamiento. En ese punto resulta
 conveniente agrupar las tareas en un único punto de entrada mediante
-[Makefile](./section_2_makefile.md), que aporta un catálogo de objetivos y un sistema de
+[Makefile](section_2_makefile.md), que aporta un catálogo de objetivos y un sistema de
 dependencias entre ellos.

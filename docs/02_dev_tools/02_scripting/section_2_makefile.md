@@ -23,15 +23,24 @@ buenas prácticas de organización de un proyecto.
   <figcaption>Logo de Make.</figcaption>
 </figure>
 
-Un _Makefile_ es un archivo de configuración utilizado por la herramienta `make` que
+Un **_Makefile_** es un archivo de configuración utilizado por la herramienta `make` que
 permite automatizar procesos de compilación, ejecución y gestión de proyectos de
 software. Se emplea de forma generalizada en sistemas basados en GNU/Linux y puede
-contener comandos escritos en [Bash](./section_1_bash.md).
+contener comandos escritos en [Bash](section_1_bash.md).
 
 Su principal aportación frente a una colección de _scripts_ independientes es que reúne
 todas las tareas de un proyecto en un único punto de entrada y establece relaciones de
 dependencia entre ellas, de modo que una tarea puede exigir la ejecución previa de
 otras.
+
+!!! note "Herramientas que invocan los ejemplos"
+
+    Las recetas de este capítulo llaman a uv como gestor de entornos de Python, y a
+    través de él a `pre-commit`, `ruff` y `pytest`. Make se limita a orquestar esas
+    órdenes, de modo que los ejemplos se entienden sin conocerlas. Su instalación y su
+    configuración en el archivo `pyproject.toml` se describen en el capítulo de
+    [entornos virtuales de
+    Python](../../03_programming/01_python/section_1_environments.md).
 
 ## Sintaxis básica
 
@@ -70,7 +79,7 @@ de tabulación, nunca con espacios.
     únicamente aparece su resultado.
 
     Al ejecutar `make setup`, Make procesa los comandos de forma secuencial y, en este
-    caso, sincroniza las dependencias con `uv` e instala los _hooks_ de `pre-commit`.
+    caso, sincroniza las dependencias con uv e instala los _hooks_ de `pre-commit`.
 
 ???+ example "Regla con prerrequisitos"
 
@@ -87,7 +96,7 @@ de tabulación, nunca con espacios.
 Los comentarios se escriben utilizando el símbolo `#`. No afectan a la ejecución del
 archivo y sirven para documentar el propósito de las reglas o de los comandos.
 
-???+ example "Comentarios en un Makefile"
+???+ example "Comentarios en un _Makefile_"
 
     ```makefile linenums="1"
     # Esta regla instala las dependencias del proyecto
@@ -192,7 +201,7 @@ cadena.
     Donde `from` es el texto a reemplazar, `to` es el texto de reemplazo y `text` es la
     cadena sobre la que se realiza la búsqueda.
 
-???+ example "Sustitución con subst"
+???+ example "Sustitución con `subst`"
 
     ```makefile linenums="1"
     SOURCES = file1.cpp file2.cpp file3.cpp
@@ -270,7 +279,7 @@ elemento.
     `list` es la lista que se recorre y `text` es la expresión que se evalúa en cada
     iteración y cuyos resultados se concatenan.
 
-???+ example "Iteración con foreach"
+???+ example "Iteración con `foreach`"
 
     ```makefile linenums="1"
     DIRS = dir1 dir2 dir3
@@ -296,7 +305,7 @@ resultado.
     es el valor devuelto en ese caso y `else-part`, de carácter opcional, es el valor
     devuelto en caso contrario.
 
-???+ example "Condicional con if"
+???+ example "Condicional con `if`"
 
     ```makefile linenums="1"
     USE_DEBUG = yes
@@ -316,7 +325,7 @@ otras configuraciones avanzadas del proceso de construcción.
 La directiva `include` incorpora el contenido de otros _Makefiles_ dentro de uno
 principal, lo que facilita la organización modular de proyectos grandes.
 
-???+ example "Incluir otros Makefiles"
+???+ example "Incluir otros _Makefiles_"
 
     ```makefile linenums="1"
     include config.mk
@@ -331,7 +340,7 @@ principal, lo que facilita la organización modular de proyectos grandes.
 La directiva `VPATH` especifica directorios adicionales donde Make buscará los archivos
 necesarios cuando no los encuentre en el directorio actual.
 
-???+ example "Búsqueda con VPATH"
+???+ example "Búsqueda con `VPATH`"
 
     ```makefile linenums="1"
     VPATH = src:include
@@ -346,7 +355,7 @@ La directiva `.PHONY` declara objetivos que no corresponden a archivos reales de
 sistema de archivos. Esto evita conflictos en caso de que exista un archivo con el mismo
 nombre que el _target_ y garantiza que la regla se ejecute siempre que se invoque.
 
-???+ example "Objetivos .PHONY"
+???+ example "Objetivos `.PHONY`"
 
     ```makefile linenums="1"
     .PHONY: setup \
@@ -416,7 +425,7 @@ diferentes entornos o configuraciones del proyecto.
     coinciden. La directiva `ifdef` evalúa en cambio si una variable se encuentra
     definida, con independencia de su valor.
 
-???+ example "Condicionales ifeq e ifdef"
+???+ example "Condicionales `ifeq` e `ifdef`"
 
     ```makefile linenums="1"
     ifeq ($(USE_DEBUG),yes)
@@ -481,7 +490,7 @@ aconsejable dividir el _Makefile_ en módulos mediante la directiva `include`. P
 último, los _targets_ relacionados deben agruparse de forma lógica y ordenarse de lo más
 general a lo más específico.
 
-???+ example "Makefile completo"
+???+ example "_Makefile_ completo"
 
     ```makefile linenums="1"
     .PHONY: setup clean lint test pipeline all
@@ -552,3 +561,8 @@ _target_ se reconstruye o se considera actualizado:
 ```bash linenums="1"
 make -d
 ```
+
+Con la automatización cubierta, el módulo de programación desarrolla los lenguajes que
+estas recetas invocan, empezando por los
+[entornos virtuales de Python](../../03_programming/01_python/section_1_environments.md)
+y las herramientas de calidad que aquí se han encadenado.

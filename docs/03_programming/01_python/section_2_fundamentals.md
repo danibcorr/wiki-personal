@@ -2,18 +2,33 @@
 authors: Daniel Bazo Correa
 description:
     Sintaxis, tipos de datos, estructuras de control, funciones, clases y biblioteca
-    estándar de Python
+    estándar de Python.
 title: Fundamentos
 ---
 
-Este capítulo recorre los fundamentos del lenguaje Python, desde tipos de datos y
-estructuras de control hasta programación orientada a objetos, manejo de archivos y
-expresiones regulares.
+Este capítulo recorre los fundamentos del lenguaje Python. Comienza por los tipos de
+datos y las operaciones que los combinan, la entrada y la salida por consola y el
+tratamiento de cadenas de texto. Continúa con las estructuras de control y de datos, con
+las funciones y con los mecanismos que Python construye sobre ellas, esto es los
+decoradores, los generadores y las reglas de alcance de los nombres. La segunda mitad
+aborda la programación orientada a objetos, incluidas las _dataclasses_, un recorrido
+por los módulos más frecuentes de la biblioteca estándar, el manejo de errores y
+excepciones, el trabajo con archivos y directorios, y las expresiones regulares.
 
 ## Bibliografía
 
 - Python Software Foundation. (s.f.). _Python 3 Documentation_.
   <https://docs.python.org/3/>
+- van Rossum, G., Warsaw, B. y Coghlan, N. (2001). _PEP 8: Style Guide for Python Code_.
+  <https://peps.python.org/pep-0008/>
+- Python Software Foundation. (s.f.). _The Python Tutorial_.
+  <https://docs.python.org/3/tutorial/>
+- Python Software Foundation. (s.f.). _The Python Language Reference: Data model_.
+  <https://docs.python.org/3/reference/datamodel.html>
+- Python Software Foundation. (s.f.). _re — Regular expression operations_.
+  <https://docs.python.org/3/library/re.html>
+- van Rossum, G., Lehtosalo, J. y Langa, Ł. (2014). _PEP 484: Type Hints_.
+  <https://peps.python.org/pep-0484/>
 - Portilla, J. (s.f.). _Complete Python Bootcamp_ \[Curso\]. Udemy.
   <https://www.udemy.com/course/complete-python-bootcamp/>
 
@@ -21,13 +36,14 @@ expresiones regulares.
 
 <figure markdown="span">
   ![Logo de Python](../../assets/img/docs/logos/python-logo.png)
-  <figcaption>Logo de Python</figcaption>
+  <figcaption>Logo de Python.</figcaption>
 </figure>
 
 **Python** es un lenguaje de programación de alto nivel, interpretado y de propósito
-general, desarrollado por Guido van Rossum. Su principal ventaja reside en la rápida
-adopción que ha experimentado en el sector tecnológico, impulsada en gran medida por el
-auge de la inteligencia artificial.
+general, desarrollado por Guido van Rossum. Su principal ventaja es una sintaxis legible
+y concisa, que reduce el esfuerzo de escritura y de mantenimiento del código. A ello se
+debe en buena medida su rápida adopción en el sector tecnológico, impulsada además por
+el auge de la inteligencia artificial.
 
 Python cuenta con una amplia comunidad de desarrolladores y un ecosistema robusto de
 bibliotecas y _frameworks_ que permiten abordar una gran diversidad de proyectos,
@@ -36,26 +52,20 @@ automático.
 
 ### Creación y configuración del entorno
 
-Antes de comenzar a programar en Python, es necesario disponer de un entorno de
-desarrollo correctamente configurado. Si se ha seguido el orden propuesto en esta wiki,
-en secciones anteriores se ha abordado el tema de los entornos virtuales de Python y el
-ecosistema de herramientas disponible para su gestión. En este documento se utiliza `uv`
-como gestor de entornos, por lo que no es necesario instalar nada adicional para empezar
-a trabajar con Python.
-
-!!! note "Nota"
-
-    Para obtener instrucciones detalladas sobre la configuración de entornos virtuales y la
-    gestión de paquetes en Python, se puede consultar la sección de entornos de esta misma
-    wiki, dentro del [apartado de programación en Python](section_1_environments.md).
+Antes de comenzar a programar en Python es necesario disponer de un entorno de
+desarrollo correctamente configurado. El capítulo de
+[entornos virtuales](section_1_environments.md) cubre el ecosistema de herramientas
+disponible para su gestión y las instrucciones detalladas de configuración. En este
+documento se utiliza uv como gestor de entornos, por lo que no es necesario instalar
+nada adicional para empezar a trabajar con Python.
 
 ### Jupyter Notebooks
 
-Existen dos formas principales de trabajar en Python. La primera es mediante ficheros
-con extensión **.py**, que funcionan como archivos de texto plano y permiten al entorno
-de desarrollo (por ejemplo, Visual Studio Code) ofrecer funcionalidades como
-autocompletado y corrección de sintaxis. Esta es la forma de programar más recomendable
-para proyectos de producción.
+Existen dos formas principales de trabajar en Python. La primera es mediante archivos
+con extensión `.py`, que funcionan como archivos de texto plano y permiten al entorno de
+desarrollo (por ejemplo, Visual Studio Code) ofrecer funcionalidades como autocompletado
+y corrección de sintaxis. Esta es la forma de programar más recomendable para proyectos
+de producción.
 
 Sin embargo, para explorar el lenguaje y para proyectos de ciencia de datos, se tiende a
 utilizar **Jupyter Notebooks**, una herramienta interactiva que integra código, texto y
@@ -63,15 +73,16 @@ visualizaciones en un único documento. Entre sus principales ventajas destacan:
 
 - **Interactividad**: Permite ejecutar bloques de código de manera independiente, lo que
   facilita la prueba de ideas y la depuración paso a paso.
-- **Documentación integrada**: Soporta texto en formato Markdown, permitiendo incluir
+- **Documentación integrada**: Admite texto en formato Markdown, permitiendo incluir
   explicaciones y notas directamente junto al código.
 - **Visualización**: Facilita la incorporación de gráficos y visualizaciones, mostrando
   los resultados de manera inmediata dentro del mismo documento.
 
 La elección entre una u otra herramienta depende sobre todo de la facilidad para
 organizar los proyectos y del enfoque de exploración y desarrollo que se adopte. También
-influye la forma de trabajo del equipo. En cualquier caso, conviene explorar ambas
-opciones sin descartar ninguna, ya que cada una tiene su momento y su utilidad.
+influye la forma de trabajo del equipo. Ambos enfoques son complementarios: el
+_notebook_ predomina en la fase exploratoria y el archivo `.py` en el código que llega a
+producción.
 
 ## Tipos de datos y operaciones
 
@@ -87,24 +98,32 @@ Python ofrece varios tipos de datos fundamentales que permiten definir, almacena
 manipular información. La siguiente tabla resume los principales tipos de datos y sus
 características:
 
-| Tipo de datos                               | Palabra reservada | Ejemplos                         |
-| ------------------------------------------- | ----------------- | -------------------------------- |
-| **Números enteros**                         | `int`             | `3`                              |
-| **Números flotantes**                       | `float`           | `2.3`                            |
-| **Cadenas de texto**                        | `str`             | `"Hola"`                         |
-| **Listas** (colección ordenada y mutable)   | `list`            | `[10, "hello", 200.3]`           |
-| **Diccionarios** (pares clave-valor)        | `dict`            | `{"edad": 20, "nombre": "Dani"}` |
-| **Tuplas** (secuencia ordenada e inmutable) | `tuple`           | `(10, "hello", 200.3)`           |
-| **Sets** (colección única y desordenada)    | `set`             | `{"a", "b"}`                     |
-| **Booleanos** (valores lógicos)             | `bool`            | `True`, `False`                  |
+| Tipo de datos                               | Tipo integrado | Ejemplos                         |
+| ------------------------------------------- | -------------- | -------------------------------- |
+| **Números enteros**                         | `int`          | `3`                              |
+| **Números flotantes**                       | `float`        | `2.3`                            |
+| **Cadenas de texto**                        | `str`          | `"Hola"`                         |
+| **Listas** (colección ordenada y mutable)   | `list`         | `[10, "hello", 200.3]`           |
+| **Diccionarios** (pares clave-valor)        | `dict`         | `{"edad": 20, "nombre": "Dani"}` |
+| **Tuplas** (secuencia ordenada e inmutable) | `tuple`        | `(10, "hello", 200.3)`           |
+| **_Sets_** (colección desordenada y única)  | `set`          | `{"a", "b"}`                     |
+| **Booleanos** (valores lógicos)             | `bool`         | `True`, `False`                  |
 
-Las palabras reservadas (también conocidas como _keywords_) son términos que Python
-utiliza internamente y que no pueden ser empleados como nombres de variables o
-funciones.
+Los nombres de la segunda columna son **tipos integrados** (_built-ins_), es decir,
+funciones y clases que Python pone a disposición del programa sin necesidad de importar
+nada. No son palabras reservadas, de modo que el lenguaje permite reasignarlos, aunque
+hacerlo es una mala práctica porque oculta el tipo original durante el resto del
+programa.
 
-**Python es un lenguaje de tipificación dinámica**, por lo que no es necesario declarar
+Las **palabras reservadas** (_keywords_) son distintas: forman parte de la gramática del
+lenguaje y no pueden emplearse como nombre de variable ni de función bajo ninguna
+circunstancia. Entre ellas se encuentran `if`, `else`, `for`, `while`, `def`, `class`,
+`return`, `import`, `True`, `False` y `None`. La lista completa se obtiene con
+`keyword.kwlist`, del módulo `keyword` de la biblioteca estándar.
+
+Python es un lenguaje de **tipificación dinámica**, por lo que no es necesario declarar
 explícitamente el tipo de dato, ya que este se asigna automáticamente según el valor.
-Sin embargo, cada vez es más común (y constituye una buena práctica) utilizar lo que se
+Sin embargo, cada vez es más común, y constituye una buena práctica, utilizar lo que se
 conoce como _typing_ para anotar los tipos. Por ejemplo:
 
 ```python linenums="1"
@@ -117,33 +136,32 @@ lista_valores: list[int] = [1, 2, 3]
 diccionario_valores: dict[str, list[int]] = {"esto_es_un_string": [1, 2, 3]}
 ```
 
-!!! note "Nota"
+!!! note
 
-    Si queremos  conocer el tipo de una variable, podemos utilizar la función
-    `type(variable)`.
+    Para conocer el tipo de una variable se utiliza la función `type(variable)`.
 
 ### Operaciones aritméticas
 
 Python permite realizar una amplia variedad de operaciones sobre datos numéricos y otros
 tipos. Las principales operaciones matemáticas y funciones disponibles son:
 
-| Operador/Función        | Descripción                                                            |
-| ----------------------- | ---------------------------------------------------------------------- |
-| `+`, `-`, `*`, `/`, `%` | Suma, resta, multiplicación, división y módulo (resto de la división). |
-| `-x`                    | Cambia el signo de un número.                                          |
-| `abs(x)`                | Devuelve el valor absoluto de $x$.                                     |
-| `pow(x, y)` o `x**y`    | Potencia de $x$ elevado a $y$, es decir, $x^y$.                        |
-| `max(x, y)`             | Devuelve el valor máximo entre $x$ e $y$.                              |
-| `min(x, y)`             | Devuelve el valor mínimo entre $x$ e $y$.                              |
-| `round(x, n)`           | Redondea $x$ a $n$ decimales.                                          |
-| `hex(x)`                | Convierte $x$ a hexadecimal.                                           |
-| `bin(x)`                | Convierte $x$ a binario.                                               |
+| Operador o función            | Descripción                                                                             |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| `+`, `-`, `*`, `/`, `//`, `%` | Suma, resta, multiplicación, división, división entera y módulo (resto de la división). |
+| `-x`                          | Cambia el signo de un número.                                                           |
+| `abs(x)`                      | Devuelve el valor absoluto de $x$.                                                      |
+| `pow(x, y)` o `x**y`          | Potencia de $x$ elevado a $y$, es decir, $x^y$.                                         |
+| `max(x, y)`                   | Devuelve el valor máximo entre $x$ e $y$.                                               |
+| `min(x, y)`                   | Devuelve el valor mínimo entre $x$ e $y$.                                               |
+| `round(x, n)`                 | Redondea $x$ a $n$ decimales.                                                           |
+| `hex(x)`                      | Convierte $x$ a hexadecimal.                                                            |
+| `bin(x)`                      | Convierte $x$ a binario.                                                                |
 
 ### Operadores de comparación y lógicos
 
-Existen diferentes tipos de operadores en Python, entre ellos, contamos con los
-**operadores de comparación** los cuales permiten evaluar relaciones entre dos valores,
-devolviendo un resultado booleano (`True` o `False`), entre los cuales contamos con:
+Existen diferentes tipos de operadores en Python. Los **operadores de comparación**
+permiten evaluar relaciones entre dos valores y devuelven un resultado booleano (`True`
+o `False`):
 
 | Expresión | Descripción               |
 | --------- | ------------------------- |
@@ -155,13 +173,13 @@ devolviendo un resultado booleano (`True` o `False`), entre los cuales contamos 
 | `A >= B`  | A es mayor o igual que B. |
 
 Por otro lado, los **operadores lógicos** permiten combinar varias condiciones y
-controlar el flujo de ejecución en función de los resultados, contando con:
+controlar el flujo de ejecución en función de los resultados:
 
-| Operador | Descripción                                                  |
-| -------- | ------------------------------------------------------------ |
-| `and`    | Devuelve `True` si **todas** las condiciones son verdaderas. |
-| `or`     | Devuelve `True` si **al menos una** condición es verdadera.  |
-| `not`    | Invierte el valor lógico de la condición.                    |
+| Operador | Descripción                                              |
+| -------- | -------------------------------------------------------- |
+| `and`    | Devuelve `True` si todas las condiciones son verdaderas. |
+| `or`     | Devuelve `True` si al menos una condición es verdadera.  |
+| `not`    | Invierte el valor lógico de la condición.                |
 
 Los operadores lógicos se utilizan principalmente en estructuras de control, como
 condicionales y bucles, para determinar el flujo del programa en función de condiciones
@@ -199,21 +217,22 @@ Es posible concatenar variables que contienen cadenas de texto o métodos que de
 un valor utilizando el operador `+`, por ejemplo:
 
 ```python linenums="1"
-char_name: str = "Daniel"
-char_age: int = 19
+nombre: str = "Daniel"
+edad: int = 19
 
-print("Yo me llamo " + char_name + " y tengo " + str(char_age) + " años.")
+print("Yo me llamo " + nombre + " y tengo " + str(edad) + " años.")
 ```
 
-Sin embargo, este método puede resultar ineficiente, por lo que a partir de Python 3, es
-posible dar formato a la función `print()` utilizando cadenas de formato con `f`, que
-permiten incluir variables o expresiones dentro de llaves `{}`, por ejemplo:
+Este método resulta engorroso y obliga a convertir de forma explícita los valores que no
+son cadenas. Desde Python 3.6 se dispone de las **_f-strings_**, cadenas precedidas por
+el carácter `f` que permiten insertar variables o expresiones directamente entre llaves
+`{}`:
 
 ```python linenums="1"
-char_name: str = "Daniel"
-char_age: int = 19
+nombre: str = "Daniel"
+edad: int = 19
 
-print(f"Yo me llamo {char_name} y tengo {char_age} años")
+print(f"Yo me llamo {nombre} y tengo {edad} años")
 ```
 
 Incluso es posible modificar la cantidad específica de decimales para un valor de tipo
@@ -267,14 +286,10 @@ print(f"El primer carácter de mi string es {frase[0]}")
 print(f"El sexto carácter de mi string es {frase[5]}")
 ```
 
-En este caso, el índice de un _string_ comienza en `0`, por lo que `frase[0]` hace
-referencia al primer carácter (`"H"`) y `frase[5]` al sexto carácter (`"b"`). El espacio
-en blanco también cuenta como un carácter.
-
-Python permite acceder a cualquier carácter de un _string_ utilizando su posición o
-**índice**. El primer carácter tiene el índice `0`, el segundo el índice `1`, y así
-sucesivamente. También se pueden usar índices negativos para contar desde el final del
-_string_ hacia el principio. Por ejemplo, `frase[-1]` devuelve el último carácter `'s'`.
+El **índice** de un _string_ comienza en `0`, por lo que `frase[0]` hace referencia al
+primer carácter (`"H"`), `frase[1]` al segundo y `frase[5]` al sexto (`"b"`), ya que el
+espacio en blanco también cuenta como carácter. Los índices negativos cuentan desde el
+final hacia el principio, de modo que `frase[-1]` devuelve el último carácter, `'s'`.
 
 Los _strings_ son **inmutables**, lo que significa que no es posible cambiar un carácter
 específico en un _string_ ya creado. Intentar modificar directamente un elemento produce
@@ -300,15 +315,17 @@ nueva_frase: str = "h" + frase[1:]
 print(nueva_frase)
 ```
 
-### Métodos de cadenas de texto
+### Operaciones sobre cadenas de texto
 
-Las variables de tipo _string_ en Python disponen de varias funciones incorporadas para
-manipular y analizar el contenido de la cadena:
+Sobre una cadena pueden aplicarse tanto funciones integradas del lenguaje, que la
+reciben como argumento, como **métodos**, que se invocan sobre la propia cadena con la
+notación `cadena.metodo()`. La distinción entre ambos se detalla en el apartado de
+funciones. La siguiente tabla recoge las operaciones más habituales:
 
-| Función                                            | Definición                                                                                                     |
+| Operación                                          | Descripción                                                                                                    |
 | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `str(variable_a_convertir_en_string)`              | Convierte una variable en una cadena de texto.                                                                 |
-| `variable *= x`                                    | Duplica la cadena `variable` `x` veces, siendo `x` un número entero.                                           |
+| `variable *= x`                                    | Repite la cadena `variable` `x` veces y reasigna el resultado, siendo `x` un entero.                           |
 | `variable[índice:]`                                | Obtiene una subcadena desde el índice hasta el final de la cadena.                                             |
 | `variable[::X]`                                    | Obtiene caracteres de la cadena con un paso de `X`, es decir, toma un carácter cada `X` caracteres.            |
 | `variable[::-1]`                                   | Invierte la cadena.                                                                                            |
@@ -318,29 +335,29 @@ manipular y analizar el contenido de la cadena:
 | `variable.upper().isupper()`                       | Convierte la cadena a mayúsculas y devuelve `True` si toda la cadena está en mayúsculas.                       |
 | `variable.split()`                                 | Divide la cadena en una lista de subcadenas basadas en espacios. Puede especificarse un delimitador diferente. |
 | `len(variable)`                                    | Devuelve el número de caracteres en la cadena.                                                                 |
-| `variable.index("a")` o `variable.index("buenas")` | Devuelve el primer índice donde se encuentra el parámetro especificado.                                        |
+| `variable.index("a")` o `variable.index("buenas")` | Devuelve el índice de la primera aparición de la subcadena indicada y lanza `ValueError` si no aparece.        |
 | `variable.replace("buenas", "me llamo Daniel")`    | Reemplaza una subcadena dentro de la cadena por otra subcadena.                                                |
-| `variable.count('x')`                              | Cuenta el número de veces que aparece el carácter especificado.                                                |
-| `variable.find('x')`                               | Devuelve la primera posición en la que se encuentra el carácter especificado.                                  |
+| `variable.count("x")`                              | Cuenta el número de veces que aparece el carácter especificado.                                                |
+| `variable.find("x")`                               | Devuelve el índice de la primera aparición de la subcadena indicada, o `-1` si no aparece.                     |
 | `variable.isalnum()`                               | Devuelve `True` si todos los caracteres son alfanuméricos.                                                     |
 | `variable.isalpha()`                               | Devuelve `True` si todos los caracteres son alfabéticos.                                                       |
 | `variable.islower()`                               | Devuelve `True` si todos los caracteres están en minúsculas.                                                   |
 | `variable.isspace()`                               | Devuelve `True` si todos los caracteres son espacios en blanco.                                                |
-| `variable.istitle()`                               | Devuelve `True` si la primera letra de cada palabra está en mayúsculas.                                        |
-| `variable.split('x')`                              | Divide la cadena en partes cuando encuentra el carácter `x`.                                                   |
-| `variable.partition('x')`                          | Divide la cadena en dos partes en el primer encuentro del carácter `x`.                                        |
+| `variable.istitle()`                               | Devuelve `True` si cada palabra empieza por mayúscula y el resto de sus caracteres están en minúsculas.        |
+| `variable.split("x")`                              | Divide la cadena en partes cuando encuentra el carácter `x`.                                                   |
+| `variable.partition("x")`                          | Devuelve una tupla con la parte anterior a la primera aparición de `x`, el propio `x` y la parte posterior.    |
 | `variable.strip()`                                 | Elimina los espacios al principio y al final de la cadena.                                                     |
 
 ## Estructuras de control
 
 ### Condicionales
 
-Las declaraciones condicionales en Python (`if`, `elif` y `else`) permiten ejecutar
+Las sentencias condicionales de Python (`if`, `elif` y `else`) permiten ejecutar
 diferentes bloques de código según se cumplan o no ciertas condiciones. Esto resulta
 fundamental para controlar el flujo de un programa y tomar decisiones en función de los
 datos evaluados.
 
-El condicional básico es la instrucción `if`, que ejecuta un bloque de código solo si la
+El condicional básico es la sentencia `if`, que ejecuta un bloque de código solo si la
 condición se cumple:
 
 ```python linenums="1"
@@ -378,7 +395,7 @@ else:
     ...
 ```
 
-???+ example "Condicional if"
+???+ example "Condicional `if`"
 
     En este ejemplo se utiliza un condicional `if` para verificar si una letra está
     presente en una palabra:
@@ -421,15 +438,15 @@ for variable in iterable:
 
 ???+ example "Recorrer los caracteres de un _string_"
 
-    Se puede utilizar `range()` y `len()` para iterar sobre los índices de un *string*:
+    Se puede utilizar `range()` y `len()` para iterar sobre los índices de un _string_:
 
     ```python linenums="1"
     mi_string: str = "Hola caracola"
-    for letra in range(len(mi_string)):
-        print(mi_string[letra])
+    for indice in range(len(mi_string)):
+        print(mi_string[indice])
     ```
 
-    Alternativamente, se puede iterar directamente sobre los caracteres del *string*:
+    Alternativamente, se puede iterar directamente sobre los caracteres del _string_:
 
     ```python linenums="1"
     mi_string: str = "Hola caracola"
@@ -443,17 +460,19 @@ for variable in iterable:
 
     ```python linenums="1"
     cadena1: str = "Hola"
-    cadena2: str = "Yadi"
+    cadena2: str = "Yadira"
 
     for item in zip(cadena1, cadena2):
         print(item)
     ```
 
-    En este ejemplo, solo se recorren los caracteres hasta el final del *string* más corto.
+    La iteración se detiene al agotarse el _string_ más corto, por lo que los dos
+    últimos caracteres de `cadena2` quedan fuera del recorrido.
 
 ???+ example "Uso de `enumerate()` para obtener índices y valores"
 
-    `enumerate()` permite obtener el índice y el valor de cada elemento en una secuencia:
+    `enumerate()` permite obtener el índice y el valor de cada elemento en una
+    secuencia:
 
     ```python linenums="1"
     palabra: str = "abcde"
@@ -517,16 +536,16 @@ for letra in mi_string:
 Cuando el bucle encuentra la letra `'a'`, omite el `print()` y continúa con la siguiente
 letra.
 
-Finalmente, `pass` no realiza ninguna acción, pero se utiliza como marcador de posición
-cuando se necesita un bloque de código vacío:
+Finalmente, `pass` no realiza ninguna acción y se utiliza como marcador de posición allí
+donde la sintaxis exige un bloque pero todavía no hay nada que ejecutar:
 
 ```python linenums="1"
 for letra in "Python":
     if letra == "h":
-        # La instrucción pass no realiza ninguna acción
+        # Sin pass, el bloque vacío provocaría un IndentationError
         pass
-        print("Esta es la letra h")
-    print(f"Letra actual: {letra}")
+    else:
+        print(f"Letra actual: {letra}")
 ```
 
 ## Estructuras de datos
@@ -537,7 +556,7 @@ lenguaje.
 
 ### Listas
 
-Las listas en Python son estructuras de datos que permiten almacenar secuencias
+Las **listas** en Python son estructuras de datos que permiten almacenar secuencias
 ordenadas y mutables de elementos. A diferencia de otros lenguajes, las listas en Python
 pueden contener elementos de diferentes tipos. Su tamaño es dinámico, lo que significa
 que puede cambiar durante la ejecución del programa. La indexación comienza en `0`, y
@@ -573,32 +592,32 @@ print(lista_amigos[0:2])
 print(lista_amigos)
 ```
 
-#### Métodos de listas
+#### Operaciones sobre listas
 
-| Función                  | Definición                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| `lista[indice] = x`      | Cambia el elemento en el índice especificado por `x`.                           |
-| `lista.extend(x)`        | Agrega los elementos de `x` al final de la lista actual.                        |
-| `lista.append(x)`        | Añade un elemento `x` al final de la lista.                                     |
-| `lista.insert(indice,x)` | Inserta `x` en el índice especificado.                                          |
-| `lista.remove(x)`        | Elimina la primera aparición de `x` en la lista.                                |
-| `lista.clear()`          | Vacía la lista.                                                                 |
-| `lista.pop()`            | Elimina el último elemento de la lista o el elemento en el índice especificado. |
-| `lista.index(x)`         | Devuelve el índice de la primera aparición de `x`.                              |
-| `lista.count(x)`         | Devuelve el número de veces que `x` aparece en la lista.                        |
-| `lista.sort()`           | Ordena la lista en orden ascendente.                                            |
-| `lista.reverse()`        | Invierte el orden de los elementos en la lista.                                 |
-| `lista2 = lista1.copy()` | Crea una copia de `lista1` en `lista2`.                                         |
-| `max(lista)`             | Devuelve el valor máximo de la lista.                                           |
-| `min(lista)`             | Devuelve el valor mínimo de la lista.                                           |
-| `del lista[x]`           | Elimina el elemento en el índice `x` de la lista.                               |
+| Operación                 | Descripción                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------------- |
+| `lista[indice] = x`       | Cambia el elemento en el índice especificado por `x`.                                  |
+| `lista.extend(x)`         | Agrega los elementos de `x` al final de la lista actual.                               |
+| `lista.append(x)`         | Añade un elemento `x` al final de la lista.                                            |
+| `lista.insert(indice, x)` | Inserta `x` en el índice especificado.                                                 |
+| `lista.remove(x)`         | Elimina la primera aparición de `x` en la lista.                                       |
+| `lista.clear()`           | Vacía la lista.                                                                        |
+| `lista.pop(indice)`       | Elimina y devuelve el elemento del índice indicado, o el último si se omite el índice. |
+| `lista.index(x)`          | Devuelve el índice de la primera aparición de `x`.                                     |
+| `lista.count(x)`          | Devuelve el número de veces que `x` aparece en la lista.                               |
+| `lista.sort()`            | Ordena la lista en orden ascendente.                                                   |
+| `lista.reverse()`         | Invierte el orden de los elementos en la lista.                                        |
+| `lista2 = lista1.copy()`  | Crea una copia de `lista1` en `lista2`.                                                |
+| `max(lista)`              | Devuelve el valor máximo de la lista.                                                  |
+| `min(lista)`              | Devuelve el valor mínimo de la lista.                                                  |
+| `del lista[indice]`       | Elimina el elemento situado en `indice`.                                               |
 
 #### Comprensión de listas
 
 Los bucles `for` permiten iterar sobre los elementos de una lista de manera sencilla.
-Además, Python permite utilizar **comprensión de listas** (denominadas en inglés como
-_list comprehension_)para crear nuevas listas basadas en operaciones sobre una secuencia
-de elementos. Esta técnica ofrece una sintaxis concisa y expresiva:
+Además, Python ofrece la **comprensión de listas** (_list comprehension_) para crear
+listas nuevas a partir de operaciones sobre una secuencia de elementos. Esta técnica
+proporciona una sintaxis concisa y expresiva:
 
 ```python linenums="1"
 # Crear una lista con los caracteres de un string
@@ -623,31 +642,33 @@ print(mi_lista_pares)
 
 #### Listas anidadas y matrices
 
-Las listas en Python pueden contener otras listas, lo que permite la representación de
-matrices o tablas de datos. Este tipo de estructura resulta útil para manejar
-información en varias dimensiones (como una imagen, que en realidad es una composición
-de 3 matrices, una por cada canal de color RGB):
+Las listas en Python pueden contener otras listas, lo que permite representar matrices o
+tablas de datos. Este tipo de estructura resulta útil para manejar información en varias
+dimensiones, como una imagen, que en realidad es una composición de tres matrices, una
+por cada canal rojo, verde y azul (RGB):
 
 ```python linenums="1"
-number_grid: list[list[int]] = [
+matriz: list[list[int]] = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
 ]
 
 # Acceder al elemento en la tercera fila y tercera columna
-print(number_grid[2][2])
+print(matriz[2][2])
 ```
 
-En este caso, `number_grid[2][2]` devuelve el valor `9`, que es el elemento ubicado en
-la tercera fila y tercera columna.
+En este caso, `matriz[2][2]` devuelve el valor `9`, que es el elemento ubicado en la
+tercera fila y tercera columna.
 
 ### Tuplas
 
 Las **tuplas** en Python son secuencias ordenadas e **inmutables**, lo que significa
 que, a diferencia de las listas, sus elementos no pueden ser modificados después de su
 creación. Las tuplas resultan útiles cuando se necesita garantizar que los datos no
-cambien a lo largo del programa. Además, son más rápidas de procesar que las listas.
+cambien a lo largo del programa. Al no admitir modificaciones, su construcción es algo
+más rápida y su consumo de memoria menor que el de una lista equivalente, si bien el
+acceso y la iteración tienen un coste prácticamente idéntico.
 
 Para definir una tupla se utilizan paréntesis:
 
@@ -670,7 +691,7 @@ print(f"Mi lista de tuplas es {lista_tuplas}")
 
 A pesar de ser inmutables, las tuplas disponen de algunos métodos útiles:
 
-| Función          | Descripción                                                    |
+| Método           | Descripción                                                    |
 | ---------------- | -------------------------------------------------------------- |
 | `tupla.count(x)` | Devuelve el número de veces que `x` aparece en la tupla.       |
 | `tupla.index(x)` | Devuelve el índice de la primera aparición de `x` en la tupla. |
@@ -682,7 +703,9 @@ de las listas y tuplas, los _sets_ no permiten duplicados, lo que los convierte 
 herramienta útil para eliminar valores repetidos o para realizar operaciones matemáticas
 como uniones e intersecciones.
 
-Un _set_ se puede definir usando llaves `{}` o con la función `set()`:
+Un _set_ se puede definir enumerando sus elementos entre llaves, como `{"a", "b", "c"}`,
+o con la función `set()`. Un par de llaves vacías crea un diccionario, de modo que un
+_set_ vacío solo puede construirse con `set()`:
 
 ```python linenums="1"
 # Inicializar un set vacío
@@ -700,7 +723,7 @@ mi_nuevo_set: set[str] = {"a", "b", "c"}
 
 #### Métodos de _sets_
 
-| Función                    | Definición                                                                               |
+| Método                     | Descripción                                                                              |
 | -------------------------- | ---------------------------------------------------------------------------------------- |
 | `s.add(x)`                 | Añade un elemento `x` al _set_.                                                          |
 | `s.clear()`                | Elimina todos los elementos del _set_.                                                   |
@@ -740,7 +763,7 @@ print(conversion_meses.get(clave, f"La clave {clave} no está en el diccionario"
 
 #### Métodos de diccionarios
 
-| Función                | Definición                                                   |
+| Método                 | Descripción                                                  |
 | ---------------------- | ------------------------------------------------------------ |
 | `diccionario.items()`  | Devuelve una vista de los pares clave-valor del diccionario. |
 | `diccionario.keys()`   | Devuelve una vista de las claves del diccionario.            |
@@ -748,14 +771,14 @@ print(conversion_meses.get(clave, f"La clave {clave} no está en el diccionario"
 
 ???+ example "Diccionarios anidados"
 
-    Es posible crear diccionarios dentro de otros diccionarios para representar estructuras
-    más complejas:
+    Es posible crear diccionarios dentro de otros diccionarios para representar
+    estructuras más complejas:
 
     ```python linenums="1"
-    diccionario: dict[str, dict[str, int]] = {"k3": {"insideKey": 100}}
+    inventario: dict[str, dict[str, int]] = {"almacen": {"tornillos": 100}}
 
     # Acceder al valor asociado a la clave interna
-    print(diccionario["k3"]["insideKey"])
+    print(inventario["almacen"]["tornillos"])
     ```
 
 ???+ example "Iteración sobre diccionarios"
@@ -777,8 +800,8 @@ print(conversion_meses.get(clave, f"La clave {clave} no está en el diccionario"
 
 ???+ example "Listas de diccionarios"
 
-    Es posible combinar listas y diccionarios para crear estructuras más elaboradas, como
-    una lista de clientes y sus animales:
+    Es posible combinar listas y diccionarios para crear estructuras más elaboradas,
+    como una lista de clientes y sus animales:
 
     ```python linenums="1"
     # El tipo de los valores varía según la clave, ya que unos almacenan una cadena
@@ -864,7 +887,7 @@ def saludo(nombre: str) -> str:
         El mensaje de saludo construido a partir del nombre.
     """
 
-    return f"Hola, {nombre}!"
+    return f"¡Hola, {nombre}!"
 
 print(saludo("Mundo"))
 ```
@@ -886,7 +909,7 @@ def saludo(nombre: str = "Mundo") -> str:
         El mensaje de saludo construido a partir del nombre.
     """
 
-    return f"Hola, {nombre}!"
+    return f"¡Hola, {nombre}!"
 
 print(saludo())
 print(saludo("Python"))
@@ -899,7 +922,7 @@ un argumento, este reemplaza el valor predeterminado.
 ???+ example "Función para comprobar una lista"
 
     Esta función toma una lista de números como entrada y separa los números pares e
-    impares en dos conjuntos diferentes:
+    impares en dos _sets_ distintos:
 
     ```python linenums="1"
     def comprobar_lista(lista: list[int]) -> None:
@@ -910,17 +933,17 @@ un argumento, este reemplaza el valor predeterminado.
             lista: Números enteros que se desean clasificar.
         """
 
-        lista_par_devolver: set[int] = set()
-        lista_impar_devolver: set[int] = set()
+        pares: set[int] = set()
+        impares: set[int] = set()
 
-        for indice in lista:
-            if indice % 2 == 0:
-                lista_par_devolver.add(indice)
+        for numero in lista:
+            if numero % 2 == 0:
+                pares.add(numero)
             else:
-                lista_impar_devolver.add(indice)
+                impares.add(numero)
 
-        print(f"Lista de números pares de la lista principal: {lista_par_devolver}")
-        print(f"Lista de números impares de la lista principal: {lista_impar_devolver}")
+        print(f"Números pares de la lista recibida: {pares}")
+        print(f"Números impares de la lista recibida: {impares}")
 
     comprobar_lista([1, 1, 1, 1, 1, 1, 23, 56, 87, 918, 23, 12, 3, 2, 4, 6, 5])
     ```
@@ -961,9 +984,9 @@ un argumento, este reemplaza el valor predeterminado.
 
 ???+ example "Funciones que llaman a otras funciones"
 
-    En este ejemplo se muestra un juego simple donde las funciones interactúan entre sí. Se
-    utiliza la función `shuffle()` del módulo `random`, que reordena una lista de manera
-    aleatoria:
+    En este ejemplo se muestra un juego simple donde las funciones interactúan entre sí.
+    Se utiliza la función `shuffle()` del módulo `random`, que reordena una lista de
+    manera aleatoria:
 
     ```python linenums="1"
     from random import shuffle
@@ -971,7 +994,7 @@ un argumento, este reemplaza el valor predeterminado.
     # Lista de vasos donde la letra O representa la bolita
     vasos: list[str] = [" ", "O", " "]
 
-    def shuffle_list(mi_lista: list[str]) -> list[str]:
+    def barajar_lista(mi_lista: list[str]) -> list[str]:
         """
         Reordena aleatoriamente los elementos de una lista.
 
@@ -998,7 +1021,8 @@ un argumento, este reemplaza el valor predeterminado.
 
     def operar() -> None:
         """
-        Solicita al usuario el vaso elegido y valida que esté dentro del rango.
+        Solicita al usuario el vaso elegido, valida que esté dentro del rango y delega la
+        comprobación del acierto en `comprobar()`.
         """
 
         resultado: int = int(input("¿En qué vaso está la bolita?: "))
@@ -1026,21 +1050,22 @@ un argumento, este reemplaza el valor predeterminado.
             print(f"vaso {i}: {vaso}")
 
     inicio()
-    shuffle_list(vasos)
+    barajar_lista(vasos)
     operar()
     ```
 
 ### Argumentos arbitrarios (`*args` y `**kwargs`)
 
-En Python, los términos `*args` y `**kwargs` se utilizan en la definición de funciones
-para permitir que estas acepten un número arbitrario de argumentos. Esta capacidad
-resulta especialmente útil cuando no se conoce de antemano cuántos valores recibirá la
-función.
+En Python, las construcciones `*args` y `**kwargs` se emplean en la definición de
+funciones para que estas acepten un número arbitrario de argumentos. Lo significativo
+son los operadores `*` y `**`, ya que `args` y `kwargs` son solo los nombres que la
+comunidad ha adoptado por convención. Esta capacidad resulta especialmente útil cuando
+no se conoce de antemano cuántos valores recibirá la función.
 
 En el siguiente ejemplo, `a` y `b` son argumentos posicionales:
 
 ```python linenums="1"
-def mifuncion(a: float, b: float) -> float:
+def porcentaje_de_dos(a: float, b: float) -> float:
     """
     Calcula el cinco por ciento de la suma de dos valores.
 
@@ -1054,14 +1079,14 @@ def mifuncion(a: float, b: float) -> float:
 
     return sum((a, b)) * 0.05
 
-mifuncion(40, 60)
+porcentaje_de_dos(40, 60)
 ```
 
 Si se desea que la función pueda manejar más de dos números, una opción sería asignar un
 valor predeterminado a los parámetros adicionales:
 
 ```python linenums="1"
-def mifuncion(a: float, b: float, c: float = 0) -> float:
+def porcentaje_de_tres(a: float, b: float, c: float = 0) -> float:
     """
     Calcula el cinco por ciento de la suma de hasta tres valores.
 
@@ -1081,7 +1106,7 @@ def mifuncion(a: float, b: float, c: float = 0) -> float:
 posicionales. Python toma todos los parámetros que se pasan y los agrupa como una tupla:
 
 ```python linenums="1"
-def mifuncion(*args: float) -> float:
+def porcentaje_de_varios(*args: float) -> float:
     """
     Calcula el cinco por ciento de la suma de un número arbitrario de valores.
 
@@ -1099,7 +1124,7 @@ De manera similar, `**kwargs` permite manejar un número arbitrario de argumento
 palabras clave. En lugar de crear una tupla, crea un diccionario:
 
 ```python linenums="1"
-def mifuncion(**kwargs: str) -> None:
+def mostrar_favoritos(**kwargs: str) -> None:
     """
     Muestra la fruta y la verdura favoritas si se han indicado.
 
@@ -1118,13 +1143,13 @@ def mifuncion(**kwargs: str) -> None:
     else:
         print("No se encontró la verdura")
 
-mifuncion(fruta="manzana", verduras="zanahoria")
+mostrar_favoritos(fruta="manzana", verduras="zanahoria")
 ```
 
 También es posible combinar ambos en la misma función:
 
 ```python linenums="1"
-def mifuncion(*args: int, **kwargs: str) -> None:
+def describir_mascota(*args: int, **kwargs: str) -> None:
     """
     Combina argumentos posicionales y de palabra clave en un único mensaje.
 
@@ -1136,7 +1161,7 @@ def mifuncion(*args: int, **kwargs: str) -> None:
 
     print(f"Tengo {args[0]} coneja llamada {kwargs['animal']}")
 
-mifuncion(1, 2, 3, 4, fruta="manzana", verdura="zanahoria", animal="Misifu")
+describir_mascota(1, 2, 3, 4, animal="Misifu")
 ```
 
 En este caso, `args` es una tupla de los argumentos posicionales y `kwargs` es un
@@ -1145,13 +1170,13 @@ flexibilidad a la hora de definir funciones.
 
 ### Funciones _lambda_, `map` y `filter`
 
-Las **expresiones _lambda_** son una forma rápida de crear funciones anónimas, es decir,
-funciones que se definen en una sola línea y se utilizan una única vez. Pueden tomar
-múltiples argumentos, lo que aumenta su flexibilidad. Sin embargo, debido a su
-naturaleza anónima y de un solo uso, son más adecuadas para operaciones simples y
-concisas. Para operaciones más complejas, es recomendable definir una función completa.
+Las **expresiones _lambda_** permiten crear funciones anónimas, es decir, funciones que
+no se vinculan a ningún nombre. Su cuerpo debe ser una única expresión, cuyo valor se
+devuelve de forma implícita, y pueden tomar varios argumentos. Por esa forma reducida
+resultan adecuadas para operaciones simples y concisas, mientras que para lógica más
+elaborada es preferible definir una función con `def`.
 
-Ejemplo de lambda:
+Una expresión _lambda_ puede definirse e invocarse en el mismo punto:
 
 ```python linenums="1"
 # Imprime: 9
@@ -1162,26 +1187,42 @@ La guía de estilo PEP 8 recomienda no asignar una expresión _lambda_ a un nomb
 en ese caso resulta preferible declarar la función con `def`. Su verdadera utilidad
 aparece cuando se pasan como argumento a otras funciones.
 
-La función **`map()`** aplica una función a cada elemento de una lista, devolviendo una
-nueva lista con los resultados:
+La función `map()` aplica una función a cada elemento de un iterable. No devuelve una
+lista, sino un **iterador**, es decir, un objeto que produce sus elementos de uno en uno
+a medida que se recorren, sin construirlos todos de antemano. Por eso es necesario
+envolverlo en `list()` para materializar los resultados:
 
 ```python linenums="1"
 mis_nums: list[int] = [1, 2, 3, 4, 5]
 resultado: list[int] = list(map(lambda num: pow(num, 2), mis_nums))
+
+# Imprime: [1, 4, 9, 16, 25]
 print(resultado)
 ```
 
-La función **`filter()`** filtra los elementos de una lista basándose en una función de
-filtrado, devolviendo una nueva lista con los elementos que cumplen la condición:
+La función `filter()` selecciona los elementos de un iterable que satisfacen una
+condición. Igual que `map()`, devuelve un iterador y no una lista:
 
 ```python linenums="1"
 mis_nums: list[int] = [1, 2, 3, 4, 5]
 resultado: list[int] = list(filter(lambda num: num % 2 == 0, mis_nums))
+
+# Imprime: [2, 4]
 print(resultado)
 ```
 
-Un uso habitual consiste en combinar estas funciones para transformar colecciones de
-cadenas de texto:
+!!! note "Evaluación perezosa de `map()` y `filter()`"
+
+    En Python 2 ambas funciones devolvían listas. En Python 3 devuelven iteradores, lo
+    que evita construir en memoria una colección completa cuando solo se necesita
+    recorrerla una vez. La diferencia se aprecia al imprimir el resultado sin
+    convertirlo, que muestra algo como `<map object at 0x...>` en lugar de los valores.
+
+    Como consecuencia, un iterador se agota tras recorrerlo. Si el resultado debe
+    consultarse más de una vez, hay que materializarlo con `list()`.
+
+Un uso habitual consiste en aplicar `map()` para transformar colecciones de cadenas de
+texto:
 
 ```python linenums="1"
 personas: list[str] = [
@@ -1194,21 +1235,21 @@ personas: list[str] = [
 resultado: list[str] = list(
     map(lambda persona: f"{persona.split()[0]} {persona.split()[-1]}", personas)
 )
+
+# Imprime: ['Dr. Brooks', 'Dr. Collins-Thompson', 'Dr. Vydiswaran', 'Dr. Romero']
 print(resultado)
 ```
 
-## Ejecución de scripts y módulos
+## Ejecución de _scripts_ y módulos
 
 Una vez que se sabe definir funciones, el siguiente paso consiste en organizar un
 archivo de código para que pueda emplearse tanto como programa ejecutable como en forma
 de biblioteca de funciones reutilizables. Python resuelve esta distinción mediante la
-variable especial `__name__`.
-
-En Python, la variable especial `__name__` permite determinar si un archivo se está
-ejecutando directamente como un _script_ o si está siendo importado como un módulo desde
-otro archivo. Comprender este comportamiento resulta útil para estructurar el código de
-manera que ciertos bloques se ejecuten únicamente cuando el archivo constituye el punto
-de entrada del programa.
+variable especial `__name__`, que permite determinar si un archivo se está ejecutando
+directamente como un _script_ o si está siendo importado como módulo desde otro archivo.
+Comprender este comportamiento resulta útil para estructurar el código de manera que
+ciertos bloques se ejecuten únicamente cuando el archivo constituye el punto de entrada
+del programa.
 
 Cuando un archivo de Python se ejecuta directamente, el intérprete asigna a la variable
 `__name__` el valor `"__main__"`. En cambio, si el archivo se importa como módulo,
@@ -1216,10 +1257,10 @@ Cuando un archivo de Python se ejecuta directamente, el intérprete asigna a la 
 
 ???+ example "Uso de `__name__`"
 
-    En este ejemplo se emplean dos ficheros, `modulo_a.py` y `modulo_b.py`, donde el
+    En este ejemplo se emplean dos archivos, `modulo_a.py` y `modulo_b.py`, donde el
     primero importa al segundo:
 
-    **Archivo `modulo_a.py`**
+    Archivo `modulo_a.py`:
 
     ```python linenums="1"
     import modulo_b
@@ -1232,7 +1273,7 @@ Cuando un archivo de Python se ejecuta directamente, el intérprete asigna a la 
         print("Módulo A importado desde otro módulo")
     ```
 
-    **Archivo `modulo_b.py`**
+    Archivo `modulo_b.py`:
 
     ```python linenums="1"
     print(f"Módulo B, __name__ establecido a: {__name__}")
@@ -1245,17 +1286,22 @@ Cuando un archivo de Python se ejecuta directamente, el intérprete asigna a la 
 
     Al ejecutar `python modulo_a.py`, el resultado es el siguiente:
 
-    ```
+    ```plaintext linenums="1"
     Módulo B, __name__ establecido a: modulo_b
     Módulo B importado desde otro módulo
     Módulo A, __name__ establecido a: __main__
     Módulo A ejecutado directamente
     ```
 
-    Las sentencias `import` se resuelven antes que el resto del fichero, por lo que el
-    contenido de `modulo_b.py` se ejecuta primero. En ese momento su variable `__name__`
-    contiene el nombre del módulo, mientras que en `modulo_a.py` contiene `"__main__"`
-    porque es el fichero invocado directamente.
+    Un módulo se ejecuta de arriba abajo, y una sentencia `import` se resuelve en el
+    punto exacto en que aparece. Como en `modulo_a.py` el `import` es la primera
+    sentencia, todo el contenido de `modulo_b.py` se ejecuta antes que el resto del
+    archivo. Si el `import` estuviese después de los `print`, estos se ejecutarían
+    primero.
+
+    En el momento de la importación, la variable `__name__` de `modulo_b` contiene el
+    nombre del módulo, mientras que en `modulo_a.py` contiene `"__main__"` porque es el
+    archivo invocado directamente.
 
     Constituye una buena práctica definir una función `main()` que contenga el código
     principal del programa, ya que así se separa la lógica de ejecución de las
@@ -1275,14 +1321,14 @@ Cuando un archivo de Python se ejecuta directamente, el intérprete asigna a la 
         main()
     ```
 
-    Con esta estructura, el código de `main()` solo se ejecuta cuando el fichero se
-    invoca directamente. Si el módulo se importa desde otro fichero, únicamente se
+    Con esta estructura, el código de `main()` solo se ejecuta cuando el archivo se
+    invoca directamente. Si el módulo se importa desde otro archivo, únicamente se
     evalúan las definiciones y las sentencias situadas fuera de la función, lo que
     resulta adecuado para exponer funciones y clases sin provocar efectos secundarios.
 
 ## Decoradores
 
-Los decoradores en Python permiten modificar el comportamiento de una función sin
+Los **decoradores** en Python permiten modificar el comportamiento de una función sin
 alterar su código fuente. Esto resulta útil cuando se desea añadir funcionalidades a una
 función existente sin modificar su definición.
 
@@ -1335,22 +1381,21 @@ otras funciones e incluso retornadas como valores de otras funciones.
     funcion_necesita_decorador()
     ```
 
-    En este ejemplo, `nuevo_decorador` añade dos líneas de impresión antes y después
-    de la ejecución de la función original. La sintaxis `@nuevo_decorador` antes de la
-    definición de `funcion_necesita_decorador` es lo que aplica el decorador a la
-    función.
+    En este ejemplo, `nuevo_decorador` imprime un mensaje antes de ejecutar la función
+    original y otro después. La sintaxis `@nuevo_decorador` antes de la definición de
+    `funcion_necesita_decorador` es lo que aplica el decorador a la función.
 
 ## Generadores
 
-Los generadores en Python son una forma eficiente de crear iteradores. A diferencia de
-las funciones normales, los generadores utilizan la palabra clave `yield` en lugar de
+Los **generadores** en Python son una forma eficiente de crear iteradores. A diferencia
+de las funciones normales, los generadores utilizan la palabra clave `yield` en lugar de
 `return`. Esto permite que produzcan valores de uno en uno, y solo cuando se necesitan,
 en lugar de calcular todos los valores a la vez y almacenarlos en memoria. Son
 especialmente útiles cuando se trabaja con grandes cantidades de datos que no caben en
 memoria, ya que producen los elementos de forma perezosa (_lazy evaluation_), lo que
 puede mejorar significativamente el rendimiento del programa.
 
-???+ example "Generador con yield"
+???+ example "Generador con `yield`"
 
     Una función generadora devuelve un objeto generador que puede ser iterado para
     obtener los valores generados por `yield`:
@@ -1390,13 +1435,13 @@ print(next(texto_iterador))
 ## Alcance de las variables
 
 En Python, es fundamental comprender cómo se gestionan las variables en función de su
-ubicación en el código. Las variables se almacenan en un ámbito o _scope_, que determina
-la visibilidad de la variable en otras partes del programa:
+ubicación en el código. Cada nombre de variable pertenece a un ámbito o _scope_, que
+determina desde qué partes del programa resulta visible:
 
 ```python linenums="1"
 x: int = 25
 
-def printer() -> int:
+def devolver_valor() -> int:
     """
     Devuelve un valor local que no altera la variable global del mismo nombre.
 
@@ -1411,20 +1456,21 @@ def printer() -> int:
 print(x)
 
 # Imprime: 50
-print(printer())
+print(devolver_valor())
 ```
 
-La reasignación de `x` dentro de la función `printer()` no afecta a la asignación global
-de `x`. Esto se debe a la regla de alcance en Python, que sigue el orden **LEGB**:
+La asignación de `x` dentro de la función `devolver_valor()` crea una variable local
+independiente y no altera el valor global de `x`. Esto se debe a la regla de alcance de
+Python, que sigue el orden **LEGB**:
 
 - **L (_Local_)**: Nombres asignados dentro de una función (`def` o `lambda`) y que no
   se declaran globales en esa función.
-- **E (_Enclosing function locals_)**: Nombres en el ámbito local de cualquier función
-  de encierro (`def` o `lambda`), de interior a exterior.
+- **E (_Enclosing function locals_)**: Nombres del ámbito local de las funciones
+  envolventes (`def` o `lambda`), de la más interior a la más exterior.
 - **G (_Global_)**: Nombres asignados en el nivel superior de un archivo de módulo, o
   declarados globales en un `def` dentro del archivo.
-- **B (_Built-in_)**: Nombres preasignados en el módulo de nombres incorporados: `open`,
-  `range`, `SyntaxError`, etc.
+- **B (_Built-in_)**: Nombres integrados que Python predefine en el módulo `builtins`,
+  como `open`, `range` o `SyntaxError`.
 
 Este es el orden en el que Python busca las variables:
 
@@ -1437,7 +1483,7 @@ def prueba() -> None:
     Define una variable de encierro y llama a una función anidada.
     """
 
-    # Variable de encierro local
+    # Variable del ámbito envolvente
     nombre: str = "Daniel"
 
     def hola() -> None:
@@ -1455,12 +1501,12 @@ prueba()
 ```
 
 En este ejemplo, la función `hola()` muestra primero la variable local `"Carlitos"`. Si
-se comenta la asignación local, toma la variable de encierro local `"Daniel"`. Y si
+se comenta la asignación local, toma la variable del ámbito envolvente, `"Daniel"`. Y si
 también se comenta esa asignación, toma la variable global `"Esto es un string global"`.
 
-Cuando se reasigna una variable global dentro de una función, por el alcance, el valor
-de reasignación solo se mantiene dentro de la función. Para modificar la variable global
-desde dentro de una función, se puede usar la palabra clave `global`:
+Cuando dentro de una función se asigna un valor a un nombre que también existe en el
+ámbito global, la asignación afecta únicamente a la variable local. Para modificar la
+variable global desde dentro de una función, se puede usar la palabra clave `global`:
 
 ```python linenums="1"
 x: int = 50
@@ -1522,10 +1568,10 @@ class NombreDeClase:
         print("Este es un método dentro de la clase")
 ```
 
-Cuando se define una función dentro de una clase, se denomina **método**. El método
-especial `__init__` es un **constructor** que se ejecuta automáticamente al crear una
-nueva instancia de la clase. El primer argumento de cualquier método en una clase es
-`self`, que hace referencia a la propia instancia del objeto:
+Cuando se define una función dentro de una clase, se denomina método. El método especial
+`__init__` es un **constructor** que se ejecuta automáticamente al crear una nueva
+instancia de la clase. El primer argumento de cualquier método en una clase es `self`,
+que hace referencia a la propia instancia del objeto:
 
 ```python linenums="1"
 class Coche:
@@ -1559,33 +1605,47 @@ mi_coche = Coche("Toyota", "Corolla", True, ["Juan", "Maria"])
 print(f"Mi coche es un {mi_coche.marca} {mi_coche.modelo}")
 ```
 
-Cuando un método de una clase devuelve una instancia del mismo tipo, se puede utilizar
-la anotación `Self` del módulo `typing` para indicarlo de forma clara:
+Cuando un método devuelve una instancia del mismo tipo que la clase, se puede utilizar
+la anotación `Self` del módulo `typing`, disponible desde Python 3.11, para expresarlo
+con precisión. `Self` denota el tipo real de la instancia, de modo que la anotación
+sigue siendo correcta en las subclases:
 
 ```python linenums="1"
 from typing import Self
 
-class User:
+class Usuario:
     """
     Ejemplo de clase cuyos métodos devuelven instancias del propio tipo.
     """
 
-    def metodo(self) -> Self:
+    def duplicar(self) -> Self:
         """
-        Crea una nueva instancia del mismo tipo que la clase actual.
+        Crea una instancia nueva del mismo tipo que la instancia actual.
 
         Returns:
-            Una instancia nueva de la clase.
+            Una instancia nueva del tipo concreto sobre el que se invoca el método.
         """
 
-        return User()
+        # type(self) devuelve la clase real, que puede ser una subclase de Usuario
+        return type(self)()
 ```
+
+!!! warning "`Self` no admite devolver la clase escrita a mano"
+
+    Escribir `return Usuario()` en un método anotado con `-> Self` es incorrecto, aunque
+    el intérprete no lo impida. Un comprobador de tipos como mypy lo señala con el error
+    `Incompatible return value type (got "Usuario", expected "Self")`, porque una
+    subclase heredaría el método y devolvería un objeto de la clase base en lugar de uno
+    de su propio tipo.
+
+    La construcción adecuada es `type(self)()`, que instancia la clase real. Si de
+    verdad se desea devolver siempre la clase base, la anotación correcta es
+    `-> "Usuario"` y no `-> Self`.
 
 ### Atributos y métodos
 
-Los **atributos** son características del objeto, y los **métodos** son acciones que
-puede realizar. Algunos atributos son comunes a todas las instancias (atributos de
-clase), mientras que otros son específicos para cada objeto (atributos de instancia):
+Algunos atributos son comunes a todas las instancias, y se denominan atributos de clase,
+mientras que otros son específicos de cada objeto y se denominan atributos de instancia:
 
 ```python linenums="1"
 class Perro:
@@ -1709,16 +1769,6 @@ class Perro(Animal):
     Representa un perro capaz de emitir su sonido característico.
     """
 
-    def __init__(self, nombre: str) -> None:
-        """
-        Inicializa el perro con su nombre.
-
-        Args:
-            nombre: Nombre del animal.
-        """
-
-        self.nombre = nombre
-
     def sonido(self) -> None:
         """
         Muestra el sonido emitido por el perro.
@@ -1730,16 +1780,6 @@ class Gato(Animal):
     """
     Representa un gato capaz de emitir su sonido característico.
     """
-
-    def __init__(self, nombre: str) -> None:
-        """
-        Inicializa el gato con su nombre.
-
-        Args:
-            nombre: Nombre del animal.
-        """
-
-        self.nombre = nombre
 
     def sonido(self) -> None:
         """
@@ -1865,22 +1905,22 @@ clase:
 from dataclasses import dataclass
 
 @dataclass(frozen=True, order=True, slots=True)
-class User:
+class Usuario:
     """
     Representa un usuario inmutable y comparable por sus atributos.
     """
 
-    name: str
-    age: int
+    nombre: str
+    edad: int
 
-u1 = User("alice", 30)
-u2 = User("bob", 25)
+u1 = Usuario("alice", 30)
+u2 = Usuario("bob", 25)
 
 # Imprime: True, la comparación sigue el orden de declaración de los atributos
 print(u1 < u2)
 
 # La siguiente línea lanzaría FrozenInstanceError, ya que la instancia es inmutable
-# u1.name = "otro"
+# u1.nombre = "otro"
 ```
 
 Cada parámetro cumple una función específica:
@@ -1907,12 +1947,12 @@ atributos una vez asignados:
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
-class User:
+class Usuario:
     """
     Representa un usuario cuyo nombre se normaliza al crear la instancia.
     """
 
-    name: str
+    nombre: str
 
     def __post_init__(self) -> None:
         """
@@ -1920,12 +1960,12 @@ class User:
         """
 
         # En una dataclass frozen se usa object.__setattr__ para modificar atributos
-        object.__setattr__(self, "name", self.name.strip().lower())
+        object.__setattr__(self, "nombre", self.nombre.strip().lower())
 
-u = User("  Alice  ")
+u = Usuario("  Alice  ")
 
 # Imprime: alice
-print(u.name)
+print(u.nombre)
 ```
 
 Cuando la _dataclass_ es inmutable (`frozen=True`), no es posible reasignar atributos
@@ -1948,14 +1988,14 @@ class Inventario:
     """
 
     nombre: str
-    items: list[str] = field(default_factory=list)
-    metadata: dict[str, str] = field(default_factory=dict, repr=False)
+    articulos: list[str] = field(default_factory=list)
+    metadatos: dict[str, str] = field(default_factory=dict, repr=False)
 
 inv = Inventario("Almacén A")
-inv.items.append("Tornillo")
+inv.articulos.append("Tornillo")
 
-# Imprime: Inventario(nombre='Almacén A', items=['Tornillo'])
-# El atributo metadata no aparece porque se ha configurado con repr=False
+# Imprime: Inventario(nombre='Almacén A', articulos=['Tornillo'])
+# El atributo metadatos no aparece porque se ha configurado con repr=False
 print(inv)
 ```
 
@@ -1963,8 +2003,8 @@ El parámetro `repr=False` en `field` permite excluir un atributo de la represen
 texto del objeto, lo cual resulta útil para atributos internos o de gran tamaño que no
 aportan claridad al inspeccionar la instancia.
 
-Las _dataclasses_ soportan herencia de forma natural. La subclase hereda los atributos
-de la clase padre y puede añadir los suyos propios. También es posible combinar
+Las _dataclasses_ admiten herencia de forma natural. La subclase hereda los atributos de
+la clase padre y puede añadir los suyos propios. También es posible combinar
 _dataclasses_ con clases abstractas del módulo `abc` para definir interfaces que las
 subclases deben implementar:
 
@@ -2046,8 +2086,8 @@ print(cuenta.most_common())
 
 #### `defaultdict`
 
-`defaultdict` es una subclase de `dict` que devuelve un valor predeterminado si la clave
-no existe, evitando errores:
+`defaultdict` es una subclase de `dict` que, cuando se accede a una clave inexistente,
+la crea con el valor que produce la factoría indicada en lugar de lanzar un `KeyError`:
 
 ```python linenums="1"
 from collections import defaultdict
@@ -2056,7 +2096,21 @@ d: defaultdict[str, int] = defaultdict(lambda: 0)
 
 # Imprime: 0
 print(d["inexistente"])
+
+# Imprime: defaultdict(<function <lambda> at 0x...>, {'inexistente': 0})
+print(d)
 ```
+
+!!! warning "El acceso inserta la clave"
+
+    `defaultdict` no solo devuelve el valor por defecto, sino que además **añade la
+    clave al diccionario**. Tras la consulta del ejemplo, `len(d)` vale 1 y la clave
+    `"inexistente"` forma parte del diccionario, algo que resulta sorprendente si solo
+    se pretendía comprobar un valor.
+
+    Cuando no se desea ese efecto, la alternativa es
+    `dict.get(clave, valor_por_defecto)`, que devuelve el valor indicado sin modificar
+    el diccionario.
 
 #### `namedtuple`
 
@@ -2108,19 +2162,18 @@ print(fecha1 - fecha2)
 
 ### Módulo `math`
 
-Es posible extender la funcionalidad utilizando librerías, que pueden ser estándar
-(incluidas con la propia instalación de Python) o paquetes de terceros como NumPy,
-Pandas o similares. Por ejemplo, la librería estándar `math` amplía las operaciones
-disponibles:
+Es posible extender la funcionalidad con módulos de la biblioteca estándar, incluidos
+con la propia instalación de Python, o con paquetes de terceros como NumPy o Pandas. Por
+ejemplo, el módulo `math` amplía las operaciones disponibles:
 
-| Operador/Función | Descripción                                                                        |
-| ---------------- | ---------------------------------------------------------------------------------- |
-| `math.floor(x)`  | Redondea $x$ hacia abajo, es decir, $\lfloor x \rfloor$. Requiere importar `math`. |
-| `math.ceil(x)`   | Redondea $x$ hacia arriba, es decir, $\lceil x \rceil$. Requiere importar `math`.  |
-| `math.sqrt(x)`   | Devuelve la raíz cuadrada de $x$, es decir, $\sqrt{x}$. Requiere importar `math`.  |
-| `math.pi`        | Devuelve el valor de la constante $\pi$. Requiere importar `math`.                 |
+| Operador o función | Descripción                                              |
+| ------------------ | -------------------------------------------------------- |
+| `math.floor(x)`    | Redondea $x$ hacia abajo, es decir, $\lfloor x \rfloor$. |
+| `math.ceil(x)`     | Redondea $x$ hacia arriba, es decir, $\lceil x \rceil$.  |
+| `math.sqrt(x)`     | Devuelve la raíz cuadrada de $x$, es decir, $\sqrt{x}$.  |
+| `math.pi`          | Devuelve el valor de la constante $\pi$.                 |
 
-Para utilizar estas funciones, basta con importar la librería:
+Para utilizar estas funciones basta con importar el módulo:
 
 ```python linenums="1"
 import math
@@ -2128,21 +2181,8 @@ import math
 math.floor(3.1415)
 ```
 
-Cuando se trabaja con valores monetarios o cálculos que requieren precisión decimal
-exacta, es recomendable utilizar el módulo `Decimal` en lugar de `float`, ya que este
-último puede introducir errores de redondeo inherentes a la representación en punto
-flotante:
-
-```python linenums="1"
-from decimal import Decimal
-
-RATES: dict[tuple[str, str], Decimal] = {
-    ("USD", "EUR"): Decimal("0.91")
-}
-```
-
-El módulo `math` proporciona funciones matemáticas comunes, como el valor de $\pi$, los
-logaritmos y las funciones trigonométricas:
+El módulo proporciona además las constantes y las funciones matemáticas más comunes,
+entre ellas los logaritmos y las funciones trigonométricas:
 
 ```python linenums="1"
 import math
@@ -2153,8 +2193,11 @@ print(math.pi)
 # Imprime: 2.718281828459045
 print(math.e)
 
-# Logaritmo en base 2 de 100. Imprime: 6.643856189774724
+# Logaritmo en base 2 de 100. Imprime: 6.643856189774725
 print(math.log(100, 2))
+
+# Función específica de base 2, más precisa. Imprime: 6.643856189774724
+print(math.log2(100))
 
 # Funciones trigonométricas. Imprime: 1.0
 print(math.sin(math.radians(90)))
@@ -2162,6 +2205,34 @@ print(math.sin(math.radians(90)))
 # Imprime: 90.0
 print(math.degrees(math.pi / 2))
 ```
+
+!!! note "Precisión de `math.log` frente a `math.log2`"
+
+    Los dos logaritmos anteriores difieren en el último dígito. `math.log(100, 2)`
+    calcula el cociente de dos logaritmos naturales y arrastra el error de ambas
+    operaciones, mientras que `math.log2(100)` emplea la función específica de la
+    biblioteca de C y resulta más precisa. Cuando la base es 2 o 10 conviene emplear
+    `math.log2` o `math.log10`.
+
+### Precisión decimal con el módulo `decimal`
+
+Cuando se trabaja con valores monetarios o con cálculos que exigen precisión decimal
+exacta, es recomendable emplear el tipo `Decimal` del módulo `decimal` en lugar de
+`float`, ya que este último introduce errores de redondeo inherentes a la representación
+en punto flotante:
+
+```python linenums="1"
+from decimal import Decimal
+
+# Imprime: 0.30000000000000004
+print(0.1 + 0.2)
+
+# Imprime: 0.3
+print(Decimal("0.1") + Decimal("0.2"))
+```
+
+El valor de un `Decimal` debe construirse a partir de una cadena y no de un `float`, ya
+que `Decimal(0.1)` heredaría el error de representación del literal en punto flotante.
 
 ### Módulo `random`
 
@@ -2171,11 +2242,11 @@ elementos aleatoriamente o barajar listas:
 ```python linenums="1"
 import random
 
-# Número aleatorio entre 0 y 100
-print(random.randint(0, 100))
-
-# Semilla que garantiza secuencias aleatorias reproducibles
+# La semilla se fija antes de generar valores para que la secuencia sea reproducible
 random.seed(101)
+
+# Número aleatorio entre 0 y 100, ambos incluidos
+print(random.randint(0, 100))
 
 # Lista de números del 0 al 9
 lista: list[int] = list(range(10))
@@ -2190,10 +2261,18 @@ print(random.choices(lista, k=5))
 # Elegir varios números aleatorios sin repetición
 print(random.sample(lista, k=4))
 
-# Barajar la lista de forma aleatoria
+# Barajar la lista de forma aleatoria, modificándola en el sitio
 random.shuffle(lista)
 print(lista)
 ```
+
+!!! warning "No apto para usos criptográficos"
+
+    El módulo `random` genera números **pseudoaleatorios** a partir de un estado interno
+    determinista, de modo que fijar la semilla reproduce siempre la misma secuencia. Esa
+    propiedad es deseable para poder repetir un experimento, pero inaceptable al generar
+    contraseñas, _tokens_ de sesión o claves. Para esos casos existe el módulo
+    `secrets`, que se apoya en la fuente de entropía del sistema operativo.
 
 ### Módulos `time` y `timeit`
 
@@ -2241,8 +2320,8 @@ tiempo_transcurrido: float = time.time() - tiempo_inicio
 print(tiempo_transcurrido)
 ```
 
-Para mediciones más precisas, se puede utilizar la biblioteca `timeit`, que permite
-realizar múltiples repeticiones y obtener resultados estadísticamente más fiables:
+Para mediciones más precisas, se puede utilizar el módulo `timeit`, que permite realizar
+múltiples repeticiones y obtener resultados estadísticamente más fiables:
 
 ```python linenums="1"
 import timeit
@@ -2266,12 +2345,24 @@ stmt2: str = "func_dos(100)"
 print(timeit.timeit(stmt2, setup2, number=100000))
 ```
 
-En Jupyter Notebooks es posible utilizar **funciones mágicas**, que se activan con dos
-signos de porcentaje al comienzo del bloque de código, como en el caso de `timeit`:
+### Funciones mágicas de Jupyter
+
+Los _notebooks_ de Jupyter ofrecen además las **funciones mágicas**, órdenes propias del
+entorno que no forman parte del lenguaje ni de su biblioteca estándar. Existen dos
+variantes. Las de línea se escriben con un único signo de porcentaje y afectan solo a la
+expresión que las sigue, mientras que las de celda se escriben con dos signos y afectan
+a la celda completa:
 
 ```python linenums="1"
+# Función mágica de línea: cronometra únicamente esta expresión
+%timeit func_uno(100)
+```
+
+```python linenums="1"
+# Función mágica de celda: cronometra todo el contenido de la celda
 %%timeit
 func_uno(100)
+func_dos(100)
 ```
 
 ## Manejo de errores y excepciones
@@ -2329,16 +2420,17 @@ def eleccion_usuario() -> int:
 eleccion_usuario()
 ```
 
-Para limpiar la consola cuando el usuario introduce valores incorrectos en un cuaderno
-Jupyter, se puede importar y usar la función `clear_output()` de la biblioteca
+Para limpiar la consola cuando el usuario introduce valores incorrectos en un _notebook_
+de Jupyter, se puede importar y usar la función `clear_output()` del módulo
 `IPython.display`:
 
 ```python linenums="1"
 from IPython.display import clear_output
 ```
 
-Esta función borra la salida de la celda actual en un cuaderno Jupyter, lo que puede ser
-útil para mantener la interfaz limpia. Sin embargo, solo funciona en cuadernos Jupyter.
+Esta función borra la salida de la celda actual, lo que resulta útil para limpiar los
+mensajes de error acumulados al validar la entrada. Solo tiene efecto dentro de un
+_notebook_ de Jupyter.
 
 ### Excepciones (`try`, `except` y `finally`)
 
@@ -2349,17 +2441,21 @@ error en el código, el programa entero se detendrá. Para evitar esto, se utili
 manejo de excepciones, que permite continuar con el programa, notificar el error y
 seguir con la ejecución.
 
-Existen tres palabras clave para el manejo de errores en Python:
+Las palabras clave del manejo de errores en Python son las siguientes:
 
 - `try`: Bloque de código que se intenta ejecutar (puede producir un error).
 - `except`: Bloque de código que se ejecuta en caso de que haya un error en el bloque
   `try`.
+- `else`: Bloque que se ejecuta solo si el bloque `try` termina sin lanzar ninguna
+  excepción.
 - `finally`: Bloque final de código que se ejecuta independientemente de si hubo un
   error o no.
+- `raise`: Vuelve a lanzar la excepción capturada, de modo que se propague hacia el
+  código que invocó a la función.
 
 ```python linenums="1"
 try:
-    with open("fichero", "w") as f:
+    with open("mi_archivo.txt", "w") as f:
         f.write("Línea de prueba")
 except TypeError:
     print("Hubo un problema con el tipo de dato")
@@ -2415,84 +2511,90 @@ x: list[int] = [1, 2, 3]
 z: int = 2
 y: int = 1
 
-resultado1: int = z + y
+
 
 # La función breakpoint(), disponible desde Python 3.7, detiene la ejecución e
 # inicia el depurador. La forma clásica equivalente es pdb.set_trace()
 breakpoint()
 
 # La siguiente línea provoca un TypeError, ya que no es posible sumar int y list
-resultado2 = y + x
+resultado: int = y + x
 ```
 
 ## Trabajo con archivos y directorios
 
 ### Lectura y escritura
 
-Es posible abrir un fichero usando la función `open()`:
+Es posible abrir un archivo usando la función `open()`:
 
 ```python linenums="1"
-fichero = open(ruta_del_fichero)
+archivo = open("mi_archivo.txt")
 ```
 
-Python permite asignar diferentes permisos (escritura, lectura o ambas) al fichero:
+El segundo argumento de `open()` indica el modo de apertura, que determina si el archivo
+se abre para leer, para escribir o para ambas cosas:
 
-| Permiso | Definición                                                               |
-| ------- | ------------------------------------------------------------------------ |
-| `r`     | Solo lectura.                                                            |
-| `w`     | Solo escritura, reescribe los archivos existentes o crea uno nuevo.      |
-| `a`     | Para añadir información al final del archivo.                            |
-| `r+`    | Lectura y escritura.                                                     |
-| `w+`    | Escritura y lectura, reescribe los archivos existentes o crea uno nuevo. |
-| `wb`    | Modo archivo, escritura y binario.                                       |
+| Modo | Descripción                                                                                                                  |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `r`  | Solo lectura.                                                                                                                |
+| `w`  | Solo escritura, reescribe los archivos existentes o crea uno nuevo.                                                          |
+| `a`  | Para añadir información al final del archivo.                                                                                |
+| `r+` | Lectura y escritura.                                                                                                         |
+| `w+` | Escritura y lectura, reescribe los archivos existentes o crea uno nuevo.                                                     |
+| `wb` | Escritura en binario. El sufijo `b` se combina con cualquier modo y hace que se trabaje con `bytes` en lugar de con cadenas. |
 
-Para leer un fichero se pueden utilizar las siguientes funciones:
+Para leer un archivo se pueden utilizar los siguientes métodos:
 
-| Función       | Definición                                                        |
-| ------------- | ----------------------------------------------------------------- |
-| `readable()`  | Devuelve un booleano para saber si se puede leer o no el fichero. |
-| `read()`      | Muestra toda la información del fichero.                          |
-| `readline()`  | Lee la primera línea del fichero.                                 |
-| `readlines()` | Lee todas las líneas del fichero y las inserta en una lista.      |
+| Método        | Descripción                                                            |
+| ------------- | ---------------------------------------------------------------------- |
+| `readable()`  | Devuelve un booleano para saber si se puede leer o no el archivo.      |
+| `read()`      | Devuelve todo el contenido restante del archivo como una única cadena. |
+| `readline()`  | Devuelve la siguiente línea a partir de la posición actual del cursor. |
+| `readlines()` | Devuelve todas las líneas restantes del archivo en una lista.          |
+
+Todos estos métodos operan a partir de la posición del cursor, que avanza con cada
+lectura. Así, `readline()` devuelve la primera línea la primera vez que se invoca, la
+segunda en la siguiente llamada y una cadena vacía cuando se alcanza el final del
+archivo.
 
 ```python linenums="1"
-nombre_fic: str = input("Nombre del fichero: ")
+nombre_arch: str = input("Nombre del archivo: ")
 
-fichero = open(nombre_fic, "r")
+archivo = open(nombre_arch, "r")
 
-if fichero.readable():
-    lista: list[str] = fichero.readlines()
+if archivo.readable():
+    lista: list[str] = archivo.readlines()
 
-for empleado in lista:
-    print(empleado)
+    for empleado in lista:
+        print(empleado)
 
-# Es recomendable cerrar el fichero después de trabajar con él
-fichero.close()
+# Es recomendable cerrar el archivo después de trabajar con él
+archivo.close()
 ```
 
-Si se lee un archivo directamente con métodos como `read()`, al leer de nuevo el fichero
-no aparecerá nada. Para solucionarlo se utiliza `nombre_fichero.seek(0)`, que permite
-poner el cursor al principio del fichero.
+Si se lee un archivo completo con `read()`, una segunda lectura no devuelve nada, porque
+el cursor ha quedado al final del contenido. Para volver al principio se emplea
+`archivo.seek(0)`.
 
-Otra forma de abrir un fichero y operar con él es mediante el gestor de contexto `with`,
+Otra forma de abrir un archivo y operar con él es mediante el gestor de contexto `with`,
 que cierra automáticamente el archivo al finalizar el bloque:
 
 ```python linenums="1"
-with open("myfile.txt", mode="r") as my_new_file:
-    contents: str = my_new_file.read()
+with open("mi_archivo.txt", mode="r") as archivo_abierto:
+    contenido: str = archivo_abierto.read()
 
-print(contents)
+print(contenido)
 ```
 
-Un ejemplo de cómo añadir información al final de un fichero:
+Un ejemplo de cómo añadir información al final de un archivo:
 
 ```python linenums="1"
-nombre_fic: str = input("Nombre del fichero: ")
+nombre_arch: str = input("Nombre del archivo: ")
 nuevo_empleado: str = input("Nombre del nuevo empleado: ")
 funcion_empleado: str = input(f"Puesto del empleado {nuevo_empleado}: ")
 
-with open(nombre_fic, "a") as fichero:
-    fichero.write(f"\n{nuevo_empleado} - {funcion_empleado}")
+with open(nombre_arch, "a") as archivo:
+    archivo.write(f"\n{nuevo_empleado} - {funcion_empleado}")
 ```
 
 ### Rutas de archivos con `pathlib`
@@ -2505,9 +2607,25 @@ operativos:
 ```python linenums="1"
 from pathlib import Path
 
+# El operador / compone rutas con el separador propio del sistema
 ruta: Path = Path("datos") / "archivo.csv"
+
+# Imprime: datos/archivo.csv
 print(ruta)
+
+# Componentes de la ruta: nombre completo, nombre sin extensión, extensión y directorio
+print(ruta.name, ruta.stem, ruta.suffix, ruta.parent)
+
+# Comprobaciones sobre el sistema de archivos
+print(ruta.exists(), ruta.is_file())
+
+# Creación del directorio padre, sin error si ya existe
+ruta.parent.mkdir(parents=True, exist_ok=True)
 ```
+
+Frente a la manipulación de cadenas, `pathlib` evita construir separadores a mano y
+concentra en un único objeto tanto la descomposición de la ruta como las operaciones
+sobre el sistema de archivos.
 
 ### Gestión de directorios
 
@@ -2544,22 +2662,22 @@ shutil.move("Prueba.txt", "/home/usuario/")
 send2trash.send2trash("/home/usuario/Prueba.txt")
 ```
 
-Python también permite listar todos los archivos de un directorio, incluyendo carpetas,
-subcarpetas y ficheros:
+Python también permite recorrer un directorio completo, con todos sus subdirectorios y
+archivos:
 
 ```python linenums="1"
 import os
 
 directorio: str = "/home/usuario/Escritorio"
 
-for carpeta, sub_carpetas, archivos in os.walk(directorio):
-    print(f"Estamos en la carpeta: {carpeta}")
-    print("Las subcarpetas son: ")
+for actual, subdirectorios, archivos in os.walk(directorio):
+    print(f"Directorio actual: {actual}")
+    print("Subdirectorios:")
 
-    for sub_carpeta in sub_carpetas:
-        print(f"\t{sub_carpeta}")
+    for subdirectorio in subdirectorios:
+        print(f"\t{subdirectorio}")
 
-    print("Los archivos son: ")
+    print("Archivos:")
 
     for archivo in archivos:
         print(f"\t{archivo}")
@@ -2572,13 +2690,14 @@ programas de bases de datos. Son útiles para la manipulación de datos, aunque 
 contienen el contenido en crudo, sin imágenes, macros ni formato visual.
 
 En Python se trabaja con el módulo `csv` incluido en la biblioteca estándar. Otras
-bibliotecas a considerar para la manipulación de datos son Pandas, Openpyxl o la API de
+bibliotecas a considerar para la manipulación de datos son Pandas, Openpyxl o la
+interfaz de programación de aplicaciones (_Application Programming Interface_, API) de
 Google Sheets para Python.
 
 ```python linenums="1"
 import csv
 
-# Apertura del fichero y lectura de su contenido como lista de filas
+# Apertura del archivo y lectura de su contenido como lista de filas
 with open("example.csv", encoding="utf-8") as datos:
     lineas_datos: list[list[str]] = list(csv.reader(datos))
 
@@ -2600,13 +2719,13 @@ individuales con `writerow` o varias a la vez con `writerows`:
 import csv
 
 # El parámetro delimiter indica el carácter que separa una columna de otra
-with open("fichero_prueba.csv", mode="w", newline="") as archivo_salida:
+with open("archivo_prueba.csv", mode="w", newline="") as archivo_salida:
     csv_escribir = csv.writer(archivo_salida, delimiter=",")
     csv_escribir.writerow(["a", "b", "c"])
     csv_escribir.writerows([["1", "2", "3"], ["4", "5", "6"]])
 
 # El modo "a" añade la información al final del archivo existente
-with open("fichero_prueba.csv", mode="a", newline="") as archivo_salida:
+with open("archivo_prueba.csv", mode="a", newline="") as archivo_salida:
     csv_escribir = csv.writer(archivo_salida)
     csv_escribir.writerow(["Nombre", "Apellido", "Correo"])
     csv_escribir.writerows(
@@ -2617,7 +2736,8 @@ with open("fichero_prueba.csv", mode="a", newline="") as archivo_salida:
     )
 ```
 
-Para trabajar con ficheros JSON se utiliza el módulo `json` de la biblioteca estándar:
+Para trabajar con archivos JSON (_JavaScript Object Notation_) se utiliza el módulo
+`json` de la biblioteca estándar:
 
 ```python linenums="1"
 import json
@@ -2653,7 +2773,7 @@ with open("nuevo_archivo.txt", "w+") as f:
 with open("nuevo_archivo2.txt", "w+") as f:
     f.write("Un poquito más de texto")
 
-# Creación del archivo comprimido y adición de los ficheros
+# Creación del archivo comprimido y adición de los archivos
 with zipfile.ZipFile("comprimido_1.zip", "w") as archivo_comprimido:
     archivo_comprimido.write("nuevo_archivo.txt", compress_type=zipfile.ZIP_DEFLATED)
     archivo_comprimido.write("nuevo_archivo2.txt", compress_type=zipfile.ZIP_DEFLATED)
@@ -2665,17 +2785,17 @@ with zipfile.ZipFile("comprimido_1.zip", "r") as zip_obj:
 
 ## Expresiones regulares
 
-Las expresiones regulares son secuencias de caracteres que definen patrones de búsqueda
-dentro de cadenas de texto. En Python, el módulo `re` proporciona todas las herramientas
-necesarias para trabajar con ellas de forma eficiente, permitiendo buscar, extraer,
-reemplazar y validar texto según patrones específicos.
+Las **expresiones regulares** son secuencias de caracteres que definen patrones de
+búsqueda dentro de cadenas de texto. En Python, el módulo `re` proporciona todas las
+herramientas necesarias para trabajar con ellas de forma eficiente, permitiendo buscar,
+extraer, reemplazar y validar texto según patrones específicos.
 
 ### Búsqueda de patrones
 
-Las funciones principales del módulo `re` para localizar texto son `search()`, que
-encuentra la primera coincidencia de un patrón, `findall()`, que devuelve todas las
-coincidencias como lista, y `finditer()`, que devuelve un iterador con objetos que
-contienen información detallada sobre cada coincidencia:
+El módulo `re` ofrece tres funciones para localizar texto. `search()` encuentra la
+primera coincidencia de un patrón, `findall()` devuelve todas las coincidencias como
+lista y `finditer()` devuelve un iterador con objetos que contienen información
+detallada sobre cada coincidencia:
 
 ```python linenums="1"
 import re
@@ -2726,7 +2846,7 @@ texto: str = "Mi número de teléfono es 11 11 11 111"
 numero = re.search(r"\d{2} \d{2} \d{2} \d{3}", texto)
 print(numero.group())
 
-# Los grupos, delimitados por paréntesis, permiten extraer áreas concretas del patrón
+# Los paréntesis delimitan grupos, que se tratan en detalle más adelante
 numero_grupos = re.compile(r"(\d{2}) (\d{2}) (\d{2}) (\d{3})")
 resultado = re.search(numero_grupos, texto)
 
@@ -2751,26 +2871,27 @@ texto2: str = "Tengo un perro que se llama Tom"
 busq2 = re.search(r"coneja|perro", texto2)
 print(busq2.group())
 
-texto3: str = "The cat in the hat sat there"
+texto_gatos: str = "The cat in the hat sat there"
 
-# Encontrar palabras que terminen con 'at'
-terminadas_at: list[str] = re.findall(r".at", texto3)
+# El punto representa cualquier carácter, de modo que el patrón localiza
+# secuencias de tres caracteres terminadas en 'at'
+terminadas_at: list[str] = re.findall(r".at", texto_gatos)
 print(terminadas_at)
 
 # Exclusión de caracteres específicos, en este caso los dígitos
-phrase: str = "there are 3 numbers 34 inside 5 this sentence."
-print(re.findall(r"[^\d]+", phrase))
+frase_con_numeros: str = "there are 3 numbers 34 inside 5 this sentence."
+print(re.findall(r"[^\d]+", frase_con_numeros))
 
 # Eliminación de los signos de puntuación
-test_phrase: str = "This is a string! But it has punctuation. How can we remove it?"
-clean: str = " ".join(re.findall(r"[^!.? ]+", test_phrase))
-print(clean)
+frase_con_puntuacion: str = "This is a string! But it has punctuation. How can we remove it?"
+limpia: str = " ".join(re.findall(r"[^!.? ]+", frase_con_puntuacion))
+print(limpia)
 
 # Búsqueda de palabras que comparten un prefijo común
-text: str = "Hello, would you like some catfish?"
-texttwo: str = "Hello, would you like to take a catnap?"
-print(re.search(r"cat(fish|nap|claw)", text))
-print(re.search(r"cat(fish|nap|claw)", texttwo))
+texto_gato: str = "Hello, would you like some catfish?"
+texto_siesta: str = "Hello, would you like to take a catnap?"
+print(re.search(r"cat(fish|nap|claw)", texto_gato).group())
+print(re.search(r"cat(fish|nap|claw)", texto_siesta).group())
 ```
 
 ### Clases de caracteres y cuantificadores
@@ -2781,26 +2902,26 @@ Se delimitan con corchetes `[]` y admiten rangos, negaciones y combinaciones:
 ```python linenums="1"
 import re
 
-grades: str = "ACAAAABCBCBAA"
+notas: str = "ACAAAABCBCBAA"
 
 # Buscar todas las calificaciones B
-print(re.findall("B", grades))
+print(re.findall("B", notas))
 
 # Buscar calificaciones A o B
-print(re.findall("[AB]", grades))
+print(re.findall("[AB]", notas))
 
 # Buscar combinaciones AB o AC
-print(re.findall("[A][B-C]", grades))
+print(re.findall("[A][B-C]", notas))
 
 # Expresión equivalente utilizando el operador de alternancia
-print(re.findall("AB|AC", grades))
+print(re.findall("AB|AC", notas))
 
 # Negar un conjunto para obtener todo lo que no sea A
-print(re.findall("[^A]", grades))
+print(re.findall("[^A]", notas))
 
 # El símbolo ^ fuera de los corchetes ancla la búsqueda al inicio de la cadena, por
 # lo que el resultado es una lista vacía al comenzar la cadena por A
-print(re.findall("^[^A]", grades))
+print(re.findall("^[^A]", notas))
 ```
 
 Los cuantificadores especifican cuántas veces debe aparecer un patrón para considerarse
@@ -2810,30 +2931,32 @@ mínimo de repeticiones y `n` el máximo:
 ```python linenums="1"
 import re
 
-grades: str = "ACAAAABCBCBAA"
+notas: str = "ACAAAABCBCBAA"
 
 # Secuencias de entre 2 y 10 letras A consecutivas
-print(re.findall("A{2,10}", grades))
+print(re.findall("A{2,10}", notas))
 
 # Pares de letras A consecutivas
-print(re.findall("A{1,1}A{1,1}", grades))
+print(re.findall("A{1,1}A{1,1}", notas))
 
 # Con un único valor, el cuantificador exige exactamente ese número de repeticiones
-print(re.findall("A{2}", grades))
+print(re.findall("A{2}", notas))
 ```
 
 Es importante tener en cuenta que no se deben incluir espacios dentro de las llaves del
 cuantificador, ya que `"A{2, 2}"` devuelve un resultado vacío.
 
-El metacarácter `\w` representa cualquier letra o dígito, y el asterisco `*` indica cero
-o más repeticiones. El siguiente ejemplo extrae los encabezados de un artículo de
-Wikipedia donde cada encabezado va seguido de `[edit]`:
+El metacarácter `\w` representa cualquier carácter alfanumérico o el guion bajo, es
+decir, el conjunto `[a-zA-Z0-9_]`, ampliado por defecto a las letras y los dígitos de
+Unicode. El asterisco `*` indica cero o más repeticiones. El siguiente ejemplo extrae
+los encabezados de un artículo de Wikipedia en el que cada encabezado va seguido de
+`[edit]`:
 
 ```python linenums="1"
 import re
 
-with open("datasets/ferpa.txt", "r") as file:
-    wiki: str = file.read()
+with open("datasets/ferpa.txt", "r") as archivo:
+    wiki: str = archivo.read()
 
 # Buscar palabras seguidas de [edit] indicando un límite de caracteres
 print(re.findall(r"[\w]{1,100}\[edit\]", wiki))
@@ -2842,8 +2965,8 @@ print(re.findall(r"[\w]{1,100}\[edit\]", wiki))
 print(re.findall(r"[\w]*\[edit\]", wiki))
 
 # Extraer solo los títulos, descartando la etiqueta [edit]
-for title in re.findall(r"[\w ]*\[edit\]", wiki):
-    print(re.split(r"\[", title)[0])
+for titulo in re.findall(r"[\w ]*\[edit\]", wiki):
+    print(re.split(r"\[", titulo)[0])
 ```
 
 ### Grupos
@@ -2874,22 +2997,59 @@ permite acceder a los resultados como un diccionario:
 
 ```python linenums="1"
 for item in re.finditer(r"(?P<title>[\w ]*)(?P<edit_link>\[edit\])", wiki):
-    print(item.groupdict()['title'])
+    print(item.groupdict()["title"])
 ```
 
 ### _Look-ahead_ y _look-behind_
 
-Estas técnicas permiten hacer coincidir un patrón sin capturarlo en el resultado. El
-_look-ahead_ utiliza la sintaxis `(?=...)`:
+Estas construcciones, denominadas conjuntamente **aserciones de anchura cero**, permiten
+exigir que un patrón aparezca en una posición determinada sin incluirlo en el texto
+capturado. El _look-ahead_ comprueba lo que viene inmediatamente después y se escribe
+`(?=...)`, mientras que el _look-behind_ comprueba lo que precede y se escribe
+`(?<=...)`. Ambas admiten la forma negativa, `(?!...)` y `(?<!...)`, que exige que el
+patrón **no** aparezca en esa posición.
+
+El siguiente ejemplo captura los títulos que van seguidos de `[edit]` sin arrastrar la
+etiqueta al resultado:
 
 ```python linenums="1"
 import re
 
 for item in re.finditer(r"(?P<title>[\w ]+)(?=\[edit\])", wiki):
-    print(item)
+    print(item.group("title"))
 ```
 
-También es posible crear patrones multilínea utilizando la bandera `re.VERBOSE`:
+El _look-behind_ opera en sentido contrario. En el ejemplo siguiente se extraen los
+importes que van precedidos del símbolo del euro, sin incluir el símbolo en la
+coincidencia:
+
+```python linenums="1"
+import re
+
+texto: str = "El teclado cuesta €49 y el ratón €25, con 15 unidades en stock"
+
+# Solo se capturan los números precedidos por el símbolo del euro
+print(re.findall(r"(?<=€)\d+", texto))
+
+# Imprime: ['49', '25']
+
+# La forma negativa captura los números que NO van precedidos por el símbolo
+print(re.findall(r"(?<!€)\b\d+", texto))
+
+# Imprime: ['15']
+```
+
+!!! note "Longitud fija en el _look-behind_"
+
+    El módulo `re` exige que la expresión de un _look-behind_ tenga una longitud fija,
+    por lo que `(?<=€|USD)` no es válido y produce un error de compilación del patrón.
+    El _look-ahead_ no tiene esa restricción. Cuando se necesita una anchura variable
+    hay que recurrir al paquete externo `regex`, que sí la admite.
+
+También es posible repartir un patrón largo en varias líneas mediante la bandera
+`re.VERBOSE`, que ignora los espacios en blanco no escapados y admite comentarios dentro
+del propio patrón. Por esa razón, los espacios que forman parte de la búsqueda deben
+escribirse como `\ `:
 
 ```python linenums="1"
 patron: str = r"""
@@ -2900,10 +3060,17 @@ patron: str = r"""
 (?P<state>\w*)         # Estado
 """
 
-for item in re.finditer(patron, wiki, re.VERBOSE):
+with open("datasets/universidades.txt", "r") as archivo:
+    universidades: str = archivo.read()
+
+for item in re.finditer(patron, universidades, re.VERBOSE):
     print(item.groupdict())
 ```
 
 Para más información sobre expresiones regulares, se puede consultar la
 [documentación oficial](https://docs.python.org/3/library/re.html) y utilizar
 herramientas como [regex101](https://regex101.com/) para depurar patrones.
+
+El capítulo de [librerías](section_3_libraries.md) recopila paquetes de terceros que
+amplían lo visto aquí, y el de [entornos virtuales](section_1_environments.md) describe
+cómo declararlos como dependencia del proyecto.

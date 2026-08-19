@@ -18,8 +18,6 @@ automatización y red.
   \[Vídeo\]. YouTube. <https://www.youtube.com/watch?v=gd7BXuUQ91w>
 - DeciLearn. (2023). _Linux Para Principiantes - Curso completo_ \[Vídeo\]. YouTube.
   <https://youtu.be/jVQKk8IB9pA>
-- Linux Foundation. (s.f.). _Filesystem Hierarchy Standard_.
-  <https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html>
 
 ## Introducción
 
@@ -62,7 +60,7 @@ más extendida y estandarizada.
 
 <figure markdown="span">
   ![Ventana de una shell o terminal en Pop!_OS](../../assets/img/docs/linux/linux-shell-example.png)
-  <figcaption>Ejemplo de una ventana de una shell o terminal en Pop!_OS.</figcaption>
+  <figcaption>Ejemplo de una ventana de una <em>shell</em> o terminal en Pop!OS.</figcaption>
 </figure>
 
 Los comandos disponibles en la terminal presentan una sintaxis basada en un nombre
@@ -142,6 +140,18 @@ La administración básica también incluye utilidades como `whoami`, que identi
 usuario activo, `useradd`, que crea nuevas cuentas, y `wget`, que descarga recursos
 desde la red.
 
+!!! danger "`rm` no envía nada a la papelera"
+
+    A diferencia de los gestores de archivos gráficos, `rm` elimina de forma inmediata y
+    definitiva, sin paso intermedio por ninguna papelera. La combinación `rm -rf`, que
+    borra de manera recursiva y sin pedir confirmación, es la forma más rápida de
+    destruir un directorio completo por error, especialmente si la ruta se construye a
+    partir de una variable que puede estar vacía.
+
+    Conviene comprobar la ruta antes de ejecutar la orden, por ejemplo listándola con
+    `ls`, y emplear `rm -i` cuando se borre de forma interactiva. Para trabajar con una
+    papelera real existen utilidades como `trash-cli`.
+
 Otro de los flujos de trabajo más habituales, tanto en entornos corporativos como en
 servidores domésticos, es el acceso remoto a otros equipos. Este acceso se realiza
 mediante el protocolo **SSH** (_Secure Shell_), que permite establecer sesiones seguras
@@ -166,7 +176,7 @@ enriquecedor, preferiblemente en un entorno controlado como una máquina virtual
 
 La siguiente tabla recopila los comandos de uso más frecuente:
 
-| Comando   | Función                                                                                | Ejemplo de uso                          |
+| Comando   | Descripción                                                                            | Ejemplo de uso                          |
 | --------- | -------------------------------------------------------------------------------------- | --------------------------------------- |
 | `pwd`     | Muestra el directorio de trabajo actual.                                               | `pwd`                                   |
 | `ls`      | Lista el contenido de directorios, mostrando información detallada y archivos ocultos. | `ls -la /home/usuario`                  |
@@ -196,7 +206,7 @@ La siguiente tabla recopila los comandos de uso más frecuente:
 | `du`      | Muestra el tamaño de archivos y directorios.                                           | `du -sh /home/usuario`                  |
 | `top`     | Muestra los procesos en ejecución y el uso de recursos en tiempo real.                 | `top`                                   |
 | `ps`      | Lista los procesos en ejecución.                                                       | `ps aux`                                |
-| `kill`    | Envía una señal a un proceso identificado por su PID.                                  | `kill -15 1234`                         |
+| `kill`    | Envía una señal a un proceso identificado por su identificador (PID).                  | `kill -15 1234`                         |
 
 ## Estructura de directorios
 
@@ -224,18 +234,18 @@ Dentro de esta estructura destacan una serie de directorios esenciales:
 - `/home`: Contiene los espacios de trabajo de los usuarios, mientras que `/root` se
   reserva exclusivamente para el superusuario.
 - `/var`: Almacena datos variables como registros (_logs_), colas y bases de datos.
-- `/dev`, `/proc` y `/sys`: Proporcionan representaciones virtuales del _hardware_ y del
+- `/dev`, `/proc` y `/sys`: Proporcionan representaciones virtuales del hardware y del
   estado interno del _kernel_, lo que permite un acceso sistemático y controlado a los
   recursos del sistema.
 
-Uno de los directorios más visitados, de manera directa o indirecta, es la carpeta
+Uno de los directorios más visitados, de manera directa o indirecta, es el directorio
 oculta `~/.cache`, que almacena datos temporales generados por diversas aplicaciones
 para acelerar operaciones posteriores. En esta ubicación, las herramientas de gestión de
-dependencias mantienen sus propios directorios de **_cache_**, donde guardan paquetes
+dependencias mantienen sus propios directorios de **caché**, donde guardan paquetes
 descargados, compilaciones intermedias y metadatos. Ejemplos representativos son
-`~/.cache/uv` para el gestor de paquetes `uv` de Python o `~/.cache/pip` para `pip`.
+`~/.cache/uv` para el gestor de paquetes uv de Python o `~/.cache/pip` para pip.
 
-Con el tiempo, estos directorios de _cache_ pueden acumular un volumen considerable de
+Con el tiempo, estos directorios de caché pueden acumular un volumen considerable de
 datos. Para identificar qué directorios consumen más espacio en disco resulta útil el
 comando `du` con opciones que limitan la profundidad de exploración.
 
@@ -248,10 +258,11 @@ comando `du` con opciones que limitan la profundidad de exploración.
     du -h --max-depth=1 ~
     ```
 
-    Este comando muestra el espacio ocupado por cada carpeta en formato legible (`-h` de
-    _human-readable_), limitando la exploración a un solo nivel de profundidad. Resulta
-    especialmente práctico para detectar directorios de _cache_ que han crecido de forma
-    descontrolada y que pueden limpiarse sin afectar al funcionamiento del sistema.
+    Este comando muestra el espacio ocupado por cada directorio en formato legible (`-h`
+    de _human-readable_), limitando la exploración a un solo nivel de profundidad.
+    Resulta especialmente práctico para detectar directorios de caché que han crecido de
+    forma descontrolada y que pueden limpiarse sin afectar al funcionamiento del
+    sistema.
 
 ## Usuarios y grupos
 
@@ -298,7 +309,19 @@ tres caracteres, correspondientes al propietario, al grupo y a otros, respectiva
 Cada carácter indica si el permiso de lectura (`r`), escritura (`w`) o ejecución (`x`)
 está concedido. Cuando un permiso no está habilitado, se sustituye por un guion.
 
-???+ example "Interpretar permisos con ls -l"
+!!! warning "Los permisos significan otra cosa en un directorio"
+
+    Sobre un archivo, `r` permite leer su contenido, `w` modificarlo y `x` ejecutarlo.
+    Sobre un directorio el significado cambia: `r` permite listar los nombres que
+    contiene, `w` permite crear, renombrar y borrar entradas dentro de él, y `x` permite
+    atravesarlo para acceder a lo que hay debajo.
+
+    De ahí se derivan dos consecuencias que suelen sorprender. Un directorio con `r`
+    pero sin `x` permite ver los nombres de los archivos pero no abrirlos. Y el permiso
+    `w` sobre un directorio basta para borrar un archivo que hay dentro, aunque ese
+    archivo pertenezca a otro usuario y no conceda permiso de escritura.
+
+???+ example "Interpretar permisos con `ls -l`"
 
     Al ejecutar `ls -l` sobre un archivo se obtiene una cadena de permisos como la
     siguiente:
@@ -372,7 +395,7 @@ y, para los directorios, de permisos completos. El valor de `umask` indica qué 
 deben eliminarse automáticamente, de modo que cuanto más restrictiva sea la máscara, más
 limitados serán los permisos resultantes.
 
-???+ example "Máscara umask"
+???+ example "Máscara `umask`"
 
     Con una máscara `umask` de 022:
 
@@ -398,7 +421,7 @@ recurso.
 Este comando permite modificar únicamente el usuario propietario, solo el grupo o ambos
 de forma simultánea, y puede aplicarse de manera recursiva a directorios completos.
 
-???+ example "Cambiar propietario con chown"
+???+ example "Cambiar propietario con `chown`"
 
     Para asignar la propiedad de un directorio llamado `proyecto` al usuario `ana`:
 
@@ -426,6 +449,17 @@ de forma simultánea, y puede aplicarse de manera recursiva a directorios comple
     ```bash linenums="1"
     sudo chown -R ana:desarrolladores proyecto
     ```
+
+!!! warning "Alcance de los cambios recursivos con `sudo`"
+
+    La opción `-R` aplica el cambio a todo el árbol de directorios, y `sudo` elimina
+    cualquier restricción que hubiera impedido hacerlo. Un error en la ruta puede dejar
+    inservible una parte del sistema, y ejecutar `sudo chown -R` sobre `/` o sobre
+    `/usr` obliga en la práctica a reinstalar.
+
+    La precaución básica consiste en usar rutas relativas desde el directorio correcto,
+    o rutas absolutas escritas por completo, y nunca una variable sin comprobar que
+    tiene valor.
 
 ## Procesos y servicios
 
@@ -510,6 +544,19 @@ plano, desde donde puede reanudarse con `fg`.
     pkill python
     ```
 
+!!! danger "`kill -9` y `pkill` actúan sin contemplaciones"
+
+    La señal `SIGKILL`, que `kill -9` envía, no puede ser interceptada por el proceso,
+    de modo que este termina sin ejecutar su rutina de cierre. El resultado puede ser
+    trabajo sin guardar, archivos a medio escribir o bloqueos que quedan sin liberar.
+    Conviene intentar primero `kill -15`, que envía `SIGTERM` y permite al proceso
+    terminar de forma ordenada, y reservar `SIGKILL` para cuando no responda.
+
+    `pkill python` es más peligroso de lo que parece, porque termina **todos** los
+    procesos cuyo nombre coincida, incluidos los que no se pretendía tocar. Conviene
+    comprobar antes qué se va a eliminar con `pgrep -a python`, y acotar el alcance con
+    `pkill -u $USER` para limitarlo a los procesos del usuario actual.
+
 ### Ejecución persistente de procesos
 
 En entornos de desarrollo y producción es frecuente la necesidad de mantener procesos en
@@ -555,7 +602,7 @@ estrictamente necesario.
 El control de los _daemons_ se realiza mediante `systemctl`, que permite iniciar,
 detener, reiniciar y habilitar servicios de manera uniforme:
 
-| Comando                      | Función                                                                          |
+| Comando                      | Descripción                                                                      |
 | ---------------------------- | -------------------------------------------------------------------------------- |
 | `sudo systemctl start sshd`  | Inicia el _daemon_ y crea el proceso correspondiente.                            |
 | `sudo systemctl stop sshd`   | Detiene el _daemon_.                                                             |
@@ -584,9 +631,8 @@ sin necesidad de cerrar la sesión, lo que mantiene la continuidad del trabajo.
 
 Más allá de los alias, el sistema ofrece mecanismos de automatización más completos,
 como los [_scripts_ de Bash](../../02_dev_tools/02_scripting/section_1_bash.md) y los
-[_Makefiles_](../../02_dev_tools/02_scripting/section_2_makefile.md), que permiten
-ejecutar secuencias de comandos de manera periódica o en respuesta a eventos
-específicos.
+[Make](../../02_dev_tools/02_scripting/section_2_makefile.md), que permiten encadenar
+secuencias de comandos y reutilizarlas como tareas con nombre específicos.
 
 ## Gestión de red y puertos
 
@@ -628,3 +674,9 @@ en muchas distribuciones, no se encuentran instaladas por defecto.
     comando `ss`, incluido en `iproute2`, ofrece la misma información de forma más
     rápida y detallada. Por ejemplo, `ss -tulnp` lista los puertos TCP y UDP en escucha
     junto con el proceso asociado a cada uno.
+
+Con el sistema operativo cubierto, el módulo de herramientas de desarrollo continúa con
+[Git](../../02_dev_tools/01_git/section_1_fundamentals.md) para el control de versiones,
+y con [Bash](../../02_dev_tools/02_scripting/section_1_bash.md) y
+[Make](../../02_dev_tools/02_scripting/section_2_makefile.md) para automatizar las
+tareas que aquí se han ejecutado de forma manual.
