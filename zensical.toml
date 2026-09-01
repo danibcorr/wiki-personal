@@ -2,9 +2,9 @@
 site_name = "Daniel Bazo Correa"
 site_description = "🏛️ Mi wiki personal como ingeniero y científico de datos en Español"
 site_author = "Daniel Bazo Correa"
-site_url = "https://danibcorr.github.io/wiki-personal/"
-repo_url = "https://github.com/danibcorr/wiki-personal"
-repo_name = "danibcorr/wiki-personal"
+site_url = "https://danibcorr.github.io/se-ml-wiki/"
+repo_url = "https://github.com/danibcorr/se-ml-wiki"
+repo_name = "danibcorr/se-ml-wiki"
 copyright = "Copyright &copy; 2026 Daniel Bazo Correa"
 nav = [
     {"Inicio" = "index.md"},

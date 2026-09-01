@@ -10,7 +10,6 @@ jobs:
   build-deploy-docs:
     name: Build and Deploy Documentation
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       pages: write
@@ -25,10 +24,6 @@ jobs:
 
       - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
-
-      - name: Get Version
-        id: version
-        uses: ./.github/actions/obtain-version
 
       - name: Build and Deploy Documentation
         uses: ./.github/actions/build-docs
