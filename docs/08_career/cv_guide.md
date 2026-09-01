@@ -6,16 +6,9 @@ description:
 title: Estrategias de empleo
 ---
 
-!!! warning
-
-    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
-    estar incompleto, contener errores o presentar información desactualizada. Además,
-    es posible que esté desordenado, carezca de una estructura clara o incluya notas
-    copiadas directamente.
-
 Este capítulo reúne estrategias prácticas para la búsqueda de empleo en el sector
-tecnológico, cubriendo la elaboración del currículum, la preparación de entrevistas y la
-negociación salarial.
+tecnológico, cubriendo la elaboración del currículum, la optimización de la presencia
+profesional en LinkedIn, la preparación de entrevistas y la negociación salarial.
 
 ## Bibliografía
 
@@ -24,8 +17,8 @@ negociación salarial.
 ## Introducción
 
 El propósito de esta guía es reunir consejos para la búsqueda de empleo, especialmente
-en el sector tecnológico. Recoge información de fuentes relevantes, modelos de CV
-contrastados y aprendizajes acumulados a lo largo del proceso.
+en el sector tecnológico. Recoge información de fuentes relevantes, modelos de
+currículum contrastados y aprendizajes acumulados a lo largo del proceso.
 
 En el contexto actual, la competencia técnica, aunque necesaria, ya no resulta
 suficiente por sí sola. Los avances en inteligencia artificial están transformando la
@@ -42,23 +35,34 @@ oportunidades. Estas relaciones permiten conocer de primera mano la forma de tra
 del candidato, tanto de manera individual como en equipo, y el valor de una buena
 recomendación resulta difícil de igualar.
 
+A partir de esta base, las siguientes secciones recorren de forma progresiva los
+elementos que intervienen en un proceso de selección, comenzando por el documento que
+constituye la primera toma de contacto con la empresa.
+
 ## Currículum Vitae
 
 El currículum vitae es la principal carta de presentación profesional. Determina la
 primera impresión del empleador y, en la mayoría de los casos, constituye el filtro
 inicial para decidir si una candidatura prospera.
 
-Un CV eficaz no debe limitarse a enumerar habilidades o responsabilidades, sino que debe
-demostrar cómo se aplican los conocimientos para **resolver problemas, aportar valor y
-generar resultados cuantificables**.
+Un currículum eficaz no debe limitarse a enumerar habilidades o responsabilidades, sino
+que debe demostrar cómo se aplican los conocimientos para **resolver problemas, aportar
+valor y generar resultados cuantificables**.
 
 Además, resulta fundamental considerar que muchas empresas utilizan **Sistemas de
 Seguimiento de Candidatos (ATS, _Applicant Tracking Systems_)**, los cuales filtran los
 documentos antes de que lleguen a un reclutador humano. Por ello, es esencial optimizar
 el documento para que sea compatible con estas herramientas.
 
-Para lograr una estructura clara, lógica y profesional, se recomienda organizar el CV en
-las siguientes secciones:
+!!! note "Compatibilidad con sistemas ATS"
+
+    Los sistemas ATS analizan el texto del documento de forma automática, por lo que
+    conviene evitar imágenes, gráficos, iconos o tablas complejas que dificulten la
+    lectura. El uso de tipografías legibles y de una estructura sencilla basada en texto
+    aumenta la probabilidad de que la candidatura supere este primer filtro.
+
+Para lograr una estructura clara, lógica y profesional, se recomienda organizar el
+currículum en las siguientes secciones:
 
 - **Encabezado (datos de contacto):** Incluye nombre y apellidos, teléfono, correo
   electrónico profesional, ubicación y enlaces a perfiles relevantes como LinkedIn o
@@ -78,17 +82,35 @@ las siguientes secciones:
   el peso de la parte técnica suele ser mayor.
 - **Educación y certificaciones:** Sigue el formato **\[Grado académico\] |
   \[Institución\] | \[Año\]** e incluye certificaciones técnicas de peso, como las de
-  AWS o Azure. Los cursos en línea, por ejemplo los de Coursera, generalmente aportan
-  poco valor al CV y restan espacio a proyectos más relevantes, aunque pueden
-  mencionarse durante la entrevista. Resultan útiles cuando la experiencia laboral o el
-  número de proyectos es limitado, en cuyo caso conviene respaldarlos con evidencias del
-  trabajo realizado.
+  AWS, Azure o similares. Los cursos en línea, por ejemplo de Coursera, generalmente
+  aportan poco valor al currículum y restan espacio a proyectos más relevantes, aunque
+  pueden mencionarse durante la entrevista. Resultan útiles cuando la experiencia
+  laboral o el número de proyectos es limitado, en cuyo caso conviene respaldarlos con
+  evidencias del trabajo realizado.
 - **Proyectos y publicaciones (opcional):** Sección valiosa para perfiles con poca
   experiencia, procesos de cambio de carrera o cuando los trabajos realizados están
   directamente vinculados al puesto solicitado. Las publicaciones y la participación en
   congresos tienen un gran peso cuando los perfiles son de I+D.
 
-Para que el CV resulte claro, conciso y estratégico, se sugiere seguir estas
+La sección de experiencia profesional es la que concentra mayor atención por parte del
+reclutador, por lo que la forma de redactar cada logro merece una atención especial. La
+**fórmula XYZ** ofrece una plantilla sencilla para transformar responsabilidades
+genéricas en resultados medibles.
+
+???+ example "Fórmula XYZ"
+
+    En lugar de describir una tarea de forma genérica como _«responsable del
+    mantenimiento de una canalización de datos»_, la fórmula XYZ presenta el mismo
+    trabajo en términos de impacto:
+
+    > Reduje el tiempo de procesamiento de la canalización de datos en un 40 %, medido
+    > sobre la ejecución diaria, mediante la paralelización de las tareas y la
+    > optimización de las consultas.
+
+    El resultado (X) aparece cuantificado por una métrica (Y) y respaldado por la acción
+    concreta que lo hizo posible (Z).
+
+Para que el currículum resulte claro, conciso y estratégico, se sugiere seguir estas
 recomendaciones:
 
 1. **Adaptación:** Incorporar palabras clave de la descripción del puesto. Una
@@ -102,57 +124,20 @@ recomendaciones:
 4. **Calidad:** Eliminar cualquier error ortográfico o gramatical y evitar frases
    genéricas o clichés que no aporten información sustancial.
 
-## Carta de presentación
+!!! tip "Alineación con la oferta"
 
-La carta de presentación es un documento breve que acompaña al CV y explica **por qué el
-candidato es la persona ideal para el puesto**. A diferencia del currículum, que se
-centra en datos técnicos y logros, la carta permite mostrar la **motivación, trayectoria
-y personalidad** del candidato.
-
-Aunque no siempre resulta obligatoria, y en un mercado saturado y automatizado puede
-parecer una inversión de tiempo excesiva, sigue siendo una herramienta valiosa en
-procesos internacionales, en empresas que buscan un trato personalizado o cuando se
-desea destacar logros excepcionales y cartas de recomendación. En cualquier caso, debe
-complementar al CV con coherencia, sin limitarse a repetir la misma información.
-
-Entre los consejos clave para destacar se encuentran los siguientes:
-
-- **Personalización y brevedad:** Siempre que sea posible, conviene identificar al
-  responsable del proceso, ya sea el gerente de contratación o el reclutador.
-  Herramientas como LinkedIn resultan fundamentales para lograrlo.
-- **Investigación previa:** Incluso si no se redacta una carta, investigar a los
-  entrevistadores en LinkedIn antes de una videollamada permite enfocar mejor las
-  preguntas y demostrar interés real. Este esfuerzo adicional suele percibirse de forma
-  positiva, ya que la búsqueda de empleo constituye, en sí misma, un trabajo.
-- **Gancho inicial:** El primer párrafo debe captar la atención mostrando conocimiento
-  de la empresa y vinculando el interés del candidato con sus desafíos actuales.
-- **Enfoque en resultados:** Relacionar la experiencia con los retos del puesto e
-  incluir logros medibles, utilizando un lenguaje profesional, claro y sin jerga
-  excesiva.
-- **Revisión:** Emplear herramientas de corrección y, si resulta posible, solicitar a
-  otra persona que lea el texto.
-- **Formato:** Respetar la extensión máxima de una página y evitar información
-  innecesaria, como la dirección postal completa.
-
-La estructura recomendada es la siguiente:
-
-1. **Encabezado:** Datos de contacto del remitente y del destinatario.
-2. **Saludo personalizado:** «Estimado/a \[Nombre\]».
-3. **Primer párrafo (gancho):** Expresa la motivación para unirse a la empresa,
-   demostrando conocimiento de su cultura y proyectos actuales.
-4. **Cuerpo (de dos a tres párrafos):** Relaciona la experiencia con los requisitos del
-   puesto y explica cómo los logros aportarán valor. Se recomienda el modelo **PAR
-   (Problema, Acción, Resultado)** para estructurar los ejemplos.
-5. **Cierre:** Reafirma el entusiasmo, el encaje con la posición y la disposición para
-   concertar una entrevista.
-6. **Firma:** «Atentamente», seguido del nombre.
+    Antes de enviar la candidatura conviene contrastar el vocabulario del currículum con
+    el de la descripción del puesto. Cuanto mayor sea la coincidencia de términos
+    relevantes, mayor será la probabilidad de superar el filtro automático y de captar la
+    atención del reclutador en la primera lectura.
 
 ## LinkedIn
 
-LinkedIn no es simplemente un currículum digital, sino una plataforma que funciona como
-vitrina profesional, espacio de _networking_ y motor de búsqueda de empleo. Un perfil
-bien estructurado aumenta de forma significativa la probabilidad de ser contactado para
-entrevistas.
+Más allá del currículum, la presencia profesional en línea complementa la candidatura y
+amplía las oportunidades de contacto. LinkedIn no es simplemente un currículum digital,
+sino una plataforma que funciona como vitrina profesional, espacio de _networking_ y
+motor de búsqueda de empleo. Un perfil bien estructurado aumenta de forma significativa
+la probabilidad de ser contactado para entrevistas.
 
 Un perfil sólido comienza con una estética cuidada y profesional:
 
@@ -162,7 +147,7 @@ Un perfil sólido comienza con una estética cuidada y profesional:
   técnica y proyectar una identidad visual coherente con el sector.
 - **URL personalizada:** Resulta fundamental contar con una dirección limpia y fácil de
   recordar, por ejemplo `linkedin.com/in/nombre-apellido` en lugar de una cadena de
-  números genérica. Esto facilita su inclusión en el CV y en otros documentos.
+  números genérica. Esto facilita su inclusión en el currículum y en otros documentos.
 
 Esta estrategia de optimización debe extenderse a otras redes o plataformas
 profesionales relevantes. El objetivo es que, cuando un reclutador realice una búsqueda,
@@ -173,11 +158,19 @@ Finalmente, conviene aprovechar la **sección de introducción** para destacar e
 estratégicos, como el portafolio, los blogs técnicos o las páginas personales que
 demuestren el trabajo de manera tangible.
 
+!!! tip "Coherencia entre plataformas"
+
+    La información que aparece en LinkedIn, en el portafolio y en el currículum debe
+    resultar coherente. Las discrepancias en fechas, cargos o logros generan
+    desconfianza y pueden penalizar la candidatura durante la verificación de perfiles.
+
 ## Entrevista
 
-Una entrevista no debe considerarse un examen, sino un **diálogo estratégico**.
-Constituye la oportunidad para demostrar competencias técnicas, personalidad, capacidad
-de comunicación y adecuación a la cultura de la empresa.
+Una vez que el currículum y el perfil profesional han cumplido su función de abrir la
+puerta, la entrevista se convierte en el siguiente punto decisivo del proceso. No debe
+considerarse un examen, sino un **diálogo estratégico**. Constituye la oportunidad para
+demostrar competencias técnicas, personalidad, capacidad de comunicación y adecuación a
+la cultura de la empresa.
 
 ### Tipos de preguntas y metodologías
 
@@ -196,6 +189,15 @@ Las preguntas suelen clasificarse en dos categorías principales:
    confirmar que se ha entendido, **Clarificar** solicitando detalles adicionales si es
    necesario y, por último, **Estructurar** las ideas tomándose un momento antes de
    responder de forma lógica.
+
+???+ example "Método CARL aplicado a una pregunta conductual"
+
+    Ante la pregunta _«Cuéntame una ocasión en la que resolviste un problema técnico bajo
+    presión»_, una respuesta estructurada con el método CARL describiría el **Contexto**
+    (una incidencia en producción durante un pico de tráfico), la **Acción** (el
+    diagnóstico y la corrección aplicada), los **Resultados** (el servicio restablecido
+    en pocos minutos y sin pérdida de datos) y la **Lección** (la incorporación de
+    alertas automáticas para anticipar situaciones similares).
 
 ### Preparación de preguntas clave
 
@@ -237,8 +239,11 @@ del candidato. A continuación se recogen preguntas útiles organizadas por tem�
 
 **Compensación y beneficios:**
 
+- ¿El salario indicado es bruto anual y en cuántas pagas se reparte?
 - Además del salario base, ¿qué beneficios ofrecen, como ticket restaurante, seguro
   médico, gimnasio, descuentos o plan de pensiones?
+- ¿Existe algún tipo de retribución flexible o participación en la empresa, como
+  acciones, _stock options_ o similares?
 - ¿Cada cuánto hay revisiones salariales? ¿Están ligadas a objetivos o son automáticas?
 - ¿Cuántos días de vacaciones ofrecen?
 - ¿Hay bonus variable anual? ¿Cómo se calcula?
@@ -248,17 +253,28 @@ del candidato. A continuación se recogen preguntas útiles organizadas por tem�
 - ¿Cuál es la política de teletrabajo? ¿Qué porcentaje de días es obligatorio acudir a
   la oficina?
 - ¿Es flexible el horario de entrada y salida?
+- ¿Existe jornada intensiva en verano o viernes reducidos?
+- Si el puesto es remoto, ¿se aporta el equipo de trabajo, ayuda para material de
+  oficina o compensación por los gastos de internet y luz?
 
 **Crecimiento profesional:**
 
 - ¿Qué posibilidades de crecimiento hay en el equipo y en la empresa?
 - ¿Ofrecen formación pagada, certificaciones o asistencia a conferencias?
 - ¿Existe un plan de carrera definido o depende de cada caso?
+- ¿Existen niveles definidos dentro del rol y criterios explícitos para promocionar?
+- ¿Cómo se evalúa el desempeño y cada cuánto se realizan esas evaluaciones?
+- ¿Hay tiempo reservado dentro de la jornada para formación, investigación o proyectos
+  internos?
 
 **El día a día y el equipo:**
 
 - ¿Cómo es el equipo en el que se trabajaría? ¿Cuántas personas lo componen y qué roles
   desempeñan?
+- ¿Cómo sería una semana típica en este puesto? ¿Qué proporción del tiempo se dedica a
+  desarrollo, reuniones y soporte?
+- ¿Cómo es el proceso de incorporación (_onboarding_)? ¿Existe una persona asignada como
+  referencia durante las primeras semanas?
 - ¿Qué papel juega la IA generativa en el día a día del equipo? ¿Se emplea como
   herramienta de apoyo o se espera que reemplace parte del desarrollo? ¿Cómo afecta eso
   a los tiempos de entrega y a las expectativas sobre el desarrollador?
@@ -267,13 +283,29 @@ del candidato. A continuación se recogen preguntas útiles organizadas por tem�
 
 - ¿Cómo es la rotación en la empresa? ¿Cuál es la antigüedad media del equipo?
 - ¿Cuánto dura el periodo de prueba y en qué condiciones?
+- ¿Por qué está vacante esta posición? ¿Se trata de un puesto de nueva creación o
+  sustituye a alguien?
+- ¿Cuánto tiempo lleva abierto el proceso y cuántas personas han pasado por el puesto en
+  los últimos años?
+- ¿Cuáles son las principales líneas de negocio, productos y tipos de cliente de la
+  empresa? Preguntar directamente por la situación financiera puede resultar delicado,
+  por lo que suele ser preferible investigarlo de antemano (cuentas anuales, notas de
+  prensa o rondas de financiación) y, en la entrevista, abordarlo de forma indirecta a
+  través del modelo de negocio y de la procedencia de los ingresos.
+
+**Sobre el propio proceso de selección:**
+
+- ¿Cuáles son los siguientes pasos y en qué plazo se comunicaría una decisión?
+- ¿Cuántas fases quedan y en qué consisten? Si hay prueba técnica, ¿cuánto tiempo
+  requiere y en qué se evalúa?
 
 ## Negociación salarial
 
-La negociación salarial es un aspecto crucial del proceso de selección que debe
-abordarse con preparación, datos y confianza. Resulta fundamental conocer de antemano el
-rango de mercado para el perfil solicitado, consultando plataformas como Glassdoor o
-contrastando información con profesionales del sector.
+Superadas las fases anteriores, el proceso culmina habitualmente con la negociación de
+las condiciones económicas. La negociación salarial es un aspecto crucial del proceso de
+selección que debe abordarse con preparación, datos y confianza. Resulta fundamental
+conocer de antemano el rango de mercado para el perfil solicitado, consultando
+plataformas como Glassdoor o contrastando información con profesionales del sector.
 
 Además del salario base, se deben evaluar factores que influyen en la compensación
 total, como la modalidad de trabajo (remoto, híbrido o presencial), los gastos de
@@ -281,9 +313,14 @@ transporte, el coste de vida y otras ventajas que pueda ofrecer la empresa.
 
 La retribución es uno de los primeros aspectos que deben quedar claros en el proceso. Si
 la oferta no resulta satisfactoria y no existe margen para negociar, lo más razonable es
-no continuar con el proceso, salvo que exista una necesidad específica. Comenzar una
-relación laboral con la percepción de estar infravalorado desde el primer día suele
-tener consecuencias negativas a medio plazo.
+no continuar con el proceso, salvo que exista una necesidad específica.
+
+!!! warning "Empezar en una posición de desventaja"
+
+    Comenzar una relación laboral con la percepción de estar infravalorado desde el
+    primer día suele tener consecuencias negativas a medio plazo, ya que afecta a la
+    motivación y condiciona las futuras revisiones salariales, que a menudo se calculan
+    como un porcentaje sobre el salario inicial.
 
 ### Estrategias de negociación
 
