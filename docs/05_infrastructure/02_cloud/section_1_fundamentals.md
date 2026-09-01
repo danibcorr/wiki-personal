@@ -4,6 +4,13 @@ description: Cloud computing y diseño de sistemas distribuidos.
 title: Fundamentos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo introduce los conceptos fundamentales de la computación en la nube, los
 modelos de servicio y los principios de diseño de sistemas distribuidos.
 

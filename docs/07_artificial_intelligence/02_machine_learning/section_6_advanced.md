@@ -6,6 +6,13 @@ description:
 title: Temas avanzados
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo aborda técnicas avanzadas de machine learning, incluyendo imputación de
 datos, detección de anomalías, sistemas de recomendación y modelos probabilísticos.
 

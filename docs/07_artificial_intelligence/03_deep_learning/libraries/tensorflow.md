@@ -4,6 +4,13 @@ description: Guía práctica de TensorFlow para visión, NLP y audio.
 title: TensorFlow
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta una guía práctica de TensorFlow con ejemplos aplicados a visión
 computacional, procesamiento del lenguaje natural y audio.
 

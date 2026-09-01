@@ -4,6 +4,13 @@ description: Vectorización, paralelización y reproducibilidad con JAX.
 title: JAX
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta JAX como framework de computación numérica de alto rendimiento,
 junto con Flax para la construcción de redes neuronales sobre TPUs y GPUs.
 

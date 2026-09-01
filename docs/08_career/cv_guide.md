@@ -6,6 +6,13 @@ description:
 title: Estrategias de empleo
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo reúne estrategias prácticas para la búsqueda de empleo en el sector
 tecnológico, cubriendo la elaboración del currículum, la preparación de entrevistas y la
 negociación salarial.

@@ -6,6 +6,13 @@ description:
 title: Algoritmos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo aborda la notación Big O como herramienta para analizar la eficiencia de
 un algoritmo con independencia del lenguaje y del equipo donde se ejecuta, y aplica
 después ese análisis a los métodos clásicos de ordenación y búsqueda. Las

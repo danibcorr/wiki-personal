@@ -4,6 +4,13 @@ description: Kubernetes, componentes, pods, servicios y despliegues.
 title: Orquestadores
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo introduce Kubernetes como orquestador de contenedores, explicando sus
 componentes, la gestión de pods, despliegues, servicios y patrones de resiliencia.
 

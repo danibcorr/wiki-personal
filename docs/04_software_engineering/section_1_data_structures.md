@@ -6,6 +6,13 @@ description:
 title: Estructuras de datos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta las estructuras de datos fundamentales, describiendo la forma en
 que organizan la información en memoria, las operaciones que ofrecen, el coste asociado
 a cada una de ellas y una implementación de referencia en Python. El análisis de la

@@ -4,6 +4,13 @@ description: Regresión lineal y logística en el contexto del aprendizaje profu
 title: Regresión lineal y logística
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Los modelos de regresión lineal y logística constituyen la base conceptual del
 aprendizaje profundo. También se conocen como modelos diferenciables, ya que su
 estructura está compuesta por transformaciones lineales seguidas de funciones no

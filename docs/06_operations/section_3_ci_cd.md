@@ -4,6 +4,13 @@ description: Pipelines de CI/CD con GitHub Actions y GitLab CI.
 title: CI/CD
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo aborda las prácticas de integración y despliegue continuos, con
 implementaciones prácticas en GitHub Actions y GitLab CI/CD.
 

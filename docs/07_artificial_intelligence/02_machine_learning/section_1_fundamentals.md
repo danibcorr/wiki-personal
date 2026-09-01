@@ -4,6 +4,13 @@ description: Fundamentos del Machine Learning.
 title: Fundamentos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo introduce los conceptos fundamentales del aprendizaje automático, sus
 técnicas principales y los tipos de datos con los que trabaja.
 

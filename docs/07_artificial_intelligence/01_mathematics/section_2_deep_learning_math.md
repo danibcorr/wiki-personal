@@ -4,6 +4,13 @@ description: Fundamentos matemáticos del aprendizaje profundo.
 title: Fundamentos matemáticos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta los fundamentos matemáticos del aprendizaje profundo, centrándose
 en tensores, operaciones vectoriales y matriciales, y su implementación en PyTorch.
 

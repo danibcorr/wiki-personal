@@ -4,6 +4,13 @@ description: Fundamentos de la IA Generativa.
 title: IA Generativa
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Los modelos auto regresivos son la forma más simple del modelo generativos, los modelos
 auto regresivos al final basadas en los modelos grandes de lenguaje, lo que hacen es
 generar nuevos, tocáis a partir de de toques anteriores y son el fundamento o la base de

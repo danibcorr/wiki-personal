@@ -4,6 +4,13 @@ description: Fundamentos del Aprendizaje por Refuerzo.
 title: Aprendizaje por Refuerzo
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 El **Aprendizaje por Refuerzo** (_Reinforcement Learning_, RL) constituye un paradigma
 del aprendizaje automático en el cual un agente aprende a tomar decisiones mediante la
 interacción continua con un entorno. A diferencia del aprendizaje supervisado, en RL no

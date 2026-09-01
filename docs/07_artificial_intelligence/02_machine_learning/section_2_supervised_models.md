@@ -4,6 +4,13 @@ description: Modelos de aprendizaje supervisado.
 title: Modelos supervisados
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Una vez comprendido el concepto de modelo de aprendizaje automático, donde se utilizan
 datos para modelar su distribución, analizar relaciones y extraer conocimiento, es
 posible aplicar estos modelos para realizar tareas como clasificación de nuevos datos,

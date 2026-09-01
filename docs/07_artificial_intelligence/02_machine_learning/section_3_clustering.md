@@ -4,6 +4,13 @@ description: Algoritmos de agrupación y clustering.
 title: Algoritmos de agrupación
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 La función principal de la agrupación o _clustering_ consiste en reducir la distancia
 entre los puntos de un grupo y maximizar la distancia entre los distintos grupos, es
 decir, que los puntos de datos que pertenezcan a un mismo grupo se encuentren lo más

@@ -6,6 +6,13 @@ description:
 title: Amazon Web Services (AWS)
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo recorre los servicios principales de Amazon Web Services, desde la
 infraestructura global y la gestión de identidades hasta los servicios de cómputo,
 almacenamiento y despliegue.

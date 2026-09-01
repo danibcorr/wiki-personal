@@ -6,6 +6,13 @@ description:
 title: Diseño y código sostenible
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo recoge los principios que permiten escribir código sostenible, entendido
 como aquel que puede leerse, modificarse y ampliarse con un esfuerzo razonable a lo
 largo del tiempo. El recorrido parte de las convenciones básicas de limpieza y

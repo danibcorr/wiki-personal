@@ -4,6 +4,13 @@ description: Neurona artificial, redes neuronales y diferenciación automática.
 title: Redes neuronales
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo desarrolla la teoría y la implementación de redes neuronales, desde la
 neurona artificial hasta las estrategias de optimización y el aprendizaje por
 transferencia.

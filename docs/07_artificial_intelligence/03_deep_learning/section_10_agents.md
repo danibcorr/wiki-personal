@@ -4,6 +4,13 @@ description: Fundamentos y arquitecturas de agentes basados en LLMs.
 title: Agentes
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo introduce el concepto de agente como sistema de inteligencia artificial
 capaz de razonar, planificar e interactuar con su entorno de forma autónoma.
 

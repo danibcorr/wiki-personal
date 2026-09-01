@@ -4,6 +4,13 @@ description: Evaluación de modelos de clasificación.
 title: Evaluación de modelos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta las métricas y herramientas para evaluar el rendimiento de
 modelos de clasificación, incluyendo la matriz de confusión, sensibilidad, especificidad
 y curvas ROC.

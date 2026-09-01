@@ -4,6 +4,13 @@ description: Selección de datos, validación cruzada y fundamentos de estadíst
 title: Estadística
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo cubre los fundamentos estadísticos necesarios para el aprendizaje
 automático, incluyendo distribuciones de probabilidad, validación cruzada y métricas de
 error.

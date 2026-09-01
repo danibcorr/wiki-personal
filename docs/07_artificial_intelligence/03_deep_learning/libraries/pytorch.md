@@ -4,6 +4,13 @@ description: Utilidades y bucle de entrenamiento en PyTorch.
 title: PyTorch
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo recoge las utilidades esenciales de PyTorch para el entrenamiento de
 modelos, incluyendo la gestión de checkpoints, schedulers y el bucle de entrenamiento.
 

@@ -4,6 +4,13 @@ description: Gestiona y manipula bases de datos de manera eficiente utilizando S
 title: SQL
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta SQL como lenguaje estándar para la gestión de bases de datos
 relacionales, cubriendo desde consultas básicas hasta operaciones avanzadas con
 subconsultas y CTEs.

@@ -4,6 +4,13 @@ description: Redes neuronales convolucionales y procesamiento de imágenes.
 title: Redes convolucionales
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo presenta las redes neuronales convolucionales, su inspiración biológica,
 los componentes fundamentales de la convolución y las arquitecturas más relevantes.
 

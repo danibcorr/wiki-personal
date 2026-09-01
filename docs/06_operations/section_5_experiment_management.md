@@ -4,6 +4,13 @@ description: Versionamiento de datos y gestión de experimentos con DVC.
 title: Gestión de experimentos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 DVC (Data Version Control) es una herramienta especializada en el versionamiento de
 datos, la gestión de pipelines de Machine Learning, el seguimiento de experimentos y el
 intercambio de artefactos. El contenido se estructura en cuatro módulos progresivos que

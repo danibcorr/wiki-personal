@@ -4,6 +4,13 @@ description: Otros paradigmas de aprendizaje y flujo de trabajo.
 title: Otros paradigmas
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo explora paradigmas de aprendizaje complementarios como el aprendizaje
 multitarea, meta-learning, few-shot learning y autoencoders.
 

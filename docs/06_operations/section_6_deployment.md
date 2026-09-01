@@ -4,6 +4,13 @@ description: APIs, ONNX Runtime y optimización de modelos.
 title: Despliegue y distribución
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo aborda el despliegue de modelos de machine learning mediante APIs, la
 optimización con ONNX Runtime y la distribución eficiente de modelos en distintos
 entornos de hardware.

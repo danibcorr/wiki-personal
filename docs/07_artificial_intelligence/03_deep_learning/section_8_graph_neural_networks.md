@@ -4,6 +4,13 @@ description: Fundamentos de las Redes Neuronales de Grafos.
 title: Redes Neuronales de Grafos
 ---
 
+!!! warning
+
+    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
+    estar incompleto, contener errores o presentar información desactualizada. Además,
+    es posible que esté desordenado, carezca de una estructura clara o incluya notas
+    copiadas directamente.
+
 Este capítulo introduce las redes neuronales de grafos, su representación matemática,
 las propiedades estructurales y los métodos de predicción sobre datos relacionales.
 
