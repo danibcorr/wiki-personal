@@ -51,11 +51,11 @@ nav = [
         ]},
         {"Operaciones y despliegue" = [
             "06_operations/section_1_containers.md",
-            "06_operations/section_2_orchestrators.md",
-            "06_operations/section_3_ci_cd.md",
-            "06_operations/section_4_mlops_fundamentals.md",
-            "06_operations/section_5_experiment_management.md",
-            "06_operations/section_6_deployment.md"
+            "06_operations/section_2_ci_cd.md",
+            "06_operations/section_3_orchestrators.md",
+            "06_operations/section_4_experiment_management.md",
+            "06_operations/section_5_deployment.md",
+            "06_operations/section_6_monitoring.md"
         ]},
         {"Cloud" = [
             "05_infrastructure/02_cloud/section_1_fundamentals.md",

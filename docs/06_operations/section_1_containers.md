@@ -1,316 +1,390 @@
 ---
 authors: Daniel Bazo Correa
-description: Docker y arquitectura de microservicios.
+description:
+    Fundamentos de los contenedores con Docker, su arquitectura, comandos principales,
+    redes, volúmenes, Docker Compose y buenas prácticas de optimización y seguridad.
 title: Contenedores
 ---
 
-!!! warning
-
-    El contenido de esta página no ha sido revisado ni corregido, por lo que puede
-    estar incompleto, contener errores o presentar información desactualizada. Además,
-    es posible que esté desordenado, carezca de una estructura clara o incluya notas
-    copiadas directamente.
-
-Este capítulo presenta Docker como plataforma de contenedores, cubriendo su
-arquitectura, comandos esenciales, Docker Compose y la arquitectura de microservicios.
+Este capítulo presenta Docker como plataforma de contenedores y describe la arquitectura
+que lo sustenta, la relación entre los contenedores y la arquitectura de microservicios,
+las diferencias respecto a las máquinas virtuales, los comandos esenciales para
+gestionar imágenes y contenedores, la configuración de redes y volúmenes, la definición
+de servicios con Docker Compose y las prácticas recomendadas de optimización y
+seguridad.
 
 ## Bibliografía
 
 - Docker. (s.f.). _Docker Documentation_. <https://docs.docker.com/>
+- Podman. (s.f.). _Podman Documentation_. <https://docs.podman.io/>
 - Gutiérrez, R. (s.f.). _DevOps con Docker, Jenkins, Kubernetes, Git, GitFlow CI y CD_
   \[Curso\]. Udemy.
   <https://www.udemy.com/course/devops-con-dockers-kubernetes-jenkins-y-gitflow-cicd/>
-- Kubernetes. (s.f.). _Kubernetes Documentation_. <https://kubernetes.io/docs/>
-- Minikube. (s.f.). _Minikube Documentation_. <https://minikube.sigs.k8s.io/docs/>
 - Pradumnasaraf. (s.f.). _DevOps_ \[Repositorio\]. GitHub.
   <https://github.com/Pradumnasaraf/DevOps>
-- GitHub. (s.f.). _GitHub Actions Documentation_. <https://docs.github.com/en/actions>
 
-## Docker
+## Introducción
 
 <figure markdown="span">
   ![Logo de Docker](../assets/img/docs/logos/docker-logo.png)
-  <figcaption>Logo de Docker</figcaption>
+  <figcaption>Logo de Docker.</figcaption>
 </figure>
 
-Docker es una plataforma de código abierto que facilita la creación, implementación y
-ejecución de aplicaciones mediante contenedores. Un contenedor empaqueta una aplicación
-junto con todas sus dependencias y configuraciones en una unidad estandarizada, lo que
-simplifica el desarrollo de _software_ y garantiza la consistencia entre distintos
-entornos. Cabe mencionar que también existen alternativas de código abierto como Podman,
-que están ganando relevancia debido a los últimos cambios de licencia y uso de Docker en
-entornos empresariales.
+**Docker** es una plataforma de código abierto que facilita la creación, la distribución
+y la ejecución de aplicaciones mediante contenedores. Un **contenedor** empaqueta una
+aplicación junto con todas sus dependencias y configuraciones en una unidad
+estandarizada, lo que simplifica el desarrollo de software y garantiza la consistencia
+entre distintos entornos.
+
+Docker no es la única implementación disponible. Alternativas de código abierto como
+Podman han ganado relevancia a raíz de los cambios de licencia y de las condiciones de
+uso de Docker en entornos empresariales. Ambas herramientas ofrecen prestaciones
+equivalentes y comparten en gran medida la misma interfaz de línea de comandos, por lo
+que los conceptos descritos en este capítulo resultan aplicables a las dos.
+
+Entre las características principales de los contenedores destaca la **portabilidad**,
+puesto que se ejecutan en cualquier sistema que soporte Docker con independencia del
+sistema operativo del _host_, es decir, de la máquina donde se instala el sistema de
+contenedores. La **ligereza** proviene de que comparten el _kernel_ del sistema
+operativo del _host_, lo que los hace más rápidos de iniciar que las máquinas virtuales.
+La **consistencia** asegura que una aplicación se ejecute de la misma manera en
+cualquier entorno. El **aislamiento** garantiza que cada contenedor opera de forma
+independiente, lo que mejora la seguridad y evita conflictos entre aplicaciones. Por
+último, la **escalabilidad** facilita la creación y la eliminación rápida de instancias.
+
+## Contenedores y microservicios
 
 <figure markdown="span">
-  ![Sistema basado en Microservicios](../assets/img/docs/docker/docker-microservices.png)
-  <figcaption>Sistema basado en Microservicios. <a href="https://www.geeksforgeeks.org/system-design/how-to-design-a-microservices-architecture-with-docker-containers/">Referencia</a></figcaption>
+  ![Aplicación descompuesta en servicios independientes ejecutados en contenedores](../assets/img/docs/docker/docker-microservices.png)
+  <figcaption>Sistema basado en microservicios. <a href="https://www.geeksforgeeks.org/system-design/how-to-design-a-microservices-architecture-with-docker-containers/">Referencia</a></figcaption>
 </figure>
 
-Este tipo de arquitectura se basa en el concepto de **microservicios**, ya que permite
-empaquetar cada servicio de forma independiente con sus propias dependencias, evitando
-así conflictos entre ellas. La comunicación entre contenedores, es decir, entre cada
-microservicio, se realiza habitualmente mediante APIs.
+La posibilidad de empaquetar cada aplicación de forma independiente da pie al concepto
+de **microservicios**. En esta arquitectura, cada servicio se distribuye con sus propias
+dependencias, lo que evita conflictos entre versiones, permite escalar cada componente
+de manera individual y simplifica el desarrollo, ya que cada equipo puede evolucionar su
+servicio sin coordinar el despliegue con el resto.
 
-Entre sus características principales destacan la **portabilidad**, puesto que los
-contenedores se ejecutan en cualquier sistema que soporte Docker independientemente del
-sistema operativo del _host_. También destaca la **ligereza**, dado que comparten el
-_kernel_ del sistema operativo del _host_, lo que los hace más rápidos de iniciar que
-las máquinas virtuales. La **consistencia** asegura que una aplicación se ejecute de la
-misma manera en cualquier entorno. El **aislamiento** garantiza que cada contenedor
-opera de manera independiente, mejorando la seguridad y evitando conflictos entre
-aplicaciones. Por último, la **escalabilidad** facilita la creación y eliminación rápida
-de instancias.
+La comunicación entre contenedores, es decir, entre cada microservicio, se realiza
+habitualmente mediante APIs (_Application Programming Interface_), que actúan como
+interfaz común entre las aplicaciones y los servicios que componen el sistema. Este
+modelo contrasta con las aplicaciones monolíticas, en las que todos los componentes
+comparten un único proceso y un único ciclo de despliegue.
 
-### Contenedores frente a máquinas virtuales
+## Contenedores frente a máquinas virtuales
 
 Los contenedores y las máquinas virtuales son tecnologías de virtualización que permiten
-ejecutar múltiples aplicaciones en un solo servidor físico, lo que se conoce como
-_host_. Aunque comparten objetivos similares, como optimizar el uso de recursos y
-asegurar el aislamiento, difieren significativamente en su implementación y arquitectura
+ejecutar múltiples aplicaciones en un solo servidor físico, conocido como _host_. Aunque
+comparten objetivos similares, como optimizar el uso de los recursos y asegurar el
+aislamiento, difieren de forma significativa en su implementación y en la arquitectura
 subyacente.
 
-<figure markdown="span">
-  ![Pasos para la creación de un contenedor en Docker](../assets/img/docs/docker/docker-container-steps.png)
-  <figcaption>Pasos para la creación de un contenedor en Docker. <a href="https://medium.com/swlh/understand-dockerfile-dd11746ed183">Referencia</a></figcaption>
-</figure>
+### Virtualización a nivel de sistema operativo
 
 Los contenedores constituyen una forma de virtualización a nivel del sistema operativo,
 también conocida como virtualización ligera. A diferencia de las máquinas virtuales, que
-virtualizan un sistema operativo completo, los contenedores comparten el núcleo
-(_kernel_) del sistema operativo del _host_ y ejecutan aplicaciones dentro de espacios
-de usuario completamente aislados.
+virtualizan un sistema operativo completo, los contenedores comparten el _kernel_ del
+sistema operativo del _host_ y ejecutan las aplicaciones dentro de espacios de usuario
+completamente aislados.
 
-Cada contenedor contiene únicamente la aplicación y sus dependencias (bibliotecas,
-archivos de configuración y variables de entorno), lo que lo hace extremadamente
-portátil y fácil de desplegar en diferentes entornos, desde la máquina local de un
-desarrollador hasta un clúster en la nube.
+Cada contenedor incluye únicamente la aplicación y sus dependencias, es decir,
+bibliotecas, archivos de configuración y variables de entorno. Esta reducción del
+contenido lo hace extremadamente portátil y sencillo de desplegar en entornos muy
+distintos, desde la máquina local de una persona que desarrolla hasta un clúster en la
+nube.
 
-El aislamiento de los contenedores se logra mediante diferentes técnicas. Los
-_namespaces_ (espacios de nombres) aíslan recursos del sistema operativo: `pid` aísla
+El aislamiento se consigue combinando tres mecanismos del _kernel_ de Linux. Los
+_namespaces_, o espacios de nombres, aíslan recursos del sistema operativo: `pid` aísla
 los identificadores de procesos, `net` proporciona pilas de red separadas, `mnt` aísla
-los puntos de montaje del sistema de archivos, `ipc` aísla recursos de comunicación
-entre procesos, `uts` aísla nombres de _host_ y dominios, y `user` aísla identificadores
-de usuarios y grupos.
+los puntos de montaje del sistema de archivos, `ipc` aísla los recursos de comunicación
+entre procesos, `uts` aísla los nombres de _host_ y de dominio, y `user` aísla los
+identificadores de usuarios y grupos.
 
-Por otra parte, los _cgroups_ (grupos de control) gestionan el uso de recursos como CPU,
-memoria y disco, garantizando que los contenedores no consuman más recursos de los
-asignados. Además, el _Union Filesystem_ (UFS) permite que los contenedores se
-construyan en capas. Las capas de solo lectura contienen archivos del sistema, mientras
-que las capas de escritura se mantienen en la parte superior, minimizando el uso de
-almacenamiento y facilitando el desarrollo iterativo.
+Los _cgroups_, o grupos de control, gestionan el uso de recursos como CPU, memoria y
+disco, lo que garantiza que ningún contenedor consuma más recursos de los asignados. Por
+su parte, el _Union Filesystem_ (UFS) permite que las imágenes se construyan en capas.
+Las capas de solo lectura contienen los archivos del sistema y las dependencias,
+mientras que la capa de escritura se sitúa en la parte superior, lo que minimiza el uso
+de almacenamiento y facilita el desarrollo iterativo.
 
-Las máquinas virtuales, por su parte, representan una tecnología de virtualización más
-tradicional que permite ejecutar múltiples sistemas operativos en un servidor físico
-mediante un hipervisor, como VMware o VirtualBox. Un hipervisor puede ejecutarse
-directamente en el _hardware_ del servidor (virtualización tipo 1) o sobre un sistema
-operativo (virtualización tipo 2), gestionando la creación y ejecución de múltiples
-máquinas virtuales y asignando recursos de _hardware_ de forma eficiente. Cada máquina
-virtual dispone de su propio sistema operativo completo, lo que proporciona un
-aislamiento más fuerte que los contenedores, pero a costa de un mayor consumo de CPU,
-memoria y almacenamiento, así como tiempos de inicio más prolongados.
+### Máquinas virtuales e hipervisores
 
-Los contenedores resultan ideales para desarrollo y pruebas, arquitecturas de
-microservicios y despliegue continuo (por ejemplo, en herramientas de CI/CD que ofrecen
-GitLab, GitHub o similares), mientras que las máquinas virtuales son más adecuadas para
-aplicaciones monolíticas que requieren aislamiento completo del sistema operativo,
-entornos con múltiples sistemas operativos y cargas de trabajo heredadas.
+Las máquinas virtuales representan una tecnología de virtualización más tradicional que
+permite ejecutar múltiples sistemas operativos en un servidor físico mediante un
+hipervisor, como VMware o VirtualBox. Un hipervisor puede ejecutarse directamente sobre
+el hardware del servidor, lo que se denomina virtualización de tipo 1, o sobre un
+sistema operativo ya instalado, conocido como virtualización de tipo 2. En ambos casos,
+el hipervisor gestiona la creación y la ejecución de las máquinas virtuales y reparte
+los recursos de hardware entre ellas.
+
+Cada máquina virtual dispone de su propio sistema operativo completo, lo que proporciona
+un aislamiento más fuerte que el de los contenedores. Esta garantía tiene como
+contrapartida un mayor consumo de CPU, memoria y almacenamiento, además de tiempos de
+inicio más prolongados.
+
+### Criterios de elección
+
+Los contenedores resultan idóneos para el desarrollo y las pruebas, las arquitecturas de
+microservicios y el despliegue continuo, por ejemplo en las herramientas de CI/CD que
+ofrecen plataformas como GitLab o GitHub. Las máquinas virtuales se adaptan mejor a
+aplicaciones monolíticas que requieren un aislamiento completo del sistema operativo, a
+entornos que combinan varios sistemas operativos y a cargas de trabajo heredadas.
 
 En la nube, proveedores como Amazon Web Services (AWS), Google Cloud Platform (GCP) y
-Microsoft Azure ofrecen servicios tanto de contenedores (AWS ECS/Fargate, EKS, Azure
-Kubernetes Service (AKS) y Google Kubernetes Engine (GKE)) como de máquinas virtuales
-(EC2 en AWS, VM _Instances_ en GCP y Azure Virtual Machines). Para la gestión local de
-contenedores, herramientas como Docker Desktop o Docker CLI permiten desarrollar,
-gestionar y desplegar contenedores.
+Microsoft Azure ofrecen servicios de ambos tipos. Entre los servicios de contenedores se
+encuentran ECS, Fargate y EKS en AWS, Azure Kubernetes Service (AKS) y Google Kubernetes
+Engine (GKE), mientras que las máquinas virtuales se corresponden con EC2 en AWS, las
+_VM Instances_ de GCP y Azure Virtual Machines. Para la gestión local, Docker Desktop y
+la interfaz de línea de comandos de Docker cubren el ciclo completo de desarrollo y
+despliegue.
 
-### Arquitectura del engine
+## Arquitectura de Docker Engine
 
 Docker Engine se compone de tres elementos fundamentales. El primero es **Docker CLI**,
-una interfaz de línea de comandos que puede ejecutarse incluso en una máquina remota. El
-segundo es la **REST API**, que actúa como canal de comunicación entre el CLI y el
-_daemon_. El tercero es el **Docker Daemon**, que gestiona imágenes, contenedores, redes
-y volúmenes. El CLI puede comunicarse con un _daemon_ remoto a través de la REST API, lo
-que permite gestionar contenedores en servidores remotos de forma transparente.
+la interfaz de línea de comandos con la que se emiten las órdenes. El segundo es la
+**REST API**, que actúa como canal de comunicación entre el CLI y el _daemon_. El
+tercero es el **Docker Daemon**, responsable de gestionar imágenes, contenedores, redes
+y volúmenes. Dado que la comunicación se realiza a través de la REST API, el CLI puede
+dirigirse a un _daemon_ remoto y gestionar contenedores alojados en otros servidores de
+forma transparente.
 
-!!! info "¿Qué es un _daemon_?"
+!!! note "_Daemons_ en Linux"
 
-    Un *daemon* es un tipo de programa que se ejecuta en segundo plano, en lugar de bajo
-    el control directo de un usuario. Son procesos autónomos que inician durante el
-    arranque del sistema y gestionan tareas recurrentes como servicios de red, impresión
-    o sincronización.
+    Un _daemon_ es un programa que se ejecuta en segundo plano, en lugar de hacerlo bajo
+    el control directo de un usuario. Se trata de procesos autónomos que se inician
+    durante el arranque del sistema y atienden tareas recurrentes como los servicios de
+    red, la impresión o la sincronización. Su gestión mediante `systemctl` se describe en
+    el capítulo de [fundamentos de
+    Linux](../01_operative_systems/01_linux/section_1_fundamentals.md).
 
-Hay que tener en cuenta que los contenedores **comparten el _kernel_ del _host_**. Si el
-_host_ tiene un _kernel_ Linux, no se pueden ejecutar contenedores Windows de forma
-nativa, y viceversa. Sin embargo, al instalar Docker en Windows, se crea una instancia
-de Linux mediante WSL sobre la que Docker ejecuta los contenedores.
+Conviene recordar que los contenedores **comparten el _kernel_ del _host_**. Si el
+_host_ ejecuta un _kernel_ Linux, no es posible ejecutar contenedores Windows de forma
+nativa, y a la inversa. Al instalar Docker en Windows se crea una instancia de Linux
+mediante WSL sobre la que Docker ejecuta los contenedores, lo que explica que la
+experiencia de uso sea equivalente en ambos sistemas.
 
-### _Tags_ e imágenes
+## Imágenes y _tags_
 
-Las imágenes utilizan **_tags_** para identificar variantes según el sistema operativo
-base (Alpine, Debian, Ubuntu), la versión del paquete y otros criterios. Si no se
-especifica un _tag_, Docker utiliza `latest` por defecto, lo cual **no se considera
-buena práctica**, ya que no se tiene control sobre las versiones utilizadas y podrían
-aparecer nuevos problemas no contemplados previamente. Por ello, se recomienda fijar
-siempre la versión y actualizarla de forma controlada, por ejemplo, ante problemas de
-seguridad.
+Una imagen es una plantilla de solo lectura a partir de la cual se crean los
+contenedores. Las imágenes utilizan **_tags_** para identificar variantes según el
+sistema operativo base, como Alpine, Debian o Ubuntu, la versión del paquete que
+contienen y otros criterios propios de cada proyecto.
 
-Las propias imágenes públicas en Docker Hub suelen disponer de un sistema de alertas que
-notifica cuando una imagen se ve comprometida o se detecta algún tipo de fallo o mejora
-relevante en el servicio al que corresponde.
+Cuando no se especifica un _tag_, Docker recurre a `latest` por defecto. Esta práctica
+**no se considera recomendable**, ya que no ofrece control sobre la versión utilizada y
+puede introducir cambios inesperados entre construcciones. La alternativa consiste en
+fijar siempre la versión y actualizarla de forma controlada, por ejemplo ante la
+aparición de un problema de seguridad.
 
-???+ example "Especificar versión de imagen"
+Las imágenes públicas de Docker Hub suelen disponer de un sistema de alertas que
+notifica cuando una imagen se ve comprometida o cuando se detecta un fallo o una mejora
+relevante en el servicio que empaquetan. Los _tags_ disponibles se consultan en la
+documentación de cada imagen en el propio registro.
 
-    ```bash linenums="1"
-    # Especificar versión con tag
-    docker run redis:4.0
-    ```
-
-    Los *tags* soportados se consultan en la documentación de cada imagen en Docker Hub.
-
-### Recopilación de comandos
-
-A continuación se muestra una tabla que recopila los comandos más utilizados para la
-gestión de contenedores con Docker:
-
-|                          Comando                          |                                                                                   Uso/función                                                                                   |
-| :-------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                      `docker images`                      |                                                      Devuelve un listado de todas las imágenes descargadas en la máquina.                                                       |
-|                `docker pull nombre_imagen`                |                                                   Descarga una imagen de Docker desde [Docker Hub](https://hub.docker.com/).                                                    |
-|            `docker image rm nombre_imagen:tag`            |                                                                          Elimina una imagen de Docker.                                                                          |
-|               `docker create nombre_imagen`               |                                                Crea un contenedor a partir de una imagen y devuelve el ID del contenedor creado.                                                |
-|  `docker create --name nombre_contenedor nombre_imagen`   |                                                       Crea un contenedor con un nombre específico a partir de una imagen.                                                       |
-|               `docker start ID_contenedor`                |                                                                      Inicia un contenedor mediante su ID.                                                                       |
-|             `docker start nombre_contenedor`              |                                                                    Inicia un contenedor mediante su nombre.                                                                     |
-|                        `docker ps`                        |                                               Muestra los contenedores activos con información sobre ID, imagen, estado y nombre.                                               |
-|                      `docker ps -a`                       |                                                          Muestra todos los contenedores, tanto activos como detenidos.                                                          |
-|              `docker stop nombre_contenedor`              |                                                                     Detiene un contenedor usando su nombre.                                                                     |
-|                `docker stop ID_contenedor`                |                                                                       Detiene un contenedor usando su ID.                                                                       |
-|               `docker rm nombre_contenedor`               |                                                                        Elimina un contenedor de Docker.                                                                         |
-| `docker run -d -p 8080:80 -i --name Debian debian:latest` | Crea y ejecuta un contenedor mapeando puertos. `-d`: Ejecuta el contenedor en segundo plano. `-p`: Mapeo de puertos. `-i`: Acceso al terminal. `--name`: Nombre del contenedor. |
-|         `docker exec -it nombre_contenedor bash`          |                                  Ejecuta un comando en el contenedor, en este caso, accede al terminal del contenedor para interactuar con él.                                  |
-|  `docker cp ruta_host nombre_contenedor:ruta_contenedor`  |                                                                    Copia archivos del _host_ al contenedor.                                                                     |
-|             `docker stats nombre_contenedor`              |                                                       Monitorea el uso de CPU, memoria y ancho de banda de un contenedor.                                                       |
-|                      `docker stats`                       |                                                      Monitorea el uso de recursos de todos los contenedores en ejecución.                                                       |
-|                    `docker network ls`                    |                                                                 Muestra todas las redes configuradas en Docker.                                                                 |
-|            `docker network inspect nombre_red`            |                                         Obtiene detalles sobre una red específica, incluyendo direcciones IP y contenedores conectados.                                         |
-|            `docker network create nombre_red`             |                                                                           Crea una red personalizada.                                                                           |
-|              `docker network rm nombre_red`               |                                                                                Elimina una red.                                                                                 |
-|           `docker volume create nombre_volumen`           |                                                                                Crea un volumen.                                                                                 |
-|                    `docker volume ls`                     |                                                                           Lista todos los volúmenes.                                                                            |
-|             `docker volume rm nombre_volumen`             |                                                                               Elimina un volumen.                                                                               |
-|            `docker inspect nombre_contenedor`             |                                                                       Muestra detalles de un contenedor.                                                                        |
-|              `docker logs nombre_contenedor`              |                                                                      Muestra los registros del contenedor.                                                                      |
-|            `docker logs -f nombre_contenedor`             |                                                            Muestra los registros del contenedor de manera continua.                                                             |
-|         `docker tag nombre_imagen nueva_etiqueta`         |                                                                              Etiqueta una imagen.                                                                               |
-|                      `docker login`                       |                                                                         Inicia sesión en un _registry_.                                                                         |
-|                `docker push nombre_imagen`                |                                                                          Sube una imagen a Docker Hub.                                                                          |
-|                      `docker logout`                      |                                                                         Cierra sesión en un _registry_.                                                                         |
-|                `docker system prune --all`                |                                                    Elimina todos los contenedores detenidos e imágenes que no estén en uso.                                                     |
-|                   `docker volume prune`                   |                                                                Elimina todos los volúmenes que no estén en uso.                                                                 |
-|                  `docker network prune`                   |                                      Elimina todas las redes que no estén en uso, excepto las predeterminadas (_bridge_, _none_, _host_).                                       |
-|    `docker update [OPTIONS] CONTAINER [CONTAINER...]`     |                     Actualiza la configuración de uno o varios contenedores. [Documentación](https://docs.docker.com/engine/reference/commandline/update/)                      |
-|    `docker run --cpu-shares=512 -m 256m nombre_imagen`    |                                                        Especifica recursos de sistema (CPU, memoria) para un contenedor.                                                        |
-|               `docker stop $(docker ps -q)`               |                                                                  Detiene todos los contenedores en ejecución.                                                                   |
-|             `docker start $(docker ps -a -q)`             |                                                                         Inicia todos los contenedores.                                                                          |
-|              `docker rm $(docker ps -a -q)`               |                                                                         Elimina todos los contenedores.                                                                         |
-
-### Modo interactivo y _attach_/_detach_
-
-Es importante tener en cuenta que un contenedor **no es un sistema operativo completo**,
-sino que está pensado para alojar servicios y aplicaciones. Si se ejecuta una imagen
-como Ubuntu sin ningún proceso activo, el contenedor se detiene inmediatamente al no
-tener ninguna tarea que mantener.
-
-Los contenedores de Docker no leen la entrada estándar (_stdin_) de forma
-predeterminada. Para interactuar con un contenedor se utilizan las opciones `-i` (modo
-interactivo, que mapea _stdin_) y `-t` (que crea un pseudoterminal).
-
-???+ example "Modo interactivo"
+???+ example "Fijar la versión de una imagen"
 
     ```bash linenums="1"
-    # Modo interactivo con pseudoterminal
-    docker run -it <imagen> bash
-
-    # Ejemplo: acceder al bash de una imagen con uv preinstalado
-    docker run -it ghcr.io/astral-sh/uv:debian bash
+    docker run redis:7.2
     ```
 
-Cuando se ejecuta un contenedor sin la opción `-d`, el terminal queda en modo _attach_
-(primer plano). Para ejecutar en segundo plano se utiliza `-d` (modo _detached_). Si se
-desea volver al primer plano de un contenedor que se encuentra en segundo plano debemos
-utilizar el comando `attach` junto con el ID del contenedor.
+    El _tag_ `7.2` selecciona una versión concreta de Redis, de modo que la imagen
+    empleada es siempre la misma con independencia del momento en que se descargue.
 
-???+ example "Reconectar a un contenedor"
+## Comandos principales
 
-    ```bash linenums="1"
-    # Obtener el ID del contenedor
-    docker ps
+La gestión de imágenes constituye el punto de partida del trabajo con contenedores, ya
+que toda ejecución parte de una imagen descargada de un registro o construida
+localmente:
 
-    # Volver al primer plano
-    docker attach <id>
-    ```
+| Comando           | Descripción                                                                               | Ejemplo de uso                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `docker images`   | Lista las imágenes disponibles en la máquina local.                                       | `docker images` muestra todas las imágenes descargadas.                                     |
+| `docker pull`     | Descarga una imagen desde un registro, por defecto [Docker Hub](https://hub.docker.com/). | `docker pull redis:7.2` descarga la versión indicada de Redis.                              |
+| `docker build`    | Construye una imagen a partir de un `Dockerfile`.                                         | `docker build -t nombre_imagen:etiqueta .` construye la imagen en el directorio actual.     |
+| `docker tag`      | Asigna una etiqueta adicional a una imagen existente.                                     | `docker tag nombre_imagen:1.0 usuario/nombre_imagen:1.0` prepara la imagen para publicarla. |
+| `docker image rm` | Elimina una imagen local.                                                                 | `docker image rm redis:7.2` elimina la imagen indicada.                                     |
 
-### Acceso a contenedores mediante mapeo de puertos
+El ciclo de vida de un contenedor abarca su creación, su inicio, su detención y su
+eliminación. Los comandos correspondientes admiten tanto el nombre asignado al
+contenedor como su identificador:
 
-<figure markdown="span">
-  ![Mapeo de puertos](../assets/img/docs/docker/docker-port-mapping.png)
-  <figcaption>Mapeo de puertos</figcaption>
-</figure>
+| Comando         | Descripción                                                                    | Ejemplo de uso                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `docker create` | Crea un contenedor a partir de una imagen y devuelve su identificador.         | `docker create --name mongodb mongo` crea el contenedor con un nombre concreto.                                         |
+| `docker start`  | Inicia un contenedor ya creado.                                                | `docker start mongodb` inicia el contenedor.<br />`docker start $(docker ps -a -q)` inicia todos los contenedores.      |
+| `docker run`    | Combina la creación y el inicio de un contenedor en una sola orden.            | `docker run -d -p 8080:80 --name web debian:12` crea y ejecuta el contenedor en segundo plano.                          |
+| `docker ps`     | Lista los contenedores activos con su identificador, imagen, estado y nombre.  | `docker ps` muestra los contenedores en ejecución.<br />`docker ps -a` incluye también los detenidos.                   |
+| `docker stop`   | Detiene un contenedor en ejecución.                                            | `docker stop mongodb` detiene el contenedor.<br />`docker stop $(docker ps -q)` detiene todos los contenedores activos. |
+| `docker rm`     | Elimina un contenedor detenido.                                                | `docker rm mongodb` elimina el contenedor.<br />`docker rm $(docker ps -a -q)` elimina todos los contenedores.          |
+| `docker exec`   | Ejecuta un comando dentro de un contenedor en marcha.                          | `docker exec -it mongodb bash` abre una _shell_ interactiva en el contenedor.                                           |
+| `docker cp`     | Copia archivos entre el _host_ y el contenedor.                                | `docker cp ./datos.csv mongodb:/tmp/datos.csv` copia el archivo al contenedor.                                          |
+| `docker update` | Modifica la configuración de recursos de uno o varios contenedores existentes. | `docker update --memory 512m mongodb` ajusta el límite de memoria del contenedor.                                       |
 
-El mapeo de puertos, o _port mapping_, asigna un puerto específico del _host_ al puerto
-de un contenedor, lo que permite que una aplicación dentro del contenedor sea accesible
-desde el _host_ o desde otros contenedores.
+La asignación de recursos también puede fijarse en el momento de la creación. La opción
+`--cpu-shares` establece el peso relativo del contenedor en el reparto de CPU y la
+opción `-m` limita la memoria disponible, como en
+`docker run --cpu-shares=512 -m 256m nombre_imagen`. El conjunto completo de parámetros
+admitidos se detalla en la
+[documentación de `docker update`](https://docs.docker.com/engine/reference/commandline/update/).
 
-???+ example "Mapeo de puertos"
+Cuando un servicio no se comporta como se espera, la inspección del contenedor y de sus
+registros permite localizar el origen del problema:
 
-    El siguiente comando crea un contenedor de MongoDB y mapea el puerto 27017 del *host* al puerto 27017 del contenedor:
+| Comando          | Descripción                                                          | Ejemplo de uso                                                                                                  |
+| ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `docker inspect` | Muestra la configuración detallada de un contenedor o de una imagen. | `docker inspect mongodb` devuelve la configuración completa en formato JSON.                                    |
+| `docker logs`    | Muestra los registros generados por el contenedor.                   | `docker logs mongodb` muestra los registros acumulados.<br />`docker logs -f mongodb` los sigue en tiempo real. |
+| `docker stats`   | Monitoriza el consumo de CPU, memoria y ancho de banda.              | `docker stats mongodb` monitoriza un contenedor.<br />`docker stats` monitoriza todos los contenedores activos. |
 
-    ```bash linenums="1"
-    docker container create -p 27017:27017 --name mongodb mongo
-    ```
+Las redes y los volúmenes son recursos independientes del ciclo de vida de los
+contenedores, por lo que disponen de sus propios subcomandos de gestión:
 
-    En este comando, `-p` mapea un puerto del *host* al puerto del contenedor, `mongodb` es el nombre del contenedor y `mongo` es la imagen utilizada.
+| Comando                  | Descripción                                                          | Ejemplo de uso                                                          |
+| ------------------------ | -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `docker network ls`      | Lista las redes configuradas en Docker.                              | `docker network ls` muestra las redes existentes.                       |
+| `docker network create`  | Crea una red personalizada.                                          | `docker network create nombre_red` crea la red indicada.                |
+| `docker network inspect` | Detalla una red concreta, con sus direcciones IP y sus contenedores. | `docker network inspect nombre_red` muestra la configuración de la red. |
+| `docker network rm`      | Elimina una red.                                                     | `docker network rm nombre_red` elimina la red indicada.                 |
+| `docker volume create`   | Crea un volumen.                                                     | `docker volume create nombre_volumen` crea el volumen indicado.         |
+| `docker volume ls`       | Lista los volúmenes existentes.                                      | `docker volume ls` muestra todos los volúmenes.                         |
+| `docker volume rm`       | Elimina un volumen.                                                  | `docker volume rm nombre_volumen` elimina el volumen indicado.          |
 
-### Crear e iniciar un contenedor
+La publicación de imágenes en un registro y la limpieza de los recursos que ya no se
+utilizan completan el catálogo de comandos habituales:
 
-El comando `docker run` combina los comandos `docker create` y `docker start`,
-realizando los siguientes pasos:
+| Comando                     | Descripción                                                                            | Ejemplo de uso                                                                |
+| --------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `docker login`              | Inicia sesión en un _registry_.                                                        | `docker login` autentica la sesión contra Docker Hub.                         |
+| `docker push`               | Publica una imagen en un _registry_.                                                   | `docker push usuario/nombre_imagen:1.0` sube la imagen etiquetada.            |
+| `docker logout`             | Cierra la sesión en un _registry_.                                                     | `docker logout` finaliza la sesión activa.                                    |
+| `docker system prune --all` | Elimina los contenedores detenidos, las redes sin uso y las imágenes no referenciadas. | `docker system prune --all` libera el espacio ocupado por recursos inactivos. |
+| `docker volume prune`       | Elimina los volúmenes que no están en uso.                                             | `docker volume prune` libera el espacio de los volúmenes huérfanos.           |
+| `docker network prune`      | Elimina las redes sin uso, salvo `bridge`, `none` y `host`.                            | `docker network prune` elimina las redes personalizadas sin contenedores.     |
 
-1. Busca la imagen especificada. Si no está disponible localmente, la descarga del
-   repositorio.
-2. Crea un contenedor a partir de la imagen e inicia el contenedor.
+!!! danger "Las operaciones `prune` no son reversibles"
+
+    Los comandos `prune` eliminan recursos de forma inmediata y definitiva. En el caso de
+    `docker volume prune`, la eliminación afecta a los datos persistentes de los
+    volúmenes que ningún contenedor tiene montados, lo que puede suponer la pérdida de
+    bases de datos completas. Conviene revisar antes qué recursos se verán afectados con
+    `docker volume ls` o `docker system df` y evitar la opción `--all` en máquinas
+    compartidas.
+
+## Ejecución de contenedores
+
+Los comandos anteriores describen las operaciones disponibles, pero el comportamiento
+real de un contenedor depende de cómo se combinen sus opciones en el momento de la
+ejecución. Las secciones siguientes desarrollan las combinaciones más habituales.
+
+### Creación e inicio de un contenedor
+
+El comando `docker run` combina `docker create` y `docker start`. En primer lugar busca
+la imagen especificada y, si no está disponible localmente, la descarga del registro
+correspondiente. A continuación crea el contenedor a partir de la imagen y lo inicia.
 
 ???+ example "Contenedor en segundo plano"
-
-    El siguiente ejemplo ejecuta un contenedor de MongoDB en segundo plano mapeando el puerto 27017:
 
     ```bash linenums="1"
     docker run -d -p 27017:27017 --name mongodb mongo
     ```
 
-### Variables de entorno
+    La orden ejecuta un contenedor de MongoDB en segundo plano y expone el puerto 27017,
+    de modo que el servicio queda accesible sin que el terminal permanezca ocupado.
 
-Para conectar una base de datos con una aplicación dentro de Docker, se utilizan
-variables de entorno específicas para la imagen del contenedor.
+### Modo interactivo
 
-???+ example "Variables de entorno"
+Un contenedor **no es un sistema operativo completo**, sino un entorno pensado para
+alojar servicios y aplicaciones. Si se ejecuta una imagen como Ubuntu sin ningún proceso
+activo, el contenedor se detiene de inmediato al no existir ninguna tarea que mantener
+en marcha.
 
-    El siguiente ejemplo crea un contenedor de MongoDB con credenciales de administrador:
+Además, los contenedores no leen la entrada estándar (_stdin_) de forma predeterminada.
+Para interactuar con ellos se emplean las opciones `-i`, que mapea _stdin_ y activa el
+modo interactivo, y `-t`, que crea un pseudoterminal.
+
+???+ example "Acceso interactivo a un contenedor"
 
     ```bash linenums="1"
-    docker create -e MONGO_INITDB_ROOT_USERNAME=<usuario> -e MONGO_INITDB_ROOT_PASSWORD=<contraseña> mongo
+    docker run -it nombre_imagen bash
+
+    docker run -it ghcr.io/astral-sh/uv:debian bash
     ```
 
-Estas variables configuran el usuario y la contraseña del administrador de la base de
-datos durante la inicialización del contenedor. Es importante revisar la documentación
-de cada imagen, ya que las variables de entorno varían según la imagen utilizada.
+    La primera orden muestra la forma general del acceso interactivo y la segunda abre
+    una _shell_ en una imagen que incorpora uv preinstalado, lo que permite explorar el
+    entorno antes de definir una imagen propia.
 
-### _Dockerfile_
+### _Attach_ y _detach_
 
-Un `Dockerfile` es un archivo de texto con instrucciones que permiten construir una
-imagen Docker personalizada. Cada imagen se construye sobre una imagen previa, que puede
-ser oficial de Docker o una personalizada.
+Cuando un contenedor se ejecuta sin la opción `-d`, el terminal queda en modo _attach_,
+es decir, en primer plano, y muestra la salida del proceso principal. La opción `-d`
+activa el modo _detached_ y devuelve el control del terminal de inmediato. Para
+recuperar el primer plano de un contenedor que se ejecuta en segundo plano se utiliza el
+comando `attach` junto con el identificador del contenedor.
 
-???+ example "Dockerfile básico"
+???+ example "Reconectar a un contenedor en segundo plano"
+
+    ```bash linenums="1"
+    docker ps
+
+    docker attach id_contenedor
+    ```
+
+    La primera orden obtiene el identificador del contenedor y la segunda devuelve su
+    salida al primer plano del terminal.
+
+### Mapeo de puertos
+
+<figure markdown="span">
+  ![Correspondencia entre un puerto del host y un puerto del contenedor](../assets/img/docs/docker/docker-port-mapping.png)
+  <figcaption>Mapeo de puertos entre el <em>host</em> y el contenedor.</figcaption>
+</figure>
+
+El mapeo de puertos, o _port mapping_, asigna un puerto del _host_ a un puerto del
+contenedor, lo que permite que una aplicación alojada en el contenedor resulte accesible
+desde el _host_ o desde otros contenedores. Sin esta correspondencia, el servicio solo
+escucha en la red interna del contenedor.
+
+???+ example "Mapeo del puerto de una base de datos"
+
+    ```bash linenums="1"
+    docker container create -p 27017:27017 --name mongodb mongo
+    ```
+
+    La opción `-p` asocia el puerto 27017 del _host_ con el puerto 27017 del contenedor,
+    `mongodb` es el nombre asignado al contenedor y `mongo` es la imagen empleada.
+
+### Variables de entorno
+
+La configuración de un servicio empaquetado en un contenedor se transmite habitualmente
+mediante variables de entorno. En el caso de una base de datos, estas variables definen
+las credenciales que se crean durante la inicialización del contenedor.
+
+???+ example "Credenciales mediante variables de entorno"
+
+    ```bash linenums="1"
+    docker create -e MONGO_INITDB_ROOT_USERNAME=usuario \
+        -e MONGO_INITDB_ROOT_PASSWORD=contrasena mongo
+    ```
+
+    Las variables `MONGO_INITDB_ROOT_USERNAME` y `MONGO_INITDB_ROOT_PASSWORD` establecen
+    el usuario y la contraseña del administrador de la base de datos. Los nombres de las
+    variables varían según la imagen, por lo que conviene consultar la documentación de
+    cada una.
+
+## Construcción de imágenes con `Dockerfile`
+
+<figure markdown="span">
+  ![Secuencia que va del Dockerfile a la imagen y de la imagen al contenedor](../assets/img/docs/docker/docker-container-steps.png)
+  <figcaption>Pasos para la creación de un contenedor en Docker. <a href="https://medium.com/swlh/understand-dockerfile-dd11746ed183">Referencia</a></figcaption>
+</figure>
+
+Un `Dockerfile` es un archivo de texto que contiene las instrucciones necesarias para
+construir una imagen personalizada. Cada imagen se construye sobre una imagen previa, ya
+sea oficial de Docker o definida por el propio proyecto, y cada instrucción genera una
+capa nueva dentro del sistema de archivos resultante.
+
+???+ example "`Dockerfile` de una aplicación de Node.js"
 
     ```dockerfile linenums="1"
     # Imagen base
@@ -329,20 +403,24 @@ ser oficial de Docker o una personalizada.
     CMD ["node", "/home/app/index.js"]
     ```
 
-Para construir una imagen a partir de un `Dockerfile` se utiliza el siguiente comando:
+    Las instrucciones se ejecutan en orden durante la construcción, salvo `CMD`, que
+    define el proceso que se lanza al iniciar el contenedor.
+
+La construcción de la imagen a partir del archivo anterior se realiza con
+`docker build`, indicando la etiqueta deseada y la ruta del contexto de construcción:
 
 ```bash linenums="1"
-docker build -t nombre-imagen:etiqueta ruta/dockerfile
+docker build -t nombre_imagen:etiqueta ruta_dockerfile
 ```
 
-#### ENTRYPOINT y CMD
+### `ENTRYPOINT` y `CMD`
 
-`ENTRYPOINT` define el comando base del contenedor, mientras que `CMD` proporciona
-argumentos por defecto que pueden sobreescribirse al ejecutar el contenedor.
+La instrucción `ENTRYPOINT` define el comando base del contenedor, mientras que `CMD`
+proporciona los argumentos por defecto, que pueden sobrescribirse en el momento de la
+ejecución. La combinación de ambas permite construir imágenes que se comportan como un
+ejecutable con parámetros configurables.
 
-???+ example "ENTRYPOINT vs CMD"
-
-    Teniendo el siguiente `Dockerfile`:
+???+ example "Combinación de `ENTRYPOINT` y `CMD`"
 
     ```dockerfile linenums="1"
     FROM ubuntu
@@ -350,59 +428,47 @@ argumentos por defecto que pueden sobreescribirse al ejecutar el contenedor.
     CMD ["5"]
     ```
 
-    Podemos utilizar el siguiente comando para hacer un sleep de 5 segundos, que es el
-    valor por defecto definido en la imagen:
+    Con esta definición, la orden `docker run nombre_imagen` espera cinco segundos, que
+    es el valor por defecto declarado en `CMD`, mientras que
+    `docker run nombre_imagen 10` sustituye ese argumento y espera diez segundos. El
+    comando base `sleep`, fijado en `ENTRYPOINT`, permanece invariable.
 
-    ```bash linenums="1"
-    docker run <imagen>
-    ```
+## Redes
 
-    O podemos modificar el valor:
-
-    ```bash linenums="1"
-    docker run <imagen> 10
-    ```
-
-### Redes
-
-Para permitir la comunicación entre contenedores, es necesario configurar una red
-interna. Docker permite crear redes personalizadas con el comando
-`docker network create mi-nueva-red`, y los contenedores que pertenecen a la misma red
-pueden comunicarse entre sí utilizando su nombre como dominio. Para crear un contenedor
-en una red específica podemos utilizar el siguiente comando:
+Para que varios contenedores se comuniquen entre sí es necesario que compartan una red
+interna. Docker permite crear redes personalizadas con `docker network create`, y los
+contenedores que pertenecen a la misma red se localizan utilizando su nombre como
+dominio, sin necesidad de conocer su dirección IP. La red a la que se conecta un
+contenedor se indica en el momento de su creación:
 
 ```bash linenums="1"
-docker create -p 27017:27017 --name mongodb --network mi-nueva-red mongo
+docker create -p 27017:27017 --name mongodb --network nombre_red mongo
 ```
 
-Docker ofrece diferentes modos de red:
+Docker ofrece varios modos de red que determinan el grado de aislamiento del contenedor:
 
-|     Tipo     | Descripción                                                                                                                                                        |
-| :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **_bridge_** | Red por defecto. Docker asigna IPs internas a cada contenedor. Los contenedores pueden comunicarse entre sí y se accede desde el _host_ mediante mapeo de puertos. |
-|  **_host_**  | El contenedor usa directamente la red del _host_, sin aislamiento de red.                                                                                          |
-|  **_none_**  | Sin conectividad de red, completamente aislado.                                                                                                                    |
+| Tipo     | Descripción                                                                                                                                                           |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bridge` | Red por defecto. Docker asigna direcciones IP internas a cada contenedor, que se comunican entre sí y quedan accesibles desde el _host_ mediante el mapeo de puertos. |
+| `host`   | El contenedor utiliza directamente la red del _host_, sin aislamiento de red.                                                                                         |
+| `none`   | El contenedor carece de conectividad de red y queda completamente aislado.                                                                                            |
 
-Además, se pueden crear **redes personalizadas** que permiten especificar el rango de
-direcciones IP y otros parámetros. En lugar de usar `--link` (considerado _legacy_), se
-recomienda crear redes definidas por el usuario, que proporcionan **resolución de
-nombres interna** (los contenedores se referencian por nombre en lugar de por IP) y
-conectividad automática entre todos los contenedores de la misma red.
+Además de los modos anteriores, es posible crear **redes personalizadas** que
+especifican el rango de direcciones IP y otros parámetros. Estas redes definidas por el
+usuario sustituyen a la opción `--link`, considerada _legacy_, y aportan **resolución de
+nombres interna**, de modo que los contenedores se referencian por nombre en lugar de
+por dirección IP, junto con la conectividad automática entre todos los miembros de la
+red.
 
-### Docker Compose
+## Docker Compose
 
-Docker Compose es una herramienta que permite definir y gestionar múltiples contenedores
-como un conjunto de servicios interconectados. Utiliza un archivo de configuración
-`docker-compose.yml` en formato YAML para especificar la configuración de los servicios,
-redes, volúmenes y otros aspectos relacionados con los contenedores, simplificando la
-gestión de aplicaciones complejas compuestas por varios contenedores.
+Docker Compose permite definir y gestionar varios contenedores como un conjunto de
+servicios interconectados. La configuración se declara en un archivo
+`docker-compose.yml` en formato YAML, que recoge los servicios, las redes, los volúmenes
+y el resto de aspectos relacionados con los contenedores. De este modo, una aplicación
+compuesta por varios servicios se levanta con una única orden.
 
-???+ example "Docker Compose con dos servicios"
-
-    En este ejemplo se definen dos servicios: uno para la aplicación (`mi-app`), que se
-    construye a partir del contexto del directorio actual y mapea el puerto 3000, y otro
-    para MongoDB (`mongodb`), que utiliza una imagen preexistente, mapea el puerto 27017
-    y establece las credenciales de acceso mediante variables de entorno.
+???+ example "Aplicación con dos servicios"
 
     ```yaml linenums="1"
     version: "3.9"
@@ -412,7 +478,7 @@ gestión de aplicaciones complejas compuestas por varios contenedores.
         build: .
         ports:
           - "3000:3000"
-        links:
+        depends_on:
           - mongodb
 
       mongodb:
@@ -420,62 +486,64 @@ gestión de aplicaciones complejas compuestas por varios contenedores.
         ports:
           - "27017:27017"
         environment:
-          - MONGO_INITDB_ROOT_USERNAME=<usuario>
-          - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
+          - MONGO_INITDB_ROOT_USERNAME=usuario
+          - MONGO_INITDB_ROOT_PASSWORD=contrasena
     ```
+
+    El archivo define dos servicios. El primero, `mi-app`, se construye a partir del
+    contexto del directorio actual y expone el puerto 3000. El segundo, `mongodb`, parte
+    de una imagen existente, expone el puerto 27017 y recibe las credenciales de acceso
+    mediante variables de entorno. La clave `depends_on` establece el orden de arranque,
+    de forma que la base de datos se inicia antes que la aplicación.
 
 Para iniciar los servicios definidos en el archivo se ejecuta `docker compose up`, que
-descarga las imágenes necesarias, crea los contenedores y los pone en funcionamiento.
+descarga las imágenes necesarias, crea los contenedores y los pone en funcionamiento. La
+orden `docker compose down` detiene y elimina los servicios, junto con los contenedores,
+las redes y los volúmenes asociados. Otros comandos habituales son
+`docker compose up --scale servicio=numero_instancias` para escalar un servicio concreto
+y `docker compose logs servicio` para consultar sus registros.
 
-Para detener y eliminar los servicios, incluidos los contenedores, redes y volúmenes
-asociados, se utiliza `docker compose down`. Otros comandos útiles son
-`docker-compose scale servicio=num_instancias` para escalar servicios y
-`docker-compose logs servicio` para consultar los registros.
-
-Se recomienda consultar el
+La sintaxis del archivo ha evolucionado a lo largo del tiempo, por lo que resulta útil
+consultar el
 [historial de versiones de Docker Compose](https://docs.docker.com/compose/intro/history/)
-para conocer las diferencias de sintaxis y mejoras entre versiones.
+antes de reutilizar configuraciones antiguas.
 
-### Persistencia de datos con volúmenes
+## Persistencia de datos con volúmenes
 
-En Docker, los volúmenes permiten la persistencia de datos en los contenedores. Esto
-significa que, incluso si un contenedor se elimina, los datos asociados a los volúmenes
-permanecen disponibles, lo cual resulta especialmente útil cuando se desea mantener
-información a través de reinicios o actualizaciones de contenedores.
+Los volúmenes permiten conservar los datos generados por un contenedor más allá de su
+ciclo de vida. Aunque el contenedor se elimine, la información almacenada en el volumen
+permanece disponible, lo que resulta imprescindible para mantener bases de datos o
+archivos de trabajo a través de reinicios y actualizaciones.
 
-Los volúmenes pueden ser de diferentes tipos. Los **volúmenes anónimos** carecen de
-nombre y no pueden referenciarse explícitamente desde otros contenedores. Los
-**volúmenes de _host_** permiten especificar qué carpeta del sistema anfitrión se monta
-dentro del contenedor. Los **volúmenes nombrados** disponen de un nombre y pueden
-referenciarse en otros contenedores o en múltiples servicios.
+Existen tres tipos de volúmenes. Los **volúmenes anónimos** carecen de nombre, por lo
+que no pueden referenciarse de forma explícita desde otros contenedores. Los **volúmenes
+de _host_**, también denominados _bind mounts_, especifican qué directorio del sistema
+anfitrión se monta dentro del contenedor. Los **volúmenes nombrados** disponen de un
+nombre propio y pueden referenciarse desde otros contenedores o desde varios servicios.
 
-Para montar un volumen directamente desde la línea de comandos se utiliza la opción
-`-v`.
+El montaje directo desde la línea de comandos se realiza con la opción `-v`, que indica
+el origen en el _host_ y el punto de montaje en el contenedor.
 
-???+ example "Volumen con bind mount"
-
-    Para mapear el directorio del _host_ al directorio del contenedor, podemos utilizar
-    el comando:
+???+ example "Montaje de un directorio del _host_"
 
     ```bash linenums="1"
-    docker run -v ./Disco:/home/disco -it ghcr.io/astral-sh/uv:debian bash
+    docker run -v ./disco:/home/disco -it ghcr.io/astral-sh/uv:debian bash
     ```
+
+    El directorio `./disco` del _host_ queda disponible en `/home/disco` dentro del
+    contenedor, de modo que los cambios realizados desde cualquiera de los dos lados se
+    reflejan de forma inmediata en el otro.
 
 !!! warning "Volúmenes en contenedores existentes"
 
-    Para añadir un volumen a un contenedor existente, es necesario **recrear el contenedor**
-    con el comando del volumen.
+    Un contenedor en marcha no admite la incorporación de nuevos volúmenes. Para añadir
+    uno es necesario **recrear el contenedor** incluyendo la definición del volumen en la
+    orden de creación.
 
-También podemos definir `docker-compose.yml` con volúmenes.
+Los volúmenes también pueden declararse en un archivo `docker-compose.yml`, lo que evita
+depender de rutas concretas de la máquina anfitriona.
 
-???+ example "Volumen nombrado en Compose"
-
-    En este ejemplo, el servicio `mongodb` utiliza un volumen nombrado llamado
-    `mongo-data` para almacenar los datos persistentes de la base de datos. Este volumen
-    se monta en el directorio `/data/db` del contenedor, lo que asegura que los datos de
-    MongoDB se conserven incluso si el contenedor es detenido o eliminado. Docker se
-    encarga de gestionar la creación y almacenamiento de dicho volumen de forma
-    completamente automatizada.
+???+ example "Volumen nombrado en Docker Compose"
 
     ```yaml linenums="1"
     version: "3.9"
@@ -485,7 +553,7 @@ También podemos definir `docker-compose.yml` con volúmenes.
         build: .
         ports:
           - "3000:3000"
-        links:
+        depends_on:
           - mongodb
 
       mongodb:
@@ -493,8 +561,8 @@ También podemos definir `docker-compose.yml` con volúmenes.
         ports:
           - "27017:27017"
         environment:
-          - MONGO_INITDB_ROOT_USERNAME=<usuario>
-          - MONGO_INITDB_ROOT_PASSWORD=<contraseña>
+          - MONGO_INITDB_ROOT_USERNAME=usuario
+          - MONGO_INITDB_ROOT_PASSWORD=contrasena
         volumes:
           - mongo-data:/data/db
 
@@ -502,52 +570,55 @@ También podemos definir `docker-compose.yml` con volúmenes.
       mongo-data:
     ```
 
-Todos los ficheros de Docker se encuentran en `/var/lib/docker`. Docker **cachea las
-capas intermedias** de las imágenes, incluso entre diferentes _Dockerfiles_, lo que
-ahorra espacio y tiempo de construcción. En ese mismo directorio podemos ver los
-volumenes disponibles.
+    El servicio `mongodb` emplea un volumen nombrado, `mongo-data`, montado en el
+    directorio `/data/db` del contenedor. Los datos de la base de datos se conservan
+    aunque el contenedor se detenga o se elimine, y Docker gestiona de forma automática
+    la creación y la ubicación del volumen.
 
-### Registros de imágenes
+Los archivos que Docker administra se almacenan en `/var/lib/docker`, incluidos los
+volúmenes disponibles en la máquina. En ese mismo directorio se conserva la **caché de
+las capas intermedias** de las imágenes, que Docker reutiliza incluso entre archivos
+`Dockerfile` distintos, lo que reduce el espacio ocupado y el tiempo de construcción.
 
-Existen registros públicos y privados para almacenar y gestionar imágenes de Docker:
+## Registros de imágenes
 
-| Registro                  | Tipo               | Características clave                                             |
-| :------------------------ | :----------------- | :---------------------------------------------------------------- |
-| Docker Hub                | Público/Privado    | El más grande, con imágenes oficiales y despliegues automatizados |
-| Amazon ECR                | Gestionado (AWS)   | Integración con ECS, EKS y Fargate, con pago por uso              |
-| Azure Container Registry  | Gestionado (Azure) | Geo-replicación y soporte de _Helm charts_                        |
-| Google Artifact Registry  | Gestionado (GCP)   | Sucesor de GCR, con escaneo de vulnerabilidades y gestión IAM     |
-| GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para CI/CD                           |
-| Harbor                    | _Open source_      | RBAC y firmado de imágenes                                        |
-| JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos                             |
+Un _registry_ es el servicio donde se almacenan y distribuyen las imágenes. Existen
+opciones públicas y privadas, así como servicios gestionados por los principales
+proveedores de nube:
 
-### Optimización del tamaño de imágenes
+| Registro                  | Tipo               | Características clave                                                             |
+| ------------------------- | ------------------ | --------------------------------------------------------------------------------- |
+| Docker Hub                | Público o privado  | El registro más extendido, con imágenes oficiales y construcciones automatizadas. |
+| Amazon ECR                | Gestionado (AWS)   | Integración con ECS, EKS y Fargate, con pago por uso.                             |
+| Azure Container Registry  | Gestionado (Azure) | Georreplicación y soporte de _Helm charts_.                                       |
+| Google Artifact Registry  | Gestionado (GCP)   | Sucesor de GCR, con escaneo de vulnerabilidades y gestión mediante IAM.           |
+| GitHub Container Registry | Gestionado         | Integrado con GitHub Actions para los flujos de CI/CD.                            |
+| Harbor                    | _Open source_      | Control de acceso basado en roles y firmado de imágenes.                          |
+| JFrog Artifactory         | Universal          | Soporta Docker, Helm y otros formatos de artefactos.                              |
 
-El tamaño de una imagen Docker influye directamente en los tiempos de descarga,
-despliegue y almacenamiento. Reducir el tamaño de las imágenes es una práctica
-recomendada que mejora la eficiencia del flujo de trabajo y disminuye los costes de
-infraestructura. Existen varias estrategias complementarias para lograrlo.
+## Optimización del tamaño de las imágenes
 
-#### Selección de imágenes base ligeras
+El tamaño de una imagen influye directamente en los tiempos de descarga, de despliegue y
+de almacenamiento. Reducirlo mejora la eficiencia del flujo de trabajo y disminuye los
+costes de infraestructura. Las estrategias descritas a continuación son complementarias
+y suelen aplicarse de forma conjunta.
 
-La elección de la imagen base es el factor que más impacto tiene en el tamaño final.
-Imágenes como Alpine o las variantes Debian Slim ofrecen un sistema operativo mínimo que
-reduce significativamente el peso de la imagen resultante en comparación con las
+### Selección de imágenes base ligeras
+
+La elección de la imagen base es el factor con mayor impacto en el tamaño final.
+Imágenes como Alpine o las variantes Debian Slim proporcionan un sistema operativo
+mínimo que reduce de forma notable el peso del resultado en comparación con las
 distribuciones completas.
 
-#### Limpieza de caché y metadatos
+### Limpieza de caché y metadatos
 
 Cuando se instalan paquetes del sistema operativo dentro de una imagen, los gestores de
-paquetes almacenan caché y metadatos que no son necesarios en tiempo de ejecución.
-Eliminar estos ficheros temporales tras la instalación reduce el tamaño de la capa
-resultante. Es importante encadenar los comandos de instalación y limpieza en una única
-instrucción `RUN` para que la caché no persista en capas intermedias.
+paquetes almacenan caché y metadatos que no resultan necesarios en tiempo de ejecución.
+Eliminar estos archivos temporales tras la instalación reduce el tamaño de la capa
+resultante. La instalación y la limpieza deben encadenarse en una única instrucción
+`RUN` para que la caché no persista en una capa intermedia.
 
-???+ example "Instalación con limpieza de caché"
-
-    En este ejemplo se instalan las dependencias del sistema y se eliminan los ficheros
-    temporales en la misma instrucción `RUN`, evitando que la caché de `apt` persista
-    en la imagen final:
+???+ example "Instalación de dependencias con limpieza de caché"
 
     ```dockerfile linenums="1"
     FROM python:3.13-slim-bookworm
@@ -559,38 +630,37 @@ instrucción `RUN` para que la caché no persista en capas intermedias.
         apt-get clean && rm -rf /var/lib/apt/lists/*
     ```
 
-#### Gestión de dependencias por grupos
+    Las dependencias del sistema se instalan y los archivos temporales se eliminan en la
+    misma instrucción `RUN`, lo que evita que la caché de `apt` quede registrada en la
+    imagen final.
+
+### Gestión de dependencias por grupos
 
 Los gestores de dependencias como uv o Poetry permiten definir grupos diferenciados de
-dependencias (producción, desarrollo, documentación, pruebas). Al construir la imagen de
-producción, se instalan únicamente las dependencias necesarias para la ejecución,
-excluyendo herramientas de desarrollo, _linters_ o _frameworks_ de pruebas que
-incrementarían el tamaño de la imagen sin aportar valor en el entorno de despliegue.
+dependencias para producción, desarrollo, documentación y pruebas. Al construir la
+imagen de producción se instalan únicamente las dependencias necesarias para la
+ejecución, lo que excluye herramientas de desarrollo, _linters_ o _frameworks_ de
+pruebas que aumentarían el tamaño sin aportar valor en el entorno de despliegue.
 
-#### Copiar solo lo necesario
+### Copia selectiva de archivos
 
-Es recomendable copiar exclusivamente los ficheros que la aplicación necesita para
-ejecutarse, en lugar de copiar todo el directorio del proyecto. Esto evita incluir
-ficheros de configuración local, documentación, pruebas o directorios como `.git` que no
-son necesarios en la imagen final. El uso de un fichero `.dockerignore` complementa esta
-práctica al excluir automáticamente ficheros y directorios no deseados durante el
-proceso de construcción.
+Resulta recomendable copiar exclusivamente los archivos que la aplicación necesita para
+ejecutarse, en lugar del directorio completo del proyecto. Así se evita incluir
+configuración local, documentación, pruebas o directorios como `.git`, que no cumplen
+ninguna función en la imagen final. Un archivo `.dockerignore` complementa esta práctica
+al excluir de forma automática los archivos y directorios no deseados durante la
+construcción.
 
-#### _Multi-stage builds_
+### _Multi-stage builds_
 
-Las construcciones multietapa permiten dividir el proceso de creación de una imagen en
-varias fases, cada una con su propia imagen base. Una primera etapa, más pesada, se
-encarga de compilar el proyecto e instalar las dependencias, mientras que una segunda
-etapa, basada en una imagen ligera, recibe únicamente los artefactos necesarios para la
-ejecución. De este modo, las herramientas de compilación y las dependencias de
-desarrollo no forman parte de la imagen final.
+Las construcciones multietapa dividen el proceso de creación de una imagen en varias
+fases, cada una con su propia imagen base. Una primera etapa, más pesada, compila el
+proyecto e instala las dependencias, mientras que una segunda etapa, basada en una
+imagen ligera, recibe únicamente los artefactos necesarios para la ejecución. De este
+modo, las herramientas de compilación y las dependencias de desarrollo no forman parte
+del resultado final.
 
 ???+ example "_Multi-stage build_ con uv"
-
-    En este ejemplo, la etapa `builder` utiliza una imagen completa de Python para
-    instalar las dependencias del proyecto con uv. La etapa `production` parte de una
-    imagen Slim y copia únicamente el entorno virtual generado en la etapa anterior,
-    obteniendo una imagen final significativamente más ligera:
 
     ```dockerfile linenums="1"
     ## Builder Stage
@@ -624,33 +694,35 @@ desarrollo no forman parte de la imagen final.
          "--host", "0.0.0.0", "--port", "8080"]
     ```
 
-### Seguridad en contenedores
+    La etapa `builder` parte de una imagen completa de Python para instalar las
+    dependencias del proyecto con uv. La etapa `production` parte de una imagen Slim y
+    copia solo el entorno virtual generado en la etapa anterior, con lo que la imagen
+    final resulta considerablemente más ligera.
 
-Por defecto, los procesos dentro de un contenedor Docker se ejecutan como usuario
-`root`. Aunque el aislamiento proporcionado por los _namespaces_ limita el alcance de
-este usuario, ejecutar aplicaciones como `root` dentro del contenedor sigue
-representando un riesgo de seguridad, especialmente si se produce una vulnerabilidad que
-permita escapar del contenedor. La práctica recomendada consiste en crear un usuario sin
-privilegios y ejecutar la aplicación con dicho usuario.
+## Seguridad en contenedores
 
-#### Ejecución con usuario no privilegiado
+Por defecto, los procesos que se ejecutan dentro de un contenedor lo hacen como usuario
+`root`. Aunque el aislamiento que proporcionan los _namespaces_ limita el alcance de ese
+usuario, mantener la aplicación con privilegios de superusuario sigue representando un
+riesgo, especialmente si aparece una vulnerabilidad que permita escapar del contenedor.
 
-La instrucción `RUN useradd` permite crear un usuario dentro de la imagen, y la
-directiva `USER` establece que todos los comandos posteriores se ejecuten con ese
-usuario en lugar de `root`. Esta configuración se aplica habitualmente en la etapa de
-producción de un _multi-stage build_.
+### Ejecución con un usuario sin privilegios
 
-#### Gestión de secretos en tiempo de construcción
+La instrucción `RUN useradd` crea un usuario dentro de la imagen y la directiva `USER`
+establece que las instrucciones posteriores, así como el proceso principal del
+contenedor, se ejecuten con ese usuario en lugar de `root`. Esta configuración se aplica
+habitualmente en la etapa de producción de un _multi-stage build_, una vez instaladas
+las dependencias que sí requieren privilegios.
+
+### Gestión de secretos en tiempo de construcción
 
 Las variables de entorno definidas con `ENV` en un `Dockerfile` quedan almacenadas en
-las capas de la imagen y son visibles mediante `docker inspect`. Para información
-sensible como contraseñas o claves de acceso, Docker proporciona el mecanismo de _build
-secrets_ mediante `--mount=type=secret`, que permite acceder a los secretos durante la
-construcción sin que estos persistan en la imagen final.
+las capas de la imagen y resultan visibles mediante `docker inspect`. Para información
+sensible como contraseñas o claves de acceso, Docker ofrece el mecanismo de _build
+secrets_ a través de `--mount=type=secret`, que expone el secreto únicamente durante la
+instrucción que lo necesita, sin que persista en la imagen final.
 
-???+ example "Imagen segura con usuario no privilegiado y _build secrets_"
-
-    En este ejemplo, la etapa de producción crea un usuario `appuser` sin privilegios, monta los secretos de forma temporal durante la construcción y copia únicamente el código fuente necesario:
+???+ example "Imagen con usuario sin privilegios y _build secrets_"
 
     ```dockerfile linenums="1"
     ## Builder Stage
@@ -694,37 +766,13 @@ construcción sin que estos persistan en la imagen final.
          "--host", "0.0.0.0", "--port", "8080"]
     ```
 
-## Arquitectura de microservicios
+    La etapa de producción crea el usuario `appuser` sin privilegios, monta los secretos
+    de forma temporal durante la construcción y copia solo el código fuente y el entorno
+    virtual necesarios para ejecutar el servicio.
 
-### Aplicaciones monolíticas frente a microservicios
-
-En una arquitectura monolítica, todas las funcionalidades están integradas en un único
-bloque de código. A medida que el sistema crece, esto genera conflictos de dependencias,
-desarrollo más lento y _releases_ más arriesgadas.
-
-La arquitectura de microservicios divide la aplicación en servicios pequeños, autónomos
-y sin estado, cada uno con su propia lógica y base de datos independiente. Cada servicio
-se corresponde con una funcionalidad de negocio y es _self-contained_. Esta separación
-favorece la resiliencia (un fallo en un servicio no compromete al resto) y la
-escalabilidad horizontal (se escalan instancias de un servicio concreto según la
-demanda).
-
-### Comunicación entre microservicios
-
-La comunicación se realiza habitualmente mediante **APIs REST** a través de HTTP. Los
-mecanismos complementarios más relevantes son:
-
-- **_Message Broker_**: Intermediario que gestiona el envío y recepción de mensajes
-  entre servicios. Permite desacoplar emisor y receptor, procesar mensajes en cola de
-  forma paralela y proteger servicios de sobrecargas.
-- **_Service Mesh_**: Capa de infraestructura que gestiona la comunicación entre
-  microservicios (enrutamiento, seguridad, observabilidad). Se compone de un **plano de
-  datos** (_proxys_ junto a cada microservicio) y un **plano de control** (administra y
-  coordina los _proxys_).
-
-### Organización del código (monorepo frente a polirepo)
-
-| Estrategia   | Descripción                                                                           |
-| :----------- | :------------------------------------------------------------------------------------ |
-| **Monorepo** | Todos los microservicios en un único repositorio. Facilita la visibilidad global.     |
-| **Polirepo** | Cada microservicio en su propio repositorio. Favorece la independencia entre equipos. |
+Los mecanismos descritos cubren la construcción y la gestión de contenedores desde la
+línea de comandos. Las imágenes obtenidas de esta forma constituyen el artefacto que
+consumen los procesos automáticos de construcción, prueba y publicación, cuya definición
+se aborda en el capítulo de [CI/CD](section_2_ci_cd.md). La ejecución de estos
+contenedores a escala, repartidos entre varias máquinas, corresponde al capítulo de
+[orquestación](section_3_orchestrators.md).

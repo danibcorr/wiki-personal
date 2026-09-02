@@ -1,6 +1,8 @@
 ---
 authors: Daniel Bazo Correa
-description: APIs, ONNX Runtime y optimización de modelos.
+description:
+    APIs de inferencia, estrategias de despliegue de modelos, ONNX Runtime y
+    optimización para distintos entornos de hardware.
 title: Despliegue y distribución
 ---
 
@@ -11,9 +13,19 @@ title: Despliegue y distribución
     es posible que esté desordenado, carezca de una estructura clara o incluya notas
     copiadas directamente.
 
-Este capítulo aborda el despliegue de modelos de machine learning mediante APIs, la
+Este capítulo aborda el despliegue de modelos de aprendizaje automático mediante APIs,
+las estrategias que permiten publicar una versión nueva con el mínimo riesgo, la
 optimización con ONNX Runtime y la distribución eficiente de modelos en distintos
 entornos de hardware.
+
+## Bibliografía
+
+- ONNX. (s.f.). _ONNX - Open Neural Network Exchange_. <https://onnx.ai/>
+- ONNX Runtime. (s.f.). _ONNX Runtime_. <https://onnxruntime.ai/>
+- Deeplizard. (2022). _Everything You Want to Know About ONNX_ \[Vídeo\]. YouTube.
+  <https://www.youtube.com/watch?v=cK5AyawZSUI>
+- Atwal, H. (s.f.). _ML in Production: From Data Scientist to ML Engineer_ \[Curso\].
+  Udemy. <https://www.udemy.com/course/ml-in-production/>
 
 ## APIs de inferencia
 
@@ -37,7 +49,48 @@ Las operaciones fundamentales de una API REST siguen el patrón CRUD:
 | Actualizar | `PUT`       | Modifica un recurso   |
 | Eliminar   | `DELETE`    | Elimina un recurso    |
 
----
+## Estrategias de despliegue
+
+Publicar una versión nueva de un modelo no consiste en sustituir el artefacto anterior
+de forma abrupta. Existen varias estrategias que reducen el riesgo de la operación al
+limitar el número de usuarios expuestos y al mantener siempre una vía de retorno.
+
+El **_gradual ramp-up_** incrementa de forma progresiva el tráfico dirigido al nuevo
+modelo, lo que permite observar su comportamiento con carga real y detener el proceso
+ante cualquier anomalía. El **_rollback_** es el mecanismo complementario y consiste en
+revertir al modelo anterior cuando el nuevo no cumple las expectativas. El **_canary
+deployment_** asigna al principio un porcentaje reducido del tráfico a la versión nueva
+y lo amplía solo si demuestra ser estable. El **_blue-green deployment_** mantiene dos
+entornos paralelos, uno activo y otro en preparación, e intercambia su papel cuando la
+versión nueva está lista, lo que hace que la vuelta atrás sea inmediata.
+
+Junto a estas técnicas, el **modo sombra** (_shadow mode_) ejecuta el modelo nuevo con
+tráfico real y registra sus predicciones sin exponerlas al usuario, lo que permite
+compararlas con las del modelo en producción sin ningún riesgo. Las **pruebas A/B** van
+un paso más allá y miden el impacto real sobre las métricas de producto comparando
+grupos de usuarios expuestos a versiones distintas.
+
+| Estrategia          | Exposición inicial           | Vuelta atrás                        |
+| ------------------- | ---------------------------- | ----------------------------------- |
+| _Gradual ramp-up_   | Porcentaje creciente         | Reducción del tráfico dirigido.     |
+| _Canary deployment_ | Porcentaje reducido y fijo   | Retirada de la versión candidata.   |
+| _Blue-green_        | Ninguna hasta el intercambio | Intercambio inverso de entornos.    |
+| _Shadow mode_       | Ninguna, solo registro       | No aplica, no hay tráfico expuesto. |
+
+Estas estrategias solo resultan efectivas si el despliegue está automatizado. Una vez
+finalizado el entrenamiento, el _pipeline_ descrito en el capítulo de
+[CI/CD](section_2_ci_cd.md) ejecuta las pruebas de calidad del modelo, empaqueta el
+artefacto, lo publica en un entorno de preproducción y lanza las pruebas posteriores al
+despliegue sin intervención manual.
+
+!!! note "Diseño para minimizar el coste del fallo"
+
+    Un modelo comete errores por definición, de modo que el diseño del producto debe
+    limitar el impacto de una predicción incorrecta. Entre las opciones habituales se
+    encuentran la incorporación de una persona en el bucle de decisión para los escenarios
+    de riesgo elevado, el uso de métricas ponderadas por coste que hagan visibles los
+    errores más caros y la configuración de umbrales conservadores que señalen los casos
+    dudosos en lugar de resolverlos automáticamente.
 
 ## Motivación
 
@@ -222,3 +275,9 @@ adaptadores LoRA. Además, ofrece integración con plataformas como **Hugging Fa
 **Azure AI**. Un mecanismo de caché integrado permite mejorar la productividad al
 almacenar y reutilizar optimizaciones previas, reduciendo el tiempo de cómputo en
 experimentaciones repetitivas.
+
+Una vez que el modelo se encuentra desplegado y atendiendo peticiones, su rendimiento
+deja de depender exclusivamente del código y comienza a verse afectado por la evolución
+de los datos reales. El capítulo de
+[monitorización y observabilidad](section_6_monitoring.md) describe cómo vigilar ese
+comportamiento y cuándo conviene reentrenar.

@@ -1,7 +1,9 @@
 ---
 authors: Daniel Bazo Correa
-description: Versionamiento de datos y gestión de experimentos con DVC.
-title: Gestión de experimentos
+description:
+    Versionado de datos, definición de pipelines y seguimiento de experimentos con DVC y
+    MLflow.
+title: Seguimiento de experimentos
 ---
 
 !!! warning
@@ -11,11 +13,44 @@ title: Gestión de experimentos
     es posible que esté desordenado, carezca de una estructura clara o incluya notas
     copiadas directamente.
 
-DVC (Data Version Control) es una herramienta especializada en el versionamiento de
-datos, la gestión de pipelines de Machine Learning, el seguimiento de experimentos y el
-intercambio de artefactos. El contenido se estructura en cuatro módulos progresivos que
-abarcan desde la configuración básica hasta técnicas avanzadas de colaboración y
-despliegue.
+Este capítulo aborda el versionado de datos, la definición de _pipelines_ de aprendizaje
+automático, el seguimiento de experimentos y la validación de datos y modelos, con DVC y
+MLflow como herramientas de referencia.
+
+## Bibliografía
+
+- DVC. (s.f.). _Data Version Control Documentation_. <https://dvc.org/doc>
+- MLflow. (s.f.). _MLflow Documentation_. <https://mlflow.org/docs/latest/index.html>
+- Atwal, H. (s.f.). _ML in Production: From Data Scientist to ML Engineer_ \[Curso\].
+  Udemy. <https://www.udemy.com/course/ml-in-production/>
+
+## Introducción
+
+**MLOps**, o _Machine Learning Operations_, designa el conjunto de prácticas y
+herramientas que permiten desarrollar, desplegar y mantener modelos de aprendizaje
+automático en producción. Su ámbito combina la ingeniería de software, la computación en
+la nube y la administración de sistemas, y su objetivo es que los modelos resulten
+eficaces, escalables y sostenibles a lo largo del tiempo.
+
+Un sistema de este tipo se articula en torno a varios componentes. En el núcleo se
+encuentra el modelo, que representa la solución entrenada sobre un conjunto de datos.
+Ese modelo se ejecuta sobre una infraestructura que abarca desde servicios en la nube
+hasta servidores locales o los propios dispositivos, en el caso de la inferencia _on
+edge_. Una API expone el modelo para atender peticiones y devolver predicciones, y los
+mecanismos de seguimiento y monitorización garantizan la calidad y el rendimiento del
+servicio.
+
+La diferencia fundamental respecto al desarrollo de software convencional es que el
+comportamiento del sistema no depende solo del código, sino también de los datos con los
+que se entrena y de los hiperparámetros de cada ejecución. Reproducir un resultado exige
+por tanto versionar los tres elementos de forma conjunta, y ese es precisamente el
+problema que resuelven las herramientas descritas en este capítulo.
+
+**DVC** (_Data Version Control_) es una herramienta especializada en el versionado de
+datos, la gestión de _pipelines_ de aprendizaje automático, el seguimiento de
+experimentos y el intercambio de artefactos. El contenido se estructura en módulos
+progresivos que abarcan desde la configuración básica hasta las técnicas de colaboración
+y despliegue.
 
 ## Versionamiento de datos y almacenamiento remoto
 
@@ -749,5 +784,58 @@ persona que revise el PR o examine el historial en el futuro puede consultar los
 del workflow para comprender exactamente bajo qué condiciones el modelo funcionó
 correctamente, facilitando tanto la depuración de problemas futuros como la reproducción
 de resultados.
+
+## Validación de datos y de modelos
+
+Las pruebas descritas verifican que el código y el modelo funcionan en un entorno
+reproducible, pero no dicen nada sobre la calidad de los datos que alimentan el
+_pipeline_ ni sobre el comportamiento del modelo en los distintos segmentos de la
+población. Ambos aspectos se cubren con dos familias de comprobaciones adicionales que
+conviene automatizar en el mismo _pipeline_ de integración continua.
+
+### Contratos y calidad de los datos
+
+Un **contrato de datos** (_data contract_) es una prueba que verifica que los datos
+cumplen el esquema esperado en cuanto a nombres de atributos, tipos de valores y
+restricciones admitidas. Actúa como una promesa formal entre quien produce los datos y
+quien los consume, de modo que un cambio en el origen se detecta antes de propagarse al
+entrenamiento.
+
+Sobre esa base se añaden las pruebas de calidad, que validan la exactitud, la
+completitud, la consistencia, la representatividad y la actualidad de los datos
+empleados tanto en el entrenamiento como en la inferencia. Un tercer grupo son las
+pruebas de privacidad, que comprueban que los conjuntos entregados al modelo no
+contienen información personal identificable, como nombres, números de identificación o
+direcciones.
+
+!!! note "Versionado integral"
+
+    La reproducibilidad exige versionar más que el código. Alcanza a los conjuntos de
+    datos, los parámetros del modelo, los archivos de configuración e incluso las
+    semillas del generador de números aleatorios utilizadas durante el entrenamiento.
+
+### Pruebas de modelo y métricas estratificadas
+
+Las pruebas de modelo verifican las métricas globales, la invarianza frente a
+dimensiones irrelevantes y las expectativas direccionales, es decir, que un cambio
+conocido en una variable de entrada mueva la predicción en el sentido esperado. A ellas
+se añaden las **métricas estratificadas**, que segmentan el conjunto de validación por
+dimensiones de interés y calculan las métricas en cada segmento en lugar de una única
+cifra agregada.
+
+???+ example "Estratificación oculta"
+
+    La precisión global de un modelo puede mejorar un uno por ciento mientras la precisión
+    correspondiente a un país concreto cae cincuenta puntos. Una única métrica agregada
+    oculta ese comportamiento, mientras que el cálculo por segmentos, ya sea por variable
+    objetivo, por región o por cualquier otra dimensión relevante, lo hace visible antes
+    de que el modelo llegue a producción.
+
+Cuando el entrenamiento completo resulta costoso, un _smoke test_ ejecuta el _pipeline_
+íntegro con un conjunto de datos mínimo, del orden de unas pocas decenas de muestras, y
+devuelve el resultado en uno o dos minutos. Esta comprobación no evalúa la calidad
+estadística del modelo, sino que detecta errores de integración antes de invertir horas
+de cómputo, lo que evita el patrón de lanzar un entrenamiento completo únicamente para
+comprobar si el código se ejecuta.
 
 ## MLflow

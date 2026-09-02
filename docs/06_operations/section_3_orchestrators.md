@@ -1,7 +1,7 @@
 ---
 authors: Daniel Bazo Correa
 description: Kubernetes, componentes, pods, servicios y despliegues.
-title: Orquestadores
+title: Orquestación
 ---
 
 !!! warning
@@ -13,6 +13,11 @@ title: Orquestadores
 
 Este capítulo introduce Kubernetes como orquestador de contenedores, explicando sus
 componentes, la gestión de pods, despliegues, servicios y patrones de resiliencia.
+
+## Bibliografía
+
+- Kubernetes. (s.f.). _Kubernetes Documentation_. <https://kubernetes.io/docs/>
+- Minikube. (s.f.). _Minikube Documentation_. <https://minikube.sigs.k8s.io/docs/>
 
 ## Kubernetes
 
@@ -367,3 +372,9 @@ abstracción sobre el que operan:
     la carga operativa pero limitan el control y pueden resultar costosas a gran escala. La
     orquestación de contenedores ofrece un equilibrio entre flexibilidad y automatización.
     Las VMs y servidores proporcionan máximo control a costa de mayor complejidad operativa.
+
+La orquestación resuelve la ejecución y el escalado de los servicios que componen un
+sistema. Cuando esos servicios contienen modelos de aprendizaje automático aparecen
+requisitos propios, como el versionado de los conjuntos de datos y el registro de los
+resultados de cada entrenamiento, que se abordan en el capítulo de
+[seguimiento de experimentos](section_4_experiment_management.md).
